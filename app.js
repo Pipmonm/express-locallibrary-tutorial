@@ -20,8 +20,8 @@ var app = express();
 var mongoose = require('mongoose');
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/my_database';//ORIGINAL DB connection
-//var mongoDB = appEnv.getServiceURL('node-express-tutorial-mongodb') || 'mongodb://127.0.0.1/my_database';
+//var mongoDB = 'mongodb://127.0.0.1/my_database';//ORIGINAL DB connection
+var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1/my_database';//2018=05-19 default to local if online not available
 mongoose.connect(mongoDB);
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
