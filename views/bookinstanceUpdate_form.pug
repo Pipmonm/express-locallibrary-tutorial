@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1=title
+  form(method='POST' action='')
+    div.form-group
+      label(for='book') Book:
+      input(type='text' placeholder='book name missing error: delete this copy'  name='book' required='true' value = bookinstance.book.title )
+    div.form-group
+      label(for='imprint') Imprint:
+      input#imprint.form-control(type='text' placeholder="missing publisher error" name='imprint' required='true' value=(undefined===bookinstance ? '' : bookinstance.imprint))
+    div.form-group
+      label(for='due_back') Date when book available:
+      input#due_back.form-control(type='date' placeholder="missing date error" name='due_back' value= due_back)
+
+    div.form-group
+      label(for='status') Status:
+      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
+        option(value= statusArray[0]) #{statusArray[0]}
+        option(value= statusArray[1]) #{statusArray[1]}
+        option(value= statusArray[2]) #{statusArray[2]}
+        option(value= statusArray[3]) #{statusArray[3]}
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
