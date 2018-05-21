@@ -18,10 +18,11 @@ var app = express();
 
 //Import the mongoose module
 var mongoose = require('mongoose');
-
+var mongoDB = process.env.MONGODB_URI || "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb"
+//mongoDB definition above to check out why environment variable set below (with heroku set config) doesn't work!
 //Set up default mongoose connection
 //var mongoDB = 'mongodb://127.0.0.1/my_database';//ORIGINAL DB connection
-var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1/my_database';//2018=05-19 default to local if online not available
+//var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1/my_database';//2018=05-19 default to local if online not available
 mongoose.connect(mongoDB);
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
