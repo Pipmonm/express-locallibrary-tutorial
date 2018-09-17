@@ -8,6 +8,9 @@ var author_controller = require('../controllers/authorController');
 var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 
+//TESTING Download
+var fracSpeller_controller = require('../controllers/fracSpellerController')
+
 /// BOOK ROUTES ///
 
 // GET catalog home page.
@@ -16,6 +19,9 @@ router.get('/', book_controller.index);
 //router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
 //});
+
+//EST DOWNLOAD routes
+router.get('/fracSpeller_detail',fracSpeller_controller.fracSpeller_detail);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
