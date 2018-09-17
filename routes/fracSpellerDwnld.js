@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //let myController = (req, res) => {
-  let filename = 'FracSpellerDecimal.txt';
+  let filename = 'FracSpellerDecimal.exe';
   console.log("next for frac dwnld");
   //console.log(__dirname)
   let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
