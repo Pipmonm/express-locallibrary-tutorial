@@ -12,7 +12,7 @@ var book_instance_controller = require('../controllers/bookinstanceController');
 
 // GET catalog home page.
 router.get('/', book_controller.index);
-//temporary
+//temporary down below i think
 //router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
 //});

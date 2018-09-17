@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
+//TESTING Download
+var fracSpellerDwnld = require('./routes/fracSpellerDwnld')
+
 var compression = require('compression');
 var helmet = require('helmet');
 //var cfenv = require('cfenv'); //RECOVERY MOD 2018-05-18
@@ -51,6 +54,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/catalog', catalog);  // Add catalog routes to middleware chain.
+//TESTING Download
+app.use('/fracSpellerDwnld', fracSpellerDwnld)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
