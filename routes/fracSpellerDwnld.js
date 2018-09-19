@@ -14,11 +14,13 @@ router.get('/', function(req, res, next) {
   let filename = 'FracSpellerDecimal.exe';
   console.log("next for frac dwnld");
   //console.log(__dirname)
-  let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
+  //let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
+  let absPath = path.join('https://s3.ca-central-1.amazonaws.com/pipsbucket', filename);
+  //https://s3.ca-central-1.amazonaws.com/pipsbucket/FracSpellerDecimal.exe
   let relPath = path.join('./public/javascripts/downloading', filename); // path relative to server root
   console.log(relPath)
 
-  fs.writeFile(relPath, 'File content', (err) => {
+  fs.writeFile(absPath, 'File content', (err) => {
     if (err) {
       console.log(err);
     }
