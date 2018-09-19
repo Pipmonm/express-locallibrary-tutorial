@@ -18,18 +18,19 @@ router.get('/', function(req, res, next) {
   let absPath = path.join('https://s3.ca-central-1.amazonaws.com/pipsbucket', filename);
   //https://s3.ca-central-1.amazonaws.com/pipsbucket/FracSpellerDecimal.exe
   let relPath = path.join('./public/javascripts/downloading', filename); // path relative to server root
-  console.log(relPath)
+  console.log(absPath);
+  res.redirect(absPath);//brute force 2018-09-19
 
-  fs.writeFile(absPath, 'File content', (err) => {
-    if (err) {
-      console.log(err);
-    }
-    res.download(absPath, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-  });
+  //fs.writeFile(absPath, 'File content', (err) => {
+    //if (err) {
+      //console.log(err);
+    //}
+    //res.download(absPath, (err) => {
+      //if (err) {
+        //console.log(err);
+      //}
+    //});
+  //});
 });
 
 module.exports = router;
