@@ -9,7 +9,8 @@ var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 
 //TESTING Download
-var fracSpeller_controller = require('../controllers/fracSpellerController')
+var pieSlicer_controller = require('../controllers/pieSlicerController');
+var fracSpeller_controller = require('../controllers/fracSpellerController');
 
 /// BOOK ROUTES ///
 
@@ -21,6 +22,7 @@ router.get('/', book_controller.index);
 //});
 
 //EST DOWNLOAD routes
+router.get('/pieSlicer_detail',pieSlicer_controller.pieSlicer_detail);
 router.get('/fracSpeller_detail',fracSpeller_controller.fracSpeller_detail);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
