@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  if error
+    p Error getting dynamic content.
+  else
+
+  h2= "Pie Slicer Module"
+
+  p!= pieSlicerDesc1
+
+  p!= pieSlicerDesc2 
