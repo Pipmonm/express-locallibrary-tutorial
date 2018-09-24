@@ -11,15 +11,15 @@ router.get('/', function(req, res, next) {
 
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //let myController = (req, res) => {
-  let filename = 'FracSpellerDecimal.exe';
-  console.log("next for FracSpellerDecimal dwnld");
+  let filename = 'FracSpeller.exe';
+  console.log("next for FracSpeller dwnld");
   //console.log(__dirname)
   //let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
   let absPath = path.join('https://s3.ca-central-1.amazonaws.com/fracspeller/', filename);
   //https://s3.ca-central-1.amazonaws.com/pipsbucket/FracSpellerDecimal.exe
   let relPath = path.join('./public/javascripts/downloading', filename); // path relative to server root
   console.log(absPath);
-  res.redirect("https://s3.ca-central-1.amazonaws.com/fracspeller/FracSpellerDecimal.exe");//brute force 2018-09-19
+  res.redirect("https://s3.ca-central-1.amazonaws.com/fracspeller/" + filename);//brute force 2018-09-19
 
   //fs.writeFile(absPath, 'File content', (err) => {
     //if (err) {
