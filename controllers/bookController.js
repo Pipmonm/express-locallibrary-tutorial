@@ -19,8 +19,8 @@ exports.index = function(req, res) {
    "/n" +
    "Stay tuned."
 
- let error = false;
- 
+ let err = false;
+
  res.render('index', { title: 'Math For All', error: err, blurb: blurb });
 };
 
