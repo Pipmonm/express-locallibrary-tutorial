@@ -10,26 +10,15 @@ var async = require('async');
 var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 
 exports.index = function(req, res) {
-
-    async.parallel({
-        book_count: function(callback) {
-            Book.count(callback);
-        },
-        book_instance_count: function(callback) {
-            BookInstance.count(callback);
-        },
-        book_instance_available_count: function(callback) {
-            BookInstance.count({status:'Available'}, callback);
-        },
-        author_count: function(callback) {
-            Author.count(callback);
-        },
-        genre_count: function(callback) {
-            Genre.count(callback);
-        },
-    }, function(err, results) {
-        res.render('index', { title: 'Math For All', error: err, data: results });
-    });
+ let blurb = "This site is under development /n" +
+   "Viewers are able to see changes as they are implemented in an/n" +
+   "effort to improve the site and turn it into an optimal experience/n" +
+   "for teachers, homeschooling  parents and any student who may like/n" +
+   "a more visual approach in developing their math proficiency and/n" +
+   "understanding. /n" +
+   "/n" +
+   "Stay tuned."
+ res.render('index', { title: 'Math For All', error: err, blurb: blurb });
 };
 
 // Display list of all books.
