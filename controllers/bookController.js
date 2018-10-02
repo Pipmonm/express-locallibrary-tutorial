@@ -18,6 +18,9 @@ exports.index = function(req, res) {
    "understanding. /n" +
    "/n" +
    "Stay tuned."
+
+ let error = false;
+ 
  res.render('index', { title: 'Math For All', error: err, blurb: blurb });
 };
 
