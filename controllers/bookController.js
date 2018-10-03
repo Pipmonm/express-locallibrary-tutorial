@@ -10,14 +10,13 @@ var async = require('async');
 var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 
 exports.index = function(req, res) {
- let blurb = "This site is under development \n" +
-   "Viewers are able to see changes as they are implemented in an \n" +
-   "effort to improve the site and turn it into an optimal experience \n" +
-   "for teachers, homeschooling  parents and any student who may like \n" +
-   "a more visual approach in developing their math proficiency and \n" +
-   "understanding. \n" +
+ let blurb = "<pre style='color:yellow; background:green'>This site is under development \n" +
+   "Viewers are able to see changes as they are implemented.   \n" +
+   "There is an ongoing effort to improve the site and turn it into an optimal experience \n" +
+   "for teachers, homeschooling  parents and any student who may like a more 'hands-on' \n" +
+   "and interactive approach in developing their math proficiency and understanding. \n" +
    "\n" +
-   "Stay tuned."
+   "Stay tuned.</pre>"
 
  let err = false;
 
