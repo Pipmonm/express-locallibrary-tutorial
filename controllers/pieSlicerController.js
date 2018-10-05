@@ -23,7 +23,7 @@ exports.pieSlicer_detail = function(req, res) {
                     "very often able to discover on their own the solutions and the central concepts \n " +
                     "relating to fraction addition and subtraction. \n" +
                     "\n" +
-                    "As can be noted on the screenshot shown above of the application  \n" +
+                    "As can be noted on the screenshot of the application shown above   \n" +
                     "Pie Slicer will: \n" +
                     "  - generate problems randomly for different levels  \n" +
                     "  - verify student answers immediately \n" +
