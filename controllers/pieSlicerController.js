@@ -25,8 +25,9 @@ exports.pieSlicer_detail = function(req, res) {
                     "\n" +
                     "As can be noted on the screenshot of the application shown above   \n" +
                     "Pie Slicer will: \n" +
-                    "  - generate problems randomly for different levels  \n" +
-                    "  - verify student answers immediately \n" +
+                    "  - generate the problems you select when in 'user_mode' "
+                    "  - generate random problems automatically in 3 different level modes  \n" +
+                    "  - provide the ability to generate fractions using any denominator \n" +
                     "  - update the visual representation automatically for correct answers \n" +
                     "  - track users performance at each level \n" +
                     "  - provide a dedicated help window for questions about the  \n" +
