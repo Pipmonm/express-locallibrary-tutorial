@@ -21,13 +21,12 @@ exports.pieSlicer_detail = function(req, res) {
                     "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
                     "very often able to discover on their own the solutions and the central concepts \n " +
-                    "relating to fraction addition and subtraction. \n" +
+                    "for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
-                    "As can be noted on the screenshot of the application shown above   \n" +
-                    "Pie Slicer will: \n" +
-                    "  - generate the problems you select when in 'user_mode' "
+                    "As shown on the screenshot above Pie Slicer will:  \n" +
+                    "  - easily generate problems you select when in 'user_mode' \n" + 
                     "  - generate random problems automatically in 3 different level modes  \n" +
-                    "  - provide the ability to generate fractions using any denominator \n" +
+                    "  - when in user mode generate fractions with any denominator \n" +
                     "  - update the visual representation automatically for correct answers \n" +
                     "  - track users performance at each level \n" +
                     "  - provide a dedicated help window for questions about the  \n" +
