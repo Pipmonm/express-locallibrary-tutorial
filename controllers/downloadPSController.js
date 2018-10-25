@@ -25,9 +25,12 @@ exports.downloadPS_view = function(req, res) {
                     "A portable USB (thumb drive) version is available allowing use on any computer.  \n" +
                     "However a 'Demo' for the USB version is not available.   Therefore the unlicensed \n" +
                     "USB version will only display the opening screen (same as CPU version) which   \n" +
-                    "will allow you to obtain the USB_ID and Format Code required to obtain the  \n" +
+                    "will allow you to retrieve the USB_ID and Format Code required to obtain the  \n" +
                     "unrestricted license for the USB version.   The application will then be able \n" +
                     "to be run on any computer using that specific USB.  \n" +
+                    "\n" +
+                    "It is advised to run the CPU version to 'demo' the application.  After if you prefer \n" +
+                    "to get the USB version, simply delete the CPU demo file and download the USB version. \n" +
                     "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n" +
                     "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"  +
                     "                    (most USB drives have an ID)"
