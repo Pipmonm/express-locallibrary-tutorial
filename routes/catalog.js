@@ -26,8 +26,8 @@ router.get('/', book_controller.index);
 router.get('/pieSlicer_view',pieSlicer_controller.pieSlicer_view);
 router.get('/fracSpeller_view',fracSpeller_controller.fracSpeller_view);
 
-router.get('/downloadPS_view',downloadPSController.downloadPS_view);
-router.get('/downloadFS_view',downloadFSController.downloadFS_view);
+router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
+router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
