@@ -11,8 +11,8 @@ var book_instance_controller = require('../controllers/bookinstanceController');
 //TESTING Download
 var pieSlicer_controller = require('../controllers/pieSlicerController');
 var fracSpeller_controller = require('../controllers/fracSpellerController');
-//var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
-//var downloadPS_controller = require('../controllers/downloadPSController');//ibid
+var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
+var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 /// BOOK ROUTES ///
 
 // GET catalog home page.

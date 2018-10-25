@@ -37,7 +37,7 @@ exports.fracSpeller_view = function(req, res) {
 
   //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
   let PieSlicerDesc2 = "for download information click on"
-  let source =   `<a href='/catalog/downloadFS_view'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let source =   '/catalog/downloadFS_view';
   let source2 = "DOWNLOAD DEMO";//temporary
 
 
