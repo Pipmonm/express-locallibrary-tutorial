@@ -2,13 +2,12 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
 
   if error
     p Error getting dynamic content.
   else
 
-  h2= #{h2Header}
+  h2= h2Header
 
   p!= fracSpellerDesc1
 
