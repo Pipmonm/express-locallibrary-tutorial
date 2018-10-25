@@ -15,9 +15,9 @@ exports.fracSpeller_view = function(req, res) {
                     "any student to develop confidence and expertise in the correct spelling of numbers and \n" +
                     "the general rules behind spelling fractions also. \n" +
                     "\n" +
-                    "Naturally, spelling of numbers is bound to the particular language in use.  For the present this\n" +
-                    "module only concentrates on North American English (though other languages may be introduced in \n" +
-                    "later versions). \n" +
+                    "Naturally, spelling of numbers is bound to the particular language in use.  For the \n" +
+                    "present this module only concentrates on North American English (though other languages \n" +
+                    " may be introduced in later versions). \n" +
                     "\n" +
                     "This exerciser: \n" +
                     "  - generates problems randomly \n" +
