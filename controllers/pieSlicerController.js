@@ -41,7 +41,7 @@ exports.pieSlicer_view = function(req, res) {
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
-  let h2Header = "PieSlicer Module"
+  let h3Header = "About PieSlicer Module"
   let PieSlicerDesc2 = "for download information click on"
   let source = '/catalog/downloadPS_view';
   let source2 = "DOWNLOADING DEMOS";//temporary
