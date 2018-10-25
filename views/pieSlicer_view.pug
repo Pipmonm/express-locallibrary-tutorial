@@ -13,7 +13,7 @@ block content
     p Error getting dynamic content.
   else
 
-  h2= "Pie Slicer Module"
+  h2= #{h2Header}
 
   p!= pieSlicerDesc1
 
@@ -21,5 +21,6 @@ block content
 
   br
 
-  a(href="/catalog/downloadPS_view")
-      button(type="button") #{source}
+  a(href= #{source})
+      button(type="button") #{source2}
+//- was "/catalog/downloadPS_view"

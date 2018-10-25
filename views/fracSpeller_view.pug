@@ -8,7 +8,7 @@ block content
     p Error getting dynamic content.
   else
 
-  h2= "Fraction Speller Module"
+  h2= #{h2Header}
 
   p!= fracSpellerDesc1
 
@@ -18,5 +18,6 @@ block content
 
   br
 
-  a(href="/catalog/downloadFS_view")
-      button(type="button") #{source}
+  a(href= #{source})
+      button(type="button") #{source2}
+//- was "/catalog/downloadFS_view"

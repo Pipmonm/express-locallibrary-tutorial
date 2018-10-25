@@ -22,7 +22,7 @@ exports.fracSpeller_view = function(req, res) {
                     "This exerciser: \n" +
                     "  - generates problems randomly \n" +
                     "  - students' answers are verified immediately \n" +
-                    "  - poses problems for both converting written form to numeric form (eg  five halves >> 5/2)\n" +
+                    "  - poses problems for converting written form to numeric form (eg  five halves >> 5/2)\n" +
                     "    and converting numerical form to written form   (eg 3/27 >> three twenty-sevenths) \n" +
                     "  - a dedicated help window is available for questions about the application itself or \n" +
                     "    concerning the topic under study."
@@ -39,12 +39,14 @@ exports.fracSpeller_view = function(req, res) {
                     "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
   //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let h2Header = "Fraction Speller Module"
   let FracSpellerDesc2 = "for download information click on"
   let source =   '/catalog/downloadFS_view';
-  let source2 = "DOWNLOAD DEMO";//temporary
+  let source2 = "DOWNLOADING DEMOS";//temporary
 
 
 res.render('fracSpeller_view', { title: "",
+                                 h2Header: h2Header,
                                  fracSpellerDesc1: FracSpellerDesc1,
                                  fracSpellerDesc2: FracSpellerDesc2,
                                  source: source,

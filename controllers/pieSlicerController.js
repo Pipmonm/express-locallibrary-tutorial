@@ -17,11 +17,12 @@ exports.getObjects = function (req, res) {
 //Display unique page details for PieSlicer
 exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
-  let PieSlicerDesc1 = "<pre style='color:yellow; background:green; width:650px; border:50px'>Pie Slicer is an interactive visual aid application to help students  \n" +
+  let PieSlicerDesc1 = "<pre style='color:yellow; background:green; width:650px; border:50px; align:center'> \n" +
+                    "Pie Slicer is an interactive visual aid application to help students  \n" +
                     "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
-                    "very often able to discover on their own the solutions and the central concepts \n " +
-                    "for the addition and subtraction of positive or negative fractions. \n" +
+                    "very often able to discover on their own the solutions and the central  \n " +
+                    "concepts for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
                     "As shown on the screenshot above Pie Slicer will:  \n" +
                     "  - easily generate problems you select when in 'user_mode' \n" +
@@ -40,10 +41,12 @@ exports.pieSlicer_view = function(req, res) {
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
+  let h2Header = "PieSlicer Module"
   let PieSlicerDesc2 = "for download information click on"
   let source = '/catalog/downloadPS_view';
-  let source2 = "DOWNLOAD DEMO";//temporary
+  let source2 = "DOWNLOADING DEMOS";//temporary
 res.render('pieSlicer_view', { title: "Hello",
+                                 h2Header: h2Header,
                                  pieSlicerDesc1: PieSlicerDesc1,
                                  pieSlicerDesc2: PieSlicerDesc2,
                                  source: source,
