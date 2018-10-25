@@ -17,7 +17,7 @@ exports.getObjects = function (req, res) {
 //Display unique page details for PieSlicer
 exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
-  let PieSlicerDesc1 = "<pre style='color:yellow; background:green'>Pie Slicer is an interactive visual aid application to help students  \n" +
+  let PieSlicerDesc1 = "<pre style='color:yellow; background:green; width:650px'>Pie Slicer is an interactive visual aid application to help students  \n" +
                     "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
                     "very often able to discover on their own the solutions and the central concepts \n " +

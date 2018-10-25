@@ -10,7 +10,7 @@ var async = require('async');
 //Display unique page details for PieSlicer
 exports.downloadFS_view = function(req, res) {
   console.log("specifics of FS downloads");
-  let downloadFSDesc1 = "<pre style='color:yellow; background:green width:800px'> \n" +
+  let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:650px'> \n" +
                     "FracSpeller application is restricted to the specific computer whose \n" +
                     "system ID and Format Code has been used to obtain a license. (Key Code)   \n" +
                     "Therefore be sure to run the demo on the computer that is to be used   \n" +

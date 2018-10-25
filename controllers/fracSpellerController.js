@@ -9,7 +9,7 @@ var async = require('async');
 //Display unique page details for PieSlicer
 exports.fracSpeller_view = function(req, res) {
   console.log("trying for fracSpeller_view");
-  let FracSpellerDesc1 = "<pre style='color:yellow; background:green'>Fraction Speller is an interactive exerciser for helping \n" +
+  let FracSpellerDesc1 = "<pre style='color:yellow; background:green; width:650px'>Fraction Speller is an interactive exerciser for helping \n" +
                     "practice proper spelling of numbers and fractions.  \n" +
                     "As a topic that is sometimes not given much attention it can only be beneficial for \n" +
                     "any student to develop confidence and expertise in the correct spelling of numbers and \n" +
