@@ -7,8 +7,8 @@ var async = require('async');
 
 
 //Display unique page details for PieSlicer
-exports.fracSpeller_detail = function(req, res) {
-  console.log("trying for fracSpellerDetails");
+exports.fracSpeller_view = function(req, res) {
+  console.log("trying for fracSpeller_view");
   let FracSpellerDesc1 = "<pre style='color:yellow; background:green'>Fraction Speller is an interactive exerciser for helping \n" +
                     "practice proper spelling of numbers and fractions.  \n" +
                     "As a topic that is sometimes not given much attention it can only be beneficial for \n" +
@@ -35,9 +35,13 @@ exports.fracSpeller_detail = function(req, res) {
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
-  let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let PieSlicerDesc2 = "for download information click on"
+  let source =   `<a href='/catalog/downloadFS_view'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let source2 = "DOWNLOAD DEMO";//temporary
 
-res.render('fracSpeller_detail', { title: "",
+
+res.render('fracSpeller_view', { title: "",
                                  fracSpellerDesc1: FracSpellerDesc1,
                                  fracSpellerDesc2: FracSpellerDesc2});
 };

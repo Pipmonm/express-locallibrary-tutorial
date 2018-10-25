@@ -15,8 +15,8 @@ exports.getObjects = function (req, res) {
 }
 
 //Display unique page details for PieSlicer
-exports.pieSlicer_detail = function(req, res) {
-  console.log("trying for pieSlicerDetails");
+exports.pieSlicer_view = function(req, res) {
+  console.log("trying for pieSlicerView");
   let PieSlicerDesc1 = "<pre style='color:yellow; background:green'>Pie Slicer is an interactive visual aid application to help students  \n" +
                     "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
@@ -24,7 +24,7 @@ exports.pieSlicer_detail = function(req, res) {
                     "for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
                     "As shown on the screenshot above Pie Slicer will:  \n" +
-                    "  - easily generate problems you select when in 'user_mode' \n" + 
+                    "  - easily generate problems you select when in 'user_mode' \n" +
                     "  - generate random problems automatically in 3 different level modes  \n" +
                     "  - when in user mode generate fractions with any denominator \n" +
                     "  - update the visual representation automatically for correct answers \n" +
@@ -40,9 +40,10 @@ exports.pieSlicer_detail = function(req, res) {
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
-  let PieSlicerDesc2 =   `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
-
-res.render('pieSlicer_detail', { title: "",
+  let PieSlicerDesc2 = "for download information click on"
+  let source =   `<a href='/catalog/downloadPS_view'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let source2 = "DOWNLOAD DEMO";//temporary
+res.render('pieSlicer_view', { title: "",
                                  pieSlicerDesc1: PieSlicerDesc1,
                                  pieSlicerDesc2: PieSlicerDesc2});
 };
