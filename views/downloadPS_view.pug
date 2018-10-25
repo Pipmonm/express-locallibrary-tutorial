@@ -2,19 +2,8 @@ extends layout
 
 block content
   h1= title
-  p  #{title}
   br
-  .image
-  label(for="pieslicerimg") PieSlicer Screenshot
-  br
-  .pieslicerimg
-    <img id="pieslicerimg"  src="https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.png" alt="ScreenShot" width="636" height="390">
-
-  if error
-    p Error getting dynamic content.
-  else
-
-  h2= "NOTE CAREFULLY"
+  h3= "NOTE CAREFULLY"
 
   p!= themeDesc1
 
@@ -22,7 +11,7 @@ block content
 
   br
 
-  a(href='/routes/pieSlicerDwnld')
+  a(href='/pieSlicerDwnld')
              button(type="button") download PieSlicer for CPU
   //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
   //- the PUG href requires two lines, gives errors otherwise
