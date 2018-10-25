@@ -36,7 +36,7 @@ exports.fracSpeller_view = function(req, res) {
                     "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
   //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
-  let PieSlicerDesc2 = "for download information click on"
+  let FracSpellerDesc2 = "for download information click on"
   let source =   '/catalog/downloadFS_view';
   let source2 = "DOWNLOAD DEMO";//temporary
 
