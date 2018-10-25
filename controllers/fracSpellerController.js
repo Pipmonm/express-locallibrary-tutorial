@@ -43,5 +43,7 @@ exports.fracSpeller_view = function(req, res) {
 
 res.render('fracSpeller_view', { title: "",
                                  fracSpellerDesc1: FracSpellerDesc1,
-                                 fracSpellerDesc2: FracSpellerDesc2});
+                                 fracSpellerDesc2: FracSpellerDesc2,
+                                 source: source,
+                                 source2: source2});
 };

@@ -43,7 +43,9 @@ exports.pieSlicer_view = function(req, res) {
   let PieSlicerDesc2 = "for download information click on"
   let source =   `<a href='/catalog/downloadPS_view'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
   let source2 = "DOWNLOAD DEMO";//temporary
-res.render('pieSlicer_view', { title: "",
+res.render('pieSlicer_view', { title: "Hello",
                                  pieSlicerDesc1: PieSlicerDesc1,
-                                 pieSlicerDesc2: PieSlicerDesc2});
+                                 pieSlicerDesc2: PieSlicerDesc2,
+                                 source: source,
+                                 source2: source2});
 };
