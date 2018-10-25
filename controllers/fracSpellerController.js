@@ -45,7 +45,7 @@ exports.fracSpeller_view = function(req, res) {
   let source2 = "DOWNLOADING DEMOS";//temporary
 
 
-res.render('fracSpeller_view', { title: "Illustrated Math Topic",
+res.render('fracSpeller_view', { title: "Mastering Math Topic",
                                  h3Header: h3Header,
                                  fracSpellerDesc1: FracSpellerDesc1,
                                  fracSpellerDesc2: FracSpellerDesc2,

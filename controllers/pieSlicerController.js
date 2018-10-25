@@ -45,7 +45,7 @@ exports.pieSlicer_view = function(req, res) {
   let PieSlicerDesc2 = "for download information click on"
   let source = '/catalog/downloadPS_view';
   let source2 = "DOWNLOADING DEMOS";//temporary
-res.render('pieSlicer_view', { title: "Illustrated Math Topic",
+res.render('pieSlicer_view', { title: "Mastering Math Topic",
                                  h3Header: h3Header,
                                  pieSlicerDesc1: PieSlicerDesc1,
                                  pieSlicerDesc2: PieSlicerDesc2,
