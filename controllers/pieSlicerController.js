@@ -46,7 +46,7 @@ exports.pieSlicer_view = function(req, res) {
   let source = '/catalog/downloadPS_view';
   let source2 = "DOWNLOADING DEMOS";//temporary
 res.render('pieSlicer_view', { title: "Hello",
-                                 h2Header: h2Header,
+                                 h3Header: h3Header,
                                  pieSlicerDesc1: PieSlicerDesc1,
                                  pieSlicerDesc2: PieSlicerDesc2,
                                  source: source,
