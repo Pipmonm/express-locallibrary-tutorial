@@ -39,14 +39,14 @@ exports.fracSpeller_view = function(req, res) {
                     "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
 
   //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
-  let h2Header = "Fraction Speller Module"
+  let h3Header = "Fraction Speller Module"
   let FracSpellerDesc2 = "for download information click on"
   let source =   '/catalog/downloadFS_view';
   let source2 = "DOWNLOADING DEMOS";//temporary
 
 
-res.render('fracSpeller_view', { title: "",
-                                 h2Header: h2Header,
+res.render('fracSpeller_view', { title: "Illustrated Math Topic",
+                                 h3Header: h3Header,
                                  fracSpellerDesc1: FracSpellerDesc1,
                                  fracSpellerDesc2: FracSpellerDesc2,
                                  source: source,
