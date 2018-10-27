@@ -31,13 +31,14 @@ exports.downloadPS_view = function(req, res) {
                     "\n" +
                     "It is advised to run the CPU version to 'demo' the application.  After if you prefer \n" +
                     "to get the USB version, simply delete the CPU demo file and download the USB version. \n" +
+                    " \n" +
                     "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n" +
                     "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"  +
                     "                    (most USB drives have an ID)"
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
-  let source = "pieSlicerDwnld.js"; //this provides download href
+  let source = "pieSlicerDownld.js"; //this provides download href
 
 res.render('downloadPS_view', { title: "PieSlicer Downloads",
                                  themeDesc1: downloadPSDesc1,
