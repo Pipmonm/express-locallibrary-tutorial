@@ -30,7 +30,7 @@ exports.downloadPS_view = function(req, res) {
   " \n" +
   "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n"+
   "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"+
-  "                    (most USB drives have an ID)"
+  "                    (most USB devices have an ID)"
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 

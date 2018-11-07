@@ -12,7 +12,7 @@ exports.downloadFS_view = function(req, res) {
   console.log("specifics of FS downloads");
   let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
   "FracSpellerDual.exe application is restricted to the specific computer whose system ID and\n"+
-  "Format Code has been used to obtain a license. (Key Code)   \n"+
+  "Format Code has been used to obtain a license. (Key Code)   (cf below for USB version) \n"+
   "Therefore be sure to run the demo on the computer that is to be used by whomever is to  \n"+
   "be using the application.  \n "+
   "  \n"+
@@ -30,7 +30,7 @@ exports.downloadFS_view = function(req, res) {
   " \n" +
   "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n"+
   "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"+
-  "                    (most USB drives have an ID)"
+  "                    (most USB devices have an ID)"
 
   let downloadFSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
