@@ -24,8 +24,8 @@ exports.downloadFS_view = function(req, res) {
   "  \n"+
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
   "However the USB version does not provide a \"DEMO\" mode.  View the DEMO first on the CPU \n" +
-  "based version, then move the FracSpellerDual.exe file to the USB.   Use the same procedure \n" +
-  "as for the CPU version for registering the application.\n" +
+  "based version, then move the FracSpellerDual.exe file to the USB.  Run it there and use the \n" +
+  "same procedure as for the CPU version for registering the application.\n" +
   "The full USB version will not run until you enter its unique Key Code."
   " \n" +
   "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n"+
