@@ -11,30 +11,29 @@ var async = require('async');
 exports.downloadPS_view = function(req, res) {
   console.log("specifics of PS downloads");
   let downloadPSDesc1 = "<pre style='color:yellow; background:green; width:650px'> \n" +
-                    "PieSlicer application is restricted to the specific computer whose \n" +
-                    "system ID and Format Code has been used to obtain a license. (Key Code)   \n" +
-                    "Therefore be sure to run the demo on the computer that is to be used   \n" +
-                    "by whomever is to be using the application.  \n " +
-                    "  \n" +
-                    "The 'Registration' tab on the opening screen of PieSlicer provides both \n" +
-                    "a System Id and a Format Code.  They are automatically placed in your system  \n" +
-                    "clipboard upon entering the Registration page.   You will be asked to provide  \n" +
-                    "these when ordering the unrestricted license for the application.  Simply 'PASTE'  \n" +
-                    "these in the indicated position when asked.  \n" +
-                    "  \n" +
-                    "A portable USB (thumb drive) version is available allowing use on any computer.  \n" +
-                    "However a 'Demo' for the USB version is not available.   Therefore the unlicensed \n" +
-                    "USB version will only display the opening screen (same as CPU version) which   \n" +
-                    "will allow you to retrieve the USB_ID and Format Code required to obtain the  \n" +
-                    "unrestricted license for the USB version.   The application will then be able \n" +
-                    "to be run on any computer using that specific USB.  \n" +
-                    "\n" +
-                    "It is advised to run the CPU version to 'demo' the application.  After if you prefer \n" +
-                    "to get the USB version, simply delete the CPU demo file and download the USB version. \n" +
-                    " \n" +
-                    "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n" +
-                    "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"  +
-                    "                    (most USB drives have an ID)"
+  "PieSlicerDual.exe application is restricted to the specific computer whose system ID and Format\n"+
+  "Code has been used to obtain a license. (Key Code)   \n"+
+  "Therefore be sure to run the demo on the computer that is to be used by whomever is to be using \n"+
+  "the application.  \n "+
+  "  \n"+
+  "Clicking on the 'Registration' tab on the opening screen of PieSlicer gives Copyright information and \n"+
+  "provides both a System ID and a Format Code for registration purposes.  They are automatically placed in\n"+
+  "your system clipboard upon cancelling the alert message that comes up.  You will need this information\n"+
+  "for registering your application.   Use this site's \"REGISTER\" page for registering the application.\n"+
+  "  \n"+
+  "The application may also be placed on a USB drive allowing use on any computer.  \n"+
+  "However the USB version does not provide a DEMO.   Therefore an unlicensed USB version will only \n"+
+  "display the opening screen (same as CPU version) so that you may access the \"REGISTRATION\" tab to\n" +
+  "retrieve the USB_ID and Format Code required to get the license Key for the USB.  Use this data in the\n"+
+  "same way as described for the CPU version.  (The first run on a USB may give 'Disk error' messages.\n"+
+  "Simply disregard these and keep going.  All subsequent uses will be disk error free.)\n"+
+  "So run the CPU version to 'demo' the application, then if you prefer to keep it on a USB, move\n"+
+  "the PieSlicerDual.exe file to your USB drive.  Run it from there and follow the procedure as explained \n"+
+  "above for the CPU version.  The full USB version will not run until you enter its unique Key Code."
+  " \n" +
+  "    NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.\n"+
+  "                    Message 'UNKNOWN DRIVE' will alert you to this condition.\n"+
+  "                    (most USB drives have an ID)"
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 

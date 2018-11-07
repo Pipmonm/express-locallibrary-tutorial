@@ -18,16 +18,16 @@ exports.getObjects = function (req, res) {
 exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
   let PieSlicerDesc1 = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:650px; padding:10px; align:center'> \n" +
-                    "Pie Slicer is an interactive visual aid application to help students  \n" +
+                    "PieSlicer is an interactive visual aid application to help students  \n" +
                     "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
                     "very often able to discover on their own the solutions and the central  \n " +
                     "concepts for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
                     "As shown on the screenshot above Pie Slicer will:  \n" +
-                    "  - easily generate problems you select when in 'user_mode' \n" +
+                    "  - easily let you enter problems of your choice when in 'user_mode' \n" +
+                    "  - allow 'user_mode' to generate fraction problems using any denominator \n" +
                     "  - generate random problems automatically in 3 different level modes  \n" +
-                    "  - when in user mode generate fractions with any denominator \n" +
                     "  - update the visual representation automatically for correct answers \n" +
                     "  - track users performance at each level \n" +
                     "  - provide a dedicated help window for questions about the  \n" +
@@ -39,7 +39,8 @@ exports.pieSlicer_view = function(req, res) {
                     "presented on startup. (and all for the price of a hamburger!!! ;)\n"  +
                     " \n" +
                     "<strong>NOTE CAREFULLY:</strong> \n" +
-                    "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.</pre>"
+                    "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.\n" +
+                    "  A browser based version is in development that will run on any computer."</pre>"
 
   let h3Header = "About PieSlicer Module"
   let PieSlicerDesc2 = "for download information click on"
