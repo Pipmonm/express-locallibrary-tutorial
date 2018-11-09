@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name:
+      input#first_name.form-control(type='text', placeholder='First name (Christian) last' name='first_name' required='true' value=(undefined===author ? '' : author.first_name) )
+      label(for='family_name') Family Name:
+      input#family_name.form-control(type='text', placeholder='Family name (surname)' name='family_name' required='true' value=(undefined===author ? '' : author.family_name))
+    div.form-group
+      label(for='email_address') Your Email:
+      input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy', name='email_address', required='true', value=(undefined===client ? '' : client.email_address) )
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

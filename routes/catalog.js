@@ -3,8 +3,9 @@ var express = require('express');
 var router = express.Router();
 
 // Require controller modules.
-var book_controller = require('../controllers/bookController');
+var application_controller = require('../controllers/applicationController');
 var author_controller = require('../controllers/authorController');
+var client_controller = require('../controllers/clientController');
 var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 
@@ -16,7 +17,8 @@ var downloadPS_controller = require('../controllers/downloadPSController');//ibi
 /// BOOK ROUTES ///
 
 // GET catalog home page.
-router.get('/', book_controller.index);
+router.get('/', application_controller.index);
+//2018-10-09  was book_controller changed to application_controller
 //temporary down below i think
 //router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
@@ -28,6 +30,12 @@ router.get('/fracSpeller_view',fracSpeller_controller.fracSpeller_view);
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
 router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
+
+//STEP 1 creating client records
+router.get('/clients', client_controller.client_list);
+
+//STEP 2 add client to database
+router.get('/client/create', client_controller.client_create_get);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
