@@ -175,7 +175,7 @@ exports.client_list = function(req, res, next) {
            debug('invalid email');
            return -1;//need to generate an error of some sort here
          }else{  //not aware of callback style validator for emails, following is newer version
-           email =  check('email').isEmail().normalizeEmail(),
+           email =  check('email').isEmail().normalizeEmail();
          }
          res.render('client_form', { title: 'Update Client', client: results.client,email_address: email, query: "Update"});
     });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
