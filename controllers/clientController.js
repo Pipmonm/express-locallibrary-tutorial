@@ -113,7 +113,7 @@ exports.client_list = function(req, res, next) {
                 res.redirect('/catalog/clients');
             }
             // Successful, so render.
-            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests } );
+            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests, client_transactions: results.client_transactions } );
         });
 
     };
@@ -138,7 +138,7 @@ exports.client_list = function(req, res, next) {
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests } );
               return;
-          }else if(results.clients_transactions.length > 0  {
+          }else if(results.clients_transactions.length > 0)  {
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions } );
               return;
