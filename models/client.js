@@ -36,10 +36,10 @@ ClientSchema
   return this.validation_date ? moment(this.validation_date).format('YYYY-MM-DD') : '';
 });
 
-AuthorSchema
+ClientSchema
 .virtual('licensekey:module')
 .get(function () {
   return this.device_key + ':' + this.module_type;
 });
 //Export model
-module.exports = mongoose.model('Author', AuthorSchema);
+module.exports = mongoose.model('Client', ClientSchema);
