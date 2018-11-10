@@ -37,7 +37,7 @@ router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
 router.get('/clients', client_controller.client_list);
 
 //STEP 2 add client to database
-router.get('/client/create', client_controller.client_create_get);
+router.get('/clientcreate', client_controller.client_create_get);
 
 //router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
 
