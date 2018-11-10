@@ -17,7 +17,7 @@ var fracSpeller_controller = require('../controllers/fracSpellerController');
 var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 /// BOOK ROUTES ///
-
+var book_controller = require('../controllers/bookController');//rquired for now
 // GET catalog home page.
 router.get('/', application_controller.index);
 //2018-10-09  was book_controller changed to application_controller
