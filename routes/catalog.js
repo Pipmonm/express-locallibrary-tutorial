@@ -72,11 +72,12 @@ router.get('/book/:id', book_controller.book_detail);
 router.get('/books', book_controller.book_list);
 
 /// AUTHOR ROUTES ///
+router.get('/authors', author_controller.author_list);//2018-10-10
 
-// GET request for creating Author. NOTE This must come before route for id (i.e. display author).
+// GET request for creating Author. (send form to client) NOTE This must come before route for id (i.e. display author).
 router.get('/author/create', author_controller.author_create_get);
 
-// POST request for creating Author.
+// POST request for creating Author. (checking client filled form)
 router.post('/author/create', author_controller.author_create_post);
 
 // GET request to delete Author.
