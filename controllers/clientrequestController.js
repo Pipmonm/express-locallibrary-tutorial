@@ -1,6 +1,6 @@
-//book instance controller js
-var Book = require('../models/book');
-var BookInstance = require('../models/bookinstance');
+//client instance controller js
+var Client = require('../models/client');
+var ClientRequest = require('../models/clientrequest');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -9,64 +9,64 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
-// Display list of all BookInstances.
-exports.bookinstance_list = function(req, res, next) {
+// Display list of all ClientRequests.
+exports.clientrequest_list = function(req, res, next) {
 
-  BookInstance.find()
-    .populate('book')
-    .exec(function (err, list_bookinstances) {
+  ClientRequest.find()
+    .populate('client')
+    .exec(function (err, list_clientrequests) {
       if (err) { return next(err); }
       // Successful, so render
-      res.render('bookinstance_list', { title: 'Book Instance List', bookinstance_list: list_bookinstances });
+      res.render('clientrequest_list', { title: 'Client Request List', clientrequest_list: list_clientrequests });
     });
 
 };
 
-// Display detail page for a specific BookInstance.
-exports.bookinstance_detail = function(req, res, next) {
+// Display detail page for a specific ClientRequest.
+exports.clientrequest_detail = function(req, res, next) {
 
-      BookInstance.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-      .populate('book')
-      .exec(function (err, bookinstance) {
+      ClientRequest.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
+      .populate('client')
+      .exec(function (err, clientrequest) {
         if (err) {
-           debug("bookinstance err: %s ",err);
+           debug("clientrequest err: %s ",err);
            return next(err);
          }
-        if (bookinstance==null) { // No results.
-            var err = new Error('Book copy not found');
+        if (clientrequest==null) { // No results.
+            var err = new Error('Client copy not found');
             err.status = 404;
             return next(err);
           }
         // Successful, so render.
-        res.render('bookinstance_detail', { title: 'Book:', bookinstance:  bookinstance});
+        res.render('clientrequest_detail', { title: 'Client:', clientrequest:  clientrequest});
       })
 
   };
 
-// Display BookInstance create form on GET.
-exports.bookinstance_create_get = function(req, res, next) {
+// Display ClientRequest create form on GET.
+exports.clientrequest_create_get = function(req, res, next) {
 
-      Book.find({},'title')
-      .exec(function (err, books) {
+      Client.find({},'title')
+      .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
-        res.render('bookinstance_form', {title: 'Create BookInstance', book_list:books});
+        res.render('clientrequest_form', {title: 'Create ClientRequest', client_list:clients});
       });
 
   };
 
-// Handle BookInstance create on POST.
-exports.bookinstance_create_post = [
+// Handle ClientRequest create on POST.
+exports.clientrequest_create_post = [
     // Validate fields.
-    body('book', 'Book must be specified').isLength({ min: 1 }).trim(),
-    body('imprint', 'Imprint must be specified').isLength({ min: 1 }).trim(),
-    body('due_back', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+    body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
+    body('module', 'module name must be specified').isLength({ min: 1 }).trim(),
+    body('request_date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
-    sanitizeBody('book').trim().escape(),
+    sanitizeBody('client').trim().escape(),
     sanitizeBody('imprint').trim().escape(),
-    sanitizeBody('status').trim().escape(),
-    sanitizeBody('due_back').toDate(),
+    //sanitizeBody('status').trim().escape(),
+    sanitizeBody('request_date').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -74,106 +74,104 @@ exports.bookinstance_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        // Create a BookInstance object with escaped and trimmed data.
-        var bookinstance = new BookInstance( //.body. here is body of request which has many key fields
-          { book: req.body.book,
-            imprint: req.body.imprint,
-            status: req.body.status,
-            due_back: req.body.due_back
+        // Create a ClientRequest object with escaped and trimmed data.
+        var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
+          { client: req.body.client,
+            module: req.body.module,
+            //status: req.body.status,
+            request_date: req.body.request_date
            });
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values and error messages.
-            Book.find({},'title')
-                .exec(function (err, books) {
+            Client.find({},'title')
+                .exec(function (err, clients) {
                     if (err) { return next(err); }
                     // Successful, so render.
-                    res.render('bookinstance_form', { title: 'Create BookInstance', book_list : books, selected_book : bookinstance.book._id , errors: errors.array(), bookinstance:bookinstance });
+                    res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
             });
             return;
         }
         else {
             // Data from form is valid.
-            bookinstance.save(function (err) {
+            clientrequest.save(function (err) {
                 if (err) { return next(err); }
                    //else Successful - redirect to new record.
-                   res.redirect(bookinstance.url);
+                   res.redirect(clientrequest.url);
                 });
         }
     }
 ];
 
-// Display BookInstance delete form on GET.
-exports.bookinstance_delete_get = function(req, res, next) {
+// Display ClientRequest delete form on GET.
+exports.clientrequest_delete_get = function(req, res, next) {
       //async.parallel({key1:func,key2:func},function(err,results))
       async.parallel({
-          bookinstance: function(callback) { //was author:...
-              BookInstance.findById(req.params.id).exec(callback) //was Author
+          clientrequest: function(callback) { //was author:...
+              ClientRequest.findById(req.params.id).exec(callback) //was Author
           },
-          //authors_books: function(callback) {
-            //Book.find({ 'author': req.params.id }).exec(callback)
+          //authors_clients: function(callback) {
+            //Client.find({ 'author': req.params.id }).exec(callback)
           //},
       }, function(err, results) {
           if (err) { return next(err); }
-          if (results.bookinstance==null) { //was results.author  // No results.
-              res.redirect('/catalog/bookinstances'); //was /authors
+          if (results.clientrequest==null) { //was results.author  // No results.
+              res.redirect('/catalog/clientrequests'); //was /authors
           }
           // Successful, so render.
-          //res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books } );
-          res.render('bookinstance_delete', { title: 'Delete BookInstance', bookinstance: results.bookinstance, booktitle: results.bookinstance.book.title });
+          //res.render('author_delete', { title: 'Delete Author', author: results.author, author_clients: results.authors_clients } );
+          res.render('clientrequest_delete', { title: 'Delete ClientRequest', clientrequest: results.clientrequest, clienttitle: results.clientrequest.client.title });
       });
 
   };
 
-// Handle BookInstance delete on POST.
-exports.bookinstance_delete_post = function(req, res, next) {
-  // book instances being deleted have no dependencies; just do it.
-  BookInstance.findByIdAndRemove(req.body.bookinstanceid, function deleteBookInstance(err) {  //was Autthor....req.body.authorid, fn deletAuthor
+// Handle ClientRequest delete on POST.
+exports.clientrequest_delete_post = function(req, res, next) {
+  // client instances being deleted have no dependencies; just do it.
+  ClientRequest.findByIdAndRemove(req.body.clientrequestid, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
       if (err) { return next(err); }
-      // Success - go to bookinstances list
-      res.redirect('/catalog/bookinstances')
+      // Success - go to clientrequests list
+      res.redirect('/catalog/clientrequests')
   })
   };
 
-// Display BookInstance update form on GET.
-exports.bookinstance_update_get = function(req, res, next) {
-  BookInstance.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-  .populate('bookinstance book') //populate the nested book model with the book values
-  .exec(function (err, bookinstance) {
+// Display ClientRequest update form on GET.
+exports.clientrequest_update_get = function(req, res, next) {
+  ClientRequest.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
+  .populate('clientrequest client') //populate the nested client model with the client values
+  .exec(function (err, clientrequest) {
     if (err) {
-       debug("bookinstance err: %s ",err);
+       debug("clientrequest err: %s ",err);
        return next(err);
      }
-    if (bookinstance==null) { // No results.
-        var err = new Error('Book copy not found');
+    if (clientrequest==null) { // No results.
+        var err = new Error('Client copy not found');
         err.status = 404;
         return next(err);
       }
     // Successful, so render.
-    let due_date = bookinstance.due_back ? moment(bookinstance.due_back).format('YYYY-MM-DD') : '';
-    let statsArray = [bookinstance.status];
-    let statOptions = ['Available','Loaned','Reserved','Maintenance'];
+    let date_entered = clientrequest.date_entered ? moment(clientrequest.date_entered).format('YYYY-MM-DD') : '';
+    let status = clientrequest.status;
+    let module_type = clientrequest.module;
     //replacement group which must be added after any change leading to a reconnection!!!
-    //ie will not mpass a 'restart of mongodb connection',  to be placed in bookinstanceUpdate_form.pug
+    //ie will not mpass a 'restart of mongodb connection',  to be placed in clientrequestUpdate_form.pug
 
-    for(let i = 0;i<4;i++)if(statOptions[i] != bookinstance.status)statsArray.push(statOptions[i]);
-    res.render('bookinstanceUpdate_form', { title: 'Book:', bookinstance: bookinstance, due_back: due_date, statusArray: statsArray});
+    res.render('clientrequestUpdate_form', { title: 'Client:', clientrequest: clientrequest, date_entered: date_entered, status: status});
   })
 
 };
 
-// Handle bookinstance update on POST.
-  exports.bookinstance_update_post = [
+// Handle clientrequest update on POST.
+  exports.clientrequest_update_post = [
       // Validate fields.
-      body('book', 'Book must be specified').isLength({ min: 1 }).trim(),
-      body('imprint', 'Imprint must be specified').isLength({ min: 1 }).trim(),
-      body('due_back', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+      body('module_type', 'Module name must be specified').isLength({ min: 1 }).trim(),
+      body('status', 'optional').isLength({ min: 1 }).trim(),
+      body('date_entered', 'Request date').optional({ checkFalsy: true }).isISO8601(),
 
       // Sanitize fields.
-      sanitizeBody('book').trim().escape(),
-      sanitizeBody('imprint').trim().escape(),
+      sanitizeBody('module_type').trim().escape(),
       sanitizeBody('status').trim().escape(),
-      sanitizeBody('due_back').toDate(),
+      sanitizeBody('date_entered').toDate(),
 
       // Process request after validation and sanitization.
       (req, res, next) => {
@@ -181,31 +179,31 @@ exports.bookinstance_update_get = function(req, res, next) {
           // Extract the validation errors from a request.
           const errors = validationResult(req);
 
-          // Create a BookInstance object with escaped and trimmed data and old id
-          var bookinstance = new BookInstance( //.body. here is body of request which has many key fields
-            { book: req.body.book,
-              imprint: req.body.imprint,
+          // Create a ClientRequest object with escaped and trimmed data and old id
+          var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
+            { client: req.body.client,
+              module_type: req.body.module_type,
               status: req.body.status,
-              due_back: req.body.due_back,
+              date_entered: req.body.date_entered,
               _id:req.params.id //This is required, or a new ID will be assigned!
              });
 
           if (!errors.isEmpty()) {
               // There are errors. Render form again with sanitized values and error messages.
-              Book.find({},'title')
-                  .exec(function (err, books) {
+              Client.find({},'title')
+                  .exec(function (err, clients) {
                       if (err) { return next(err); }
                       // Successful, so render.
-                      res.render('bookinstance_form', { title: 'Create BookInstance', book_list : books, selected_book : bookinstance.book._id , errors: errors.array(), bookinstance:bookinstance });
+                      res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
               });
               return;
           }
           else {
               // Data from form is valid.
-              BookInstance.findByIdAndUpdate(req.params.id,bookinstance,{}, function (err,thebookinstance) {
+              ClientRequest.findByIdAndUpdate(req.params.id,clientrequest,{}, function (err,theclientrequest) {
                   if (err) { return next(err); }
                      //else Successful - redirect to new record.
-                     res.redirect(bookinstance.url);
+                     res.redirect(clientrequest.url);
                   });
           }
       }
