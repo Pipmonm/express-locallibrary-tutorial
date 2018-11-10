@@ -37,7 +37,7 @@ router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
 router.get('/clients', client_controller.client_list);
 
 //STEP 2 add client to database
-router.get('/clientcreate', client_controller.client_create_post);
+router.post('/clientcreate', client_controller.client_create_post);
 
 //router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
 
@@ -70,9 +70,6 @@ router.get('/book/:id', book_controller.book_detail);
 
 // GET request for list of all Book items.
 router.get('/books', book_controller.book_list);
-
-/// AUTHOR ROUTES ///
-router.get('/authors', author_controller.author_list);//2018-10-10
 
 // GET request for creating Author. (send form to client) NOTE This must come before route for id (i.e. display author).
 router.get('/author/create', author_controller.author_create_get);
