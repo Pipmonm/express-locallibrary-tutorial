@@ -6,10 +6,10 @@ var Schema = mongoose.Schema;
 var ClientTransactionSchema = new Schema(
 
   {
-    book: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
+    client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
     //book: { type: mongoose.ObjectId, ref: 'Book', required: true },
     module: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
-    status: {type: String, required: true, enum: ['Pending', 'Refused', 'Validated'], default: 'Validated'},
+    status: {type: String, required: true, enum: ['pendingPay','validated','canceled','invalid']], default: 'validated'},
     transaction_date: {type: Date, default: Date.now}
   }
 );
@@ -22,9 +22,9 @@ ClientTransactionSchema
 });
 
 ClientTransactionSchema
-.virtual('payment_date')
+.virtual('payment_date_formatted')
 .get(function () {
-  return moment(this.due_back).format('MMMM Do, YYYY');
+  return moment(this.transaction_date).format('MMMM Do, YYYY');
 });
 
 ClientTransactionSchema

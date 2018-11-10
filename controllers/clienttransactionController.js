@@ -62,7 +62,7 @@ exports.clienttransaction_create_post = [
     // Validate fields.
     body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
     body('module', 'Module name must be specified').isLength({ min: 1 }).trim(),
-    body('date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+    body('transaction_date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
     sanitizeBody('client').trim().escape(),
@@ -81,7 +81,7 @@ exports.clienttransaction_create_post = [
           { client: req.body.client,
             module: req.body.module,
             //status: req.body.status,
-            purchase_date: req.body.purchase_date
+            transaction_date: req.body.transaction_date
            });
 
         if (!errors.isEmpty()) {
@@ -152,13 +152,12 @@ exports.clienttransaction_update_get = function(req, res, next) {
         return next(err);
       }
     // Successful, so render.
-    let due_date = clienttransaction.due_back ? moment(clienttransaction.due_back).format('YYYY-MM-DD') : '';
-    let statsArray = [clienttransaction.status];
-    let statOptions = ['Available','Loaned','Reserved','Maintenance'];
+    let transaction_date = clienttransaction.transaction_date ? moment(clienttransaction.transaction_date).format('YYYY-MM-DD') : '';
+    let module = clienttransaction.module;
+    let status = clienttransaction.status;
     //replacement group which must be added after any change leading to a reconnection!!!
     //ie will not mpass a 'restart of mongodb connection',  to be placed in clienttransactionUpdate_form.pug
 
-    for(let i = 0;i<4;i++)if(statOptions[i] != clienttransaction.status)statsArray.push(statOptions[i]);
     ////res.render('clienttransactionUpdate_form', { title: 'Client:', clienttransaction: clienttransaction, due_back: due_date, statusArray: statsArray});
   })
 
@@ -168,12 +167,13 @@ exports.clienttransaction_update_get = function(req, res, next) {
   exports.clienttransaction_update_post = [
       // Validate fields.
       body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
-      body('imprint', 'Imprint must be specified').isLength({ min: 1 }).trim(),
-      body('due_back', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+      body('module', 'Module name must be specified').isLength({ min: 1 }).trim(),
+      body('status', 'give order status').isLength({min:1}).trim(),
+      body('transaction_date', 'Purchase date').optional({ checkFalsy: true }).isISO8601(),
 
       // Sanitize fields.
       sanitizeBody('client').trim().escape(),
-      sanitizeBody('imprint').trim().escape(),
+      sanitizeBody('module').trim().escape(),
       sanitizeBody('status').trim().escape(),
       sanitizeBody('due_back').toDate(),
 
@@ -186,9 +186,9 @@ exports.clienttransaction_update_get = function(req, res, next) {
           // Create a ClientTransaction object with escaped and trimmed data and old id
           var clienttransaction = new ClientTransaction( //.body. here is body of request which has many key fields
             { client: req.body.client,
-              imprint: req.body.imprint,
+              module: req.body.module,
               status: req.body.status,
-              due_back: req.body.due_back,
+              transaction_date: req.body.transaction_date,
               _id:req.params.id //This is required, or a new ID will be assigned!
              });
 
