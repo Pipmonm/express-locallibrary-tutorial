@@ -8,6 +8,8 @@ var author_controller = require('../controllers/authorController');
 var client_controller = require('../controllers/clientController');
 var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
+var client_request_controller = require('../controllers/clientrequestController');
+var client_transaction_controller = require('../controllers/clienttransactionController');
 
 //TESTING Download
 var pieSlicer_controller = require('../controllers/pieSlicerController');
@@ -36,6 +38,14 @@ router.get('/clients', client_controller.client_list);
 
 //STEP 2 add client to database
 router.get('/client/create', client_controller.client_create_get);
+
+//router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
+
+// GET request for one BookInstance.
+//router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
+
+//Get request for one clienrequest.
+router.get('/clientrequest/:id', client_request_controller.clientrequest_detail);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
