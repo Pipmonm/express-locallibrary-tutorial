@@ -59,6 +59,14 @@ exports.client_list = function(req, res, next) {
   // Handle Client create on POST.
   exports.client_create_post = [
 
+       let email = results.client.email_address;
+       if(!check('email').isEmail){
+          debug('invalid email');
+          return -1;//need to generate an error of some sort here
+          }else{  //not aware of callback style validator for emails, following is newer version
+               email =  check('email').isEmail().normalizeEmail();
+        }
+
         // Validate fields.
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name (or initial)')
             .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
@@ -87,6 +95,8 @@ exports.client_list = function(req, res, next) {
                     {
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
+                        email_address: email,
+
                     });
                 client.save(function (err) {
                     if (err) { return next(err); }
