@@ -66,6 +66,9 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+//clean database models before starting
+for (let model in mongoose.models) delete mongoose.models[model]
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
