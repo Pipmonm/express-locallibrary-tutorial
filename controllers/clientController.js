@@ -1,7 +1,7 @@
 //book instance controller js
-var Book = require('../models/client');
+var Client = require('../models/client');
 var Request = require('../models/clientrequest');
-var Transaction = require('../models/clientransaction');
+var Transaction = require('../models/clienttransaction');
 //var BookInstance = require('../models/bookinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
