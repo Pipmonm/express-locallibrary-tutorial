@@ -9,7 +9,7 @@ var ClientTransactionSchema = new Schema(
     client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
     //book: { type: mongoose.ObjectId, ref: 'Book', required: true },
     module: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
-    status: {type: String, required: true, enum: ['pendingPay','validated','canceled','invalid']], default: 'validated'},
+    status: {type: String, required: true, enum: ['pendingPay','validated','canceled','invalid'], default: 'validated'},
     transaction_date: {type: Date, default: Date.now}
   }
 );
