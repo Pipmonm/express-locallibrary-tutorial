@@ -59,7 +59,7 @@ exports.client_list = function(req, res, next) {
   // Handle Client create on POST.
   exports.client_create_post = [
 
-       let email = results.client.email_address;
+       let email = body('email_address');
        if(!check('email').isEmail){
           debug('invalid email');
           return -1;//need to generate an error of some sort here
