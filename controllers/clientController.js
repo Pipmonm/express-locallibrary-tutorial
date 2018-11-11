@@ -78,6 +78,7 @@ exports.client_list = function(req, res, next) {
             // Extract the validation errors from a request.
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
+                debug('errors spotted in validationResult for "client_create_post"');
                 // There are errors. Render form again with sanitized values/errors messages.
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
                 return;

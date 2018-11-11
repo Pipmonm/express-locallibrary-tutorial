@@ -20,6 +20,11 @@ var helmet = require('helmet');
 
 var app = express();
 
+//2018-10-11  adding debug campability
+var debug = require('debug')('http')
+  , http = require('http')
+  , name = 'My App';
+
 //Import the mongoose module
 var mongoose = require('mongoose');
 var mongoDB = process.env.MONGODB_URI || "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb"
