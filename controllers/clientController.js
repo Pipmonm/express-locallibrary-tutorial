@@ -77,7 +77,7 @@ exports.client_list = function(req, res, next) {
                 debug('invalid email');
                 error = 1;//need to generate an error of some sort here
               }else{  //not aware of callback style validator for emails, following is newer version
-               var  email =  check('email').isEmail().normalizeEmail();
+               var  email =  check(body('email_address')).isEmail().normalizeEmail();
             }
             if (error){
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array(), error: "invalid email address" });
