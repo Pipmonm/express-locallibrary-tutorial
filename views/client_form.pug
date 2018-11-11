@@ -8,10 +8,13 @@ block content
       label(for='first_name') First Name:
       input#first_name.form-control(type='text', placeholder='FirstName ' name='first_name' required='true' value=(undefined===author ? '' : author.first_name) )
       label(for='family_name') Family Name:
-      input#family_name.form-control(type='text', placeholder='FamilyName' name='family_name' required='true' value=(undefined===author ? '' : author.family_name))
+      input#family_name.form-control(type='text', placeholder='FamilyName' name='family_name' required='true' value=(undefined===author ? '' : author.family_name) )
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy', name='email_address', required='true', value=(undefined===client ? '' : client.email_address) )
+    div.form-group
+      label(for='register_request_code') Clipboard Value from REGISTER tab:
+      input#register_request_code.form-control(type='text', placeholder = 'Clipboard String', name= 'register_request_code', required='true', value=(undefined===client ? '' : client.register_request_code))
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
     ul

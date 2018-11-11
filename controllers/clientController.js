@@ -64,10 +64,13 @@ exports.client_list = function(req, res, next) {
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name (or unique identifier)')
             .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
         body('email_address').isEmail().trim().withMessage('valid email address'),
+        body('register_request_code').isLength({min:10}).trim().withMessage('Paste text from clipboard here'),
+            .isAlphanumver().withMessage('clipboard text must be exactly as obtained in REGISTER tab'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
+        sanitizeBody('register_request_code').trim().escape(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -81,12 +84,16 @@ exports.client_list = function(req, res, next) {
             }
             else {
                 // Data from form is valid.
+                //get date
+                const now = Date();
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         email_address: req.body.email_address,
+                        register_request_code: req.body.register_request_code,
+                        registration_date: now,
                     });
                 client.save(function (err) {
                     if (err) { return next(err); }

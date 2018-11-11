@@ -8,10 +8,8 @@ var ClientSchema = new Schema(
     first_name: {type: String, max: 100},
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
-    module_type: {type: String, required: true, max: 100},
-    device_key: {type: String, required: true, max: 100},
-    validated: {type: Boolean, required: true},
-    validation_date: {type: Date},
+    register_request_code: {type: String, required: true, max: 150},
+    registration_date: {type: Date},
 
   }
 );
