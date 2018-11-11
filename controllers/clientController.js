@@ -58,15 +58,6 @@ exports.client_list = function(req, res, next) {
 
   // Handle Client create on POST.
   exports.client_create_post = [
-
-       let email = body('email_address');
-       if(!check('email').isEmail){
-          debug('invalid email');
-          return -1;//need to generate an error of some sort here
-          }else{  //not aware of callback style validator for emails, following is newer version
-               email =  check('email').isEmail().normalizeEmail();
-        }
-
         // Validate fields.
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name (or initial)')
             .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
@@ -81,6 +72,17 @@ exports.client_list = function(req, res, next) {
 
             // Extract the validation errors from a request.
             const errors = validationResult(req);
+            const error = 0;//added on for email check
+            if(!check(body('email_address')).isEmail()){
+                debug('invalid email');
+                error = 1;//need to generate an error of some sort here
+              }else{  //not aware of callback style validator for emails, following is newer version
+               var  email =  check('email').isEmail().normalizeEmail();
+            }
+            if (error){
+                res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array(), error: "invalid email address" });
+                return;
+            }
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values/errors messages.

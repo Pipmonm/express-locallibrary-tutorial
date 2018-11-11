@@ -17,3 +17,8 @@ block content
     ul
       for error in errors
         li!= error.msg
+
+  if error
+    ul
+      li
+        "invalid email address"
