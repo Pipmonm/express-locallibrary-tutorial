@@ -63,27 +63,17 @@ exports.client_list = function(req, res, next) {
             .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name (or unique identifier)')
             .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
+        body('email_address').isEmail().trim().withMessage('valid email address'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
+        sanitizeBody('email_address').trim().escape(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
 
             // Extract the validation errors from a request.
             const errors = validationResult(req);
-            const error = 0;//added on for email check
-            if(!check(body('email_address')).isEmail()){
-                debug('invalid email');
-                error = 1;//need to generate an error of some sort here
-              }else{  //not aware of callback style validator for emails, following is newer version
-               var  email =  check(body('email_address')).isEmail().normalizeEmail();
-            }
-            if (error){
-                res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array(), error: "invalid email address" });
-                return;
-            }
-
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values/errors messages.
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
@@ -91,14 +81,12 @@ exports.client_list = function(req, res, next) {
             }
             else {
                 // Data from form is valid.
-
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
-                        email_address: email,
-
+                        email_address: req.body.email_address,
                     });
                 client.save(function (err) {
                     if (err) { return next(err); }
