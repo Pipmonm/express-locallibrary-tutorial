@@ -41,6 +41,8 @@ router.get('/clientcreate', client_controller.client_create_get);
 
 //STEP 2b add client to database
 router.post('/clientcreate', client_controller.client_create_post);
+// GET request for one Client.
+router.get('/client/:id', client_controller.client_detail);
 
 //router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
 
