@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}: #{request.request_date}
+
+  p #[strong Client:]
+    a(href=request.client.url) #{request.client.name}
+  p #[strong Client Email:] #{request.client.email}
+  p #[strong Module:] #{request.module}
+  p #[strong Status:] #{request.status}
+
+  hr
+  p
+    a(href=request.url+'/delete') Delete Request
+  p
+    a(href=request.url+'/update') Update Request

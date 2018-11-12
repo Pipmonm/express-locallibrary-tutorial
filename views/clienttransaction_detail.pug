@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1 #{title}: #{transaction.transaction_date}
+
+  p #[strong Client:]
+    a(href=transaction.client.url) #{transaction.client.name}
+  p #[strong Client Email:] #{transaction.client.email}
+  p #[strong Module:] #{transaction.module}
+  p #[strong Status:] #{transaction.status}
+
+  hr
+  p
+    a(href=request.url+'/delete') Delete Request
+  p
+    a(href=request.url+'/update') Update Request
