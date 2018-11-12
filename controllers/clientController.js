@@ -9,7 +9,8 @@ var mongoose = require('mongoose');
 var async = require('async');
 var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
-var debug = require('debug');
+var debug = require('debug')('client_controller');
+    //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
 
 // Display list of all clients.
 
@@ -78,7 +79,8 @@ exports.client_list = function(req, res, next) {
             // Extract the validation errors from a request.
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                debug('errors spotted in validationResult for "client_create_post"');
+                console.log('Console: errors spotted in validationResult for "client_create_post"');
+                debug('DEBUG: errors spotted in validationResult for "client_create_post"');
                 // There are errors. Render form again with sanitized values/errors messages.
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
                 return;
