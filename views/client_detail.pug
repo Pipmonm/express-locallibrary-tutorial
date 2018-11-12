@@ -1,0 +1,38 @@
+extends layout
+
+block content
+
+  h1 Client: #{client.name}
+  p #{client.email_address}
+
+  hr
+  p
+    a(href=client.url+'/delete') Delete client
+
+  p
+    a(href=client.url+'/update') Update client
+
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Pending Requests
+
+    dl
+    each request in client_requests
+      dt
+        a(href=request.url) #{request.module}
+      dd #{request.status}
+
+    else
+      p This client has no pending requests.
+
+    h4 Executed transactions
+
+    dl
+    each transaction in clients_transactions
+      dt
+         a(href=transaction.url) #(transaction.module)
+      dd #{transaction.status}
+
+    else
+      p This client has not had any transactions
