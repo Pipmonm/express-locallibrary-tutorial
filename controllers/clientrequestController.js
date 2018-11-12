@@ -50,7 +50,6 @@ exports.clientrequest_create_get = function(req, res, next) {
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
-        console.log('going to clientrequest form');
         res.render('clientrequest_form', {title: 'Create ClientRequest', client_list:clients});
       });
 
