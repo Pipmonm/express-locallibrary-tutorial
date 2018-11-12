@@ -26,11 +26,11 @@ block content
         option(value='pendingPay') Pending
         option(value='processed') Processed
         option(value='canceled') Canceled
-        option(value='invalid) Not Valid
+        option(value='invalid') Not Valid
 
     button.btn.btn-primary(type='submit') Submit
 
   if errors
     ul
       for error in errors
-        li!= "hello"
+        li!= error.msg
