@@ -3,12 +3,14 @@ extends layout
 block content
   h1=title
 
+  p #[Client: ] #{clientrequest.client}
+
   form(method='POST' action='')
     div.form-group
       label(for='module') Module
       select#clientrequest.form-control(type='select' placeholder="module:" name='module' required='true')
-      option(value='PieSlicer') Pie PieSlicer
-      option(value='FracSpeller') Fraction Speller
+        option(value='PieSlicer') Pie PieSlicer
+        option(value='FracSpeller') Fraction Speller
 
     div.form-group
       label(for='status') Status:
