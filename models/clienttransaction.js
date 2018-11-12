@@ -24,7 +24,7 @@ ClientTransactionSchema
 ClientTransactionSchema
 .virtual('payment_date_formatted')
 .get(function () {
-  return moment(this.transaction_date).format('MMMM Do, YYYY');
+  return moment(this.transaction_date).format();
 });
 
 ClientTransactionSchema

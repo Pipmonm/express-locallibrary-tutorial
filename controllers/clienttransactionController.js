@@ -88,7 +88,9 @@ exports.clienttransaction_create_post = [
             // There are errors. Render form again with sanitized values and error messages.
             Client.find({},'title')
                 .exec(function (err, clients) {
-                    if (err) { return next(err); }
+                    if (err) {
+                      console.log('problem in clienttransaction_create_post'); 
+                      return next(err); }
                     // Successful, so render.
                     res.render('clienttransaction_form', { title: 'Create ClientTransaction', client_list : clients, selected_client : clienttransaction.client._id , errors: errors.array(), clienttransaction:clienttransaction });
             });
@@ -152,7 +154,7 @@ exports.clienttransaction_update_get = function(req, res, next) {
         return next(err);
       }
     // Successful, so render.
-    let transaction_date = clienttransaction.transaction_date ? moment(clienttransaction.transaction_date).format('YYYY-MM-DD') : '';
+    let transaction_date = clienttransaction.transaction_date ? moment(clienttransaction.transaction_date).format() : '';
     let module = clienttransaction.module;
     let status = clienttransaction.status;
     //replacement group which must be added after any change leading to a reconnection!!!

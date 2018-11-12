@@ -43,17 +43,19 @@ router.get('/clientcreate', client_controller.client_create_get);
 router.post('/clientcreate', client_controller.client_create_post);
 // GET request for one Client.
 router.get('/client/:id', client_controller.client_detail);
-
-//router.post('/bookinstance/create', book_instance_controller.bookinstance_create_post);
-
-// GET request for one BookInstance.
-//router.get('/bookinstance/:id', book_instance_controller.bookinstance_detail);
+//send get for creating new client request
 router.get('/clientrequest/create', client_request_controller.clientrequest_create_get);
-//POST versions
+//POST verify response
 router.post('/clientrequest/create', client_request_controller.clientrequest_create_post);
 //Get request for one clienrequest.
 router.get('/clientrequest/:id', client_request_controller.clientrequest_detail);
-//POST request for
+//send get for creating new client transaction
+router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
+//POST verify response
+router.post('/clienttransaction/create', client_transaction_controller.clienttransaction_create_post);
+//Get transaction for one clientransaction.
+router.get('/clienttransaction/:id', client_transaction_controller.clienttransaction_detail);
+
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);
 
