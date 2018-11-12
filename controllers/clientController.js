@@ -41,6 +41,7 @@ exports.client_list = function(req, res, next) {
             },
             clients_transactions: function(callback){
               Request.find({ 'client': id},'status')
+              .exec(callback)
             }
         }, function(err, results) {
             if (err) { return next(err); } // Error in API usage.
@@ -63,11 +64,9 @@ exports.client_list = function(req, res, next) {
   // Handle Client create on POST.
   exports.client_create_post = [
         // Validate fields.
-        body('first_name').isLength({ min: 1 }).trim().withMessage('First name (or initial)')
-            .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-        body('family_name').isLength({ min: 1 }).trim().withMessage('Family name (or unique identifier)')
-            .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-        body('email_address').isEmail().trim().withMessage('valid email address'),
+        body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
+        body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+        body('email_address').isEmail().trim().withMessage('your email address'),
         body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
         // Sanitize fields.
@@ -190,6 +189,7 @@ exports.client_list = function(req, res, next) {
          let email = results.client.email_address;
          if(!check('email').isEmail){
            debug('invalid email');
+           console.log('doing funny error for inv. email in client_update_get');
            return -1;//need to generate an error of some sort here
          }else{  //not aware of callback style validator for emails, following is newer version
            email =  check('email').isEmail().normalizeEmail();
@@ -201,15 +201,16 @@ exports.client_list = function(req, res, next) {
   // Handle Client update on POST.
   exports.client_update_post = [
     // Validate fields.
-    body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.')
-        .isAlphanumeric().withMessage('First name has non-alphanumeric characters.'),
-    body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.')
-        .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
-
+    body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
+    body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+    body('email_address').isEmail().trim().withMessage('your email address'),
+    body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+        //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
     // Sanitize fields.
     sanitizeBody('first_name').trim().escape(),
     sanitizeBody('family_name').trim().escape(),
-
+    sanitizeBody('email_address').trim().escape(),
+    sanitizeBody('register_request_code').trim().escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
