@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 var async = require('async');
 var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
-var debug = require('debug')('client_controller');
+var debug = require('debug')('client');
     //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
 
 // Display list of all clients.
@@ -44,13 +44,17 @@ exports.client_list = function(req, res, next) {
               .exec(callback)
             }
         }, function(err, results) {
-            if (err) { return next(err); } // Error in API usage.
+            if (err) {
+              console.log('error in clientcontroller ASYNC');
+              return next(err); } // Error in API usage.
             if (results.client==null) { // No results.
+                console.log("clientcontroller can't find client");
                 var err = new Error('Client not found');
                 err.status = 404;
                 return next(err);
             }
             // Successful, so render.
+            console.log('rendering client detail');
             res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
         });
 
@@ -142,10 +146,10 @@ exports.client_list = function(req, res, next) {
             Client.findById(req.body.client.id).exec(callback)
           },
           clients_requests: function(callback) {
-            Client.find({ 'client': req.body.client.id }).exec(callback)
+            ClientRequest.find({ 'client': req.body.client.id }).exec(callback)
           },
           clients_transactions: function(callback){
-            Client.find({ 'client': req.body.client.id }).exec(callback)
+            ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
           },
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
           if (err) { return next(err); }
