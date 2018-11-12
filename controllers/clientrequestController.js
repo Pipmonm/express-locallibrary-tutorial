@@ -60,13 +60,14 @@ exports.clientrequest_create_post = [
     // Validate fields.
     body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
     body('module', 'module name must be specified').isLength({ min: 1 }).trim(),
-    body('request_date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+    body('status', 'current status').isLength({min:1}).trim(),
+    body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
     sanitizeBody('client').trim().escape(),
-    sanitizeBody('imprint').trim().escape(),
-    //sanitizeBody('status').trim().escape(),
-    sanitizeBody('request_date').toDate(),
+    sanitizeBody('module').trim().escape(),
+    sanitizeBody('status').trim().escape(),
+    sanitizeBody('date_entered').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -78,8 +79,8 @@ exports.clientrequest_create_post = [
         var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
           { client: req.body.client,
             module: req.body.module,
-            //status: req.body.status,
-            request_date: req.body.request_date
+            status: req.body.status,
+            date_entered: req.body.date_entered
            });
 
         if (!errors.isEmpty()) {

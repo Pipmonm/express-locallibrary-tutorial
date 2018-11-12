@@ -5,28 +5,28 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      label(for='book') Book:
-      select#book.form-control(type='select' placeholder="book title" name='book' required='true')
-        for book in book_list
-          if bookinstance
-            option(value=book._id selected=(bookinstance.book.toString()==book._id.toString() ? 'selected' : false)) #{book.title}
+      label(for='clientrequest') Client Request:
+      select#clientrequest.form-control(type='select' placeholder="clientrequest client" name='clientrequest_client' required='true')
+        for clientrequest in clientrequest_list
+          if clientrequestinstance
+            option(value=clientrequest._id selected=(clientrequestinstance.clientrequest.toString()==clientrequest._id.toString() ? 'selected' : false)) #{clientrequest.title}
           else
-            option(value=book._id) #{book.title}
+            option(value=clientrequest._id) #{clientrequest.title}
 
     div.form-group
-      label(for='imprint') Imprint:
-      input#imprint.form-control(type='text' placeholder='Publisher and date information' name='imprint' required='true' value=(undefined===bookinstance ? '' : bookinstance.imprint))
+      label(for='module') Module:
+      input#module.form-control(type='text' placeholder='module requested' name='module' required='true' value=(undefined===clientrequest.module ? '' : clientrequest.module))
     div.form-group
-      label(for='due_back') Date when book available:
-      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back))
+      label(for='date_entered') Date Requested:
+      input#date_entered.form-control(type='date' name='date_entered' value=(undefined===clientrequest.date_entered ? '' : clientrequestinstance.date_entered))
 
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value='Maintenance') Maintenance
-        option(value='Available') Available
-        option(value='Loaned') Loaned
-        option(value='Reserved') Reserved
+        option(value='pendingPay') Pending
+        option(value='processed') Processed
+        option(value='canceled') Canceled
+        option(value='invalid) Not Valid
 
     button.btn.btn-primary(type='submit') Submit
 
