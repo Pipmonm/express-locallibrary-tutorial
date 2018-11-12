@@ -5,28 +5,21 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      label(for='book') Book:
-      select#book.form-control(type='select' placeholder="book title" name='book' required='true')
-        for book in book_list
-          if bookinstance
-            option(value=book._id selected=(bookinstance.book.toString()==book._id.toString() ? 'selected' : false)) #{book.title}
+      label(for='clienttransaction') Client transaction:
+      select#clienttransaction.form-control(type='select' placeholder="clienttransaction client" name='clienttransaction' required='true')
+        for clienttransaction in clienttransaction_list
+          if clienttransactioninstance
+            option(value=clienttransaction._id selected=(clienttransactioninstance.clienttransaction.toString()==clienttransaction._id.toString() ? 'selected' : false)) #{clienttransaction.transaction_date}
           else
-            option(value=book._id) #{book.title}
-
-    div.form-group
-      label(for='imprint') Imprint:
-      input#imprint.form-control(type='text' placeholder='Publisher and date information' name='imprint' required='true' value=(undefined===bookinstance ? '' : bookinstance.imprint))
-    div.form-group
-      label(for='due_back') Date when book available:
-      input#due_back.form-control(type='date' name='due_back' value=(undefined===bookinstance ? '' : bookinstance.due_back))
+            option(value=clienttransaction._id) #{clienttransaction.transaction_date}
 
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value='Maintenance') Maintenance
-        option(value='Available') Available
-        option(value='Loaned') Loaned
-        option(value='Reserved') Reserved
+        option(value='pendingPay') Pending Payment
+        option(value='validated') Valid
+        option(value='canceled') Canceled
+        option(value='invalid') Not Valid
 
     button.btn.btn-primary(type='submit') Submit
 

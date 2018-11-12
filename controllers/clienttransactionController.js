@@ -40,7 +40,7 @@ exports.clienttransaction_detail = function(req, res, next) {
             return next(err);
           }
         // Successful, so render.
-        ////res.render('clienttransaction_detail', { title: 'Client:', clienttransaction:  clienttransaction});
+        res.render('clienttransaction_detail', { title: 'Client:', clienttransaction:  clienttransaction});
       })
 
   };
@@ -52,7 +52,7 @@ exports.clienttransaction_create_get = function(req, res, next) {
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
-        ////res.render('clienttransaction_form', {title: 'Create ClientTransaction', client_list:clients});
+        res.render('clienttransaction_form', {title: 'Create ClientTransaction', client_list:clients});
       });
 
   };
@@ -89,7 +89,7 @@ exports.clienttransaction_create_post = [
             Client.find({},'title')
                 .exec(function (err, clients) {
                     if (err) {
-                      console.log('problem in clienttransaction_create_post'); 
+                      console.log('problem in clienttransaction_create_post');
                       return next(err); }
                     // Successful, so render.
                     res.render('clienttransaction_form', { title: 'Create ClientTransaction', client_list : clients, selected_client : clienttransaction.client._id , errors: errors.array(), clienttransaction:clienttransaction });
