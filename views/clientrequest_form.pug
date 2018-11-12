@@ -6,9 +6,9 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='clientrequest') #{clientrequest.client}
-      select#clientrequest.form-control(type='select' placeholder="module:" name='clientrequest_module' required='true')
-      for clientrequest in clientrequest_list
-          option(value=clientrequest._id) #{clientrequest.client}
+      select#clientrequest.form-control(type='select' placeholder="module:" name='module' required='true')
+      option(value='PieSlicer') Pie PieSlicer
+      option(value='FracSpeller') Fraction Speller
 
     div.form-group
       label(for='status') Status:
