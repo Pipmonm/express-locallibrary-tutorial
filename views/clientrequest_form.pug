@@ -5,20 +5,10 @@ block content
 
   form(method='POST' action='')
     div.form-group
-      label(for='clientrequest') Client Request:
-      select#clientrequest.form-control(type='select' placeholder="clientrequest client" name='clientrequest_client' required='true')
+      label(for='clientrequest') #{clientrequest.client}
+      select#clientrequest.form-control(type='select' placeholder="module:" name='clientrequest_module' required='true')
       for clientrequest in clientrequest_list
-        if clientrequestinstance
-          option(value=clientrequest._id selected=(clientrequestinstance.clientrequest.toString()==clientrequest._id.toString() ? 'selected' : false)) #{clientrequest.title}
-        else
-          option(value=clientrequest._id) #{clientrequest.title}
-
-    div.form-group
-      label(for='module') Module:
-      input#module.form-control(type='text' placeholder='module requested' name='module' required='true' value=(undefined===clientrequest.module ? '' : clientrequest.module))
-    div.form-group
-      label(for='date_entered') Date Requested:
-      input#date_entered.form-control(type='date' name='date_entered' value=(undefined===clientrequest.date_entered ? '' : clientrequestinstance.date_entered))
+          option(value=clientrequest._id) #{clientrequest.client}
 
     div.form-group
       label(for='status') Status:
