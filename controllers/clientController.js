@@ -65,8 +65,8 @@ exports.client_list = function(req, res, next) {
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name (or unique identifier)')
             .isAlphanumeric().withMessage('Family name has non-alphanumeric characters.'),
         body('email_address').isEmail().trim().withMessage('valid email address'),
-        body('register_request_code').isLength({min:10}).trim().withMessage('Paste text from clipboard here')
-            .isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
+        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+            //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
