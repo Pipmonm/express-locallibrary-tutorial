@@ -35,10 +35,13 @@ exports.client_list = function(req, res, next) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
                   .exec(callback)
             },
-            client_requests: function(callback) {
-              Request.find({ 'client': id},'module version') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+            clients_requests: function(callback) {
+              Request.find({ 'client': id},'module') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
               .exec(callback)
             },
+            clients_transactions: function(callback){
+              Request.find({ 'client': id},'status')
+            }
         }, function(err, results) {
             if (err) { return next(err); } // Error in API usage.
             if (results.client==null) { // No results.
@@ -47,7 +50,7 @@ exports.client_list = function(req, res, next) {
                 return next(err);
             }
             // Successful, so render.
-            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests } );
+            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
         });
 
     };
@@ -99,8 +102,10 @@ exports.client_list = function(req, res, next) {
                         registration_date: now,
                     });
                 client.save(function (err) {
+                    console.log('an error?: ' + err);
                     if (err) { return next(err); }
                     // Successful - redirect to new clientrecord.
+                    console.log('going to client URL: ' + this._id);
                     res.redirect(client.url);
                 });
             }
