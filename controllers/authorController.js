@@ -25,6 +25,7 @@ exports.author_list = function(req, res, next) {
 
 // Display detail page for a specific Author.
 exports.author_detail = function(req, res, next) {
+      console.log('via author_detail')
       var id = mongoose.Types.ObjectId(req.params.id.toString()); // added  :MOD: 2018-03-08 9:45 AM
       async.parallel({
           author: function(callback) {
@@ -103,7 +104,7 @@ exports.author_create_post = [
 
 // Display Author delete form on GET.
 exports.author_delete_get = function(req, res, next) {
-
+      console.log('via delete_get');
       async.parallel({
           author: function(callback) {
               Author.findById(req.params.id).exec(callback)

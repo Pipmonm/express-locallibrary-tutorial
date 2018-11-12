@@ -102,10 +102,12 @@ exports.client_list = function(req, res, next) {
                         registration_date: now,
                     });
                 client.save(function (err) {
-                    console.log('an error?: ' + err);
-                    if (err) { return next(err); }
+                    if (err) {
+                      console.log('an error?: ' + err);
+                      return next(err);
+                    }
                     // Successful - redirect to new clientrecord.
-                    console.log('going to client URL: ' + this._id);
+                    console.log('going to client URL: ' + client.url);
                     res.redirect(client.url);
                 });
             }
