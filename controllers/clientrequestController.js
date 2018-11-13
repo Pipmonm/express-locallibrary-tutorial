@@ -46,7 +46,7 @@ exports.clientrequest_detail = function(req, res, next) {
 // Display ClientRequest create form on GET.
 exports.clientrequest_create_get = function(req, res, next) {
 
-      Client.find({},'title')
+      Client.find({},'client') //???
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
