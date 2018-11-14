@@ -26,10 +26,10 @@ block content
     else
       p This client has no pending requests.
 
-    h4 Executed transactions
+    h4 Recorded Transactions
 
     dl
-    each transaction in clients_transactions
+    each transaction in client_transactions
       dt
          a(href=transaction.url) #(transaction.module)
       dd #{transaction.status}
