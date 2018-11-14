@@ -89,7 +89,7 @@ exports.clientrequest_create_post = [
                 .exec(function (err, clients) {
                     if (err) { return next(err); }
                     // Successful, so render.
-                    res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
+                    res.render('clientrequest_form', { title: '', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
             });
             return;
         }

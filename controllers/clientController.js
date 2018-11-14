@@ -128,11 +128,13 @@ exports.client_list = function(req, res, next) {
               Clientrequest.find({ 'client': req.params.id }).exec(callback)
             },
         }, function(err, results) {
+            console.log('err in client_delete_get')
             if (err) { return next(err); }
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
             // Successful, so render.
+            console.log("rendering client_delete_get form");
             res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests, client_transactions: results.client_transactions } );
         });
 
@@ -155,10 +157,12 @@ exports.client_list = function(req, res, next) {
           if (err) { return next(err); }
           // Success
           if (results.clients_requests.length > 0 ) {
+              console.log("client has archived requests");
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests } );
               return;
           }else if(results.clients_transactions.length > 0)  {
+              console.log("client has archived transactions");
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions } );
               return;
@@ -166,7 +170,9 @@ exports.client_list = function(req, res, next) {
           } else {
               // Client has no books. Delete object and redirect to the list of clients.
               Client.findByIdAndRemove(req.body.client.id, function deleteClient(err) {
-                  if (err) { return next(err); }
+                  if (err) {
+                    console.log("error in deleting client" + err);
+                     return next(err); }
                   // Success - go to client list
                   res.redirect('/catalog/clients')
               }) //findById ends
