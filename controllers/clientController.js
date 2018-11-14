@@ -125,7 +125,10 @@ exports.client_list = function(req, res, next) {
                 Client.findById(req.params.id).exec(callback)
             },
             client_requests: function(callback) {
-              Clientrequest.find({ 'client': req.params.id }).exec(callback)
+              ClientRequest.find({ 'client': req.params.id }).exec(callback)
+            },
+            client_transactions: function(callback) {
+              ClientTransaction.find({'client': req.params.id }).exec(callback)
             },
         }, function(err, results) {
             console.log('err in client_delete_get')
