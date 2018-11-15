@@ -41,6 +41,10 @@ router.get('/clientcreate', client_controller.client_create_get);
 
 //STEP 2b add client to database
 router.post('/clientcreate', client_controller.client_create_post);
+// GET request to delete specific Client
+router.get('/client/:id/delete', client_controller.client_delete_get);
+// POST process request to delete Client.
+router.post('/client/:id/delete', client_controller.client_delete_post);
 // GET request for one Client.
 router.get('/client/:id', client_controller.client_detail);
 //send get for creating new client request
