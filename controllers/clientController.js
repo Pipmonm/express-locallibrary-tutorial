@@ -137,7 +137,7 @@ exports.client_list = function(req, res, next) {
                 res.redirect('/catalog/clients');
             }
             // Successful, so render.
-            console.log("rendering client_delete_get form");
+            console.log("rendering client_delete_get form for:" + results.client);
             res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests, client_transactions: results.client_transactions } );
         });
 
