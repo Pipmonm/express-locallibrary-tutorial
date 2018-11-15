@@ -64,9 +64,9 @@ exports.clientrequest_create_post = [
            req.body.module=[];
            else
            req.body.module=new Array(req.body.module);
-      }
-//      next();
-//    },
+       }
+       next();
+    },
 
     //convert the status to an Array
     (req, res, next) => {
@@ -127,8 +127,9 @@ exports.clientrequest_create_post = [
                     if (clientrequest.module.indexOf(results.modules[i]._id) > -1) {
                         results.modules[i].checked='true';
                     }
+                }
 
-                 for (let i = 0; i < results.statii.length; i++) {
+                for (let i = 0; i < results.statii.length; i++) {
                      if (clientrequest.status.indexof(results.statii[i]._id) > -1) {
                         results.statii[i].checked= 'true';
                      }
