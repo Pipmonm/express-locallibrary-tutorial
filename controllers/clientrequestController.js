@@ -57,6 +57,28 @@ exports.clientrequest_create_get = function(req, res, next) {
 
 // Handle ClientRequest create on POST.
 exports.clientrequest_create_post = [
+    // Convert the module to an array.
+    (req, res, next) => {
+       if(!(req.body.module instanceof Array)){
+           if(typeof req.body.module ==='undefined')
+           req.body.module=[];
+           else
+           req.body.module=new Array(req.body.module);
+      }
+      next();
+    },
+
+    //convert the status to an Array
+    (req, res, next) => {
+        if(!(req.body.status instanceof Array)){
+            if(typeof req.body.status==='undefined')
+            req.body.status=[];
+            else
+            req.body.status=new Array(req.body.status);
+        }
+        next();
+    },
+
     // Validate fields.
     body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
     body('module', 'module name must be specified').isLength({ min: 1 }).trim(),
@@ -85,12 +107,33 @@ exports.clientrequest_create_post = [
 
         if (!errors.isEmpty()) {
             // There are errors. Render form again with sanitized values and error messages.
-            Client.find({},'title')
-                .exec(function (err, clients) {
-                    if (err) { return next(err); }
-                    // Successful, so render.
-                    res.render('clientrequest_form', { title: '', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
-            });
+            // Get all authors and modules & statii for form.
+            async.parallel({
+                clients: function(callback) {
+                    Client.find(callback);
+                },
+                modules: function(callback) {
+                    Module.find(callback);
+                },
+                statii: funtion(callback) {
+                    Status.find(callback);
+                },
+            }, function(err, results) {
+                if (err) { return next(err); }
+
+                // Mark our selected modules as checked.
+                for (let i = 0; i < results.modules.length; i++) {
+                    if (clientrequest.module.indexOf(results.modules[i]._id) > -1) {
+                        results.modules[i].checked='true';
+                    }
+
+                 for (let i = 0; i < results.statii.length; i++) {
+                     if (clientrequest.status.indexof(results.statii[i]._id) > -1) {
+                        results.statii[i].checked= 'true';
+                     }
+                 }
+                 res.render('book_form', { title: 'Create Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
+            }); //ends async clause
             return;
         }
         else {
@@ -138,27 +181,46 @@ exports.clientrequest_delete_post = function(req, res, next) {
 
 // Display ClientRequest update form on GET.
 exports.clientrequest_update_get = function(req, res, next) {
-  ClientRequest.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-  .populate('clientrequest client') //populate the nested client model with the client values
-  .exec(function (err, clientrequest) {
-    if (err) {
-       debug("clientrequest err: %s ",err);
-       return next(err);
-     }
-    if (clientrequest==null) { // No results.
-        var err = new Error('Client copy not found');
-        err.status = 404;
-        return next(err);
-      }
-    // Successful, so render.
-    let date_entered = clientrequest.date_entered ? moment(clientrequest.date_entered).format('YYYY-MM-DD') : '';
-    let status = clientrequest.status;
-    let module_type = clientrequest.module;
-    //replacement group which must be added after any change leading to a reconnection!!!
-    //ie will not mpass a 'restart of mongodb connection',  to be placed in clientrequestUpdate_form.pug
-
-    res.render('clientrequestUpdate_form', { title: 'Client:', clientrequest: clientrequest, date_entered: date_entered, status: status});
-  })
+  // Get book, authors and genres for form.
+  async.parallel({
+      clientrequest: function(callback) {
+          ClientRequest.findById(req.params.id).populate('client').populate('module').populate('status').exec(callback);
+      },
+      authors: function(callback) {
+          Client.find(callback);
+      },
+      modules: function(callback) {
+          Module.find(callback);
+      },
+      statii: function(callback) {
+          Status.find(callback);
+      },
+      }, function(err, results) {
+          if (err) { return next(err); }
+          if (results.clientrequest==null) { // No results.
+              var err = new Error('ClientRequest not found');
+              err.status = 404;
+              return next(err);
+          }
+          // Success.
+          // Mark our selected genres as checked.
+          for (var all_m_iter = 0; all_m_iter < results.modules.length; all_m_iter++) {
+              for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.module.length; clientrequest_m_iter++) {
+                  if (results.modules[all_m_iter]._id.toString()==results.clientrequest.module[clientrequest_m_iter]._id.toString()) {
+                      results.modules[all_m_iter].checked='true';
+                  }
+              }
+          }
+          // Mark our selected statii as checked.
+          for (var all_s_iter = 0; all_s_iter < results.statii.length; all_s_iter++) {
+              for (var clientrequest_s_iter = 0; clientrequest_s_iter < results.clientrequest.status.length; clientrequest_s_iter++) {
+                  if (results.statii[all_s_iter]._id.toString()==results.clientrequest.status[clientrequest_s_iter]._id.toString()) {
+                      results.statii[all_s_iter].checked='true';
+                  }
+              }
+          }
+          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, modules:results.modules, clientrequest: results.clientrequest });
+      });
 
 };
 
