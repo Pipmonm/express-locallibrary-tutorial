@@ -115,7 +115,7 @@ exports.clientrequest_create_post = [
                 modules: function(callback) {
                     Module.find(callback);
                 },
-                statii: funtion(callback) {
+                statii: function(callback) {
                     Status.find(callback);
                 },
             }, function(err, results) {
