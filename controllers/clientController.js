@@ -151,10 +151,10 @@ exports.client_list = function(req, res, next) {
           client: function(callback) {
             Client.findById(req.body.client.id).exec(callback)
           },
-          clients_requests: function(callback) {
+          client_requests: function(callback) {
             ClientRequest.find({ 'client': req.body.client.id }).exec(callback)
           },
-          clients_transactions: function(callback){
+          client_transactions: function(callback){
             ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
           },
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
