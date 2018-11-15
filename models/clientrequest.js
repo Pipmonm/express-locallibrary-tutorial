@@ -7,8 +7,8 @@ var ClientRequestSchema = new Schema(
 
   {
     client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
-    appname: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
-    status: {type: String, required: true, enum: ['pendingPay','processed','canceled','invalid'], default: 'pendingPay'},
+    appname: [{type: Schema.ObjectId, ref: 'Appname'}],
+    status: {type: Schema.ObjectId, ref: 'Status'}],
     date_entered: {type: Date, default: Date.now}
   }
 );
