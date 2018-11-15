@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1=title
+  form(method='POST' action='')
+    div.form-group
+      label(for='clienttransaction_client') Request from Client:
+      input(type='text' placeholder='client name missing error: delete this copy'  name='clienttransaction' required='true' value = clienttransactioninstance.clienttransaction.client)
+    div.form-group
+      label(for='module') Module:
+      input#module.form-control(type='text' placeholder="missing module name error" name='module' required='true' value=(undefined===clienttransactioninstance ? '' : clienttransactioninstance.module))
+
+    div.form-group
+      label(for='status') Status:
+      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
+        option(value= statusArray[0]) #{statusArray[0]}
+        option(value= statusArray[1]) #{statusArray[1]}
+        option(value= statusArray[2]) #{statusArray[2]}
+        option(value= statusArray[3]) #{statusArray[3]}
+
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
