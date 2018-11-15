@@ -65,8 +65,8 @@ exports.clientrequest_create_post = [
            else
            req.body.module=new Array(req.body.module);
       }
-      next();
-    },
+//      next();
+//    },
 
     //convert the status to an Array
     (req, res, next) => {
@@ -136,15 +136,15 @@ exports.clientrequest_create_post = [
                  res.render('book_form', { title: 'Create Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
             }); //ends async clause
             return;
-        }
-        else {
+
+        } else {
             // Data from form is valid.
             clientrequest.save(function (err) {
                 if (err) { return next(err); }
                    //else Successful - redirect to new record.
                    res.redirect(clientrequest.url);
                 });
-        }
+        }//end the else
     }
 ];
 
