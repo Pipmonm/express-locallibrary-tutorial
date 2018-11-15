@@ -119,17 +119,19 @@ exports.client_list = function(req, res, next) {
 
   // Display Client delete form on GET.
   exports.client_delete_get = function(req, res, next) {
-
+        console.log("@@@ $ entering delete_get")
         async.parallel({
             client: function(callback) {
                 Client.findById(req.params.id).exec(callback)
             },
-            //client_requests: function(callback) {
-            //  ClientRequest.find({ 'client': req.params.id }).exec(callback)
-          //  },
-            //client_transactions: function(callback) {
-              //ClientTransaction.find({'client': req.params.id }).exec(callback)
-            //},
+            client_requests: function(callback) {
+                console.log("@@@ $ looking for requests in delete_get")
+                ClientRequest.find({ 'client': req.params.id }).exec(callback)
+            },
+            client_transactions: function(callback) {
+                console.log("@@@ $ looking for transactions in delete_get")
+                ClientTransaction.find({'client': req.params.id }).exec(callback)
+            },
         }, function(err, results) {
             console.log('err in client_delete_get')
             if (err) { return next(err); }
@@ -151,10 +153,10 @@ exports.client_list = function(req, res, next) {
           client: function(callback) {
             Client.findById(req.body.client.id).exec(callback)
           },
-          client_requests: function(callback) {
+          clients_requests: function(callback) {
             ClientRequest.find({ 'client': req.body.client.id }).exec(callback)
           },
-          client_transactions: function(callback){
+          clients_transactions: function(callback){
             ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
           },
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
@@ -163,17 +165,17 @@ exports.client_list = function(req, res, next) {
           if (results.clients_requests.length > 0 ) {
               console.log("@@@ $ client has archived requests");
               // Client has books. Render in same way as for GET route.
-              res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests } );
+              res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
               return;
-          }else if(results.clients_transactions.length > 0)  {
+          }else if(results.clients_transactions.length > 0 )  {
               console.log("@@@ $ client has archived transactions");
               // Client has books. Render in same way as for GET route.
-              res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions } );
+              res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions, client_requests: results.clients_requests } );
               return;
 
           } else {
               console.log('@@@ $ delete client next: ' + req.body.client.id);
-              // Client has no books. Delete object and redirect to the list of clients.
+              // Client has no outstanding requets or transacts. Delete object and redirect to the list of clients.
               Client.findByIdAndRemove(req.body.client.id, function deleteClient(err) {
                   if (err) {
                     console.log("@@@ $ error in deleting client" + err);
