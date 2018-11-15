@@ -128,10 +128,7 @@ exports.client_list = function(req, res, next) {
                 console.log("@@@ $ looking for requests in delete_get")
                 ClientRequest.find({ 'client': req.params.id }).exec(callback)
             },
-            //client_transactions: function(callback) {
-              //  console.log("@@@ $ looking for transactions in delete_get")
-              //  ClientTransaction.find({'client': req.params.id }).exec(callback)
-            //},
+
         }, function(err, results) {
             console.log('err in client_delete_get')
             if (err) { return next(err); }
