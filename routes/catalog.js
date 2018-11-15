@@ -9,7 +9,7 @@ var client_controller = require('../controllers/clientController');
 var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 var client_request_controller = require('../controllers/clientrequestController');
-var client_transaction_controller = require('../controllers/clienttransactionController');
+//var client_transaction_controller = require('../controllers/clienttransactionController');
 
 //TESTING Download
 var pieSlicer_controller = require('../controllers/pieSlicerController');
@@ -54,11 +54,11 @@ router.post('/clientrequest/create', client_request_controller.clientrequest_cre
 //Get request for one clienrequest.
 router.get('/clientrequest/:id', client_request_controller.clientrequest_detail);
 //send get for creating new client transaction
-router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
+//router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
 //POST verify response
-router.post('/clienttransaction/create', client_transaction_controller.clienttransaction_create_post);
+//router.post('/clienttransaction/create', client_transaction_controller.clienttransaction_create_post);
 //Get transaction for one clientransaction.
-router.get('/clienttransaction/:id', client_transaction_controller.clienttransaction_detail);
+//router.get('/clienttransaction/:id', client_transaction_controller.clienttransaction_detail);
 
 // GET request for creating a Book. NOTE This must come before routes that display Book (uses id).
 router.get('/book/create', book_controller.book_create_get);

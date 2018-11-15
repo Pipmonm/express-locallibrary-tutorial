@@ -12,19 +12,7 @@ if client_requests.length
         a(href=clientrequest.url) #{clientrequest.date_entered}
       dd #{clientrequest.module}
 
-else if client_transactions.length
-
-  p #[strong Delete the following transactions before attempting to delete this client.]
-
-  div(style='margin-left:20px;margin-top:20px')
-
-    h4 Archived Transactions
-
-    dl
-    each clienttransaction in client_clienttransactions
-      dt
-        a(href=clienttransaction.url) #{clienttransaction.transaction_date}
-        dd #{clienttransaction.module}
+//- else if client_transactions.length
 
 else
   p Do you really want to delete this Client?

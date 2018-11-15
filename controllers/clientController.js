@@ -128,10 +128,10 @@ exports.client_list = function(req, res, next) {
                 console.log("@@@ $ looking for requests in delete_get")
                 ClientRequest.find({ 'client': req.params.id }).exec(callback)
             },
-            client_transactions: function(callback) {
-                console.log("@@@ $ looking for transactions in delete_get")
-                ClientTransaction.find({'client': req.params.id }).exec(callback)
-            },
+            //client_transactions: function(callback) {
+              //  console.log("@@@ $ looking for transactions in delete_get")
+              //  ClientTransaction.find({'client': req.params.id }).exec(callback)
+            //},
         }, function(err, results) {
             console.log('err in client_delete_get')
             if (err) { return next(err); }
@@ -140,7 +140,7 @@ exports.client_list = function(req, res, next) {
             }
             // Successful, so render.
             console.log("rendering client_delete_get form for:" + results.client);
-            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests, client_transactions: results.client_transactions } );
+            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}) //({ client_transactions: results.client_transactions } );
         });
 
     };
@@ -156,9 +156,9 @@ exports.client_list = function(req, res, next) {
           clients_requests: function(callback) {
             ClientRequest.find({ 'client': req.body.client.id }).exec(callback)
           },
-          clients_transactions: function(callback){
-            ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
-          },
+          //clients_transactions: function(callback){
+            //ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
+          //},
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
           if (err) { return next(err); }
           // Success
@@ -167,11 +167,11 @@ exports.client_list = function(req, res, next) {
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
               return;
-          }else if(results.clients_transactions.length > 0 )  {
-              console.log("@@@ $ client has archived transactions");
+          //}else if(results.clients_transactions.length > 0 )  {
+              //console.log("@@@ $ client has archived transactions");
               // Client has books. Render in same way as for GET route.
-              res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions, client_requests: results.clients_requests } );
-              return;
+              //res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions, client_requests: results.clients_requests } );
+              //return;
 
           } else {
               console.log('@@@ $ delete client next: ' + req.body.client.id);
@@ -182,7 +182,7 @@ exports.client_list = function(req, res, next) {
                      return next(err); }
                   // Success - go to client list
                   res.redirect('/catalog/clients')
-              }) //findById ends
+               }) //findById ends
           } //callback fn ends
       }); //async ends
   }; //export fn ends
