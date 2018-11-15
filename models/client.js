@@ -36,9 +36,9 @@ ClientSchema
 });
 
 ClientSchema
-.virtual('licensekey:module')
+.virtual('licensekey:appname')
 .get(function () {
-  return this.device_key + ':' + this.module_type;
+  return this.device_key + ':' + this.appname;
 });
 //Export model
 module.exports = mongoose.model('Client', ClientSchema);

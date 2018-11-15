@@ -36,7 +36,7 @@ exports.client_list = function(req, res, next) {
                   .exec(callback)
             },
             clients_requests: function(callback) {
-              Request.find({ 'client': id},'module') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+              Request.find({ 'client': id},'appname') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
               .exec(callback)
             },
             clients_transactions: function(callback){

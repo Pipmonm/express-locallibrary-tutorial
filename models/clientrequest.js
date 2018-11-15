@@ -7,8 +7,7 @@ var ClientRequestSchema = new Schema(
 
   {
     client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
-    //book: { type: mongoose.ObjectId, ref: 'Book', required: true },
-    module: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
+    appname: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
     status: {type: String, required: true, enum: ['pendingPay','processed','canceled','invalid'], default: 'pendingPay'},
     date_entered: {type: Date, default: Date.now}
   }

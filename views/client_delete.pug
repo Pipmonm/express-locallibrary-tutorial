@@ -10,7 +10,7 @@ if client_requests.length
     each clientrequest in client_clientrequests
       dt
         a(href=clientrequest.url) #{clientrequest.date_entered}
-      dd #{clientrequest.module}
+      dd #{clientrequest.appname}
 
 //- else if client_transactions.length
 

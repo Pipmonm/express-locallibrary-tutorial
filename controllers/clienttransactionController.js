@@ -61,12 +61,12 @@ exports.clienttransaction_create_get = function(req, res, next) {
 exports.clienttransaction_create_post = [
     // Validate fields.
     body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
-    body('module', 'Module name must be specified').isLength({ min: 1 }).trim(),
+    body('appname', 'Appname name must be specified').isLength({ min: 1 }).trim(),
     body('transaction_date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
     sanitizeBody('client').trim().escape(),
-    sanitizeBody('module').trim().escape(),
+    sanitizeBody('appname').trim().escape(),
     //sanitizeBody('status').trim().escape(),
     sanitizeBody('transaction_date').toDate(),
 
@@ -79,7 +79,7 @@ exports.clienttransaction_create_post = [
         // Create a ClientTransaction object with escaped and trimmed data.
         var clienttransaction = new ClientTransaction( //.body. here is body of request which has many key fields
           { client: req.body.client,
-            module: req.body.module,
+            appname: req.body.appname,
             //status: req.body.status,
             transaction_date: req.body.transaction_date
            });
@@ -155,7 +155,7 @@ exports.clienttransaction_update_get = function(req, res, next) {
       }
     // Successful, so render.
     let transaction_date = clienttransaction.transaction_date ? moment(clienttransaction.transaction_date).format() : '';
-    let module = clienttransaction.module;
+    let appname = clienttransaction.appname;
     let status = clienttransaction.status;
     //replacement group which must be added after any change leading to a reconnection!!!
     //ie will not mpass a 'restart of mongodb connection',  to be placed in clienttransactionUpdate_form.pug
@@ -169,13 +169,13 @@ exports.clienttransaction_update_get = function(req, res, next) {
   exports.clienttransaction_update_post = [
       // Validate fields.
       body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
-      body('module', 'Module name must be specified').isLength({ min: 1 }).trim(),
+      body('appname', 'Choose application from dropdown menu').isLength({ min: 1 }).trim(),
       body('status', 'give order status').isLength({min:1}).trim(),
       body('transaction_date', 'Purchase date').optional({ checkFalsy: true }).isISO8601(),
 
       // Sanitize fields.
       sanitizeBody('client').trim().escape(),
-      sanitizeBody('module').trim().escape(),
+      sanitizeBody('appname').trim().escape(),
       sanitizeBody('status').trim().escape(),
       sanitizeBody('due_back').toDate(),
 
@@ -188,7 +188,7 @@ exports.clienttransaction_update_get = function(req, res, next) {
           // Create a ClientTransaction object with escaped and trimmed data and old id
           var clienttransaction = new ClientTransaction( //.body. here is body of request which has many key fields
             { client: req.body.client,
-              module: req.body.module,
+              appname: req.body.appname,
               status: req.body.status,
               transaction_date: req.body.transaction_date,
               _id:req.params.id //This is required, or a new ID will be assigned!

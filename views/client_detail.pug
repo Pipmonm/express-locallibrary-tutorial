@@ -20,7 +20,7 @@ block content
     dl
     each request in client_requests
       dt
-        a(href=request.url) #{request.module}
+        a(href=request.url) #{request.appname}
       dd #{request.status}
 
     else
@@ -31,7 +31,7 @@ block content
     //- dl
     //- each transaction in client_transactions
       //- dt
-         //- a(href=transaction.url) #(transaction.module)
+         //- a(href=transaction.url) #(transaction.appname)
       //- dd #{transaction.status}
 
     //- else

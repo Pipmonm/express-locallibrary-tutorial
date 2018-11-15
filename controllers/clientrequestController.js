@@ -57,13 +57,13 @@ exports.clientrequest_create_get = function(req, res, next) {
 
 // Handle ClientRequest create on POST.
 exports.clientrequest_create_post = [
-    // Convert the module to an array.
+    // Convert the appname to an array.
     (req, res, next) => {
-       if(!(req.body.module instanceof Array)){
-           if(typeof req.body.module ==='undefined')
-           req.body.module=[];
+       if(!(req.body.appname instanceof Array)){
+           if(typeof req.body.appname ==='undefined')
+           req.body.appname=[];
            else
-           req.body.module=new Array(req.body.module);
+           req.body.appname=new Array(req.body.appname);
        }
        next();
     },
@@ -81,13 +81,13 @@ exports.clientrequest_create_post = [
 
     // Validate fields.
     body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
-    body('module', 'module name must be specified').isLength({ min: 1 }).trim(),
+    body('appname', 'choose application from dropdown list').isLength({ min: 1 }).trim(),
     body('status', 'current status').isLength({min:1}).trim(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
     sanitizeBody('client').trim().escape(),
-    sanitizeBody('module').trim().escape(),
+    sanitizeBody('appname').trim().escape(),
     sanitizeBody('status').trim().escape(),
     sanitizeBody('date_entered').toDate(),
 
@@ -100,7 +100,7 @@ exports.clientrequest_create_post = [
         // Create a ClientRequest object with escaped and trimmed data.
         var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
           { client: req.body.client,
-            module: req.body.module,
+            appname: req.body.appname,
             status: req.body.status,
             date_entered: req.body.date_entered
            });
@@ -108,13 +108,13 @@ exports.clientrequest_create_post = [
         if (!errors.isEmpty()) {
             console.log('checking the funtion!!!');
             // There are errors. Render form again with sanitized values and error messages.
-            // Get all authors and modules & statii for form.
+            // Get all authors and appnames & statii for form.
             async.parallel({
                 clients: function(callback) {
                     Client.find(callback);
                 },
-                modules: function(callback) {
-                    Module.find(callback);
+                appnames: function(callback) {
+                    Appname.find(callback);
                 },
                 statii: function(callback) {
                     Status.find(callback);
@@ -122,10 +122,10 @@ exports.clientrequest_create_post = [
             }, function(err, results) {
                 if (err) { return next(err); }
 
-                // Mark our selected modules as checked.
-                for (let i = 0; i < results.modules.length; i++) {
-                    if (clientrequest.module.indexOf(results.modules[i]._id) > -1) {
-                        results.modules[i].checked='true';
+                // Mark our selected appnames as checked.
+                for (let i = 0; i < results.appnames.length; i++) {
+                    if (clientrequest.appname.indexOf(results.appnames[i]._id) > -1) {
+                        results.appnames[i].checked='true';
                     }
                 }
 
@@ -186,13 +186,13 @@ exports.clientrequest_update_get = function(req, res, next) {
   // Get book, authors and genres for form.
   async.parallel({
       clientrequest: function(callback) {
-          ClientRequest.findById(req.params.id).populate('client').populate('module').populate('status').exec(callback);
+          ClientRequest.findById(req.params.id).populate('client').populate('appname').populate('status').exec(callback);
       },
       authors: function(callback) {
           Client.find(callback);
       },
-      modules: function(callback) {
-          Module.find(callback);
+      appnames: function(callback) {
+          Appname.find(callback);
       },
       statii: function(callback) {
           Status.find(callback);
@@ -206,10 +206,10 @@ exports.clientrequest_update_get = function(req, res, next) {
           }
           // Success.
           // Mark our selected genres as checked.
-          for (var all_m_iter = 0; all_m_iter < results.modules.length; all_m_iter++) {
-              for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.module.length; clientrequest_m_iter++) {
-                  if (results.modules[all_m_iter]._id.toString()==results.clientrequest.module[clientrequest_m_iter]._id.toString()) {
-                      results.modules[all_m_iter].checked='true';
+          for (var all_m_iter = 0; all_m_iter < results.appnames.length; all_m_iter++) {
+              for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.appname.length; clientrequest_m_iter++) {
+                  if (results.appnames[all_m_iter]._id.toString()==results.clientrequest.appname[clientrequest_m_iter]._id.toString()) {
+                      results.appnames[all_m_iter].checked='true';
                   }
               }
           }
@@ -221,7 +221,7 @@ exports.clientrequest_update_get = function(req, res, next) {
                   }
               }
           }
-          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, modules:results.modules, clientrequest: results.clientrequest });
+          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, appnames:results.appnames, clientrequest: results.clientrequest });
       });
 
 };
@@ -229,12 +229,12 @@ exports.clientrequest_update_get = function(req, res, next) {
 // Handle clientrequest update on POST.
   exports.clientrequest_update_post = [
       // Validate fields.
-      body('module_type', 'Module name must be specified').isLength({ min: 1 }).trim(),
+      body('appname', 'Specify which app: eg "PieSlicer"').isLength({ min: 1 }).trim(),
       body('status', 'optional').isLength({ min: 1 }).trim(),
       body('date_entered', 'Request date').optional({ checkFalsy: true }).isISO8601(),
 
       // Sanitize fields.
-      sanitizeBody('module_type').trim().escape(),
+      sanitizeBody('appname').trim().escape(),
       sanitizeBody('status').trim().escape(),
       sanitizeBody('date_entered').toDate(),
 
@@ -247,7 +247,7 @@ exports.clientrequest_update_get = function(req, res, next) {
           // Create a ClientRequest object with escaped and trimmed data and old id
           var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
             { client: req.body.client,
-              module_type: req.body.module_type,
+              appname: req.body.appname,
               status: req.body.status,
               date_entered: req.body.date_entered,
               _id:req.params.id //This is required, or a new ID will be assigned!
