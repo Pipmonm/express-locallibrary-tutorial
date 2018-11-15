@@ -145,6 +145,7 @@ exports.client_list = function(req, res, next) {
 
   // Handle Client delete on POST.
   exports.client_delete_post = function(req, res, next) {
+      console.log("@@@ $ starting async parallel for client_delete_post");
 
       async.parallel({  //arguments are 2 objects:  ({fn's},callback
           client: function(callback) {
