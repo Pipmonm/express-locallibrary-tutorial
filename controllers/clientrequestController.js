@@ -106,6 +106,7 @@ exports.clientrequest_create_post = [
            });
 
         if (!errors.isEmpty()) {
+            console.log('checking the funtion!!!');
             // There are errors. Render form again with sanitized values and error messages.
             // Get all authors and modules & statii for form.
             async.parallel({
