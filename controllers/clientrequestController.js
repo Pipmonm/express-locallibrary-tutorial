@@ -108,6 +108,7 @@ exports.clientrequest_create_post = [
 
         if (!errors.isEmpty()) {
             console.log('@@@ $ in clientrequest_create_post, validate error report not empty');
+            console.log('@@@ $ errors: ' + errors);
             // There are errors. Render form again with sanitized values and error messages.
             // Get all authors and appnames & statii for form.
             async.parallel({
