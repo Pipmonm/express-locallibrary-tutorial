@@ -186,7 +186,7 @@ exports.client_list = function(req, res, next) {
 
   // Display Client update form on GET.
   exports.client_update_get = function(req, res, next) {
-        //sanitize id ???
+        console.log("sanitizing body in clientUpdate");
         //req.params.sanitize('id').escape().trim();
         sanitizeBody('id').trim().escape();
         //client: function(callback) {
