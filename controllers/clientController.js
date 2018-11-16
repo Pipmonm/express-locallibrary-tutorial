@@ -54,7 +54,7 @@ exports.client_list = function(req, res, next) {
             }
             // Successful, so render.
             console.log('@@@ $ rendering client detail');
-            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
+            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
         });
 
     };
@@ -70,13 +70,13 @@ exports.client_list = function(req, res, next) {
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
         body('email_address').isEmail().trim().withMessage('your email address'),
-        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+        //body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
-        sanitizeBody('register_request_code').trim().escape(),
+        //sanitizeBody('register_request_code').trim().escape(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -100,7 +100,7 @@ exports.client_list = function(req, res, next) {
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         email_address: req.body.email_address,
-                        register_request_code: req.body.register_request_code,
+                        //register_request_code: req.body.register_request_code,
                         registration_date: now,
                     });
                 client.save(function (err) {
@@ -217,13 +217,13 @@ exports.client_list = function(req, res, next) {
     body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
     body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
     body('email_address').isEmail().trim().withMessage('your email address'),
-    body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+    //body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
         //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
     // Sanitize fields.
     sanitizeBody('first_name').trim().escape(),
     sanitizeBody('family_name').trim().escape(),
     sanitizeBody('email_address').trim().escape(),
-    sanitizeBody('register_request_code').trim().escape(),
+    //sanitizeBody('register_request_code').trim().escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
