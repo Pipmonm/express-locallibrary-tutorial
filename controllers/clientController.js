@@ -45,16 +45,16 @@ exports.client_list = function(req, res, next) {
             }
         }, function(err, results) {
             if (err) {
-              console.log('error in clientcontroller ASYNC');
+          console.log('@@@ $ error in clientcontroller ASYNC');
               return next(err); } // Error in API usage.
             if (results.client==null) { // No results.
-                console.log("clientcontroller can't find client");
+            console.log("@@@ $ clientcontroller can't find client");
                 var err = new Error('Client not found');
                 err.status = 404;
                 return next(err);
             }
             // Successful, so render.
-            console.log('rendering client detail');
+            console.log('@@@ $ rendering client detail');
             res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
         });
 
@@ -85,7 +85,7 @@ exports.client_list = function(req, res, next) {
             // Extract the validation errors from a request.
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                console.log('Console: errors spotted in validationResult for "client_create_post"');
+            console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
                 debug('DEBUG: errors spotted in validationResult for "client_create_post"');
                 // There are errors. Render form again with sanitized values/errors messages.
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
@@ -106,11 +106,11 @@ exports.client_list = function(req, res, next) {
                     });
                 client.save(function (err) {
                     if (err) {
-                      console.log('an error?: ' + err);
+                  console.log('@@@ $ an error?: ' + err);
                       return next(err);
                     }
                     // Successful - redirect to new clientrecord.
-                    console.log('going to client URL: ' + client.url);
+                console.log('@@@ $ going to client URL: ' + client.url);
                     res.redirect(client.url);
                 });
             }
@@ -130,13 +130,13 @@ exports.client_list = function(req, res, next) {
             },
 
         }, function(err, results) {
-            console.log('err in client_delete_get')
+        console.log('@@@ $ err in client_delete_get')
             if (err) { return next(err); }
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
             // Successful, so render.
-            console.log("rendering client_delete_get form for:" + results.client);
+        console.log("@@@ $ rendering client_delete_get form for:" + results.client);
             res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}) //({ client_transactions: results.client_transactions } );
         });
 
@@ -186,7 +186,7 @@ exports.client_list = function(req, res, next) {
 
   // Display Client update form on GET.
   exports.client_update_get = function(req, res, next) {
-        console.log("sanitizing body in clientUpdate");
+    console.log("@@@ $ sanitizing body in clientUpdate");
         //req.params.sanitize('id').escape().trim();
         sanitizeBody('id').trim().escape();
         //client: function(callback) {
@@ -203,7 +203,7 @@ exports.client_list = function(req, res, next) {
          let email = results.client.email_address;
          if(!check('email').isEmail){
            debug('invalid email');
-           console.log('doing funny error for inv. email in client_update_get');
+       console.log('@@@ $ doing funny error for inv. email in client_update_get');
            return -1;//need to generate an error of some sort here
          }else{  //not aware of callback style validator for emails, following is newer version
            email =  check('email').isEmail().normalizeEmail();
