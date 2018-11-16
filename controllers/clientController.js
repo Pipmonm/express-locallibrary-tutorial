@@ -1,8 +1,7 @@
 //book instance controller js
 var Client = require('../models/client');
 var Request = require('../models/clientrequest');
-var Transaction = require('../models/clienttransaction');
-//var BookInstance = require('../models/bookinstance');
+////var BookInstance = require('../models/bookinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -38,11 +37,11 @@ exports.client_list = function(req, res, next) {
             clients_requests: function(callback) {
               Request.find({ 'client': id},'appname') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
               .exec(callback)
-            },
-            clients_transactions: function(callback){
-              Request.find({ 'client': id},'status')
-              .exec(callback)
-            }
+            } //,
+            //clients_transactions: function(callback){
+              //Request.find({ 'client': id},'status')
+              //.exec(callback)
+            //}
         }, function(err, results) {
             if (err) {
           console.log('@@@ $ error in clientcontroller ASYNC');
@@ -162,7 +161,7 @@ exports.client_list = function(req, res, next) {
           if (results.clients_requests.length > 0 ) {
               console.log("@@@ $ client has archived requests");
               // Client has books. Render in same way as for GET route.
-              res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests, client_transactions: results.clients_transactions } );
+              res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests} ) //, client_transactions: results.clients_transactions } );
               return;
           //}else if(results.clients_transactions.length > 0 )  {
               //console.log("@@@ $ client has archived transactions");

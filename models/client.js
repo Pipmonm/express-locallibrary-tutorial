@@ -8,7 +8,6 @@ var ClientSchema = new Schema(
     first_name: {type: String, max: 100},
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
-    register_request_code: {type: String, required: true, max: 150},
     registration_date: {type: Date},
 
   }
@@ -35,10 +34,6 @@ ClientSchema
   return this.validation_date ? moment(this.validation_date).format('YYYY-MM-DD') : '';
 });
 
-ClientSchema
-.virtual('licensekey:appname')
-.get(function () {
-  return this.device_key + ':' + this.appname;
-});
+
 //Export model
 module.exports = mongoose.model('Client', ClientSchema);

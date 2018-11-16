@@ -13,8 +13,6 @@ block content
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy', name='email_address', required='true', value=(undefined===client ? '' : client.email_address) )
     div.form-group
-      label(for='register_request_code') Clipboard Value from REGISTER tab:
-      input#register_request_code.form-control(type='text', placeholder = 'Clipboard String', name= 'register_request_code', required='true', value=(undefined===client ? '' : client.register_request_code))
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
     ul

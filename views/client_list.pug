@@ -7,7 +7,7 @@ block content
   each client in client_list
     li
       a(href=client.url) #{client.name}
-      | (#{client.register_request_code})
+      | (#{client.email_address})
 
   else
     li There are no clients.
