@@ -9,7 +9,7 @@ var StatusSchema = new Schema(
   }
 );
 
-// Virtual for book's URL
+// Virtual for status's URL
 StatusSchema
 .virtual('url')
 .get(function () {
