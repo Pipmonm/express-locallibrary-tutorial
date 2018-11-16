@@ -55,6 +55,7 @@ exports.clientrequest_create_get = function(req, res, next) {
 
   };
 
+
 // Handle ClientRequest create on POST.
 exports.clientrequest_create_post = [
     // Convert the appname to an array.
@@ -106,7 +107,7 @@ exports.clientrequest_create_post = [
            });
 
         if (!errors.isEmpty()) {
-            console.log('checking the funtion!!!');
+            console.log('@@@ $ in clientrequest_create_post, validate error report not empty');
             // There are errors. Render form again with sanitized values and error messages.
             // Get all authors and appnames & statii for form.
             async.parallel({

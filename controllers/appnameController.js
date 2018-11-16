@@ -30,6 +30,7 @@ exports.appname_detail = function(req, res, next) {
       },
 
       appname_clientrequests: function(callback) {
+        console.log("@@@ $ going for roundup of clientrequests");
         ClientRequest.find({ 'appname': id }) //replaced req.params.id with id :MOD: 2018-03-08 9:28
         .exec(callback);
       },
