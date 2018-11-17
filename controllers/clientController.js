@@ -104,39 +104,40 @@ exports.client_list = function(req, res, next) {
                     });
                 client.save(function (err) {
                     if (err) {
-                  console.log('@@@ $ an error in client save: ' + err);
+                      console.log('@@@ $ an error in client save: ' + err);
                       return next(err);
                     } // go on to create clientrequest entry
-                 })
-                //multiple could happen so distinguish by date asynchronously
-                //or possibly simply advise  (to be done later)
-                var rgrqcd = req.body.register_request_code;
-                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
-                var arrayFCode = [];
-                arrayFCode = rgrqcd.split(":");
-                console.log('@@@ $ arrayFCode follows');
-                console.log(arrayFCode);
-                var appname = arrayFCode[2]; //name part USB or CPU
-                var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
-                console.log('appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
-                var clientrequest = new Request(
+                    console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
+
+                    //multiple could happen so distinguish by date asynchronously
+                    //or possibly simply advise  (to be done later)
+                    var rgrqcd = req.body.register_request_code;
+                    console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                    var arrayFCode = [];
+                    arrayFCode = rgrqcd.split(":");
+                    console.log('@@@ $ arrayFCode follows');
+                    console.log(arrayFCode);
+                    var appname = arrayFCode[2]; //name part USB or CPU
+                    var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
+                    console.log('appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
+                    var clientrequest = new Request(
                        {
-                         client:this._id,
+                         client:client._id,
                          appname:appname,
                          formatCode:fcode,
                          status:"pending"
                       });
-                //Statii available are:  ['pending','validated','canceled','invalid']
-                //these values have already been checked and sanitized so commit right away
-                clientrequest.save(function (err) {
-                    if (err) {
-                  console.log('@@@ $ an error in clientrequest save: ' + err);
-                      return next(err);
-                    }
-
-                    // Successful - redirect to new clientrecord.
-                console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
-                    res.redirect(client.url);
+                    //Statii available are:  ['pending','validated','canceled','invalid']
+                    //these values have already been checked and sanitized so commit right away
+                    clientrequest.save(function (err) {
+                       if (err) {
+                         console.log('@@@ $ an error in clientrequest save: ' + err);
+                         return next(err);
+                       }
+                       console.log('@@@ $ clientrequest save OK');
+                      })
+                 // Successful - redirect to new clientrecord.
+                 res.redirect(client.url);
                 });
             }
         }
