@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 #{title}: #{client.name}
-  p= client.email_address
+  p= #{client.email_address}
 
 if client_requests.length
 
