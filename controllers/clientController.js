@@ -157,13 +157,19 @@ exports.client_list = function(req, res, next) {
             },
 
         }, function(err, results) {
+            console.log('client_delete_get async results follow');
+            console.log(results);
             if (err) {
               console.log('@@@ $ err in client_delete_get');
-              return next(err); 
+              return next(err);
             }
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
+            if (results.client_requests == undefined) { //why?
+                   console.log('assigning null to undefined client_requests');
+                   results.client_requests = null;
+                }
             // Successful, so render.
         console.log("@@@ $ rendering client_delete_get form for:" + results.client);
             res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}); //({ client_transactions: results.client_transactions } );
@@ -186,6 +192,8 @@ exports.client_list = function(req, res, next) {
             //ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
           //},
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
+          console.log('client_delete_post async results follow');
+          console.log(results);
           if (err) { return next(err); }
           // Success
           if (results.clients_requests.length > 0 ) {
