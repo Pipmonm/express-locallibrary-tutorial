@@ -7,8 +7,8 @@ block content
       label(for='clienttransaction_client') Request from Client:
       input(type='text' placeholder='client name missing error: delete this copy'  name='clienttransaction' required='true' value = clienttransactioninstance.clienttransaction.client)
     div.form-group
-      label(for='module') Module:
-      input#module.form-control(type='text' placeholder="missing module name error" name='module' required='true' value=(undefined===clienttransactioninstance ? '' : clienttransactioninstance.module))
+      label(for='appname') Application Name:
+      input#appname.form-control(type='text' placeholder="missing application name error" name='appname' required='true' value=(undefined===clienttransactioninstance ? '' : clienttransactioninstance.appname))
 
     div.form-group
       label(for='status') Status:

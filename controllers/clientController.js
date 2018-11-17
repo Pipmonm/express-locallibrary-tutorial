@@ -70,13 +70,13 @@ exports.client_list = function(req, res, next) {
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
         body('email_address').isEmail().trim().withMessage('your email address'),
-        //body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
-            //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
+        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here')
+            .isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
-        //sanitizeBody('register_request_code').trim().escape(),
+        sanitizeBody('register_request_code').trim().escape(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -100,16 +100,29 @@ exports.client_list = function(req, res, next) {
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         email_address: req.body.email_address,
-                        //register_request_code: req.body.register_request_code,
                         registration_date: now,
                     });
                 client.save(function (err) {
                     if (err) {
-                  console.log('@@@ $ an error?: ' + err);
+                  console.log('@@@ $ an error in client save: ' + err);
+                      return next(err);
+                    } // go on to create clientrequest entry
+
+                //multiple could happen so distinguish by date asynchronously
+                //or possibly simply advise  (to be done later)
+                var arrayFCode = req.body.register_request_code.split(":");
+                var appname = arrayFCode[2]; //name part USB or CPU
+                var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
+                var clientrequest = new Request({client:this._id, appname:appname,formatCode:fcode,status:"pending" });
+                //Statii available are:  ['pending','validated','canceled','invalid']
+                //these values have already been checked and sanitized so commit right away
+                clientrequest.save(function (err) {
+                    if (err) {
+                  console.log('@@@ $ an error in clientrequest save: ' + err);
                       return next(err);
                     }
                     // Successful - redirect to new clientrecord.
-                console.log('@@@ $ going to client URL: ' + client.url);
+                console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
                     res.redirect(client.url);
                 });
             }
@@ -136,7 +149,7 @@ exports.client_list = function(req, res, next) {
             }
             // Successful, so render.
         console.log("@@@ $ rendering client_delete_get form for:" + results.client);
-            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}) //({ client_transactions: results.client_transactions } );
+            res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}); //({ client_transactions: results.client_transactions } );
         });
 
     };
@@ -211,6 +224,7 @@ exports.client_list = function(req, res, next) {
     });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
   }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
 
+  //new function for clientrequest for this specific client
   // Handle Client update on POST.
   exports.client_update_post = [
     // Validate fields.

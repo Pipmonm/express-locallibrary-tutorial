@@ -13,6 +13,9 @@ block content
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy', name='email_address', required='true', value=(undefined===client ? '' : client.email_address) )
     div.form-group
+      label(for='register_request_code') 'Clipboard' text from application REGISTER tab:
+      input#register_request_code.form-control(type='text', placeholder='DeviceId:FormatCode:DeviceName', name='register_request_code', required= 'true')
+
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
     ul
