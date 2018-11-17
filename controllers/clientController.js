@@ -89,8 +89,8 @@ exports.client_list = function(req, res, next) {
                 // There are errors. Render form again with sanitized values/errors messages.
                 res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
                 return;
-            }
-            else {
+
+            }else{
                 // Data from form is valid.
                 //get date
                 const now = Date();
@@ -110,10 +110,22 @@ exports.client_list = function(req, res, next) {
                  })
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
-                var arrayFCode = req.body.register_request_code.split(":");
+                var rgrqcd = req.body.register_request_code;
+                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                var arrayFCode = [];
+                arrayFCode = rgrqcd.split(":");
+                console.log('@@@ $ arrayFCode follows');
+                console.log(arrayFCode);
                 var appname = arrayFCode[2]; //name part USB or CPU
                 var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
-                var clientrequest = new Request({client:this._id, appname:appname,formatCode:fcode,status:"pending" });
+                console.log('appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
+                var clientrequest = new Request(
+                       {
+                         client:this._id,
+                         appname:appname,
+                         formatCode:fcode,
+                         status:"pending"
+                      });
                 //Statii available are:  ['pending','validated','canceled','invalid']
                 //these values have already been checked and sanitized so commit right away
                 clientrequest.save(function (err) {

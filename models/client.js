@@ -8,7 +8,6 @@ var ClientSchema = new Schema(
     first_name: {type: String, max: 100},
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
-    register_request_code: {type: String, required: true, max:100},
     registration_date: {type: Date},
 
   }

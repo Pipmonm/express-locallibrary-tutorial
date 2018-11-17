@@ -7,8 +7,9 @@ var ClientRequestSchema = new Schema(
 
   {
     client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
-    appname: [{type: Schema.ObjectId, ref: 'Appname'}],
-    status: [{type: Schema.ObjectId, ref: 'Status'}],
+    appname: {type: String},
+    formatCode: {type: String},
+    status: {type: String},
     date_entered: {type: Date, default: Date.now}
   }
 );
