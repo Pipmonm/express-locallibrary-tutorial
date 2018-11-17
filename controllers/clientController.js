@@ -70,8 +70,8 @@ exports.client_list = function(req, res, next) {
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
         body('email_address').isEmail().trim().withMessage('your email address'),
-        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here')
-            .isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
+        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+            //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
@@ -121,7 +121,7 @@ exports.client_list = function(req, res, next) {
                   console.log('@@@ $ an error in clientrequest save: ' + err);
                       return next(err);
                     }
-                
+
                     // Successful - redirect to new clientrecord.
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
                     res.redirect(client.url);
