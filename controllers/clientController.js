@@ -1,6 +1,6 @@
 //book instance controller js
 var Client = require('../models/client');
-var Request = require('../models/clientrequest');
+var ClientRequest = require('../models/clientrequest');
 ////var BookInstance = require('../models/bookinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -35,11 +35,11 @@ exports.client_list = function(req, res, next) {
                   .exec(callback)
             },
             clients_requests: function(callback) {
-              Request.find({ 'client': id},'appname') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+              ClientRequest .find({ 'client': id},'appname') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
               .exec(callback)
             } //,
             //clients_transactions: function(callback){
-              //Request.find({ 'client': id},'status')
+              //ClientClientRequest  .find({ 'client': id},'status')
               //.exec(callback)
             //}
         }, function(err, results) {
@@ -120,7 +120,7 @@ exports.client_list = function(req, res, next) {
                     var appname = arrayFCode[2]; //name part USB or CPU
                     var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
                     console.log('appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
-                    var clientrequest = new Request(
+                    var clientrequest = new ClientRequest (
                        {
                          client:client._id,
                          appname:appname,
@@ -148,15 +148,16 @@ exports.client_list = function(req, res, next) {
         console.log("@@@ $ entering delete_get")
         async.parallel({
             client: function(callback) {
-                Client.findById(req.params.id).exec(callback)
+                Client.findById(req.params.id).exec(callback)//findById executes the callback with
+                                                             //presumably info needed by async
             },
             client_requests: function(callback) {
-                console.log("@@@ $ looking for requests in delete_get")
+                console.log("@@@ $ looking for clientrequests in client_delete_get")
                 ClientRequest.find({ 'client': req.params.id }).exec(callback)
             },
 
         }, function(err, results) {
-        console.log('@@@ $ err in client_delete_get')
+            console.log('@@@ $ err in client_delete_get')
             if (err) { return next(err); }
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
