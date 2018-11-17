@@ -107,7 +107,7 @@ exports.client_list = function(req, res, next) {
                   console.log('@@@ $ an error in client save: ' + err);
                       return next(err);
                     } // go on to create clientrequest entry
-
+                 })
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
                 var arrayFCode = req.body.register_request_code.split(":");
@@ -121,6 +121,7 @@ exports.client_list = function(req, res, next) {
                   console.log('@@@ $ an error in clientrequest save: ' + err);
                       return next(err);
                     }
+                
                     // Successful - redirect to new clientrecord.
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
                     res.redirect(client.url);
