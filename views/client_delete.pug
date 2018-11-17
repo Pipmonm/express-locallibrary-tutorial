@@ -2,13 +2,13 @@ extends layout
 
 block content
   h1 #{title}: #{client.name}
-  p= #{client.email_address}
+  p= client.email_address
 
-if client_requests.length
+  if client_requests.length
 
-  p #[strong Delete the following requests before attempting to delete this client.]
+    p #[strong Delete the following requests before attempting to delete this client.]
 
-  div(style='margin-left:20px;margin-top:20px')
+    div(style='margin-left:20px;margin-top:20px')
 
     h4 Cient Requests
 
@@ -19,11 +19,11 @@ if client_requests.length
       dd #{clientrequest.appname}
 
 
-else
-  p Do you really want to delete this Client?
+  else
+    p Do you really want to delete this Client?
 
-  form(method='POST' action='')
-    div.form-group
-      input#authorid.form-control(type='hidden',name='authorid', required='true', value=author._id )
+    form(method='POST' action='')
+      div.form-group
+        input#authorid.form-control(type='hidden',name='authorid', required='true', value=author._id )
 
-    button.btn.btn-primary(type='submit') Delete
+      button.btn.btn-primary(type='submit') Delete
