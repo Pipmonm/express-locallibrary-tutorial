@@ -157,8 +157,10 @@ exports.client_list = function(req, res, next) {
             },
 
         }, function(err, results) {
-            console.log('@@@ $ err in client_delete_get')
-            if (err) { return next(err); }
+            if (err) {
+              console.log('@@@ $ err in client_delete_get');
+              return next(err); 
+            }
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
