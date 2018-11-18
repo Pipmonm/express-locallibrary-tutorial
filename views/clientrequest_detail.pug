@@ -1,16 +1,15 @@
 extends layout
 
 block content
-  h1 #{title}: #{request.request_date}
+  h1 #{title}: #{clientrequest.date_entered}
 
   p #[strong Client:]
-    a(href=request.client.url) #{request.client.name}
-  p #[strong Client Email:] #{request.client.email}
-  p #[strong Application Name:] #{request.appname}
-  p #[strong Status:] #{request.status}
+    a(href=clientrequest .client.url) #{clientrequest .client.name}
+  p #[strong Application Name:] #{clientrequest .appname}
+  p #[strong Status:] #{clientrequest .status}
 
   hr
   p
-    a(href=request.url+'/delete') Delete Request
+    a(href=clientrequest .url+'/delete') Delete Request
   p
-    a(href=request.url+'/update') Update Request
+    a(href=clientrequest .url+'/update') Update Request
