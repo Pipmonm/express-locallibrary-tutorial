@@ -53,6 +53,10 @@ router.get('/clientrequest/create', client_request_controller.clientrequest_crea
 router.post('/clientrequest/create', client_request_controller.clientrequest_create_post);
 //Get request for one clienrequest.
 router.get('/clientrequest/:id', client_request_controller.clientrequest_detail);
+//clientrequest delete get
+router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_get);
+//& accompanying post
+router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_post);
 //send get for creating new client transaction
 //router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
 //POST verify response

@@ -38,6 +38,7 @@ exports.clientrequest_detail = function(req, res, next) {
             return next(err);
           }
         // Successful, so render.
+        console.log('rendering clientrequest_detail with clientrequest: ' + clientrequest);
         res.render('clientrequest_detail', { title: 'Client:', clientrequest:  clientrequest});
       })
 
