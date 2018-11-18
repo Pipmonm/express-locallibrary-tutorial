@@ -4,7 +4,7 @@ block content
   h1 #{title}: #{clientrequest.date_entered}
 
   p #[strong Client:]
-    a(href=clientrequest.client) #{clientrequest.client.name}
+    a(href=clientrequest.client._id) #{clientrequest.client.name}
   p #[strong Application Name:] #{clientrequest.appname}
   p #[strong Status:] #{clientrequest.status}
 
