@@ -4,16 +4,16 @@ block content
   h1 #{title}: #{client.name}
   p= client.email_address
 
-  if client_requests.length
+  if client_requests //- was .length here
 
     p #[strong Delete the following requests before attempting to delete this client.]
 
     div(style='margin-left:20px;margin-top:20px')
 
-    h4 Cient Requests
+    h4 Client Requests
 
     dl
-    each clientrequest in client_clientrequests
+    each clientrequest in clientrequests
       dt
         a(href=clientrequest.url) #{clientrequest.date_entered}
       dd #{clientrequest.appname}
