@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 #{title}: #{client.name}
-  p= client.email_address
+  p  Email: #{client.email_address}
 
   if client_requests.length
 
@@ -13,7 +13,7 @@ block content
     h4 Client Requests
 
     dl
-    each clientrequest in clientrequests
+    each clientrequest in client_requests
       dt
         a(href=clientrequest.url) #{clientrequest.date_entered}
       dd #{clientrequest.appname}
