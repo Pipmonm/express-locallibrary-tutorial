@@ -152,7 +152,7 @@ exports.client_list = function(req, res, next) {
                                                              //presumably info needed by async
             },
             client_requests: function(callback) {
-                console.log("@@@ $ looking for clientrequests in client_delete_get")
+                console.log("@@@ $ looking for clientrequests for client with id: " + req.params.id)
                 ClientRequest.find({ 'client': req.params.id }).exec(callback)
             },
 
@@ -166,7 +166,7 @@ exports.client_list = function(req, res, next) {
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
-            if (results.client_requests == undefined) { //why?
+            if (results.client_requests == null) { //why?
                    console.log('@@@ $ assigning null to undefined client_requests');
                    results.client_requests = null;
                 }
