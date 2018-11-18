@@ -4,7 +4,7 @@ block content
   h1 #{title}: #{client.name}
   p= client.email_address
 
-  if client_requests //- was .length here
+  if client_requests.length
 
     p #[strong Delete the following requests before attempting to delete this client.]
 
