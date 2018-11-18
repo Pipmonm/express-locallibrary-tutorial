@@ -4,12 +4,12 @@ block content
   h1 #{title}: #{clientrequest.date_entered}
 
   p #[strong Client:]
-    a(href=clientrequest .client.url) #{clientrequest .client.name}
-  p #[strong Application Name:] #{clientrequest .appname}
-  p #[strong Status:] #{clientrequest .status}
+    a(href=clientrequest.client) #{clientrequest.client.name}
+  p #[strong Application Name:] #{clientrequest.appname}
+  p #[strong Status:] #{clientrequest.status}
 
   hr
   p
-    a(href=clientrequest .url+'/delete') Delete Request
+    a(href=clientrequest.url+'/delete') Delete Request
   p
-    a(href=clientrequest .url+'/update') Update Request
+    a(href=clientrequest.url+'/update') Update Request
