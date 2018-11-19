@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each clientrequest in clientrequest_list
+    li
+      a(href=clientrequest.url) #{clientrequest.status}
+      |  (#{clientrequest.client.name})
+
+  else
+    li There are no books.

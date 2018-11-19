@@ -12,7 +12,7 @@ var debug = require('debug');
 // Display list of all ClientRequests.
 exports.clientrequest_list = function(req, res, next) {
 
-  ClientRequest.find()
+  ClientRequest.find({}, 'title client')
     .populate('client')
     .exec(function (err, list_clientrequests) {
       if (err) { return next(err); }
@@ -30,17 +30,19 @@ exports.clientrequest_detail = function(req, res, next) {
       .populate('client')
       .exec(function (err, clientrequest) {
         if (err) {
+           console.log("@@@ $ findById error: " + err);
            debug("clientrequest err: %s ",err);
            return next(err);
          }
         if (clientrequest==null) { // No results.
+            console.log('@@@ $ "null client" error ')
             var err = new Error('null clientrequest found');
             err.status = 404;
             return next(err);
           }
         // Successful, so render.
         console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
-        res.render('clientrequest_detail', { title: 'Client:', clientrequest:  clientrequest});
+        res.render('clientrequest_detail', { title: 'ClientRequest:', clientrequest:  clientrequest});
       })
 
   };
