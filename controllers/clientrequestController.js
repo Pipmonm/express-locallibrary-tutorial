@@ -24,7 +24,7 @@ exports.clientrequest_list = function(req, res, next) {
 
 // Display detail page for a specific ClientRequest.
 exports.clientrequest_detail = function(req, res, next) {
-
+      console.log('entering client_request_detail');
       ClientRequest.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
       .populate('client')
       .exec(function (err, clientrequest) {
@@ -177,7 +177,7 @@ exports.clientrequest_delete_get = function(req, res, next) {
 
 // Handle ClientRequest delete on POST.
 exports.clientrequest_delete_post = function(req, res, next) {
-  console.log('entering clientrequest_delete_post');
+  console.log('@@@ $ entering clientrequest_delete_post');
   // client instances being deleted have no dependencies; just do it.
   ClientRequest.findByIdAndRemove(req.body.clientrequestid, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
       if (err) { return next(err); }
