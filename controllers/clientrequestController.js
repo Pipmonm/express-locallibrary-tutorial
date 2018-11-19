@@ -165,7 +165,9 @@ exports.clientrequest_delete_get = function(req, res, next) {
       //async.parallel({key1:func,key2:func},function(err,results))
       async.parallel({
           clientrequest: function(callback) { //was author:...
-              ClientRequest.findById(req.params.id).exec(callback) //was Author
+              ClientRequest.findById(req.params.id)
+              .populate('client')
+              .exec(callback) //was Author
           },
           //authors_clients: function(callback) {
             //Client.find({ 'author': req.params.id }).exec(callback)
