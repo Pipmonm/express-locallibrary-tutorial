@@ -25,8 +25,8 @@ exports.clientrequest_list = function(req, res, next) {
 // Display detail page for a specific ClientRequest.
 exports.clientrequest_detail = function(req, res, next) {
       console.log('@@@ $ entering client_request_detail');
-      var id = mongoose.Types.ObjectId(req.params.id);
-      console.log('looking for CR with id: ' + id);
+      var id = req.params.id;
+      console.log('@@@ $ looking for CR with id: ' + id);
 
       ClientRequest.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         .populate('client')
