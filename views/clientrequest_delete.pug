@@ -7,26 +7,11 @@ block content
   p #[strong Client: ] #[clientrequest _client]
     a(href=clientrequest .client.url) #{clientrequest .client.name}
 
-  if clientrequest _instances.length
 
-    p #[strong Delete the following clientrequest  instances before attempting to delete this clientrequest .]
+  p Do you really want to delete this clientrequest ?
 
-    div(style='margin-left:20px;margin-top:20px')
+  form(method='POST' action='')
+    div.form-group
+      input#clientrequest id.form-control(type='hidden',name='clientrequest id', required='true', value=clientrequest ._id )
 
-      h4 ClientRequest  Instances
-
-      dl
-      each clientrequest  in clientrequest _instances
-        dt
-          a(href=clientrequest .url) #{clientrequest .title}
-          p #[strong Id:]&nbsp;
-            a(href=clientrequest .url) #{clientrequest ._id}
-
-  else
-    p Do you really want to delete this clientrequest ?
-
-    form(method='POST' action='')
-      div.form-group
-        input#clientrequest id.form-control(type='hidden',name='clientrequest id', required='true', value=clientrequest ._id )
-
-      button.btn.btn-primary(type='submit') Delete
+    button.btn.btn-primary(type='submit') Delete
