@@ -29,7 +29,7 @@ exports.clientrequest_detail = function(req, res, next) {
       console.log('@@@ $ looking for CR with id: ' + id);
 
       ClientRequest.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-        .populate('client')
+        //.populate('client')
         .exec(function (err, clientrequest) { //results of findById passed as clientrequest
         console.log('@@@ $ returned value for clientrequest:');
         console.log(clientrequest);
