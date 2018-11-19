@@ -24,7 +24,8 @@ exports.clientrequest_list = function(req, res, next) {
 
 // Display detail page for a specific ClientRequest.
 exports.clientrequest_detail = function(req, res, next) {
-      console.log('entering client_request_detail');
+      console.log('@@@ $ entering client_request_detail');
+      console.log('looking for CR with id: ' + req.params.id)
       ClientRequest.findById(req.params.id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
       .populate('client')
       .exec(function (err, clientrequest) {
@@ -38,7 +39,7 @@ exports.clientrequest_detail = function(req, res, next) {
             return next(err);
           }
         // Successful, so render.
-        console.log('rendering clientrequest_detail with clientrequest: ' + clientrequest);
+        console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
         res.render('clientrequest_detail', { title: 'Client:', clientrequest:  clientrequest});
       })
 
