@@ -165,11 +165,12 @@ exports.clientrequest_delete_get = function(req, res, next) {
       //async.parallel({key1:func,key2:func},function(err,results))
       async.parallel({
           clientrequest: function(callback) { //was author:...
+              Client = require('../models/client');
               ClientRequest.findById(req.params.id)
               .populate('client')
-              .exec(callback) //was Author
+              .exec(callback)
           },
-          //authors_clients: function(callback) {
+          //cliens_clientrequests: function(callback) {
             //Client.find({ 'author': req.params.id }).exec(callback)
           //},
       }, function(err, results) {
