@@ -1,17 +1,16 @@
 extends layout
-//CHANGE EVERYTHING TO CLIENTREQUEST then author & Author to client & Client
 
 block content
-  h1 #{title}: #{clientrequest .title}
+  h1 #{title}: #{clientrequest.title}
 
-  p #[strong Client: ] #[clientrequest _client]
-    a(href=clientrequest .client.url) #{clientrequest .client.name}
+  p #[strong Client: ] #[clientrequest_client]
+    a(href=clientrequest.client.url) #{clientrequest.client.name}
 
 
   p Do you really want to delete this clientrequest ?
 
   form(method='POST' action='')
     div.form-group
-      input#clientrequest id.form-control(type='hidden',name='clientrequest id', required='true', value=clientrequest ._id )
+      input#clientrequestid.form-control(type='hidden',name='clientrequestid', required='true', value=clientrequest._id )
 
     button.btn.btn-primary(type='submit') Delete
