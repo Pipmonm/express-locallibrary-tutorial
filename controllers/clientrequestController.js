@@ -171,6 +171,7 @@ exports.clientrequest_delete_get = function(req, res, next) {
             //Client.find({ 'author': req.params.id }).exec(callback)
           //},
       }, function(err, results) {
+          console.log('@@@ $ get request for delete gives err ' + err);
           if (err) { return next(err); }
           if (results.clientrequest==null) { //was results.author  // No results.
               res.redirect('/catalog/clientrequests'); //was /authors
