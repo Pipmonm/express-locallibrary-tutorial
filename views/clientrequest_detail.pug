@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1 #{title}: #{clientrequest.date_entered}
+  h1 #{title}: #{clientrequest.client}
 
   p #[strong Client:]
     a(href=clientrequest.client._id) #{clientrequest.client.name}
