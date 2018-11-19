@@ -33,7 +33,7 @@ exports.clientrequest_detail = function(req, res, next) {
            return next(err);
          }
         if (clientrequest==null) { // No results.
-            var err = new Error('Client copy not found');
+            var err = new Error('null clientrequest found');
             err.status = 404;
             return next(err);
           }
@@ -137,7 +137,7 @@ exports.clientrequest_create_post = [
                         results.statii[i].checked= 'true';
                      }
                  }
-                 res.render('book_form', { title: 'Create Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
+                 res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, appnames:results.appnames, clientrequest: clientrequest, errors: errors.array() });
             }); //ends async clause
             return;
 
@@ -177,6 +177,7 @@ exports.clientrequest_delete_get = function(req, res, next) {
 
 // Handle ClientRequest delete on POST.
 exports.clientrequest_delete_post = function(req, res, next) {
+  console.log('entering clientrequest_delete_post');
   // client instances being deleted have no dependencies; just do it.
   ClientRequest.findByIdAndRemove(req.body.clientrequestid, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
       if (err) { return next(err); }
