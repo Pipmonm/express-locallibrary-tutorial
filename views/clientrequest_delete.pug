@@ -3,8 +3,8 @@ extends layout
 block content
   h1 #{title}: #{clientrequest.status}
 
-  p #[strong Client: ] #[clientrequest.client.name]
-    a(href=clientrequest.client.url) #{clientrequest.client.email_address}
+  //- p #[strong Client: ] #[clientrequest.client.name]
+  //-  a(href=clientrequest.client.url) #{clientrequest.client.email_address}
 
 
   p Do you really want to delete this clientrequest ?
