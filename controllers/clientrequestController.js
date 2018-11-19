@@ -171,14 +171,16 @@ exports.clientrequest_delete_get = function(req, res, next) {
             //Client.find({ 'author': req.params.id }).exec(callback)
           //},
       }, function(err, results) {
-          console.log('@@@ $ get request for delete gives err ' + err);
-          if (err) { return next(err); }
+          if (err) {
+            console.log('@@@ $ get request for delete gives err ' + err);
+            return next(err);
+          }
           if (results.clientrequest==null) { //was results.author  // No results.
               res.redirect('/catalog/clientrequests'); //was /authors
           }
           // Successful, so render.
           //res.render('author_delete', { title: 'Delete Author', author: results.author, author_clients: results.authors_clients } );
-          res.render('clientrequest_delete', { title: 'Delete ClientRequest', clientrequest: results.clientrequest, clienttitle: results.clientrequest.client.title });
+          res.render('clientrequest_delete', { title: 'Delete ClientRequest', clientrequest: results.clientrequest});
       });
 
   };
