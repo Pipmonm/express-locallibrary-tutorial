@@ -189,9 +189,10 @@ exports.clientrequest_delete_get = function(req, res, next) {
 
 // Handle ClientRequest delete on POST.
 exports.clientrequest_delete_post = function(req, res, next) {
-  console.log('@@@ $ entering clientrequest_delete_post');
+  console.log('@@@ $ entering clientrequest_delete_post req.params below');
+  console.log(req.params);
   // client instances being deleted have no dependencies; just do it.
-  ClientRequest.findByIdAndRemove(req.body.clientrequestid, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
+  ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
       if (err) {
         console.log('delete_post err is: ' + err);
         return next(err);
