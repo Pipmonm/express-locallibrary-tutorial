@@ -185,11 +185,11 @@ exports.client_list = function(req, res, next) {
       async.parallel({  //arguments are 2 objects:  ({fn's},callback
           client: function(callback) {
             console.log("@@@ $ in async for client find")
-            Client.findById(req.body.client._id).exec(callback)
+            Client.findById(req.body.clientid).exec(callback)
           },
           clients_requests: function(callback) {
             console.log("@@@ $ finding clientrequests in async")
-            ClientRequest.find({ 'client': req.body.client._id }).exec(callback)
+            ClientRequest.find({ 'client': req.body.clientid }).exec(callback)
           },
           //clients_transactions: function(callback){
             //ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
