@@ -184,16 +184,18 @@ exports.client_list = function(req, res, next) {
 
       async.parallel({  //arguments are 2 objects:  ({fn's},callback
           client: function(callback) {
+            console.log("@@@ $ in async for client find")
             Client.findById(req.body.client.id).exec(callback)
           },
           clients_requests: function(callback) {
+            console.log("@@@ $ finding clientrequests in async")
             ClientRequest.find({ 'client': req.body.client.id }).exec(callback)
           },
           //clients_transactions: function(callback){
             //ClientTransaction.find({ 'client': req.body.client.id }).exec(callback)
           //},
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
-          console.log('client_delete_post async results follow');
+          console.log('@@@ $ client_delete_post async results follow');
           console.log(results);
           if (err) { return next(err); }
           // Success
