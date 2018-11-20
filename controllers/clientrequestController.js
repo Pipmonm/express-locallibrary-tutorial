@@ -11,7 +11,7 @@ var debug = require('debug');
 
 // Display list of all ClientRequests.
 exports.clientrequest_list = function(req, res, next) {
-
+  console.log('at clientrequest_list');
   ClientRequest.find({}, 'title client')
     .populate('client')
     .exec(function (err, list_clientrequests) {
@@ -46,7 +46,7 @@ exports.clientrequest_detail = function(req, res, next) {
           }
         // Successful, so render.
         console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
-        res.render('clientrequest_detail', { title: 'ClientRequest:', clientrequest:  clientrequest});
+        res.render('clientrequest_detail', { title: 'ClientRequest: ', clientrequest:  clientrequest});
       })
 
   };
@@ -191,8 +191,11 @@ exports.clientrequest_delete_get = function(req, res, next) {
 exports.clientrequest_delete_post = function(req, res, next) {
   console.log('@@@ $ entering clientrequest_delete_post');
   // client instances being deleted have no dependencies; just do it.
-  ClientRequest.findByIdAndRemove({id:req.body.clientrequestid}, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
-      if (err) { return next(err); }
+  ClientRequest.findByIdAndRemove(req.body.clientrequestid, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
+      if (err) {
+        console.log('delete_post err is: ' + err);
+        return next(err);
+      }
       // Success - go to clientrequests list
       res.redirect('/catalog/clientrequests')
   })

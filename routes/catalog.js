@@ -57,6 +57,8 @@ router.get('/clientrequest/:id', client_request_controller.clientrequest_detail)
 router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_get);
 //& accompanying post
 router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_post);
+// GET request for list of all BookInstance.
+router.get('/clientrequests', client_request_controller.clientrequest_list);
 //send get for creating new client transaction
 //router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
 //POST verify response
