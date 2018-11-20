@@ -197,23 +197,20 @@ exports.client_list = function(req, res, next) {
       }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
           console.log('@@@ $ client_delete_post async results follow');
           console.log(results);
-          if (err) { return next(err); }
+          if (err) {
+            console.log('@@@ $ async callback error: ' + err);
+            return next(err); }
           // Success
           if (results.clients_requests.length > 0 ) {
               console.log("@@@ $ client has archived requests");
               // Client has books. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests} ) //, client_transactions: results.clients_transactions } );
-              return;
-          //}else if(results.clients_transactions.length > 0 )  {
-              //console.log("@@@ $ client has archived transactions");
-              // Client has books. Render in same way as for GET route.
-              //res.render('client_delete', { title: 'Delete Client', client: results.client, client_transactions: results.clients_transactions, client_requests: results.clients_requests } );
-              //return;
+              return console.error('@@@ $ tried to return to client_delete');
 
           } else {
-              console.log('@@@ $ delete client next: ' + req.body.client.id);
+              console.log('@@@ $ delete client next: ' + req.body.clientid);
               // Client has no outstanding requets or transacts. Delete object and redirect to the list of clients.
-              Client.findByIdAndRemove(req.body.client.id, function deleteClient(err) {
+              Client.findByIdAndRemove(req.body.clientid, function deleteClient(err) {
                   if (err) {
                     console.log("@@@ $ error in deleting client" + err);
                      return next(err); }
