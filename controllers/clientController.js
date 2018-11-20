@@ -166,7 +166,7 @@ exports.client_list = function(req, res, next) {
             if (results.client==null) { // No results.
                 res.redirect('/catalog/clients');
             }
-            if (results.client_requests == null) { //why?
+            if (results.client_requests === undefined) { //why?
                    console.log('@@@ $ assigning null to undefined client_requests');
                    results.client_requests = null;
                 }
