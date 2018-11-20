@@ -8,6 +8,10 @@ block content
   //- p #[strong Client: ] #[clientrequest.client.name]
   //-  a(href=clientrequest.client.url) #{clientrequest.client.email_address}
 
+  p
+    a(href=clientrequest.url+'/delete') Delete Request
+
+  hr
 
   p Do you really want to delete this clientrequest ?
 

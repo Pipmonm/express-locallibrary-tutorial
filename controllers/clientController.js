@@ -145,7 +145,7 @@ exports.client_list = function(req, res, next) {
 
   // Display Client delete form on GET.
   exports.client_delete_get = function(req, res, next) {
-        console.log("@@@ $ entering delete_get")
+        console.log("@@@ $ entering client_delete_get")
         async.parallel({
             client: function(callback) {
                 Client.findById(req.params.id).exec(callback)//findById executes the callback with
