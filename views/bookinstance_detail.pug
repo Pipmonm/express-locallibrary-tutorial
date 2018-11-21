@@ -4,7 +4,7 @@ block content
 
   h1 ID: #{bookinstance._id}
 
-  p #[strong Title:]
+  p #[strong Title:] //- pug's way of emphasizing
     a(href=bookinstance.book.url) #{bookinstance.book.title}
   p #[strong Imprint:] #{bookinstance.imprint}
 
