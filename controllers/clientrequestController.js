@@ -39,7 +39,7 @@ exports.clientrequest_detail = function(req, res, next) {
            return next(err);
          }
         if (clientrequest==null) { // No results.
-            console.log('@@@ $ "null client" error ')
+            console.log('@@@ $  err: no clientrequest found for this id ')
             var err = new Error('null clientrequest found');
             err.status = 404;
             return next(err);
@@ -186,7 +186,8 @@ exports.clientrequest_delete_post = function(req, res, next) {
         return next(err);
       }
       // Success - go to clientrequests list
-      res.redirect('/catalog/clientrequests')
+      //res.redirect('/catalog/clientrequests')
+      return;
   })
   };
 
