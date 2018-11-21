@@ -161,7 +161,16 @@ exports.clientrequest_create_post = [
 
 // Display ClientRequest delete form on GET.
 exports.clientrequest_delete_get = function(req, res, next) {
-      console.log('@@@ $ entering clientrequest_delete_get');
+      console.log('@@@ $ entering clientrequest_delete_get params follows');
+      console.log(req.params);
+
+      ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err){
+                 if(err){
+                   console.log('@@@ $ error in deleting (fast) clientrequest: ' + err);
+                   return next(err);
+                 }
+          res.redirect('/catalog/clientrequests')
+      })
       //async.parallel({key1:func,key2:func},function(err,results))
       async.parallel({
           clientrequest: function(callback) { //was author:...
