@@ -169,32 +169,11 @@ exports.clientrequest_delete_get = function(req, res, next) {
                    console.log('@@@ $ error in deleting (fast) clientrequest: ' + err);
                    return next(err);
                  }
-          res.redirect('/catalog/clientrequests')
-      })
-      //async.parallel({key1:func,key2:func},function(err,results))
-      async.parallel({
-          clientrequest: function(callback) { //was author:...
-              ClientRequest.findById(req.params.id)
-              //.populate('client')
-              .exec(callback)
-          },
-          //cliens_clientrequests: function(callback) {
-            //Client.find({ 'author': req.params.id }).exec(callback)
-          //},
-      }, function(err, results) {
-          if (err) {
-            console.log('@@@ $ get request for delete gives err ' + err);
-            return next(err);
-          }
-          if (results.clientrequest==null) { //was results.author  // No results.
-              res.redirect('/catalog/clientrequests'); //was /authors
-          }
-          // Successful, so render.
-          //res.render('author_delete', { title: 'Delete Author', author: results.author, author_clients: results.authors_clients } );
-          res.render('clientrequest_delete', { title: 'Delete ClientRequest', clientrequest: results.clientrequest});
-      });
+                res.redirect('/catalog/clientrequests')
+      });//ends findby etc..
+  }; //ends export.clientrequest_delete_get
+      //here was async.parallel({key1:func,key2:func},function(err,results))
 
-  };
 
 // Handle ClientRequest delete on POST.
 exports.clientrequest_delete_post = function(req, res, next) {
