@@ -123,6 +123,7 @@ exports.book_create_post = [
 
       // Extract the validation errors from a request.
       const errors = validationResult(req);
+      console.log('@@@ + req.body.author: ' + req.body.author);
 
       // Create a Book object with escaped and trimmed data.
       var book = new Book(
