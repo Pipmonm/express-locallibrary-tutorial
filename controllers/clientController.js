@@ -120,10 +120,13 @@ exports.client_list = function(req, res, next) {
                     var appname = arrayFCode[2]; //name part USB or CPU
                     var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
                     console.log('appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
+
+
+
                     var clientrequest = new ClientRequest (
                        {
-                         client:client._id,
                          appname:appname,
+                         client:client,
                          formatCode:fcode,
                          status:"pending"
                       });
