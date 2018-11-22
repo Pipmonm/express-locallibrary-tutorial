@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
+var Client = require('ClientSchema');
 
 var Schema = mongoose.Schema;
 
