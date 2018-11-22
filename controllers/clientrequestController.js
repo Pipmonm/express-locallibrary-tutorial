@@ -30,7 +30,7 @@ exports.clientrequest_detail = function(req, res, next) {
       console.log('@@@ $ looking for CR with id: ' + id);
 
       ClientRequest.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-        //.populate('client')
+        .populate('client')
         .exec(function (err, clientrequest) { //results of findById passed as clientrequest
         console.log('@@@ $ returned value for clientrequest:');
         console.log(clientrequest);
@@ -65,6 +65,7 @@ exports.clientrequest_create_get = function(req, res, next) {
         if (err) { return next(err); }
         // Successful, so render.
         console.log("@@@ $ rendering clientrequest_form for clreq_create_get");
+        console.log('@@@ $ client_list: ' + clients);
         res.render('clientrequest_form', {title: 'Create ClientRequest', client_list:clients});
       });
 
