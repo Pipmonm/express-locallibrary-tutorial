@@ -8,6 +8,7 @@ block content
     li
       a(href=clientrequest.url) #{clientrequest.status}
       |  (#{clientrequest.client.name})
+      |  (#{clientrequest.client.email_address})
 
   else
-    li There are no books.
+    li There are no clientrequests.

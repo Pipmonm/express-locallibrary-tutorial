@@ -12,7 +12,7 @@ var debug = require('debug');
 // Display list of all ClientRequests.
 exports.clientrequest_list = function(req, res, next) {
   console.log('@@@ $ at clientrequest_list');
-  ClientRequest.find({}, 'title client')
+  ClientRequest.find({}, 'status client')
     .populate('client')
     .exec(function (err, list_clientrequests) {
       if (err) { return next(err); }
