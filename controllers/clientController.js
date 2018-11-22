@@ -126,7 +126,7 @@ exports.client_list = function(req, res, next) {
                     var clientrequest = new ClientRequest (
                        {
                          appname:appname,
-                         client:client,
+                         client:client._id.toString(),
                          formatCode:fcode,
                          status:"pending"
                       });
