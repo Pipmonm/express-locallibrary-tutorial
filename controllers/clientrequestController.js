@@ -45,6 +45,10 @@ exports.clientrequest_detail = function(req, res, next) {
             err.status = 404;
             return next(err);
           }
+        //populate client
+        ClientRequest.populate(clientrequest,,function(err,user){
+              if(err)return console.error('@@@ $$ cannot populate client');
+        })
         // Successful, so render.
         console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
         res.render('clientrequest_detail', { title: 'ClientRequest: ', clientrequest:  clientrequest});
