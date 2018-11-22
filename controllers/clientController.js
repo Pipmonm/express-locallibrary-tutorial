@@ -126,10 +126,12 @@ exports.client_list = function(req, res, next) {
                     var clientrequest = new ClientRequest (
                        {
                          appname:appname,
-                         client:client._id.toString(),
                          formatCode:fcode,
                          status:"pending"
                       });
+
+                      clientrequest.client = client;
+                      console.log('clinet.name is: ' + clientrequest.client.name);
                     //Statii available are:  ['pending','validated','canceled','invalid']
                     //these values have already been checked and sanitized so commit right away
                     clientrequest.save(function (err) {
