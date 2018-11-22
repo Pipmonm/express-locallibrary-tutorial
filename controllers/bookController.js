@@ -46,7 +46,7 @@ exports.book_list = function(req, res, next) {
 };
 
 // Display detail page for a specific book.
-exports.book_detail = function(req, res, next) { // I added next
+exports.book_detail = function(req, res ) { // I added next
       var id = mongoose.Types.ObjectId(req.params.id);    // added  :MOD: 2018-03-08 9:45 AM
       //id = "5aa06bcd02dd5843c4c8bbd7";
       async.parallel({
