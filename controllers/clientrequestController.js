@@ -11,7 +11,7 @@ var debug = require('debug');
 
 // Display list of all ClientRequests.
 exports.clientrequest_list = function(req, res, next) {
-  console.log('at clientrequest_list');
+  console.log('@@@ $ at clientrequest_list');
   ClientRequest.find({}, 'title client')
     .populate('client')
     .exec(function (err, list_clientrequests) {
@@ -58,6 +58,7 @@ exports.clientrequest_create_get = function(req, res, next) {
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
+        console.log("@@@ $ rendering clientrequest_form for clreq_create_get");
         res.render('clientrequest_form', {title: 'Create ClientRequest', client_list:clients});
       });
 
@@ -169,6 +170,7 @@ exports.clientrequest_delete_get = function(req, res, next) {
                    console.log('@@@ $ error in deleting (fast) clientrequest: ' + err);
                    return next(err);
                  }
+                console.log('@@@ $ redirecting to clientrequests for res: ' + res);
                 res.redirect('/catalog/clientrequests')
       });//ends findby etc..
   }; //ends export.clientrequest_delete_get

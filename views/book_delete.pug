@@ -15,11 +15,11 @@ block content
       h4 Book Instances
 
       dl
-      each book in book_instances
+      each item in book_instances
         dt
-          a(href=book.url) #{book.title}
+          a(href=item.url) #{item.title}
           p #[strong Id:]&nbsp;
-            a(href=book.url) #{book._id}
+            a(href=item.url) #{item._id}
 
   else
     p Do you really want to delete this book?
