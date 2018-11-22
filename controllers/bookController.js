@@ -46,7 +46,7 @@ exports.book_list = function(req, res, next) {
 };
 
 // Display detail page for a specific book.
-exports.book_detail = function(req, res) {
+exports.book_detail = function(req, res, next) { // I added next
       var id = mongoose.Types.ObjectId(req.params.id);    // added  :MOD: 2018-03-08 9:45 AM
       //id = "5aa06bcd02dd5843c4c8bbd7";
       async.parallel({
@@ -64,7 +64,7 @@ exports.book_detail = function(req, res) {
           },
       }, function(err, results) {
           if (err) {
-            console.log('book detail fails with err: ' + err);
+            console.log('@@@ $ book detail fails with err: ' + err);
             return next(err); }
           if (results.book==null) { // No results.
               var err = new Error('Book not found');
