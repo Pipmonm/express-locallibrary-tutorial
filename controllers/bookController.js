@@ -63,7 +63,9 @@ exports.book_detail = function(req, res) {
             .exec(callback);
           },
       }, function(err, results) {
-          if (err) { return next(err); }
+          if (err) {
+            console.log('book detail fails with err: ' + err);
+            return next(err); }
           if (results.book==null) { // No results.
               var err = new Error('Book not found');
               err.status = 404;
@@ -88,6 +90,8 @@ exports.book_create_get = function(req, res, next) {
       },
   }, function(err, results) {
       if (err) { return next(err); }
+      console.log('@@@ $ book_create_get author list is:')
+      console.log(results.authors);
       res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres });
   });
 };
