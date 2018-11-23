@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  h1 Appname: #{appname.name}
+
+  hr
+  p
+    a(href=appname.url+'/delete') Delete appname
+
+  p
+    a(href=appname.url+'/update') Update appname
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 ClientRequests
+
+    dl
+    each clientrequest in appname_clientrequests
+      dt
+        a(href=clientrequest.url) #{clientrequest.title}
+      dd #{clientrequest.summary}
+
+    else
+      p Database currently has no clientrequests with this appname.

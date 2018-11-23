@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each appname in appname_list
+    li
+      a(href=appname.url) #{appname.name}
+
+  else
+    li There are no appnames listed.
