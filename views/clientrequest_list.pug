@@ -7,8 +7,7 @@ block content
   each clientrequest in clientrequest_list
     li
       a(href=clientrequest.url) #{clientrequest.status}
-      |  (#{clientrequest.client.name})
-      |  (#{clientrequest.client.email_address})
+
 
   else
     li There are no clientrequests.
