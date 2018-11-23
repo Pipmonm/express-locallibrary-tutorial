@@ -132,12 +132,13 @@ exports.appname_delete_post = function(req, res, next) {
           Appname.findById(req.body.appnameid).exec(callback)
         },
         appname_clientrequests: function(callback) {
-          Appname.find({ 'appname': req.body.appnameid }).exec(callback)
+          ClientRequest.find({ 'appname': req.body.appnameid }).exec(callback)
         },
     }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
         if (err) { return next(err); }
         // Success
         if (results.appname_clientrequests.length > 0) {
+            console.log("@@@ $ this appname is in other clientrequests");
             // Client has clientrequests Render in same way as for GET route.
             res.render('appname_delete', { title: 'Delete Appname', appname: results.appname, appname_clientrequests: results.appname_clientrequests } );
             return;
@@ -146,7 +147,8 @@ exports.appname_delete_post = function(req, res, next) {
             Appname.findByIdAndRemove(req.body.appnameid, function deleteAppname(err) {
                 if (err) { return next(err); }
                 // Success - go to author list
-                res.redirect('/catalog/appnames')
+                console.log("@@@ $ redirect after Appname delete");
+                res.redirect('/catalog/appnames');
             }) //findById ends
         } //callback fn ends
     }); //async ends
