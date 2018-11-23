@@ -1,6 +1,6 @@
 //book controller js
-var Book = require('../models/book');
 var Author = require('../models/author');
+var Book = require('../models/book');
 var Genre = require('../models/genre');
 var BookInstance = require('../models/bookinstance');
 const { body,validationResult } = require('express-validator/check');
