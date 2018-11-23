@@ -46,20 +46,21 @@ exports.book_list = function(req, res, next) {
 };
 
 // Display detail page for a specific book.
-exports.book_detail = function(req, res ) { // I added next
+exports.book_detail = function(req, res, next ) { // I added next
       var id = mongoose.Types.ObjectId(req.params.id);    // added  :MOD: 2018-03-08 9:45 AM
       //id = "5aa06bcd02dd5843c4c8bbd7";
       async.parallel({
           book: function(callback) {
 
-              Book.findById(id) // was req.params.id  // added  :MOD: 2018-03-08 9:45 AM
+              Book.findById(req.params.id) // was req.params.id  // added  :MOD: 2018-03-08 9:45 AM
                 .populate('author')
                 .populate('genre')
                 .exec(callback);
           },
           book_instance: function(callback) {
-
-            BookInstance.find({ 'book': id }) //was req.params.id    :MOD: 2018-03-08 9:45 AM
+            console.log("@@@ $ finding bookinstances req.params below");
+            console.log(req.params + "   &  .id> " + req.params.id);
+            BookInstance.find({ 'book': req.params.id }) //was req.params.id    :MOD: 2018-03-08 9:45 AM
             .exec(callback);
           },
       }, function(err, results) {
