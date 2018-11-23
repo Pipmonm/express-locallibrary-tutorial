@@ -10,7 +10,7 @@ var genre_controller = require('../controllers/genreController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 var client_request_controller = require('../controllers/clientrequestController');
 var appname_controller = require('../controllers/appnameController');
-console.log('what am I a piece of shit?')
+console.log('@@@ $ initializing controllers')
 //var client_transaction_controller = require('../controllers/clienttransactionController');
 
 //TESTING Download
