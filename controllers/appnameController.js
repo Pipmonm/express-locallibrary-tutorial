@@ -53,9 +53,8 @@ exports.appname_create_get = function(req, res) {
     res.render('appname_form', { title: 'Create Appname' });
   };
 
-// Handle Appname create on POST.
+// Handle Appname create on POST. via some JSON object (how works?)
 exports.appname_create_post = [
-
    // Validate that the name field is not empty.
    body('name', 'Application name required').isLength({ min: 1 }).trim(),
 
