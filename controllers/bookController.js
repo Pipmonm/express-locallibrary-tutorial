@@ -34,9 +34,9 @@ exports.index = function(req, res) {
 
 // Display list of all books.
 exports.book_list = function(req, res, next) {
-
+  console.log('@@@ $ entering book_list with req.params> ' + req.params);
   Book.find({}, 'title author')
-    .populate('author')
+    //.populate('author')
     .exec(function (err, list_books) {
       if (err) { return next(err); }
       //Successful, so render
