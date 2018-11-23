@@ -15,6 +15,7 @@ exports.clientrequest_list = function(req, res, next) {
   ClientRequest.find({}, 'status')
     //.populate('client')
     .exec(function (err, list_clientrequests) {
+      console.log("@@@ $ executing callback for ClntRqst list; if err> : " + err );
       if (err) { return next(err); }
       console.log('@@@ $ found clientrequests as per: ');
       console.log(list_clientrequests);
