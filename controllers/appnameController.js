@@ -25,13 +25,13 @@ exports.appname_detail = function(req, res, next) {
   let id = mongoose.Types.ObjectId(req.params.id); //added :MOD: 2018-03-08 9:20
   async.parallel({
       appname: function(callback) {
-          Appname.findById(id)// was  req.params.id  modded as per above change :MOD: 2018-03-08 9:20
+          Appname.findById(req.params.id)// was  req.params.id  modded as per above change :MOD: 2018-03-08 9:20
             .exec(callback);
       },
 
       appname_clientrequests: function(callback) {
         console.log("@@@ $ going for roundup of clientrequests");
-        ClientRequest.find({ 'appname': id }) //replaced req.params.id with id :MOD: 2018-03-08 9:28
+        ClientRequest.find({ 'appname': req.params.id }) //replaced req.params.id with id :MOD: 2018-03-08 9:28
         .exec(callback);
       },
 
@@ -49,7 +49,7 @@ exports.appname_detail = function(req, res, next) {
 };
 
 // Display Appname create form on GET.
-exports.appname_create_get = function(req, res) {
+exports.appname_create_get = function(req, res, next) {
     res.render('appname_form', { title: 'Create Appname' });
   };
 
