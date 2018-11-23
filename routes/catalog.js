@@ -86,7 +86,8 @@ router.get('/appname/:id/update', appname_controller.appname_update_get);
 
 // POST request to update Appname.
 router.post('/appname/:id/update', appname_controller.appname_update_post);
-
+// GET request for list of all BookInstance.
+router.get('/appnames', appname_controller.appname_list);
 // GET request for one Appname.
 router.get('/appname/:id', appname_controller.appname_detail);
 
