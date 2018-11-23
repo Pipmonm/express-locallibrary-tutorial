@@ -13,7 +13,7 @@ var debug = require('debug');
 exports.clientrequest_list = function(req, res, next) {
   console.log('@@@ $ at clientrequest_list');
   ClientRequest.find({}, 'status')
-    .populate('client')
+    //.populate('client')
     .exec(function (err, list_clientrequests) {
       if (err) { return next(err); }
       console.log('@@@ $ found clientrequests as per: ');
@@ -27,10 +27,10 @@ exports.clientrequest_list = function(req, res, next) {
 exports.clientrequest_detail = function(req, res, next) {
       console.log('@@@ $ entering client_request_detail');
       var id = req.params.id;
-      console.log('@@@ $ looking for CR with id: ' + id);
+      console.log('@@@ $ looking for ClReq with id: ' + id);
 
       ClientRequest.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
-        .populate('client')
+        //.populate('client')
         .exec(function (err, clientrequest) { //results of findById passed as clientrequest
         console.log('@@@ $ returned value for clientrequest:');
         console.log(clientrequest);
