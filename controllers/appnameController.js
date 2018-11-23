@@ -132,7 +132,7 @@ exports.appname_delete_post = function(req, res, next) {
           Appname.findById(req.body.appnameid).exec(callback)
         },
         appname_clientrequests: function(callback) {
-          Book.find({ 'appname': req.body.appnameid }).exec(callback)
+          Appname.find({ 'appname': req.body.appnameid }).exec(callback)
         },
     }, function(err, results) {  //Object of fn's + call to callback ends,  callback fn definition starts
         if (err) { return next(err); }
