@@ -67,6 +67,14 @@ router.get('/clientrequest/:id/update', client_request_controller.clientrequest_
 router.get('/clientrequest/:id/update', client_request_controller.clientrequest_update_post);
 // GET request for list of all BookInstance.
 router.get('/clientrequests', client_request_controller.clientrequest_list);
+//generate appname document
+// GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
+router.get('/appname/create', appname_controller.appname_create_get);
+
+//POST request for creating Genre.
+router.post('/appname/create', appname_controller.appname_create_post);
+
+
 //send get for creating new client transaction
 //router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
 //POST verify response
