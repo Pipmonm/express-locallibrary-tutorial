@@ -62,9 +62,9 @@ router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_
 //& accompanying post
 router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_post);
 // GET request to update Client.
-router.get('/clientrequest/:id/update', clientrequest_controller.clientrequest_update_get);
+router.get('/clientrequest/:id/update', client_request_controller.clientrequest_update_get);
 // POST reply to update Client.
-router.get('/clientrequest/:id/update', clientrequest_controller.clientrequest_update_post);
+router.get('/clientrequest/:id/update', client_request_controller.clientrequest_update_post);
 // GET request for list of all BookInstance.
 router.get('/clientrequests', client_request_controller.clientrequest_list);
 //send get for creating new client transaction
