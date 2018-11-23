@@ -13,14 +13,6 @@ block content
         option(value='PieSlicer') Pie PieSlicer
         option(value='FracSpeller') Fraction Speller
 
-    div.form-group
-      label(for='status') Status:
-      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value='pendingPay') Pending
-        option(value='processed') Processed
-        option(value='canceled') Canceled
-        option(value='invalid') Not Valid
-
     button.btn.btn-primary(type='submit') Submit
 
   if errors

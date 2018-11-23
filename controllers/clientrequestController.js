@@ -147,11 +147,11 @@ exports.clientrequest_create_post = [
                     }
                 }
 
-                for (let i = 0; i < results.statii.length; i++) {
-                     if (clientrequest.status.indexof(results.statii[i]._id) > -1) {
-                        results.statii[i].checked= 'true';
-                     }
-                 }
+                //for (let i = 0; i < results.statii.length; i++) {
+                     //if (clientrequest.status.indexof(results.statii[i]._id) > -1) {
+                        //results.statii[i].checked= 'true';
+                     //}
+                 //}
                  res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, appnames:results.appnames, clientrequest: clientrequest, errors: errors.array() });
             }); //ends async clause
             return;
@@ -213,9 +213,9 @@ exports.clientrequest_update_get = function(req, res, next) {
       appnames: function(callback) {
           Appname.find(callback);
       },
-      statii: function(callback) {
-          Status.find(callback);
-      },
+      //statii: function(callback) {
+          //Status.find(callback);
+      //},
       }, function(err, results) {
           if (err) { return next(err); }
           if (results.clientrequest==null) { // No results.
@@ -233,13 +233,13 @@ exports.clientrequest_update_get = function(req, res, next) {
               }
           }
           // Mark our selected statii as checked.
-          for (var all_s_iter = 0; all_s_iter < results.statii.length; all_s_iter++) {
-              for (var clientrequest_s_iter = 0; clientrequest_s_iter < results.clientrequest.status.length; clientrequest_s_iter++) {
-                  if (results.statii[all_s_iter]._id.toString()==results.clientrequest.status[clientrequest_s_iter]._id.toString()) {
-                      results.statii[all_s_iter].checked='true';
-                  }
-              }
-          }
+          //for (var all_s_iter = 0; all_s_iter < results.statii.length; all_s_iter++) {
+              //for (var clientrequest_s_iter = 0; clientrequest_s_iter < results.clientrequest.status.length; clientrequest_s_iter++) {
+                  //if (results.statii[all_s_iter]._id.toString()==results.clientrequest.status[clientrequest_s_iter]._id.toString()) {
+                      //results.statii[all_s_iter].checked='true';
+                  //}
+              //}
+          //}
           console.log('@@@ WOW mess of results: ');
           console.log('clients: ' + results.clients);
           console.log('appnames: ' + results.appnames);
