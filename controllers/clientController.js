@@ -97,6 +97,7 @@ exports.client_list = function(req, res, next) {
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
+                        _id: new mongoose.Types.ObjectId(),
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         email_address: req.body.email_address,
@@ -128,7 +129,7 @@ exports.client_list = function(req, res, next) {
                          status:"pending"
                       });
 
-                      clientrequest.client = client;
+                      clientrequest.client = client._id;
                       console.log('@@@ ++ client.name is: ' + clientrequest.client.name);
                     //Statii available are:  ['pending','validated','canceled','invalid']
                     //these values have already been checked and sanitized so commit right away

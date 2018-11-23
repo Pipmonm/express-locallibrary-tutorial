@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var ClientSchema = new Schema(
   {
+    _id: Schema.Types.ObjectId,
     first_name: {type: String, max: 100},
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
