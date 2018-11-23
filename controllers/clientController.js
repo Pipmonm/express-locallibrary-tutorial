@@ -131,7 +131,7 @@ exports.client_list = function(req, res, next) {
                       });
 
                       clientrequest.client = client;
-                      console.log('clinet.name is: ' + clientrequest.client.name);
+                      console.log('@@@ ++ clinet.name is: ' + clientrequest.client.name);
                     //Statii available are:  ['pending','validated','canceled','invalid']
                     //these values have already been checked and sanitized so commit right away
                     clientrequest.save(function (err) {
