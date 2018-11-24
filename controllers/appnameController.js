@@ -1,13 +1,12 @@
-clientvar mongoose = require('mongoose');
-var async = require('async');
+// appname controller
 var Client = require('../models/client');
-var Appname = require('../models/appname');
 var ClientRequest = require('../models/clientrequest');
-
+var Appname = require('../models/appname');
 
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
-
+var mongoose = require('mongoose');
+var async = require('async');
 var debug = require('debug')('appname');
 
 // Display list of all Appname.
