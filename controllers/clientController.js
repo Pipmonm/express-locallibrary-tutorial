@@ -260,13 +260,13 @@ exports.client_list = function(req, res, next) {
     body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
     body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
     body('email_address').isEmail().trim().withMessage('your email address'),
-    //body('registration_date').isLength({min: 1 }).trim().withMessage('registration_date'),
+    body('registration_date').isLength({min: 1 }).trim().withMessage('registration_date'),
         //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
     // Sanitize fields.
     sanitizeBody('first_name').trim().escape(),
     sanitizeBody('family_name').trim().escape(),
     sanitizeBody('email_address').trim().escape(),
-    //sanitizeBody('register_request_code').trim().escape(),
+    sanitizeBody('registration_date').trim().escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {

@@ -12,9 +12,9 @@ block content
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy', name='email_address', required='true', value=(undefined===client ? '' : client.email_address) )
-    //- div.form-group
-      //- label(for='registration_date') Registration Date:
-      //- input#registration_date.form-control(type='text', placeholder='Registration Date', name='registration_date', required='true', value=(undefined===client ? '' : client.registration_date) )
+    div.form-group
+      label(for='registration_date') Registration Date:
+      input#registration_date.form-control(type='text', placeholder='Registration Date', name='registration_date', required='true', value=(undefined===client ? '' : client.registration_date) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
