@@ -1,4 +1,5 @@
 //book controller js
+var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 var Author = require('../models/author');
 var Book = require('../models/book');
 var Genre = require('../models/genre');
@@ -7,7 +8,7 @@ const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async');
-var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
+//var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 
 exports.index = function(req, res) {
 
