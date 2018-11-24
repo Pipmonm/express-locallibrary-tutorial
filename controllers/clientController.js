@@ -241,7 +241,7 @@ exports.client_list = function(req, res, next) {
            return next(err);
          }
 
-         let email = results.client.email_address;
+         //let email = results.client.email_address;
          //if(!check('email').isEmail){
            //debug('invalid email');
            //console.log('@@@ $ doing funny error for inv. email in client_update_get');
@@ -249,7 +249,7 @@ exports.client_list = function(req, res, next) {
          //}else{  //not aware of callback style validator for emails, following is newer version
            //email =  check('email').isEmail().normalizeEmail();
          //}
-         res.render('client_form', { title: 'Update Client', client: results.client,email_address: email, query: "Update"});
+         res.render('client_form', { title: 'Update Client', client: results.client, query: "Update"});
     });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
   }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
 
