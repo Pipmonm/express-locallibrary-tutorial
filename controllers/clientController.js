@@ -270,11 +270,12 @@ exports.client_list = function(req, res, next) {
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+        console.log("@@@ ++ in POST client update, function part");
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
         if (!errors.isEmpty()) {
+            console.log("@@@ ++ POST client update err: " + err);
             // There are errors. Render form again with sanitized values/errors messages.
             res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
             return;
