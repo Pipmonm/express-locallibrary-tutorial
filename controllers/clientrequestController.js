@@ -127,7 +127,7 @@ exports.clientrequest_create_post = [
             console.log('@@@ $ in clientrequest_create_post, validate error report not empty');
             console.log('@@@ $ errors: ' + errors);
             // There are errors. Render form again with sanitized values and error messages.
-            // Get all authors and appnames & statii for form.
+            // Get all clients and appnames & statii for form.
             async.parallel({
                 clients: function(callback) {
                     Client.find(callback);
@@ -190,7 +190,7 @@ exports.clientrequest_delete_post = function(req, res, next) {
   console.log('@@@ $ entering clientrequest_delete_post req.params below');
   console.log(req.params);
   // client instances being deleted have no dependencies; just do it.
-  ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err) {  //was Autthor....req.body.authorid, fn deletAuthor
+  ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err) {  //was Autthor....req.body.clientid, fn deletclient
       if (err) {
         console.log('delete_post err is: ' + err);
         return next(err);
@@ -203,12 +203,12 @@ exports.clientrequest_delete_post = function(req, res, next) {
 
 // Display ClientRequest update form on GET.
 exports.clientrequest_update_get = function(req, res, next) {
-  // Get book, authors and genres for form.
+  // Get clientrequest, clients and genres for form.
   async.parallel({
       clientrequest: function(callback) {
           ClientRequest.findById(req.params.id).populate('client').populate('appname').populate('status').exec(callback);
       },
-      authors: function(callback) {
+      clients: function(callback) {
           Client.find(callback);
       },
       appnames: function(callback) {

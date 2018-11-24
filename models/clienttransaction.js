@@ -6,14 +6,14 @@ var Schema = mongoose.Schema;
 var ClientTransactionSchema = new Schema(
 
   {
-    client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated book
+    client: { type: Schema.ObjectId, ref: 'Client', required: true }, //reference to the associated clientrequest
     appname: {type: String, required: true, enum: ['PieSlicer','FracSpeller']},
     status: {type: String, required: true, enum: ['pendingPay','validated','canceled','invalid'], default: 'validated'},
     transaction_date: {type: Date, default: Date.now}
   }
 );
 
-// Virtual for bookinstance's URL
+// Virtual for clientrequestinstance's URL
 ClientTransactionSchema
 .virtual('url')
 .get(function () {

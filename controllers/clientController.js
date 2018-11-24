@@ -1,7 +1,7 @@
-//book instance controller js
+//clientrequest instance controller js
 var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');
-////var BookInstance = require('../models/bookinstance');
+////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -207,7 +207,7 @@ exports.client_list = function(req, res, next) {
           // Success
           if (results.clients_requests.length > 0 ) {
               console.log("@@@ $ client has archived requests");
-              // Client has books. Render in same way as for GET route.
+              // Client has clientrequests. Render in same way as for GET route.
               res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.clients_requests} ) //, client_transactions: results.clients_transactions } );
               return console.error('@@@ $ tried to return to client_delete');
 
@@ -286,7 +286,7 @@ exports.client_list = function(req, res, next) {
           // Data from form is valid. Update the record.
           Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
             if (err) { return next(err); }
-            // Successful - redirect to book detail page.
+            // Successful - redirect to clientrequest detail page.
             res.redirect(theclient.url);
           });
         }

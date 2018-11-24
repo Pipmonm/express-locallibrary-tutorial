@@ -14,14 +14,14 @@ var ClientSchema = new Schema(
   }
 );
 
-// Virtual for author's full name
+// Virtual for client's full name
 ClientSchema
 .virtual('name')
 .get(function () {
   return this.family_name + ', ' + this.first_name;
 });
 
-// Virtual for author's URL
+// Virtual for client's URL
 ClientSchema
 .virtual('url')
 .get(function () {

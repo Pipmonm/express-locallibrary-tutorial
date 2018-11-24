@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+clientvar mongoose = require('mongoose');
 var async = require('async');
 var Client = require('../models/client');
 var Appname = require('../models/appname');
@@ -146,10 +146,10 @@ exports.appname_delete_post = function(req, res, next) {
             res.render('appname_delete', { title: 'Delete Appname', appname: results.appname, appname_clientrequests: results.appname_clientrequests } );
             return;
         } else {
-            // Client has no clientrequests. Delete object and redirect to the list of authors.
+            // Client has no clientrequests. Delete object and redirect to the list of clients.
             Appname.findByIdAndRemove(req.body.appnameid, function deleteAppname(err) {
                 if (err) { return next(err); }
-                // Success - go to author list
+                // Success - go to client list
                 console.log("@@@ $ redirect after Appname delete");
                 res.redirect('/catalog/appnames');
             }) //findById ends
@@ -224,7 +224,7 @@ exports.appname_update_post = [
                     }
                     else {
                       // Data from form is valid. Update the record.
-                      Appname.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theappname) {  //req.body was simply "author" (but caused error)
+                      Appname.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theappname) {  //req.body was simply "client" (but caused error)
                         //appname.save(function (err) {
                           if (err) { return next(err); }
                         // Appname saved. Redirect to appname detail page.
