@@ -255,7 +255,21 @@ exports.client_list = function(req, res, next) {
 
   //new function for clientrequest for this specific client
   // Handle Client update on POST.
-  exports.client_update_post = function(req,res,next) {
+  exports.client_update_post = [
+    // Validate fields.
+    body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
+    body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+    body('email_address').isEmail().trim().withMessage('your email address'),
+    //body('registration_date').isLength({min: 1 }).trim().withMessage('registration_date'),
+        //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
+    // Sanitize fields.
+    sanitizeBody('first_name').trim().escape(),
+    sanitizeBody('family_name').trim().escape(),
+    sanitizeBody('email_address').trim().escape(),
+    //sanitizeBody('register_request_code').trim().escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
         console.log("@@@ ++ in POST client update, function part");
         // Extract the validation errors from a request.
         const errors = validationResult(req);
@@ -272,10 +286,11 @@ exports.client_list = function(req, res, next) {
 
           // Data from form is valid. Update the record.
           Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
+            console.log("@@@ $ error trying to update client, err> " + err);
             if (err) { return next(err); }
             // Successful - redirect to clientrequest detail page.
             res.redirect(theclient.url);
           });
         }
       }
-  //];
+  ];
