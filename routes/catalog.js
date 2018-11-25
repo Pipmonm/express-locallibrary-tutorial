@@ -44,7 +44,7 @@ router.post('/client/:id/delete', client_controller.client_delete_post);
 // GET request to update Client.
 router.get('/client/:id/update', client_controller.client_update_get);
 // POST reply to update Client.
-router.get('/client/:id/update', client_controller.client_update_post);
+router.post('/client/:id/update', client_controller.client_update_post);
 // GET request for one Client.
 router.get('/client/:id', client_controller.client_detail);
 //send get for creating new client request
