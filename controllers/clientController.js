@@ -65,10 +65,87 @@ exports.client_list = function(req, res, next) {
   };
 
   // Handle Client create on POST.
-  exports.client_create_post = function(req, res, next) {
-     // Successful - redirect to new clientrecord.
-     res.redirect(client.url);
-   };
+  exports.client_create_post = [
+        // Validate fields.
+        body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
+        body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+        body('email_address').isEmail().trim().withMessage('your email address'),
+        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+            //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
+        // Sanitize fields.
+        sanitizeBody('first_name').trim().escape(),
+        sanitizeBody('family_name').trim().escape(),
+        sanitizeBody('email_address').trim().escape(),
+        sanitizeBody('register_request_code').trim().escape(),
+
+        // Process request after validation and sanitization.
+        (req, res, next) => {
+
+            // Extract the validation errors from a request.
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+            console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
+                debug('DEBUG: errors spotted in validationResult for "client_create_post"');
+                // There are errors. Render form again with sanitized values/errors messages.
+                res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
+                return;
+
+            }else{
+                // Data from form is valid.
+                //get date
+                const now = Date();
+                // Create a Client object with escaped and trimmed data.
+                var client = new Client(
+                    {
+                        _id: new mongoose.Types.ObjectId(),
+                        first_name: req.body.first_name,
+                        family_name: req.body.family_name,
+                        email_address: req.body.email_address,
+                        registration_date: now,
+                    });
+                client.save(function (err) {
+                    if (err) {
+                      console.log('@@@ $ an error in client save: ' + err);
+                      return next(err);
+                    } // go on to create clientrequest entry
+                    console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
+
+                    //multiple could happen so distinguish by date asynchronously
+                    //or possibly simply advise  (to be done later)
+                    var rgrqcd = req.body.register_request_code;
+                    console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                    var arrayFCode = [];
+                    arrayFCode = rgrqcd.split(":");
+                    console.log('@@@ $ arrayFCode follows');
+                    console.log(arrayFCode);
+                    var appname = arrayFCode[2]; //name part USB or CPU
+                    var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
+                    console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
+
+                    var clientrequest = new ClientRequest (
+                       {
+                         appname:appname,
+                         formatCode:fcode,
+                         status:"pending"
+                      });
+
+                      clientrequest.client = client._id;
+                      console.log('@@@ ++ client.name is: ' + clientrequest.client.name);
+                    //Statii available are:  ['pending','validated','canceled','invalid']
+                    //these values have already been checked and sanitized so commit right away
+                    clientrequest.save(function (err) {
+                       if (err) {
+                         console.log('@@@ $ an error in clientrequest save: ' + err);
+                         return next(err);
+                       }
+                       console.log('@@@ $ clientrequest save OK');
+                      })
+                 // Successful - redirect to new clientrecord.
+                 res.redirect(client.url);
+                });
+            }
+        }
+    ];
 
 
   // Display Client delete form on GET.
@@ -179,42 +256,15 @@ exports.client_list = function(req, res, next) {
 
   //new function for clientrequest for this specific client
   // Handle Client update on POST.
-  exports.client_update_post = [
-    // Validate fields.
-    body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
-    body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
-    body('email_address').isEmail().trim().withMessage('your email address'),
-    body('registration_date').isLength({min: 1 }).trim().withMessage('registration_date'),
-        //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
-    // Sanitize fields.
-    sanitizeBody('first_name').trim().escape(),
-    sanitizeBody('family_name').trim().escape(),
-    sanitizeBody('email_address').trim().escape(),
-    sanitizeBody('registration_date').trim().escape(),
+  exports.client_update_post = function(req,res,next){
+    console.log("@@@ $ updating client with " + req.params.id);
+    Client.findBy(req.params.id, function (err,theclient) {  //req.body was simply "client" (but caused error)
 
-    // Process request after validation and sanitization.
-    (req, res, next) => {
-        console.log("@@@ ++ in POST client update, function part");
-        // Extract the validation errors from a request.
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            console.log("@@@ ++ POST client update err: " + err);
-            // There are errors. Render form again with sanitized values/errors messages.
-            res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
-            return;
-        }
-        else {
-
-
-
-          // Data from form is valid. Update the record.
-          Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
-            console.log("@@@ $ error trying to update client, err> " + err);
-            if (err) { return next(err); }
-            // Successful - redirect to clientrequest detail page.
-            res.redirect(theclient.url);
-          });
-        }
+      if (err) {
+        console.log("@@@ $ error trying to update client, err> " + err);
+        return next(err);
       }
-  ];
+      // Successful - redirect to clientrequest detail page.
+      res.redirect(theclient.url);
+    })
+  }
