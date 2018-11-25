@@ -27,7 +27,7 @@ exports.clientrequest_list = function(req, res, next) {
 
 // Display detail page for a specific ClientRequest.
 exports.clientrequest_detail = function(req, res, next) {
-      console.log('@@@ $ entering client_request_detail');
+      //console.log('@@@ $ entering client_request_detail');
       var id = req.params.id;
       console.log('@@@ $ looking for ClReq with id: ' + id);
 
@@ -48,10 +48,10 @@ exports.clientrequest_detail = function(req, res, next) {
             return next(err);
           }
         //populate client
-        ClientRequest.populate(clientrequest,'client',function(err,user){
-              console.log('@@@ $$ should have user: ' + user ); // + '  +user.client.name:' + user.client.name);
-              if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
-        })
+        //ClientRequest.populate(clientrequest,'client',function(err,user){
+              //console.log('@@@ $$ should have user: ' + user ); // + '  +user.client.name:' + user.client.name);
+              //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
+        //})
         // Successful, so render.
         console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
         res.render('clientrequest_detail', { title: 'ClientRequest: ', clientrequest:  clientrequest});
