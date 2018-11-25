@@ -66,18 +66,14 @@ router.get('/clientrequests', client_request_controller.clientrequest_list);
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);
-
 //POST request for creating Appname.
 router.post('/appname/create', appname_controller.appname_create_post);
 // GET request to delete Appname.
 router.get('/appname/:id/delete', appname_controller.appname_delete_get);
-
 // POST request to delete Appname.
 router.post('/appname/:id/delete', appname_controller.appname_delete_post);
-
 // GET request to update Appname.
 router.get('/appname/:id/update', appname_controller.appname_update_get);
-
 // POST request to update Appname.
 router.post('/appname/:id/update', appname_controller.appname_update_post);
 // GET request for list of all appnameInstance.
