@@ -205,7 +205,7 @@ exports.clientrequest_delete_post = function(req, res, next) {
 
 // Display ClientRequest update form on GET.
 exports.clientrequest_update_get = function(req, res, next) {
-  console.log('@@@ $ clientrequest_upadte_get starts; req below');
+  console.log('@@@ $ clientrequest_update_get starts; req below');
   console.log(req);
   // Get clientrequest, clients and genres for form.
   async.parallel({

@@ -56,11 +56,11 @@ router.get('/clientrequest/:id', client_request_controller.clientrequest_detail)
 //clientrequest delete get
 router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_get);
 //& accompanying post
-router.get('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_post);
+router.post('/clientrequest/:id/delete', client_request_controller.clientrequest_delete_post);
 // GET request to update Client.
 router.get('/clientrequest/:id/update', client_request_controller.clientrequest_update_get);
 // POST reply to update Client.
-router.get('/clientrequest/:id/update', client_request_controller.clientrequest_update_post);
+router.post('/clientrequest/:id/update', client_request_controller.clientrequest_update_post);
 // GET request for list of all clientrequestInstance.
 router.get('/clientrequests', client_request_controller.clientrequest_list);
 //generate appname document
