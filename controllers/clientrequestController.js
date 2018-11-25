@@ -210,7 +210,7 @@ exports.clientrequest_update_get = function(req, res, next) {
   // Get clientrequest, clients and genres for form.
   async.parallel({
       clientrequest: function(callback) {
-          ClientRequest.findById(req.params.id); //.populate('client').populate('appname').exec(callback);
+          ClientRequest.findById(req.params.id).populate('client').populate('appname').exec(callback);
       },
       clients: function(callback) {
           Client.find(callback);
