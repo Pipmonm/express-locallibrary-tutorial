@@ -154,6 +154,7 @@ exports.clientrequest_create_post = [
                         //results.statii[i].checked= 'true';
                      //}
                  //}
+                 console.log('@@@ $ rendering clientrequest_form for clrq_create_post');
                  res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, appnames:results.appnames, clientrequest: clientrequest, errors: errors.array() });
             }); //ends async clause
             return;
@@ -284,6 +285,8 @@ exports.clientrequest_update_get = function(req, res, next) {
                   .exec(function (err, clients) {
                       if (err) { return next(err); }
                       // Successful, so render.
+                      console.log('@@@ $ using clientrequest_form for err in clrq_update_post; err v');
+                      console.log(err);
                       res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
               });
               return;
