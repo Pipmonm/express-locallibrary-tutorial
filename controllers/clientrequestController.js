@@ -174,6 +174,7 @@ exports.clientrequest_update_get = function(req, res, next) {
   //console.log('@@@ $ clientrequest_update_get starts; req below');
   //console.log(req);
   // Get clientrequest, clients and genres for form.
+  Client = require('../models/client'); //for fun
   async.parallel({
       clientrequest: function(callback) {
           console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
