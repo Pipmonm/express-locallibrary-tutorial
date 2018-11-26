@@ -1,7 +1,6 @@
 //client instance controller js
-var ClientRequest = require('../models/clientrequest');
 var Client = require('../models/client');
-//interchanged order of Client & ClientRequest model to see if affects .populate problem
+var ClientRequest = require('../models/clientrequest');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -179,7 +178,7 @@ exports.clientrequest_update_get = function(req, res, next) {
       clientrequest: function(callback) {
           console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
-          ClientRequest.findById(req.params.id).populate('client').exec(callback);
+          ClientRequest.findById(req.params.id).exec(callback);//.populate('client') removed
       },
       clients: function(callback) {
           console.log('@@@ $ clientrequest async updt clnt.find: get');
@@ -257,7 +256,10 @@ exports.clientrequest_update_get = function(req, res, next) {
               console.log('@@@ $ updating clientrequest document');
               // Data from form is valid.
               ClientRequest.findByIdAndUpdate(req.params.id,clientrequest,{}, function (err,theclientrequest) {
-                  if (err) { return next(err); }
+                  if (err) {
+                    console.log('@@@ $ updating clientrequest document throws err: ' + err);
+                    return next(err);
+                  }
                      //else Successful - redirect to new record.
                      res.redirect(clientrequest.url);
                   });
