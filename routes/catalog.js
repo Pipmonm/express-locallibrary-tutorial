@@ -34,7 +34,6 @@ router.get('/clients', client_controller.client_list);
 
 //STEP 2 service request to create new client_transactions
 router.get('/clientcreate', client_controller.client_create_get);
-
 //STEP 2b add client to database
 router.post('/clientcreate', client_controller.client_create_post);
 // GET request to delete specific Client
