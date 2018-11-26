@@ -304,15 +304,19 @@ exports.clientrequest_update_get = function(req, res, next) {
               // There are errors. Render form again with sanitized values and error messages.
               Client.find({},'title')
                   .exec(function (err, clients) {
-                      if (err) { return next(err); }
+                      if (err) {
+                        console.log('@@@ $ clrq_update_post err> ' + err);
+                        return next(err);
+                      }
                       // Successful, so render.
-                      console.log('@@@ $ using clientrequest_form for err in clrq_update_post; err v');
-                      console.log(err);
+                      console.log('@@@ $ rendering clientrequest_form for redisplay in clrq_update_post (validation err)');
+
                       res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
               });
               return;
           }
           else {
+              console.log('@@@ $ updating clientrequest document');
               // Data from form is valid.
               ClientRequest.findByIdAndUpdate(req.params.id,clientrequest,{}, function (err,theclientrequest) {
                   if (err) { return next(err); }
