@@ -1,6 +1,7 @@
 //client instance controller js
-var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');
+var Client = require('../models/client');
+//interchanged order of Client & ClientRequest model to see if affects .populate problem
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -186,14 +187,18 @@ exports.clientrequest_update_get = function(req, res, next) {
         },
 
       }, function(err, results) {
-          if (err) { return next(err); }
+          if (err) {
+            console.log('@@@ $ clientrequest get async updt err: ' + err);
+            return next(err);
+          }
           if (results.clientrequest==null) { // No results.
+              console.log('@@@ $ clientrequest get async callback results == null ');
               var err = new Error('ClientRequest not found');
               err.status = 404;
               return next(err);
           }
 
-          console.log('@@@ WOW clientrequest update results: ');
+          console.log('@@@ WOW clientrequest get update results: ');
           //console.log('clients: ' + results.clients);
           //console.log('clientrequest: ' + results.clientrequest);
           res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, clientrequest: results.clientrequest });
