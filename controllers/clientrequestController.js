@@ -1,7 +1,6 @@
 //client instance controller js
 var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');
-var Appname = require('../models/appname');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -76,37 +75,17 @@ exports.clientrequest_create_get = function(req, res, next) {
 
 // Handle ClientRequest create on POST.
 exports.clientrequest_create_post = [
-    // Convert the appname to an array.
-    (req, res, next) => {
-       if(!(req.body.appname instanceof Array)){
-           if(typeof req.body.appname ==='undefined')
-           req.body.appname=[];
-           else
-           req.body.appname=new Array(req.body.appname);
-       }
-       next();
-    },
-
-    //convert the status to an Array
-    (req, res, next) => {
-        if(!(req.body.status instanceof Array)){
-            if(typeof req.body.status==='undefined')
-            req.body.status=[];
-            else
-            req.body.status=new Array(req.body.status);
-        }
-        next();
-    },
-
     // Validate fields.
-    body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
     body('appname', 'choose application from dropdown list').isLength({ min: 1 }).trim(),
+    body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
+    body('formatCode','Clipboard value: SysId:FormatCode:Module').isLength({min:16}).trim(),
     body('status', 'current status').isLength({min:1}).trim(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
 
     // Sanitize fields.
-    sanitizeBody('client').trim().escape(),
     sanitizeBody('appname').trim().escape(),
+    sanitizeBody('client').trim().escape(),
+    sanitizeBody('formatCode').trim().escape(),
     sanitizeBody('status').trim().escape(),
     sanitizeBody('date_entered').toDate(),
 
@@ -121,6 +100,7 @@ exports.clientrequest_create_post = [
           { client: req.body.client.url,
             appname: req.body.appname,
             status: req.body.status,
+            formatCode: req.body.formatCode,
             date_entered: req.body.date_entered
            });
 
@@ -133,29 +113,15 @@ exports.clientrequest_create_post = [
                 clients: function(callback) {
                     Client.find(callback);
                 },
-                appnames: function(callback) {
-                    Appname.find(callback);
-                },
-                statii: function(callback) {
-                    Status.find(callback);
-                },
+               clientrequests: function(callback) {
+                    ClientRequest.find(callback);
+               },
+
             }, function(err, results) {
                 if (err) { return next(err); }
 
-                // Mark our selected appnames as checked.
-                for (let i = 0; i < results.appnames.length; i++) {
-                    if (clientrequest.appname.indexOf(results.appnames[i]._id) > -1) {
-                        results.appnames[i].checked='true';
-                    }
-                }
-
-                //for (let i = 0; i < results.statii.length; i++) {
-                     //if (clientrequest.status.indexof(results.statii[i]._id) > -1) {
-                        //results.statii[i].checked= 'true';
-                     //}
-                 //}
-                 console.log('@@@ $ rendering clientrequest_form for clrq_create_post');
-                 res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, appnames:results.appnames, clientrequest: clientrequest, errors: errors.array() });
+                console.log('@@@ $ rendering clientrequest_form for clrq_create_post');
+                res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, clientrequest: clientrequest, errors: errors.array() });
             }); //ends async clause
             return;
 
@@ -217,14 +183,8 @@ exports.clientrequest_update_get = function(req, res, next) {
       clients: function(callback) {
           console.log('@@@ $ clientrequest async updt clnt.find: get');
           Client.find(callback);
-      },
-      appnames: function(callback) {
-          console.log('@@@ $ clientrequest appnames updt clnt.find: get');
-          Appname.find(callback);
-      },
-      //statii: function(callback) {
-          //Status.find(callback);
-      //},
+        },
+
       }, function(err, results) {
           if (err) { return next(err); }
           if (results.clientrequest==null) { // No results.
@@ -232,30 +192,11 @@ exports.clientrequest_update_get = function(req, res, next) {
               err.status = 404;
               return next(err);
           }
-          // Success.
-          // Mark our selected genres as checked.
-          //<<<<<<<<<<<<<<<<<<<<<<<<<<<
-          //for (var all_m_iter = 0; all_m_iter < results.appnames.length; all_m_iter++) {
-            //  for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.appname.length; clientrequest_m_iter++) {
-                  //if (results.appnames[all_m_iter]._id.toString()==results.clientrequest.appname[clientrequest_m_iter]._id.toString()) {
-                    //  results.appnames[all_m_iter].checked='true';
-                  //}
-              //}
-          //} //uncomment starting here
-          //>>>>>>>>>>>>>>>>>>>>
-          // Mark our selected statii as checked.
-          //for (var all_s_iter = 0; all_s_iter < results.statii.length; all_s_iter++) {
-              //for (var clientrequest_s_iter = 0; clientrequest_s_iter < results.clientrequest.status.length; clientrequest_s_iter++) {
-                  //if (results.statii[all_s_iter]._id.toString()==results.clientrequest.status[clientrequest_s_iter]._id.toString()) {
-                      //results.statii[all_s_iter].checked='true';
-                  //}
-              //}
-          //}
+
           console.log('@@@ WOW clientrequest update results: ');
           //console.log('clients: ' + results.clients);
-          //console.log('appnames: ' + results.appnames);
           //console.log('clientrequest: ' + results.clientrequest);
-          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, appnames:results.appnames, clientrequest: results.clientrequest });
+          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, clientrequest: results.clientrequest });
       });
 
 };

@@ -35,7 +35,7 @@ exports.client_list = function(req, res, next) {
                   .exec(callback)
             },
             clients_requests: function(callback) {
-              ClientRequest .find({ 'client': id},'appname') // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+              ClientRequest .find({ 'client':id}) // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
               .exec(callback)
             } //,
             //clients_transactions: function(callback){
@@ -125,11 +125,11 @@ exports.client_list = function(req, res, next) {
                     var clientrequest = new ClientRequest (
                        {
                          appname:appname,
+                         client:client._id,
                          formatCode:fcode,
                          status:"pending"
                       });
 
-                      clientrequest.client = client._id;
                       console.log('@@@ ++ client.name is: ' + clientrequest.client.name);
                     //Statii available are:  ['pending','validated','canceled','invalid']
                     //these values have already been checked and sanitized so commit right away
