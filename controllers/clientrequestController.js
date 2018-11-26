@@ -179,7 +179,7 @@ exports.clientrequest_update_get = function(req, res, next) {
       clientrequest: function(callback) {
           console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
-          ClientRequest.findById(req.params.id).exec(callback);//.populate('client') removed
+          ClientRequest.findById(req.params.id).populate('client').exec(callback);//.populate('client') removed
       },
       clients: function(callback) {
           console.log('@@@ $ clientrequest async updt clnt.find: get');
@@ -201,7 +201,7 @@ exports.clientrequest_update_get = function(req, res, next) {
           console.log('@@@ WOW clientrequest get update results: ');
           //console.log('clients: ' + results.clients);
           //console.log('clientrequest: ' + results.clientrequest);
-          res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, clientrequest: results.clientrequest });
+          res.render('clientrequestUpdate_form', { title: 'Update ClientRequest', clients:results.clients, clientrequest: results.clientrequest });
       });
 
 };
@@ -249,7 +249,7 @@ exports.clientrequest_update_get = function(req, res, next) {
                       // Successful, so render.
                       console.log('@@@ $ rendering clientrequest_form for redisplay in clrq_update_post (validation err)');
 
-                      res.render('clientrequest_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
+                      res.render('clientrequestUpdate_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
               });
               return;
           }

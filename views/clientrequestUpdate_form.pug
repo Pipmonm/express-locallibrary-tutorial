@@ -7,9 +7,11 @@ block content
       label(for='clientrequest_client') Request from Client:
       input(type='text' placeholder='client name missing error: delete this copy'  name='clientrequest' required='true' value = clientrequestinstance.clientrequest.client)
     div.form-group
-      label(for='appname') Application Name:
+      label(for='appname') Module Name:
       input#appname.form-control(type='text' placeholder="missing appname error" name='appname' required='true' value=(undefined===clientrequestinstance ? '' : clientrequestinstance.appname))
-
+    div.form-group
+      label(for='formatCode') Clipboard Contents:
+      input#appname.form_control(type='text' placeholder="missing Format Code error" name='formatCode' required='true' value(undefined===clientrequestinstance ? '' : clientrequestinstance.formatCode))
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
