@@ -234,13 +234,15 @@ exports.clientrequest_update_get = function(req, res, next) {
           }
           // Success.
           // Mark our selected genres as checked.
-          for (var all_m_iter = 0; all_m_iter < results.appnames.length; all_m_iter++) {
-              for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.appname.length; clientrequest_m_iter++) {
-                  if (results.appnames[all_m_iter]._id.toString()==results.clientrequest.appname[clientrequest_m_iter]._id.toString()) {
-                      results.appnames[all_m_iter].checked='true';
-                  }
-              }
-          }
+          //<<<<<<<<<<<<<<<<<<<<<<<<<<<
+          //for (var all_m_iter = 0; all_m_iter < results.appnames.length; all_m_iter++) {
+            //  for (var clientrequest_m_iter = 0; clientrequest_m_iter < results.clientrequest.appname.length; clientrequest_m_iter++) {
+                  //if (results.appnames[all_m_iter]._id.toString()==results.clientrequest.appname[clientrequest_m_iter]._id.toString()) {
+                    //  results.appnames[all_m_iter].checked='true';
+                  //}
+              //}
+          //} //uncomment starting here
+          //>>>>>>>>>>>>>>>>>>>>
           // Mark our selected statii as checked.
           //for (var all_s_iter = 0; all_s_iter < results.statii.length; all_s_iter++) {
               //for (var clientrequest_s_iter = 0; clientrequest_s_iter < results.clientrequest.status.length; clientrequest_s_iter++) {
