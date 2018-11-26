@@ -252,9 +252,9 @@ exports.clientrequest_update_get = function(req, res, next) {
               //}
           //}
           console.log('@@@ WOW clientrequest update results: ');
-          console.log('clients: ' + results.clients);
-          console.log('appnames: ' + results.appnames);
-          console.log('clientrequest: ' + results.clientrequest);
+          //console.log('clients: ' + results.clients);
+          //console.log('appnames: ' + results.appnames);
+          //console.log('clientrequest: ' + results.clientrequest);
           res.render('clientrequest_form', { title: 'Update ClientRequest', clients:results.clients, appnames:results.appnames, clientrequest: results.clientrequest });
       });
 
