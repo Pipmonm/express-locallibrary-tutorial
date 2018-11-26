@@ -212,7 +212,7 @@ exports.clientrequest_update_get = function(req, res, next) {
       clientrequest: function(callback) {
           console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
-          ClientRequest.findById(req.params.id).populate('client').populate('appname').exec(callback);
+          ClientRequest.findById(req.params.id).exec(callback);
       },
       clients: function(callback) {
           console.log('@@@ $ clientrequest async updt clnt.find: get');
