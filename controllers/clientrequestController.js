@@ -212,7 +212,7 @@ exports.clientrequest_update_get = function(req, res, next) {
       clientrequest: function(callback) {
           console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
-          ClientRequest.findById(req.params.id).exec(callback);
+          ClientRequest.findById(req.params.id).populate('client').exec(callback);
       },
       clients: function(callback) {
           console.log('@@@ $ clientrequest async updt clnt.find: get');
@@ -262,16 +262,6 @@ exports.clientrequest_update_get = function(req, res, next) {
 
 // Handle clientrequest update on POST.
   exports.clientrequest_update_post = [
-       // Convert the genre to an array
-      (req, res, next) => {
-        if(!(req.body.appname instanceof Array)){
-          if(typeof req.body.appname==='undefined')
-          req.body.appname=[];
-          else
-          req.body.appname=new Array(req.body.appname);
-        }
-        next();
-      },
       // Validate fields.
       body('client','required').isLength({min:1}).trim(),
       body('formatCode','required').isLength({min:4, max:10}).trim(),
@@ -293,8 +283,9 @@ exports.clientrequest_update_get = function(req, res, next) {
 
           // Create a ClientRequest object with escaped and trimmed data and old id
           var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
-            { client: req.body.client,
-              appname: req.body.appname,
+            { appname: req.body.appname,
+              client: req.body.client,
+              formatCode: req.body.formatCode,
               status: req.body.status,
               date_entered: req.body.date_entered,
               _id:req.params.id //This is required, or a new ID will be assigned!
@@ -302,7 +293,8 @@ exports.clientrequest_update_get = function(req, res, next) {
 
           if (!errors.isEmpty()) {
               // There are errors. Render form again with sanitized values and error messages.
-              Client.find({},'title')
+
+              Client.find()
                   .exec(function (err, clients) {
                       if (err) {
                         console.log('@@@ $ clrq_update_post err> ' + err);
