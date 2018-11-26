@@ -210,12 +210,15 @@ exports.clientrequest_update_get = function(req, res, next) {
   // Get clientrequest, clients and genres for form.
   async.parallel({
       clientrequest: function(callback) {
+          console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
           ClientRequest.findById(req.params.id).populate('client').populate('appname').exec(callback);
       },
       clients: function(callback) {
+          console.log('@@@ $ clientrequest async updt clnt.find: get');
           Client.find(callback);
       },
       appnames: function(callback) {
+          console.log('@@@ $ clientrequest appnames updt clnt.find: get');
           Appname.find(callback);
       },
       //statii: function(callback) {
@@ -256,13 +259,26 @@ exports.clientrequest_update_get = function(req, res, next) {
 
 // Handle clientrequest update on POST.
   exports.clientrequest_update_post = [
+       // Convert the genre to an array
+      (req, res, next) => {
+        if(!(req.body.appname instanceof Array)){
+          if(typeof req.body.appname==='undefined')
+          req.body.appname=[];
+          else
+          req.body.appname=new Array(req.body.appname);
+        }
+        next();
+      },
       // Validate fields.
-      body('appname', 'Specify which app: eg "PieSlicer"').isLength({ min: 1 }).trim(),
+      body('client','required').isLength({min:1}).trim(),
+      body('formatCode','required').isLength({min:4, max:10}).trim(),
       body('status', 'optional').isLength({ min: 1 }).trim(),
       body('date_entered', 'Request date').optional({ checkFalsy: true }).isISO8601(),
 
       // Sanitize fields.
       sanitizeBody('appname').trim().escape(),
+      sanitizeBody('client').trim().escape(),
+      sanitizeBody('formatCode').trim().escape(),
       sanitizeBody('status').trim().escape(),
       sanitizeBody('date_entered').toDate(),
 
