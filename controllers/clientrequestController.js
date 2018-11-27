@@ -13,7 +13,9 @@ var debug = require('debug');
 exports.clientrequest_list = function(req, res, next) {
   console.log('@@@ $ at clientrequest_list');
   ClientRequest.find({}) //was   ({}),'status'
-    .populate('client')  //have attempted 'Client' & others
+    .populate({
+       path:'clients',
+       model:'Client'})  //have attempted 'Client' & others
     .exec(function (err, clientrequests) {
       console.log("@@@ $ executing callback for ClntRqst list; if err> : " + err );
       if (err) { return next(err); }
