@@ -6,8 +6,9 @@ block content
   ul
   each clientrequest in clientrequest_list
     li
-      a(href=clientrequest.url) #{clientrequest.status}
-
+      a(href=clientrequest.url) #{clientrequest.client.name}
+      p Status: #{clientrequest.status}
+      p Module: #{clientrequest.appname}
       p FormatCode:  #{clientrequest.formatCode}
 
 
