@@ -3,7 +3,7 @@ var moment = require('moment'); //added  :MOD: 2018-03-08 10:01 AM
 
 var Schema = mongoose.Schema;
 
-var ClientSchema = new Schema(
+var ClientSchema = Schema(
   {
     _id: Schema.Types.ObjectId,
     first_name: {type: String, max: 100},

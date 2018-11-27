@@ -97,7 +97,7 @@ exports.clientrequest_create_post = [
 
         // Create a ClientRequest object with escaped and trimmed data.
         var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
-          { client: req.body.client.url,
+          { client: req.body.client._id,
             appname: req.body.appname,
             status: req.body.status,
             formatCode: req.body.formatCode,
