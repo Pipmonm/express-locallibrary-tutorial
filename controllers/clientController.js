@@ -122,15 +122,17 @@ exports.client_list = function(req, res, next) {
                     var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
                     console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
                     console.log('@@@ +$ client ref. to be stored (client._id) is: ' + client._id + '  of type: ' + typeof client._id);
+                    var stringId = client._id.toString();
+                    console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
                     var clientrequest = new ClientRequest (
                        {
                          appname:appname,
-                         client:client._id,
+                         client:stringId,   //client._id,
                          formatCode:fcode,
                          status:"pending"
                       });
 
-                      console.log('@@@ ++ client.name is: ' + clientrequest.client.name);
+                      console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
                     //Statii available are:  ['pending','validated','canceled','invalid']
                     //these values have already been checked and sanitized so commit right away
                     clientrequest.save(function (err) {
