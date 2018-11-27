@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var ClientRequestSchema = Schema(
   {
     appname: {type: String, required: true},
-    client: { type: Schema.Types.ObjectId, ref: 'Client' }, //reference to the associated clientrequest
+    client: { type: Schema.Types.ObjectId, ref: 'client' }, //reference to the associated clientrequest
     formatCode: {type: String, required: true},
     status: {type: String, required: true},
     date_entered: {type: Date, default: Date.now}
