@@ -63,7 +63,7 @@ exports.clientrequest_detail = function(req, res, next) {
 // Display ClientRequest create form on GET.
 exports.clientrequest_create_get = function(req, res, next) {
 
-      Client.find({},'client') //???
+      Client.find() //was {},'client'
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
@@ -99,7 +99,8 @@ exports.clientrequest_create_post = [
 
         // Create a ClientRequest object with escaped and trimmed data.
         var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
-          { client: req.body.client._id,
+          {
+            client: req.body.client,  //needs to be ._id of valid client
             appname: req.body.appname,
             status: req.body.status,
             formatCode: req.body.formatCode,
@@ -231,7 +232,8 @@ exports.clientrequest_update_get = function(req, res, next) {
 
           // Create a ClientRequest object with escaped and trimmed data and old id
           var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
-            { appname: req.body.appname,
+            {
+              appname: req.body.appname,
               client: req.body.client,
               formatCode: req.body.formatCode,
               status: req.body.status,

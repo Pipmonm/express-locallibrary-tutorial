@@ -121,7 +121,7 @@ exports.client_list = function(req, res, next) {
                     var appname = arrayFCode[2]; //name part USB or CPU
                     var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
                     console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
-
+                    console.log('@@@ +$ client ref. to be stored (client._id) is: ' + client._id + '  of type: ' + typeof client._id);
                     var clientrequest = new ClientRequest (
                        {
                          appname:appname,
