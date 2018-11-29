@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var ClientSchema = Schema(
   {
     device_id: {type: String, max : 100, unique : true, required : true, dropDups: true },
-    device: {type: String, max : 20},
+    device_type: {type: String, max : 20},
     format_code: {type: String, max : 20},
     status: {type: String, max : 40, default:'pending'},
     first_name: {type: String, max: 100},
