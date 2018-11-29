@@ -104,7 +104,6 @@ exports.client_list = function(req, res, next) {
                 var device_type = arrayFCode[2];
                 var device_id = arrayFCode[0];
                 var format_code = arrayFCode[1];//keep FCODE format for now
-                console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof format_code);
                 console.log('@@@ +$ client ref. to be stored (client._id) is: ' + client._id + '  of type: ' + typeof client._id);
                 //var stringId = client._id.toString();
                 //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
