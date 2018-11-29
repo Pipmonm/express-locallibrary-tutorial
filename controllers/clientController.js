@@ -131,7 +131,7 @@ exports.client_list = function(req, res, next) {
                    {
                      appname:device_type,
                      client:client._id,   //client._id,
-                     formatCode:fcode,
+                     formatCode:format_code,
                      status:"pending"
                   });
 
