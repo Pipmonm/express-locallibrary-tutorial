@@ -92,12 +92,31 @@ exports.client_list = function(req, res, next) {
 
             }else{
                 // Data from form is valid.
+                //multiple could happen so distinguish by date asynchronously
+                //or possibly simply advise  (to be done later)
+                var rgrqcd = req.body.register_request_code;
+                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                var arrayFCode = [];
+                arrayFCode = rgrqcd.split(":");
+                console.log('@@@ $ arrayFCode follows');
+                console.log(arrayFCode);
+                //var appname = arrayFCode[2]; //name part USB or CPU
+                var device_type = arrayFCode[2];
+                var device_id = arrayFCode[0];
+                var format_code = arrayFCode[1];//keep FCODE format for now
+                console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof format_code);
+                console.log('@@@ +$ client ref. to be stored (client._id) is: ' + client._id + '  of type: ' + typeof client._id);
+                //var stringId = client._id.toString();
+                //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
                 //get date
                 const now = Date();
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
-                        _id: new mongoose.Types.ObjectId(),
+                        device_id: device_id,
+                        device_type: device_type,
+                        format_code: format_code,
+                        status: "pending",
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         email_address: req.body.email_address,
@@ -108,40 +127,26 @@ exports.client_list = function(req, res, next) {
                       console.log('@@@ $ an error in client save: ' + err);
                       return next(err);
                     } // go on to create clientrequest entry
-                    console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
+                console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
 
-                    //multiple could happen so distinguish by date asynchronously
-                    //or possibly simply advise  (to be done later)
-                    var rgrqcd = req.body.register_request_code;
-                    console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
-                    var arrayFCode = [];
-                    arrayFCode = rgrqcd.split(":");
-                    console.log('@@@ $ arrayFCode follows');
-                    console.log(arrayFCode);
-                    var appname = arrayFCode[2]; //name part USB or CPU
-                    var fcode = arrayFCode[0] + ":" + arrayFCode[1];//keep FCODE format for now
-                    console.log('@@@ $ appname & fcode types= ' + typeof appname + "  &  " + typeof fcode);
-                    console.log('@@@ +$ client ref. to be stored (client._id) is: ' + client._id + '  of type: ' + typeof client._id);
-                    var stringId = client._id.toString();
-                    console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
-                    var clientrequest = new ClientRequest (
-                       {
-                         appname:appname,
-                         client:stringId,   //client._id,
-                         formatCode:fcode,
-                         status:"pending"
-                      });
+                var clientrequest = new ClientRequest (
+                   {
+                     appname:device_type,
+                     client:client._id,   //client._id,
+                     formatCode:fcode,
+                     status:"pending"
+                  });
 
-                      console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
-                    //Statii available are:  ['pending','validated','canceled','invalid']
-                    //these values have already been checked and sanitized so commit right away
-                    clientrequest.save(function (err) {
-                       if (err) {
-                         console.log('@@@ $ an error in clientrequest save: ' + err);
-                         return next(err);
-                       }
-                       console.log('@@@ $ clientrequest save OK');
-                      })
+                  console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
+                  //Statii available are:  ['pending','validated','canceled','invalid']
+                  //these values have already been checked and sanitized so commit right away
+                  clientrequest.save(function (err) {
+                     if (err) {
+                       console.log('@@@ $ an error in clientrequest save: ' + err);
+                       return next(err);
+                     }
+                     console.log('@@@ $ clientrequest save OK');
+                    })
                  // Successful - redirect to new clientrecord.
                  res.redirect(client.url);
                 });

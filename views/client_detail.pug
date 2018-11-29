@@ -2,8 +2,17 @@ extends layout
 
 block content
 
-  h1 Client: #{client.name}
-  p  Email:  #{client.email_address}
+  h1 Device Id: #{client.device_id} : #{client.device_type}
+
+  p  Format Code: #{client.format_code}
+
+  p  Request Status: #{client.status}
+
+  hr
+  p  Client Name: #{client.name}
+
+  hr
+  p  Email: #{client.email_address}
 
   hr
   p
@@ -11,28 +20,3 @@ block content
 
   p
     a(href=client.url+'/update') Update client
-
-
-  div(style='margin-left:20px;margin-top:20px')
-
-    h4 Pending Requests
-
-    dl
-    each request in client_requests
-      dt
-        a(href=request.url) #{request.appname}
-      dd #{request.status}
-
-    else
-      p This client has no pending requests.
-
-    //- h4 Recorded Transactions
-
-    //- dl
-    //- each transaction in client_transactions
-      //- dt
-         //- a(href=transaction.url) #(transaction.appname)
-      //- dd #{transaction.status}
-
-    //- else
-      //- p This client has not had any transactions
