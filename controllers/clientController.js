@@ -104,6 +104,13 @@ exports.client_list = function(req, res, next) {
                 var device_type = arrayFCode[2];
                 var device_id = arrayFCode[0];
                 var format_code = arrayFCode[1];//keep FCODE format for now
+
+                //check that not already exists
+                if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
+                  
+                }
+
+
                 //var stringId = client._id.toString();
                 //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
                 //get date
