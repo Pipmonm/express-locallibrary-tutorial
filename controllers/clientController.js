@@ -25,6 +25,26 @@ exports.client_list = function(req, res, next) {
 
   };
 
+exports.client_status_get = function(req, res, next) {
+  res.render('client_status', {title: 'Request Status', message1: "Please paste clipboard contents from application's Register page",
+                             message2: "(NOTE: These are loaded automatically upon entering Register page)"});
+
+}; //end client_status_get
+
+exports.client_status_post = function(req,res,next) {
+   body('sysId').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
+   //sanitize
+   sanitizeBody('sysId').trim().escape(),
+
+   // Process request after validation and sanitization.
+   (req, res, next) => {
+      alert('received req> ' + req);
+      return console.log("success?");
+
+   };//close post request processing
+
+}; //end client_status_post
+
 
   // Display detail page for a specific Client.
   exports.client_detail = function(req, res, next) {
@@ -107,7 +127,7 @@ exports.client_list = function(req, res, next) {
 
                 //check that not already exists
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
-                  
+
                 }
 
 

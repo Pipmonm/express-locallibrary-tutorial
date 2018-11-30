@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1 #{title}
+
+  h3 Your System Id is required:
+  p #{message1}
+  p #{message2}
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='sysId') Clipboard Data:
+      input#sysId.form-control(type='text', placeholder='xxxxx:yyyyy:CPUorUSB', name='sysId',  required = 'true')
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg

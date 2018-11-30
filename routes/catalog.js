@@ -36,6 +36,10 @@ router.get('/clients', client_controller.client_list);
 router.get('/clientcreate', client_controller.client_create_get);
 //STEP 2b add client to database
 router.post('/clientcreate', client_controller.client_create_post);
+//Show client status including license key
+router.get('/clientstatus', client_controller.client_status_get);
+//lookup client id and display status (via re-routing to client_display)
+router.post('/clientstatus', client_controller.client_status_post);
 // GET request to delete specific Client
 router.get('/client/:id/delete', client_controller.client_delete_get);
 // POST process request to delete Client.
