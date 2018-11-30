@@ -26,8 +26,9 @@ exports.client_list = function(req, res, next) {
   };
 
 exports.client_status_get = function(req, res, next) {
-  res.render('client_status', {title: 'Request Status', message1: "Please paste clipboard contents from application's Register page",
-                             message2: "(NOTE: These are loaded automatically upon entering Register page)"});
+  res.render('clientstatus_form', {title: 'Request Status', message1: "Please paste clipboard contents from application's Register page",
+                             message2: "(NOTE: These are loaded automatically upon entering Register page)",
+                             sysIdString: ""});
 
 }; //end client_status_get
 
@@ -38,8 +39,26 @@ exports.client_status_post = function(req,res,next) {
 
    // Process request after validation and sanitization.
    (req, res, next) => {
-      alert('received req> ' + req);
-      return console.log("success?");
+     // Extract the validation errors from a request.
+     const errors = validationResult(req);
+
+     var sysIdString = req.body.sysId;
+     console.log("@@@ $ received status request for: " + sysIdString );
+     if (!errors.isEmpty()) {
+         // There are errors. Render the form again with sanitized values/error messages.
+         res.render('clientstatus_form', { title: 'Request Status Re-insert',
+                        message1: "Please paste clipboard contents from application's Register page",
+                        message2: "(NOTE: These are loaded automatically upon entering Register page)",
+                        sysIdString: sysIdString, errors: errors.array()});
+     return;
+     }
+     else {
+       //find client
+       console.log("@@@ $ finding client with sysId: " + sysIdString);
+       //we want to find yssId record, generate license key and display it as
+       //part of client detail   !!!! may have to rename aeveryting client to sysId???
+       //failing finding one we redirect to home page
+       res.redirect('/catalog/'); //maybe?
 
    };//close post request processing
 

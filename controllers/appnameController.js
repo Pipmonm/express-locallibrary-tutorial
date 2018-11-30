@@ -52,7 +52,7 @@ exports.appname_detail = function(req, res, next) {
 
 // Display Appname create form on GET.
 exports.appname_create_get = function(req, res, next) {
-    res.render('appname_form', { title: 'Create Appname' });
+    res.render('appname_form', { title: 'Create Appname', appname:"" });
   };
 
 // Handle Appname create on POST. via some JSON object (how works?)

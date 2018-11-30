@@ -10,7 +10,8 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='sysId') Clipboard Data:
-      input#sysId.form-control(type='text', placeholder='xxxxx:yyyyy:CPUorUSB', name='sysId',  required = 'true')
+      input#sysId.form-control(type='text', placeholder='xxxxx:yyyyy:CPUorUSB', name='sysId',
+                                  value=(undefined=== ? '' : appname.name),  required = 'true')
     button.btn.btn-primary(type='submit') Submit
 
   if errors
