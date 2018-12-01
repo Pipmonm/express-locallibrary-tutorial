@@ -37,7 +37,7 @@ exports.client_status_postTest = function(req,res,next) {
        redirect('catalog/clients')
 }//end status post
 
-exports.client_status_post = function(req,res,next) [
+exports.client_status_post = [
    //validation
    body('sysIdString').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
    //sanitize
@@ -67,10 +67,9 @@ exports.client_status_post = function(req,res,next) [
        //part of client detail   !!!! may have to rename aeveryting client to sysId???
        //failing finding one we redirect to home page
        res.redirect('/catalog/clients'); //maybe?
+     };//end if clause
 
-   };//end if clause
-
- };//end callback function
+   };//end callback function
 
 ] //end client_status_post
 
