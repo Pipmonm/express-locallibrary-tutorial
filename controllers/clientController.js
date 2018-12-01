@@ -33,16 +33,18 @@ exports.client_status_get = function(req, res, next) {
 }; //end client_status_get
 
 exports.client_status_post = function(req,res,next) {
-   body('sysId').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
+   body('sysIdString').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
    //sanitize
-   sanitizeBody('sysId').trim().escape(),
+   sanitizeBody('sysIdString').trim().escape(),
 
    // Process request after validation and sanitization.
    (req, res, next) => {
+     console.log("@@@ $ starting processing of cientstatus_form post with req V ");
+     console.log(req);
      // Extract the validation errors from a request.
      const errors = validationResult(req);
 
-     var sysIdString = req.body.sysId;
+     var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received status request for: " + sysIdString );
      if (!errors.isEmpty()) {
          // There are errors. Render the form again with sanitized values/error messages.
@@ -54,7 +56,7 @@ exports.client_status_post = function(req,res,next) {
      }
      else {
        //find client
-       console.log("@@@ $ finding client with sysId: " + sysIdString);
+       console.log("@@@ $ finding client with sysIdString: " + sysIdString);
        //we want to find yssId record, generate license key and display it as
        //part of client detail   !!!! may have to rename aeveryting client to sysId???
        //failing finding one we redirect to home page

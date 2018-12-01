@@ -65,7 +65,8 @@ exports.appname_create_post = [
 
    // Process request after validation and sanitization.
    (req, res, next) => {
-
+       console.log("@@@ $ starting processing of appname_form post. req V ");
+       console.log(req);
        // Extract the validation errors from a request.
        const errors = validationResult(req);
 
