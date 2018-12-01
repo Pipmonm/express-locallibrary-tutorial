@@ -32,7 +32,15 @@ exports.client_status_get = function(req, res, next) {
 
 }; //end client_status_get
 
-exports.client_status_post = function(req,res,next) [
+exports.client_status_post {
+    (req, res, next) => {
+       console.log(@@@ $ here we are);
+       redirect('catalog/clients')
+    }// end fat arrow funcion
+
+};//end status post
+
+exports.client_status_postDes = function(req,res,next) [
    //validation
    body('sysIdString').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
    //sanitize
@@ -61,7 +69,7 @@ exports.client_status_post = function(req,res,next) [
        //we want to find yssId record, generate license key and display it as
        //part of client detail   !!!! may have to rename aeveryting client to sysId???
        //failing finding one we redirect to home page
-       res.redirect('/catalog/'); //maybe?
+       res.redirect('/catalog/clients'); //maybe?
 
    };//end if clause
 
