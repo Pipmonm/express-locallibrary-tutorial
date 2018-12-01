@@ -78,7 +78,7 @@ exports.client_status_post = [
            //we want to find yssId record, generate license key and display it as
            //part of client detail   !!!! may have to rename aeveryting client to sysId???
            //failing finding one we redirect to home page
-           res.redirect('/catalog/clients'); //maybe?
+           res.redirect('/catalog/client/' + doc[0]._id); //maybe?
            };//end if clause
 
    }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
