@@ -32,10 +32,10 @@ exports.client_status_get = function(req, res, next) {
 
 }; //end client_status_get
 
-exports.client_status_postTest = function(req,res,next) {
-       console.log("@@@ $ here we are");
-       redirect('catalog/clients')
-}//end status post
+//exports.client_status_postTest = function(req,res,next) {
+       //console.log("@@@ $ here we are");
+       //redirect('catalog/clients')
+//}//end status post
 
 exports.client_status_post = [
    //validation
@@ -65,6 +65,10 @@ exports.client_status_post = [
            console.log("@@@ $ finding client with sysIdString: " + sysIdString);
            var deviceId = sysIdString.split(":")[0]; //extract device id
            Client.find({'device_id':deviceId},function(err, doc){
+             if(err){
+               console.log("@@@ $ err in Client.find device_id" + err);
+               return  next(err);
+             }
              console.log("@@@ $ found client(s) for doc req. status >v" );
              console.log(doc);
            });
