@@ -12,7 +12,7 @@ block content
       label(for='sysIdString') Clipboard Data:
       input#sysIdString.form-control(type='text', placeholder='xxxxx:yyyyy:CPUorUSB', name='sysIdString',
                               value=(undefined=== sysIdString ? '' : sysIdString),  required = 'true')
-    button.btn.btn-primary(type='submit') Submit
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
 
   if errors
     ul
