@@ -69,7 +69,7 @@ exports.client_status_post = [
        res.redirect('/catalog/clients'); //maybe?
      };//end if clause
 
-   };//end callback function
+   }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
 
 ] //end client_status_post
 
