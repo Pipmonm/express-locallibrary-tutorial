@@ -60,7 +60,9 @@ exports.client_status_post = function(req,res,next) {
        //failing finding one we redirect to home page
        res.redirect('/catalog/'); //maybe?
 
-   };//close post request processing
+   };//end if clause
+
+ };//end callback function
 
 }; //end client_status_post
 
