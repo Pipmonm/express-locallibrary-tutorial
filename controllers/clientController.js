@@ -33,10 +33,6 @@ exports.client_status_get = function(req, res, next) {
 }; //end client_status_get
 
 exports.client_status_post = function(req,res,next) [
-   (req, res, next) => {
-     console.log("@@@ $ into client_status_post with req V");
-     console.log(req);
-   },
    //validation
    body('sysIdString').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
    //sanitize
