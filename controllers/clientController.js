@@ -32,13 +32,13 @@ exports.client_status_get = function(req, res, next) {
 
 }; //end client_status_get
 
-exports.client_status_post {
+exports.client_status_post = function(req,res,next) [
     (req, res, next) => {
        console.log(@@@ $ here we are);
        redirect('catalog/clients')
     }// end fat arrow funcion
 
-};//end status post
+]//end status post
 
 exports.client_status_postDes = function(req,res,next) [
    //validation
