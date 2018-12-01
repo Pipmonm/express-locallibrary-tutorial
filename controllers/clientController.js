@@ -33,7 +33,7 @@ exports.client_status_get = function(req, res, next) {
 }; //end client_status_get
 
 exports.client_status_postTest = function(req,res,next) {
-       console.log(@@@ $ here we are);
+       console.log("@@@ $ here we are");
        redirect('catalog/clients')
 }//end status post
 
