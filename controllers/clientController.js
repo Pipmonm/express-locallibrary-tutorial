@@ -61,13 +61,18 @@ exports.client_status_post = [
      return;
      }
      else {
-       //find client
-       console.log("@@@ $ finding client with sysIdString: " + sysIdString);
-       //we want to find yssId record, generate license key and display it as
-       //part of client detail   !!!! may have to rename aeveryting client to sysId???
-       //failing finding one we redirect to home page
-       res.redirect('/catalog/clients'); //maybe?
-     };//end if clause
+           //find client
+           console.log("@@@ $ finding client with sysIdString: " + sysIdString);
+           var deviceId = sysIdString.split(":")[0]; //extract device id
+           Client.find({'device_id':deviceId},function(err, doc){
+             console.log("@@@ $ found client(s) for doc req. status >v" );
+             console.log(doc);
+           });
+           //we want to find yssId record, generate license key and display it as
+           //part of client detail   !!!! may have to rename aeveryting client to sysId???
+           //failing finding one we redirect to home page
+           res.redirect('/catalog/clients'); //maybe?
+           };//end if clause
 
    }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
 
@@ -155,7 +160,7 @@ exports.client_status_post = [
 
                 //check that not already exists
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
-
+                  console.log("found a client with curious conditions string in client_create_post ");
                 }
 
 
