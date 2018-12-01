@@ -70,7 +70,10 @@ exports.client_status_post = [
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             console.log(doc);
+             console.log(doc[0].device_type);
+             if(doc.length > 1 ){
+               console.log("@@@ $ multiples of same deviceId " + deviceId);
+             }
            });
            //we want to find yssId record, generate license key and display it as
            //part of client detail   !!!! may have to rename aeveryting client to sysId???
