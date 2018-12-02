@@ -107,7 +107,7 @@ exports.client_status_post = [
 
            Client.findByIdAndUpdate(doc[0]._id, {license_string: 'License is:', license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
                if(err){
-                 console.log("@@@ $ update error: " + err");
+                 console.log("@@@ $ update error: " + err);
                }
                console.log("@@@ $ post client update  client: >v");
                console.log(newdoc)
