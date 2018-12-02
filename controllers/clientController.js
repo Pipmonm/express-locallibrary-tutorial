@@ -105,8 +105,11 @@ exports.client_status_post = [
            key = key ^ result;//done at server and sent to client
            console.log("licenseKey is: " + key.toString());
 
-
-           res.redirect('/catalog/client/' + doc[0]._id); //maybe?
+           Client.findByIdAndUpdate(doc._id, { license_string: 'License is:', license_key: key.toString() }}, function(err,newdoc){
+               console.log("@@@ $ post client update  client: >v");
+               console.log(newdoc)
+               res.render('client_licensekey', {title: 'License Key Details', client: newdoc});
+            });
          });//end callback
       };//end if clause
 
