@@ -13,6 +13,8 @@ var ClientSchema = Schema(
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
     registration_date: {type: Date},
+    license_string: {type: String, max 100, default:""},
+    license_key: {type: String, max 30, default:""}
 
   }
 );
@@ -31,6 +33,12 @@ ClientSchema
   console.log('client URL is: ' + this._id);
   return '/catalog/client/' + this._id;
 });
+
+ClientRequestSchema
+.virtual('sysIdString')
+.get(function() {
+  return this.device_id + ":" + this.format_code + ":" + this.device_type;
+})
 
 ClientSchema
 .virtual('date_registered')

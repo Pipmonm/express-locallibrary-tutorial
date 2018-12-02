@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  h1 Device Id: #{client.device_id} : #{client.device_type}
+
+  p  Format Code: #{client.format_code}
+
+  p  Request Status: #{client.status}
+
+  hr
+  p  Client Name: #{client.name}
+
+  hr
+  p  Email: #{client.email_address}
+
+  hr
+  p=client.license_string
+
+
+  p=client.license_key

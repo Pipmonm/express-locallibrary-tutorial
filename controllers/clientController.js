@@ -78,6 +78,32 @@ exports.client_status_post = [
            //we want to find yssId record, generate license key and display it as
            //part of client detail   !!!! may have to rename aeveryting client to sysId???
            //failing finding one we redirect to home page
+           let R1=0x5c3f10bd9a;
+           let R2=0xb9a3ce805c;
+           //critical values above
+           let id = doc[0].device_id;
+           let randy = doc[0].format_code;
+
+           let idSize = id.length;
+           if(idSize<4)id=id + "1424953867";
+           if(idSize>10)id = id.slice(0,10);
+           id=parseInt(id,16);
+
+           let key = -1;
+           key = 0xffffffffff;
+           let success = false;
+           let result = 0x00000000;
+
+           R1 = R1 + id;
+           let shift = id & 0xf;
+           R1 = R1 + (id>>shift);
+           result = R1 ^ R2;
+
+           result = result ^ randy;
+           key = key ^ result;//done at server and sent to client
+           console.log("licenseKey is: " + key.toString());
+
+
            res.redirect('/catalog/client/' + doc[0]._id); //maybe?
            };//end if clause
 
