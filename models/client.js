@@ -34,7 +34,7 @@ ClientSchema
   return '/catalog/client/' + this._id;
 });
 
-ClientRequestSchema
+ClientSchema
 .virtual('sysIdString')
 .get(function() {
   return this.device_id + ":" + this.format_code + ":" + this.device_type;
