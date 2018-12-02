@@ -111,7 +111,7 @@ exports.client_status_post = [
                }
                console.log("@@@ $ post client update  client: >v");
                console.log(newdoc)
-               //res.render('client_licensekey', {title: 'License Key Details', client: newdoc});
+               res.render('client_licensekey', {title: 'License Key Details', client: newdoc});
             });
          });//end callback
       };//end if clause
