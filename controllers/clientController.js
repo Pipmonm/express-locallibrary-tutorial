@@ -76,15 +76,15 @@ exports.client_status_post = [
              if(doc.length > 1 ){
                console.log("@@@ $ multiples of same deviceId " + deviceId);
              }
-           });
+           //});  //needs to include following
            //we want to find yssId record, generate license key and display it as
            //part of client detail   !!!! may have to rename aeveryting client to sysId???
            //failing finding one we redirect to home page
            let R1=0x5c3f10bd9a;
            let R2=0xb9a3ce805c;
            //critical values above
-           let id = mydoc[0].device_id;
-           let randy = mydoc[0].format_code;
+           let id = doc[0].device_id;
+           let randy = doc[0].format_code;
 
            let idSize = id.length;
            if(idSize<4)id=id + "1424953867";
@@ -106,8 +106,9 @@ exports.client_status_post = [
            console.log("licenseKey is: " + key.toString());
 
 
-           res.redirect('/catalog/client/' + mydoc[0]._id); //maybe?
-           };//end if clause
+           res.redirect('/catalog/client/' + doc[0]._id); //maybe?
+         });//end callback
+      };//end if clause
 
    }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
 
