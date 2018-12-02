@@ -13,8 +13,8 @@ var ClientSchema = Schema(
     family_name: {type: String, max: 100},
     email_address: {type: String, required: true, max: 100},
     registration_date: {type: Date},
-    license_string: {type: String, max 100, default:""},
-    license_key: {type: String, max 30, default:""}
+    license_string: {type: String, max: 100, default:""},
+    license_key: {type: String, max: 30, default:""}
 
   }
 );
