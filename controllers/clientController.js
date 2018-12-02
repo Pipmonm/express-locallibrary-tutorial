@@ -254,14 +254,14 @@ exports.client_status_post = [
 
   // Display Client delete form on GET.
   exports.client_delete_get = function(req, res, next) {
-        console.log("@@@ $ entering client_delete_get")
+        //console.log("@@@ $ entering client_delete_get")
         async.parallel({
             client: function(callback) {
                 Client.findById(req.params.id).exec(callback)//findById executes the callback with
                                                              //presumably info needed by async
             },
             client_requests: function(callback) {
-                console.log("@@@ $ looking for clientrequests for client with id: " + req.params.id)
+                //console.log("@@@ $ looking for clientrequests for client with id: " + req.params.id)
                 ClientRequest.find({ 'client': req.params.id }).exec(callback)
             },
 
@@ -280,7 +280,7 @@ exports.client_status_post = [
                    results.client_requests = null;
                 }
             // Successful, so render.
-            console.log("@@@ $ rendering client_delete_get form for:" + results.client);
+            //console.log("@@@ $ rendering client_delete_get form for:" + results.client);
             console.log('@@@ $ and client_requests: ' + results.client_requests);
             res.render('client_delete', { title: 'Delete Client', client: results.client, client_requests: results.client_requests}); //({ client_transactions: results.client_transactions } );
         });
