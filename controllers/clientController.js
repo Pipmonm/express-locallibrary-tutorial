@@ -64,6 +64,7 @@ exports.client_status_post = [
            //find client
            console.log("@@@ $ finding client with sysIdString: " + sysIdString);
            var deviceId = sysIdString.split(":")[0]; //extract device id
+           var mydoc;
            Client.find({'device_id':deviceId},function(err, doc){
              if(err){
                console.log("@@@ $ err in Client.find device_id" + err);
@@ -71,6 +72,7 @@ exports.client_status_post = [
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
              console.log(doc[0].device_type);
+             mydoc = doc;
              if(doc.length > 1 ){
                console.log("@@@ $ multiples of same deviceId " + deviceId);
              }
@@ -81,8 +83,8 @@ exports.client_status_post = [
            let R1=0x5c3f10bd9a;
            let R2=0xb9a3ce805c;
            //critical values above
-           let id = doc[0].device_id;
-           let randy = doc[0].format_code;
+           let id = mydoc[0].device_id;
+           let randy = mydoc[0].format_code;
 
            let idSize = id.length;
            if(idSize<4)id=id + "1424953867";
@@ -104,7 +106,7 @@ exports.client_status_post = [
            console.log("licenseKey is: " + key.toString());
 
 
-           res.redirect('/catalog/client/' + doc[0]._id); //maybe?
+           res.redirect('/catalog/client/' + mydoc[0]._id); //maybe?
            };//end if clause
 
    }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
