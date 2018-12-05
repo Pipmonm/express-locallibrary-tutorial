@@ -28,25 +28,31 @@ exports.index = function(req, res) {
 
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
  "Welcome \n" +
- "The best and fastest way to know if our modules may help a teacher, home-schooling parent or student is to \n" +
- "simply try them out.  A few minutes at most and absolutely no fuss: if you find you're not interested \n" +
- "simply delete and forget about them.\n" +
- "/n" +
+ "Our site features math modules designed to help a teacher or home-schooling parent \n" +
+ "present students with interactive visual aids to make certain math topics easy to  \n" +
+ "learn and more interesting.  The best way to get a good idea on how they could be \n" +
+ "used is to download and try them out.  A few minutes at most and absolutely no fuss: \n" +
+ "if you find you're not interested simply delete and forget about them.\n" +
+ "\n" +
  "Downloading: \n" +
- "Click on either module currently available, read the blurb or jump right to 'Download Demos'\n" +
- "Once the download is done run the file. (Windows' advises file is certified to our site )\n " +
- "\n +"
+ "Click on either module currently available, read the blurb or jump right to 'Download \n" +
+ "Demos'.  Once the download is done run the file. (Windows' will caution and advise the \n" +
+ "file is certified to our site. )\n" +
+ "\n" +
  "Getting a license key for unlimited use: \n" +
- "To obtain unlimited use simply click on the \"REGISTER\" tab on the homepage of the application. \n" +
- "This places the systemId, Format Code and Device Type (CPU or USB) on your clipboard. \n" +
- "Return to our site xxxx.com and click on the REGISTER FORM option.  Insert your data (all data is \n" +
- "optional except for clipboard data which must be pasted in the indicated text area. \n" +
- "You should then click on the \"VIEW ACCOUNT\" option and paste the same clipboard information there \n" +
- "(that unique clipboard data is your password to the account showing your system's license key)\n" +
- "Take note of the license key code that will be shown and insert it in the application on startup. \n" +
- "That's it.   Well almost.  We will of course appreciate and thank you profusely for any financial \n" +
- "support you can provide so as to enable us to continue presenting other modules on our site.\n" +
- "Thank you"
+ "To obtain unlimited use first click on the \"REGISTER\" tab on the homepage of the \n" +
+ "application. This places a unique system specific code on your clipboard. \n" +
+ "Return to our site xxxx.com and click on the REGISTER FORM option.  Insert your data \n" +
+ "as suggested. (all data is optional except for clipboard data which must be pasted in \n" +
+ "the indicated text area. \n" +
+ "You should then go to the \"VIEW ACCOUNT\" option and paste the same clipboard data there. \n" +
+ "(the clipboard data is your password to the account showing your system's license key)\n" +
+ "Take note of the license key code that will be shown and insert it in the application as\n" +
+ "requested on startup. \n" +
+ "That's it.   Well almost.  We would of course appreciate and thank you profusely for any \n" +
+ "financial support you may provide so as to enable us to continue presenting other modules \n" +
+ "on our site.\n" +
+ "The 'DONATE' menu item allows you to do so.   Thank you"
  let err = false;
 
  res.render('index', { title: 'Math For All', error: err, blurb: blurb3 });
