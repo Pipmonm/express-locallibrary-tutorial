@@ -34,7 +34,6 @@ exports.index = function(req, res) {
  "If they do not suit your needs simply delete them.\n" +
  "\n" +
  "Downloading: \n" +
- "\n" +
  "Click on either of the available modules and follow the instructions to download the \n" +
  "the Windows executable files.  Until you obtain a license they will run in demo mode. \n" +
  "(Windows will caution and present the file certificates of authenticity. ) \n" +

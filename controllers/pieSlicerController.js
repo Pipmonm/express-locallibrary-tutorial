@@ -30,13 +30,13 @@ exports.pieSlicer_view = function(req, res) {
                     "  - generate random problems automatically in 3 different level modes  \n" +
                     "  - update the visual representation automatically for correct answers \n" +
                     "  - track users performance at each level \n" +
-                    "  - provide a dedicated help window for questions about the  \n" +
-                    "    application itself or concerning the topic under study."
+                    "  - provide a dedicated help window for questions about the application  \n" +
+                    "    itself or concerning the topic under study."
                     "\n" +
-                    "Download the Demo version ( no obligations ) to find out more.\n" +
+                    "Download the Demo version ( no obligations ) to experiment with it.\n" +
                     "The demo will be functional for a limited time only.\n" +
-                    "The option of buying the license to convert the demo to the unlimited version is \n" +
-                    "presented on startup. (and all for the price of a hamburger!!! ;)\n"  +
+                    "Buying the license to convert the demo to the unlimited version is detailed\n" +
+                    "on this website\'s HOME page.\n"  +
                     " \n" +
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.\n" +
