@@ -28,27 +28,31 @@ exports.index = function(req, res) {
 
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
  "Welcome \n" +
- "Our site features math modules designed to help a teacher or home-schooling parent \n" +
- "present students with interactive visual aids for math topics that can sometimes make  \n" +
- "learning easier and more interesting.  Downloading and trying out the demo versions is \n" +
- "the easiest way to evaluate these. If they do not suit your needs simply delete them.\n" +
+ "Our site features math modules designed to provide teachers or home-schooling parents \n" +
+ "with interactive visual aids to help in teaching math topics by making them more fun   \n" +
+ "and memorable.  Download and try out the demo versions to see if you agree. \n" +
+ "If they do not suit your needs simply delete them.\n" +
  "\n" +
  "Downloading: \n" +
- "Click on either module currently available, read the blurb or jump right to 'Download \n" +
- "Demos'.  Once the download is done run the file. (Windows' will caution and advise the \n" +
- "file is certified to our site. )\n" +
  "\n" +
- "Getting a license key for unlimited use: \n" +
- "First - click on the \"REGISTER\" tab on the homepage of the application you are \n" +
- "        interested in.  This places a unique system specific code on your clipboard. \n" +
+ "Click on either of the available modules and follow the instructions to download the \n" +
+ "the Windows executable files.  Until you obtain a license they will run in demo mode. \n" +
+ "(Windows will caution and present the file certificates of authenticity. ) \n" +
+ "\n" +
+ "\n" +
+ "Getting a license key: \n" +
+ "Instructions for getting a license key are given on each download page."
+
+ let blob = "First - click on the \"REGISTER\" tab on the homepage of the application you have \n" +
+ "        downloaded.  This places a unique system specific code on your clipboard. \n" +
  "NEXT -  Go to \"REGISTER FORM\" option shown on this page.  Fill in as requested. \n" +
  "       (NOTE: all data is optional except for the clipboard data which must be pasted \n" +
  "        in the indicated text area. \n" +
  "THEN -  Go to \"VIEW ACCOUNT\" option and paste the same clipboard data there. \n" +
  "        (the clipboard data is your password for showing your system's license key)\n" +
  "\n" +
- "FINALLY- Note the license key code that is shown and insert it in the application as\n" +
- "         requested on startup. \n" +
+ "FINALLY- Note the license key code that is shown and insert it in the application \n" +
+ "         where it is requested on startup. \n" +
  "\n" +
  "That's it.   Well almost.  We would of course appreciate and thank you profusely for any \n" +
  "financial support you may provide so as to enable us to continue presenting other modules \n" +
