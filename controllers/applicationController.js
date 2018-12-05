@@ -29,10 +29,9 @@ exports.index = function(req, res) {
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
  "Welcome \n" +
  "Our site features math modules designed to help a teacher or home-schooling parent \n" +
- "present students with interactive visual aids to make certain math topics easy to  \n" +
- "learn and more interesting.  The best way to get a good idea on how they could be \n" +
- "used is to download and try them out.  A few minutes at most and absolutely no fuss: \n" +
- "if you find you're not interested simply delete and forget about them.\n" +
+ "present students with interactive visual aids for math topics that can sometimes make  \n" +
+ "learning easier and more interesting.  Downloading and trying out the demo versions is \n" +
+ "the easiest way to evaluate these. If they do not suit your needs simply delete them.\n" +
  "\n" +
  "Downloading: \n" +
  "Click on either module currently available, read the blurb or jump right to 'Download \n" +
@@ -40,15 +39,17 @@ exports.index = function(req, res) {
  "file is certified to our site. )\n" +
  "\n" +
  "Getting a license key for unlimited use: \n" +
- "To obtain unlimited use first click on the \"REGISTER\" tab on the homepage of the \n" +
- "application. This places a unique system specific code on your clipboard. \n" +
- "Return to our site xxxx.com and click on the REGISTER FORM option.  Insert your data \n" +
- "as suggested. (all data is optional except for clipboard data which must be pasted in \n" +
- "the indicated text area. \n" +
- "You should then go to the \"VIEW ACCOUNT\" option and paste the same clipboard data there. \n" +
- "(the clipboard data is your password to the account showing your system's license key)\n" +
- "Take note of the license key code that will be shown and insert it in the application as\n" +
- "requested on startup. \n" +
+ "First - click on the \"REGISTER\" tab on the homepage of the application you are \n" +
+ "        interested in.  This places a unique system specific code on your clipboard. \n" +
+ "NEXT -  Go to \"REGISTER FORM\" option shown on this page.  Fill in as requested. \n" +
+ "       (NOTE: all data is optional except for the clipboard data which must be pasted \n" +
+ "        in the indicated text area. \n" +
+ "THEN -  Go to \"VIEW ACCOUNT\" option and paste the same clipboard data there. \n" +
+ "        (the clipboard data is your password for showing your system's license key)\n" +
+ ""\n" +
+ "FINALLY- Note the license key code that is shown and insert it in the application as\n" +
+ "         requested on startup. \n" +
+ "\n" +
  "That's it.   Well almost.  We would of course appreciate and thank you profusely for any \n" +
  "financial support you may provide so as to enable us to continue presenting other modules \n" +
  "on our site.\n" +
