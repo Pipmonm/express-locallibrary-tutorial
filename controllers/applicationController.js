@@ -46,7 +46,7 @@ exports.index = function(req, res) {
  "        in the indicated text area. \n" +
  "THEN -  Go to \"VIEW ACCOUNT\" option and paste the same clipboard data there. \n" +
  "        (the clipboard data is your password for showing your system's license key)\n" +
- ""\n" +
+ "\n" +
  "FINALLY- Note the license key code that is shown and insert it in the application as\n" +
  "         requested on startup. \n" +
  "\n" +
