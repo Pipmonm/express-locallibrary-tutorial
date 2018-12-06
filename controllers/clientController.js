@@ -26,8 +26,8 @@ exports.client_list = function(req, res, next) {
   };
 
 exports.client_status_get = function(req, res, next) {
-  res.render('clientstatus_form', {title: 'Request Status', message1: "Please paste clipboard contents from application's Register page",
-                             message2: "(NOTE: These are loaded automatically upon entering Register page)",
+  res.render('clientstatus_form', {title: 'Request Status', message1: "Please paste clipboard contents from application's Registration Data page",
+                             message2: "(NOTE: These are loaded automatically upon entering Registratin Data page)",
                              sysIdString: ""});
 
 }; //end client_status_get
@@ -45,7 +45,7 @@ exports.client_status_post = [
 
    // Process request after validation and sanitization.
    (req, res, next) => {
-     console.log("@@@ $ starting processing of cientstatus_form post with req V ");
+     console.log("@@@ $ starting processing of clientstatus_form post with req V ");
      console.log(req);
      // Extract the validation errors from a request.
      const errors = validationResult(req);
@@ -55,8 +55,8 @@ exports.client_status_post = [
      if (!errors.isEmpty()) {
          // There are errors. Render the form again with sanitized values/error messages.
          res.render('clientstatus_form', { title: 'Request Status Re-insert',
-                        message1: "Please paste clipboard contents from application's Register page",
-                        message2: "(NOTE: These are loaded automatically upon entering Register page)",
+                        message1: "Please paste clipboard contents from application's Registration Data page",
+                        message2: "(NOTE: These are loaded automatically upon entering Registration Data page)",
                         sysIdString: sysIdString, errors: errors.array()});
      return;
      }
@@ -156,7 +156,7 @@ exports.client_status_post = [
 
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
-      res.render('client_form', { title: 'Purchase Form'});
+      res.render('client_form', { title: 'Order Form'});
   };
 
   // Handle Client create on POST.
