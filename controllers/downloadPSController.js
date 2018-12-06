@@ -18,12 +18,12 @@ exports.downloadPS_view = function(req, res) {
   "  \n"+
   "The System ID and Format Code are placed in your system's clipboard when you click on the \n"+
   "\"REGISTRATION\" tab shown on the opening page of the demo application. \n"+
-  "Paste this information where requested when filling this site's \"PURCHASE FORM\" page \n"+
+  "Paste this information where requested when filling this site's \"ORDER FORM\" page \n"+
   "  \n"+
   "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
-  "The USB version does not provide a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook, \n" +
-  "(running WINDOWS only) then, if you prefer a USB based version, move the .exe file to a USB.\n" +
+  "The USB version does not offer a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook, \n" +
+  "(running WINDOWS only) then, if you prefer a USB version, move the .exe file to a USB.\n" +
   "Run it there and follow the same procedure as described above to register the application.\n" +
   "The USB version will not run until you enter its unique Key Code. \n" +
   " \n" +
