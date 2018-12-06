@@ -18,12 +18,14 @@ exports.downloadFS_view = function(req, res) {
   "  \n"+
   "Your System ID and Format Code are placed in your system's clipboard when you click on the \n"+
   "\"REGISTRATION DATA\" tab shown on the opening page of the demo application. \n"+
-  "Paste this information where requested when filling this site's \"REGISTER FORM\" page \n"+
+  "Paste this information where requested on this site's \"REGISTER FORM\" page as the first \n"+
+  "step in getting the license Key.  Once registered you may immediately obtain a unique license\n" +
+  "key from the \"VIEW ACCOUNT\" page. (you will need the REGISTRATION DATA again for this)\n"
   "  \n"+
   "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
   "The USB version does not offer a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook, \n" +
-  "(running WINDOWS only) then, if you prefer a USB version, move the .exe file to a USB.\n" +
+  "(WINDOWS only) then if you prefer a USB version, move the .exe file to a USB.\n" +
   "Run it there and follow the same procedure as described above to register the application.\n" +
   "The USB version will not run until you enter its unique Key Code. \n" +
   " \n" +
