@@ -27,7 +27,7 @@ exports.client_list = function(req, res, next) {
 
 exports.client_status_get = function(req, res, next) {
   res.render('clientstatus_form', {title: 'Request Status', message1: "Please paste clipboard contents from application's Registration Data page",
-                             message2: "(NOTE: These are loaded automatically upon entering Registratin Data page)",
+                             message2: "(NOTE: These are loaded automatically upon entering Registration Data page)",
                              sysIdString: ""});
 
 }; //end client_status_get
@@ -156,7 +156,7 @@ exports.client_status_post = [
 
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
-      res.render('client_form', { title: 'Order Form'});
+      res.render('client_form', { title: 'Register Form'});
   };
 
   // Handle Client create on POST.

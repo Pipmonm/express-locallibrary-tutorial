@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='first_name') First Name:
-      input#first_name.form-control(type='text', placeholder='FirstName (otional) ', name='first_name', required='true', value=(undefined===client ? '' : client.first_name) )
+      input#first_name.form-control(type='text', placeholder='FirstName (optional) ', name='first_name', required='true', value=(undefined===client ? '' : client.first_name) )
       label(for='family_name') Family Name:
       input#family_name.form-control(type='text', placeholder='FamilyName (optional)', name='family_name', required='true', value=(undefined===client ? '' : client.family_name) )
     div.form-group
