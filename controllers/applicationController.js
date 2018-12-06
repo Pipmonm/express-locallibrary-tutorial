@@ -28,15 +28,15 @@ exports.index = function(req, res) {
 
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
  "Welcome \n" +
- "Our site features math modules designed to provide teachers or home-schooling parents \n" +
- "with interactive visual aids to help in teaching math topics by making them more fun   \n" +
- "and memorable.  Download and try out the demo versions to see if you agree. \n" +
- "If they do not suit your needs simply delete them.\n" +
+ "All teachers and home-schooling parents.   We invite you to try out our interactive \n" +
+ "math modules desingned to make math topics interesting and memorable for your students.   \n" +
+ "Download and explore the demo versions.  No strings attached demos which, if they do \n" +
+ "not suit your needs, you can simply delete.\n" +
  "\n" +
  "Downloading: \n" +
- "Click on either of the available modules and follow the instructions to download the \n" +
- "the Windows executable files.  Until you obtain a license they will run in demo mode. \n" +
- "(Windows will caution and present the file certificates of authenticity. ) \n" +
+ "Click on either of the available modules and follow the instructions for downloading. \n" +
+ "These are fully functional versions but when in demo mode will run for a limited time only. \n" +
+ " (On first run Windows will advise caution while displaying the certification data) \n" +
  "\n" +
  "\n" +
  "Getting a license key: \n" +
