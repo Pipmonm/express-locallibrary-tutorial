@@ -17,8 +17,8 @@ exports.downloadPS_view = function(req, res) {
   " (cf below for USB version) \n "+
   "  \n"+
   "The System ID and Format Code are placed in your system's clipboard when you click on the \n"+
-  "\"REGISTRATION\" tab shown on the opening page of the demo application. \n"+
-  "Paste this information where requested when filling this site's \"ORDER FORM\" page \n"+
+  "\"REGISTRATION DATA\" tab shown on the opening page of the demo application. \n"+
+  "Paste this information where requested when filling this site's \"REGISTER FORM\" page \n"+
   "  \n"+
   "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +

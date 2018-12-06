@@ -16,9 +16,9 @@ exports.downloadFS_view = function(req, res) {
   "Therefore be sure to get this data from the computer that is to be used ultimately.  \n"+
   " (cf below for USB version) \n"+
   "  \n"+
-  "The System ID and Format Code are placed in your system's clipboard when you click on the \n"+
-  "\"REGISTRATION\" tab shown on the opening page of the demo application. \n"+
-  "Paste this information where requested when filling this site's \"ORDER FORM\" page \n"+
+  "Your System ID and Format Code are placed in your system's clipboard when you click on the \n"+
+  "\"REGISTRATION DATA\" tab shown on the opening page of the demo application. \n"+
+  "Paste this information where requested when filling this site's \"REGISTER FORM\" page \n"+
   "  \n"+
   "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
