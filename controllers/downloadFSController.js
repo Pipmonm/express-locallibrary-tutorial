@@ -14,13 +14,13 @@ exports.downloadFS_view = function(req, res) {
   "FracSpellerDual.exe application is limited to the specific computer (Windows based only)  \n"+
   "whose system ID and Format Code are used when obtaining the license key.  \n"+
   "Therefore be sure to get this data from the computer where the software will be used.  \n"+
-  " (Installing on a USB is possible, but no DEMO mode is available, otherwise same procefure.) \n"+
+  "(You may use it from a USB, however USB has no DEMO mode, otherwise same procefure.) \n"+
   "  \n"+
   "Your System ID and Format Code are placed in your system's clipboard when you click \n" +
   "on the \"REGISTRATION DATA\" tab shown on the opening page of the demo application. \n"+
-  "Paste this information where requested on this site's \"REGISTER FORM\" page to initiate \n"+
-  "the license Key computation.  Once registered you may immediately obtain the unique license\n" +
-  "key from the \"VIEW ACCOUNT\" page. (you will need the REGISTRATION DATA again for this)\n"
+  "Paste this information where requested on this site's \"REGISTER FORM\" page to generate \n"+
+  "the license Key.  Once registered you may immediately obtain the unique license key\n" +
+  "from the \"VIEW ACCOUNT\" page. (you will again need the REGISTRATION DATA for this)\n"
 
   let extra = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
