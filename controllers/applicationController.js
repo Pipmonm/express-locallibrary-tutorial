@@ -29,14 +29,15 @@ exports.index = function(req, res) {
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
  "Welcome \n" +
  "All teachers and home-schooling parents.   We invite you to try out our interactive \n" +
- "math modules desingned to make math topics interesting and memorable for your students.   \n" +
- "Download and explore the demo versions.  No strings attached demos which, if they do \n" +
- "not suit your needs, you can simply delete.\n" +
+ "math modules designed to make these topics interesting and memorable for your students.\n" +
+ "Download and explore these running in demo mode.  If they do not suit your needs you\n" +
+ "can simply delete them.  If on the other hand you would like a license, just follow the\n" +
+ "the detailed instructions shown when downloading a module."
  "\n" +
  "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +
- "These are fully functional versions but when in demo mode will run for a limited time only. \n" +
- " (On first run Windows will advise caution while displaying the certification data) \n" +
+ "These are fully functional versions but in demo mode will run for a limited time only. \n" +
+ " (Windows may raise CAUTION advisory on first run amd show Certificate of Origin) \n" +
  "\n" +
  "\n" +
  "Getting a license key: \n" +
