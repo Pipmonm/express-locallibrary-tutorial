@@ -28,16 +28,16 @@ exports.index = function(req, res) {
 
  let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n"+
  "Welcome \n" +
- "All teachers and home-schooling parents.   We invite you to try out the interactive \n"+
+ "To all teachers and home-schooling parents.   We invite you to try out the interactive \n"+
  "math modules designed to make specific math topics interesting and memorable for your\n"+
  "students.\n"+
  "Download and explore these in 'demo' mode.  If of no interest, simply delete them.\n" +
  "\n"+
- "If on the other hand you would like to obtain a license for unrestricted use, just\n"+
+ "If on the other hand you would like to obtain a license for unlimited use, just\n"+
  "follow the instructions on each module's page. \n"+
  "\n"+
  "That's it.   Well almost.  Of course we will appreciate and thank you profusely for any \n" +
- "financial support you may provide so as to enable us to continue presenting other modules. \n" +
+ "financial support you may provide so as to enable us to continue presenting new modules. \n" +
  "The 'DONATE' menu item allows you to do so.   Thank you"
 
  let blurb4 = "Downloading: \n" +

@@ -11,8 +11,17 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 var debug = require('debug')('client');
     //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
 
-// Display list of all clients.
+//validation check on sysId and Format Code string  //2018-12-14 new function
+function checkValidIdString(inString){
+  let stringPieces = inString.split(":");
+  if(stringPieces.length !=3)return "fail";
+  for (item in stringPieces){
+    if(isNaN(item))return "fail";
+  }
+  return "pass";
+};
 
+// Display list of all clients.
 exports.client_list = function(req, res, next) {
 
    Client.find()
@@ -50,9 +59,12 @@ exports.client_status_post = [
      // Extract the validation errors from a request.
      const errors = validationResult(req);
 
+     let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
+
+
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received status request for: " + sysIdString );
-     if (!errors.isEmpty()) {
+     if (!errors.isEmpty()  || formatCheck == "fail") { //2018-12-14 added second condition
          // There are errors. Render the form again with sanitized values/error messages.
          res.render('clientstatus_form', { title: 'Request Status Re-insert',
                         message1: "Please paste clipboard contents from application's Registration Data page",
