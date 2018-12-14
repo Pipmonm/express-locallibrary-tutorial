@@ -15,9 +15,10 @@ var debug = require('debug')('client');
 function checkValidIdString(inString){
   let stringPieces = inString.split(":");
   if(stringPieces.length !=3)return "fail";
-  for (item in stringPieces){
-    if(isNaN(item))return "fail";
+  for (i==0;i<2;i++){
+    if(isNaN(item[i]))return "fail";
   }
+  if(item[2] != "USB" || item[2] != "CPU")return "fail";
   return "pass";
 };
 
@@ -62,6 +63,7 @@ exports.client_status_post = [
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received status request for: " + sysIdString );
      let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
+     console.log("@@@ $ formatCheck says: " + formatCheck);
      if(formatCheck == "fail")sysIdString = "incorrect string values"
      if (!errors.isEmpty()  || formatCheck == "fail") { //2018-12-14 added second condition
          // There are errors. Render the form again with sanitized values/error messages.
