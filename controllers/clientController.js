@@ -59,11 +59,10 @@ exports.client_status_post = [
      // Extract the validation errors from a request.
      const errors = validationResult(req);
 
-     let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
-
-
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received status request for: " + sysIdString );
+     let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
+
      if (!errors.isEmpty()  || formatCheck == "fail") { //2018-12-14 added second condition
          // There are errors. Render the form again with sanitized values/error messages.
          res.render('clientstatus_form', { title: 'Request Status Re-insert',
