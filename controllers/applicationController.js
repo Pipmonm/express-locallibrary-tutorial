@@ -30,9 +30,8 @@ exports.index = function(req, res) {
  "Welcome \n" +
  "All teachers and home-schooling parents.   We invite you to try out our interactive \n" +
  "math modules designed to make these topics interesting and memorable for your students.\n" +
- "Download and explore these running in demo mode.  If they do not suit your needs you\n" +
- "can simply delete them.  If on the other hand you would like a license, just follow the\n" +
- "the detailed instructions shown when downloading a module."
+ "Download and explore these in 'demo' mode.  If they do not suit your needs simply delete them.\n" +
+ "If you would like to obtain a license, just follow the instructions on the module's page. "
  "\n" +
  "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +
