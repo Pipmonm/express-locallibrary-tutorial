@@ -16,9 +16,9 @@ function checkValidIdString(inString){
   let stringPieces = inString.split(":");
   if(stringPieces.length !=3)return "fail";
   for (var i=0;i<2;i++){
-    if(isNaN(item[i]))return "fail";
+    if(isNaN(stringPieces[i]))return "fail";
   }
-  if(item[2] != "USB" || item[2] != "CPU")return "fail";
+  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU")return "fail";
   return "pass";
 };
 
