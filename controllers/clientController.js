@@ -62,10 +62,10 @@ exports.client_status_post = [
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received status request for: " + sysIdString );
      let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
-
+     if(formatCheck == "fail")sysIdString = "incorrect string values"
      if (!errors.isEmpty()  || formatCheck == "fail") { //2018-12-14 added second condition
          // There are errors. Render the form again with sanitized values/error messages.
-         res.render('clientstatus_form', { title: 'Request Status Re-insert',
+         res.render('clientstatus_form', { title: 'Request Status: Error Re-insert',
                         message1: "Please paste clipboard contents from application's Registration Data page",
                         message2: "(NOTE: These are loaded automatically upon entering Registration Data page)",
                         sysIdString: sysIdString, errors: errors.array()});
