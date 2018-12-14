@@ -15,7 +15,7 @@ var debug = require('debug')('client');
 function checkValidIdString(inString){
   let stringPieces = inString.split(":");
   if(stringPieces.length !=3)return "fail";
-  for (var i==0;i<2;i++){
+  for (var i=0;i<2;i++){
     if(isNaN(item[i]))return "fail";
   }
   if(item[2] != "USB" || item[2] != "CPU")return "fail";
