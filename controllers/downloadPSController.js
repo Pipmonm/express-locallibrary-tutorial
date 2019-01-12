@@ -14,15 +14,18 @@ exports.downloadPS_view = function(req, res) {
   "PieSlicerDual.exe application is limited to the specific computer (Windows based only)  \n"+
   "whose system ID and Format Code are used when obtaining the license key.  \n"+
   "Therefore be sure to get this data from the computer where the software will be used.  \n"+
-  "(You may install it on a USB to be used on any Windows based computer, however USB versions\n"+
-  "have no DEMO mode. Other than that they are installed using the same procefure.) \n"+
+  "Installing on a USB is possible, but you should view the demo on a CPU first because\n"+
+  "a 'demo' mode is not available on USB versions.\n"+
+  "Otherwise USB versions are installed using the same procefure as for the computer based\n"+
+  "versions. \n"+
   "  \n"+
-  "Your System ID and Format Code are placed in your system's clipboard when you click \n" +
+  "Registering:\n"+
+  "Your System ID and Format Code are placed in your system's clipboard when you click \n"+
   "on the \"REGISTRATION DATA\" tab shown on the opening page of the demo application. \n"+
   "Paste this information where requested on this site's \"REGISTER FORM\" page to generate \n"+
-  "the license Key.  Once successfully registered you may immediately obtain the unique license \n" +
-  "key from this site's \"VIEW ACCOUNT\" page. \n"+
-  " (the REGISTRATION DATA string is your password permitting access to \"VIEW ACCOUNT\")\n"
+  "the license Key.  Once successfully registered you may immediately obtain the unique \n"+
+  "license key from this site's \"VIEW ACCOUNT\" page. \n"+
+  "(the REGISTRATION DATA string permits access to your specific key via the \"VIEW ACCOUNT\" page.)\n"
 
   let blurb = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
