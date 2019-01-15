@@ -15,7 +15,7 @@ var fracSpeller_controller = require('../controllers/fracSpellerController');
 var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 var verification_controller = require('../controllers/verificationController');//2019-01-15
-var aboutUs_controller = require('../controllers/aboutUsController');/2019-01-15
+var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
 // GET catalog home page.
 router.get('/', application_controller.index);
 //2018-10-09  was clientrequest_controller changed to application_controller
