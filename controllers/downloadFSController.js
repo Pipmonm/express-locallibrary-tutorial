@@ -25,7 +25,12 @@ exports.downloadFS_view = function(req, res) {
   "Paste this information where requested on this site's \"REGISTER FORM\" page to generate \n"+
   "the license Key.  Once successfully registered you may immediately obtain the unique \n"+
   "license key from this site's \"VIEW ACCOUNT\" page. \n"+
-  "(the REGISTRATION DATA string permits access to your specific key via the \"VIEW ACCOUNT\" page.)\n"
+  "(the REGISTRATION DATA string is used to set the license key in the site's \"REGISTER\" page \n" +
+  " and then serves as a unique password to access your license key in the \"View Account\" page)\n" +
+  "\n" +
+  "File Verification (SHA-256 hash code): \n" +
+  "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +
+  "(refer to VERIFICATION page for further info on how to verify secure file download using this code)"
 
   let extra = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
