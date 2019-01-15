@@ -7,13 +7,13 @@ var async = require('async');
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   console.log("view Verification Process requested");
-  let verify_1 = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:650px; padding:10px; align:center'> \n" +
+  let verify_1 = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:700px; padding:10px; align:center'> \n" +
   "Microsoft Windows can perform the verification of a file's authenticity by using its\n" +
   "'PowerShell' utility command 'FCI'. \n"+
   "Steps:\n"+
   "1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n"+
   "2- Click the first option ('Windows PowerShell ISE (x86)' or similar ) \n"+
-  "  (Following example assumes 'PieSlicer.exe' downloaded onto the desktop)\n"+
+  "  (Following example assumes 'PieSlicer.exe' was downloaded onto the desktop)\n"+
   "3- At PowerShell prompt (probably 'PS C:>' but OK if different) type in: \n"+
   "   PS C:> \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicer.exe\"  + press 'ENTER' (aka CR)\n"+
   "\n"+
