@@ -43,8 +43,11 @@ exports.verify_view = function(req, res) {
   let verify_2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
   let source = '/catalog/downloadPS_view'; //this provides download href
+  let source2 = 'PieSliceDual download';
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: verify_1,
-                                 themeDesc2: verify_2});
+                                 themeDesc2: verify_2,
+                                 source: source,
+                                 source2: source2});
 };
