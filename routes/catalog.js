@@ -17,6 +17,7 @@ var downloadPS_controller = require('../controllers/downloadPSController');//ibi
 var verification_controller = require('../controllers/verificationController');//2019-01-15
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
 // GET catalog home page.
+//why aboutUsController not found????
 router.get('/', application_controller.index);
 //2018-10-09  was clientrequest_controller changed to application_controller
 //temporary down below i think
