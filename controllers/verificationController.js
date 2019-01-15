@@ -13,18 +13,18 @@ exports.verify_view = function(req, res) {
   "Steps:\n"+
   "1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n"+
   "2- Click the first option ('Windows PowerShell ISE (x86)' or similar ) \n"+
-  "  (Following is an example based on 'PieSlicer.exe' downloaded onto the desktop)\n"+
+  "  (Following example assumes 'PieSlicer.exe' downloaded onto the desktop)\n"+
   "3- At PowerShell prompt (probably 'PS C:>' but OK if different) type in: \n"+
-  "   PS C:> \"Get-FileHash C:\Users\User\Desktop\PieSlicer.exe\"  + press 'ENTER' (aka CR)\n"+
+  "   PS C:> \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicer.exe\"  + press 'ENTER' (aka CR)\n"+
   "\n"+
   "  PS will then print out a very long hash code (as in following example)\n"+
   "     HASH part:>  5B1332C19F156E8CCEBF8F7FD749F8D3D23CB30685BC52A35A4FA3C8F6EFCBE8 \n" +
   "\n"+
-  " Next need to compare this Hash code with the one from our site:\n"+
-  " In PowerShell\n"+
+  " Next we copy this Hash code and compare it with the one from our site:\n"+
+  " Still in PowerShell\n"+
   "4- Double click directly on the hash code (turns highlighted) then Right-Click on it & copy\n"+
-  "5- Move to active PS prompt (PS C:>) and type: \"compare\" \n"+
-  "  PowerShell will request information as shown below (including your responses):\n"+
+  "5- Go to PowerShell prompt (PS C:>) and type: \"compare\" \n"+
+  "  PowerShell prints stuff then requests information as shown below (we include your responses):\n"+
   "            prompt      your response \n"+
   "  ReferenceObject[0]: 5B1332C19F156..... (use rightClick to paste hash code from step 4 here) \n"+
   "  ReferenceObject[1]: (press ENTER)\n"+
