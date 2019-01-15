@@ -2,6 +2,15 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #[em Mastering Math], a website dedicated to making math a journey of discovery for the budding math enthusiast.
+  p About us.
+    | first who is us?
+    | 'us' be one person only actually
+    | i.e. a somewhat retired former math/science teacher
+
+  p Why this site?
 
   p!= themeDesc1
+
+  //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
+  //- the PUG href requires two lines, gives errors otherwise
+  //- the ! in p! is a directive to turn off escape characters (something like that)

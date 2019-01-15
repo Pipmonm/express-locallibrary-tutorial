@@ -13,11 +13,11 @@ exports.verify_view = function(req, res) {
   "Steps:\n"+
   "1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n"+
   "2- Click the first option ('Windows PowerShell ISE (x86)' or similar ) \n"+
-  "  (Following example assumes 'PieSlicer.exe' was downloaded onto the desktop)\n"+
+  "  (Following example assumes 'PieSlicerDual.exe' was downloaded onto the desktop)\n"+
   "3- At PowerShell prompt (probably 'PS C:>' but OK if different) type in: \n"+
-  "   PS C:> \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicer.exe\"  + press 'ENTER' (aka CR)\n"+
+  "   PS C:> \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"  + press 'ENTER' (aka CR)\n"+
   "\n"+
-  "  PS will then print out a very long hash code (as in following example)\n"+
+  "  PS will then PS prints out SHA-256 results including a very long hash code\n"+
   "     HASH part:>  5B1332C19F156E8CCEBF8F7FD749F8D3D23CB30685BC52A35A4FA3C8F6EFCBE8 \n" +
   "\n"+
   " Next we copy this Hash code and compare it with the one from our site:\n"+
@@ -28,11 +28,11 @@ exports.verify_view = function(req, res) {
   "            prompt      your response \n"+
   "  ReferenceObject[0]: 5B1332C19F156..... (use rightClick to paste hash code from step 4 here) \n"+
   "  ReferenceObject[1]: (press ENTER)\n"+
-  "  DifferenceObject[0]: (paste SHA-256 Hash Code for 'PieSlicer.exe' as shown on our web site)\n"+
+  "  DifferenceObject[0]: (paste SHA-256 Hash Code for 'PieSlicerDual.exe' as shown on our web site)\n"+
   "  DifferenceObject[1]: (press ENTER)\n"+
   "  PS C:>\n"+
   "\n"+
-  "  If codes are exactly the same, only the normal prompt, as shown above, is returned.\n"+
+  "  If codes are exactly the same only the normal prompt, as shown above, is returned.\n"+
   "  If hash codes are shown, with '=<' comparisons or similar, then files are different.\n"+
   "  This normally comes from a download error or file corruption error.\n"+
   "  Do not run any file with an error, attempt to download again, or contact us.\n"+
