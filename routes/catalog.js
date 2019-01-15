@@ -14,6 +14,8 @@ var pieSlicer_controller = require('../controllers/pieSlicerController');
 var fracSpeller_controller = require('../controllers/fracSpellerController');
 var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
+var verification_controller = require('../controllers/verificationController');//2019-01-15
+var aboutUs_controller = require('../controllers/aboutUsController');/2019-01-15
 // GET catalog home page.
 router.get('/', application_controller.index);
 //2018-10-09  was clientrequest_controller changed to application_controller
@@ -25,6 +27,9 @@ router.get('/', application_controller.index);
 //tEST DOWNLOAD routes
 router.get('/pieSlicer_view',pieSlicer_controller.pieSlicer_view);
 router.get('/fracSpeller_view',fracSpeller_controller.fracSpeller_view);
+
+router.get('/verification',verification_controller.verify_view);//2019-01-15
+router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
 router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
