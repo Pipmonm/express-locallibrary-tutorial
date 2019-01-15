@@ -7,8 +7,9 @@ var async = require('async');
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   console.log("view Verification Process requested");
-  let verify_1 = "Microsoft Windows can perform the verification of a file's authenticity\n"+
-  "using its 'PowerShell' utility command 'FCI'. \n"+
+  let verify_1 = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:650px; padding:10px; align:center'> \n" +
+  "Microsoft Windows can perform the verification of a file's authenticity by using its\n" +
+  "'PowerShell' utility command 'FCI'. \n"+
   "Steps:\n"+
   "1- Type 'PowerShell' in the Search Command Box (bottom left of Window screen)\n"+
   "2- Select the first option (something like: 'Windows PowerShell ISE (x86)' ) \n"+
@@ -33,7 +34,8 @@ exports.verify_view = function(req, res) {
   "  If codes are exactly the same, only the normal prompt, as shown above, is returned.\n"+
   "  If some codes are shown with '=<' comparisons or similar then files are different.\n"+
   "  This normally comes from a download error or file corruption error.\n"+
-  "  Do not run any file with an error, attempt to download again, or contact us."
+  "  Do not run any file with an error, attempt to download again, or contact us.\n"+
+  "</pre>"
 
 
   let verify_2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
