@@ -14,7 +14,7 @@ exports.verify_view = function(req, res) {
   "1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n"+
   "2- Click the first option ('Windows PowerShell ISE (x86)' or similar ) \n"+
   "  (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
-  "3- At PowerShell prompt (probably 'PS C:>' but OK if different) type in: \n"+
+  "3- At the PowerShell prompt (probably 'PS C:>' but OK if different) type in: \n"+
   "   PS C:> \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"  + press 'ENTER' (aka CR)\n"+
   "          (Notice that as you type PS allows you to browse to any folder) \n"+
   "\n"+
@@ -42,7 +42,7 @@ exports.verify_view = function(req, res) {
 
   let verify_2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
-  let source = "pieSlicerDwnld.js"; //this provides download href
+  let source = "pieSlicerDownld.js"; //this provides download href
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: verify_1,
