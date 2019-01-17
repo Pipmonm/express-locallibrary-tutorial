@@ -26,11 +26,11 @@ exports.aboutUs_view = function(req, res) {
   "  with problems relevant to the materail at hand and giving immediate feedback on the \n"+
   "  student's performance on these; all within the same module."
 
-  let aboutUs_2 =  "There is but one of \"Us\" in About Us and I would hope that all visitors to this\n"+
-  "   site will keep that in mind and should they find our modules to be of use in their efforts\n"+
-  "   to inculcate a fondness for mathematics in their child(ren) or the students in their charge\n"+
-  "   they will consider helping our efforts by donating an amount commensurate to the help we\n"+
-  "   we have been able to provide and hope to continue doing so with newer and better modules.";// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  let aboutUs_2 =  "  There is but one of \"Us\" in About Us and I would hope that all visitors to this\n"+
+  "  site will keep that in mind and if our modules turn out to be of use in their efforts\n"+
+  "  to instill a fondness (or a small liking anyway) for mathematics in their child(ren) \n"+
+  "  then they will consider encouraging our efforts to provide more, and better, modules by\n"+
+  "  kindly making a donation that they feel is commensurate to the help we have provided.";// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
 res.render('aboutUs_view', { title: "About Us",
                                  themeDesc1: aboutUs_1,
