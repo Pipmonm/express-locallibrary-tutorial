@@ -18,19 +18,20 @@ exports.aboutUs_view = function(req, res) {
   "  There can surely be no worse outcome for a student's personal, and academic future \n"+
   "  than to prematurely discard an entire branch of study, be it Arts, Science or whatever! \n"+
   "  \n"+
-  "  The intent of this site then is to simply prevent such outcomes by hopefully avoiding\n" +
+  "  The intent of this site then is to help prevent such outcomes by hopefully avoiding\n" +
   "  them in the first place, or if the need arises, remedy any that may have cropped up.\n" +
-  "  Our modules present fundamental math concepts in a way that we believe student's will \n" +
-  "  find interesting and memorable.  This is achieved by using a more impactful visual \n"+
-  "  presentation coupled with active engagement in the learning stage followed immediately\n"+
-  "  with problems relevant to the materail at hand and giving immediate feedback on the \n"+
-  "  student's performance on these; all within the same module."
+  "  Our modules are intended to ASSIST teachers with some of the fundamental math concepts\n"+
+  "  by presenting these in a way students will  find interesting and memorable.\n"+
+  "  By using a striking and more interactive visual presentation coupled with problems\n"+
+  "  linked to the material at hand (including immediate feedback on the student's responses)\n"+
+  "  we are certain that we can help achieve that goal."
 
   let aboutUs_2 =  "  There is but one of \"Us\" in About Us and I would hope that all visitors to this\n"+
   "  site will keep that in mind and if our modules turn out to be of use in their efforts\n"+
   "  to instill a fondness (or a small liking anyway) for mathematics in their child(ren) \n"+
-  "  then they will consider encouraging our efforts to provide more, and better, modules by\n"+
-  "  kindly making a donation that they feel is commensurate to the help we have provided.";// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
+  "  then they will consider encouraging our efforts to provide more, and better, modules\n"+
+  "  by making a donation that they feel is commensurate to the help we may have provided.\n"+
+  "  Rest assured your support will be greatly appreciated.  Thank you.";// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
 res.render('aboutUs_view', { title: "About Us",
                                  themeDesc1: aboutUs_1,
