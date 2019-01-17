@@ -12,17 +12,18 @@ exports.aboutUs_view = function(req, res) {
   "  for many years and having noticed that for those who have had difficulty it can \n"+
   "  usually be traced back to some critical details that were not clearly understood \n" +
   "  at some point in their past study of mathematics.  When a few of these lapses pass \n" +
-  "  undetected and not remedied then the outcome is quite naturally at the very best \n" +
+  "  undetected and not remedied then the outcome is quite naturally, at the very best, \n" +
   "  mediocre performance in math and at worst an active dislike of mathematics!\n" +
   "  \n"+
   "  There can surely be no worse outcome for a student's personal, and academic future than \n"+
   "  to prematurely completely discard an entire branch of study, be it Arts, Science or \n"+
   "  whatever.\n" +
-  "  The intent of the modules made availbale on this site was to simply avoid such outcomes\n" +
-  "  by trying to redress any shortcomings that may have occurred by presenting some essential\n" +
-  "  and key basic math concepts in a way that might hopefully make them more interesting and\n" +
-  "  memorable with a more impactful visual presentation and immediate feedback on students' \n" +
-  "  understanding and mastery of the material."
+  "  The intent of the modules made availbale on this site is to simply avoid such outcomes\n" +
+  "  by trying to redress any shortcomings that may have popped up by presenting some essential\n" +
+  "  and key basic math concepts in a way that will hopefully make them more interesting and\n" +
+  "  memorable.  This is achieved by using a more impactful visual presentation coupled with\n"+
+  "  interactive engagement in the learning stage and by immediately following this with graded\n"+
+  "  problems linked to the material and immediate feedback on the student's performance on these."
 
   let aboutUs_2 =  "There is but one of \"Us\" in About Us and I would hope that all\n"+
   "   visitors to this site will keep that in mind should they find our effort to be\n"+
