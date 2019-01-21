@@ -7,7 +7,7 @@ var async = require('async');
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   console.log("view Verification Process requested");
-  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'> \n" +
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
   let verify_1 ="Microsoft Windows can perform the verification of a file's authenticity by using its\n" +
   "'PowerShell' utility command 'FCI'.   Follow the steps as described below to accomplish this: \n"+
   "\n"+
@@ -49,8 +49,8 @@ exports.verify_view = function(req, res) {
   let source2 = 'Step ' + app.VerifyState.step.toString() + ' image';
 
 res.render('verify_view', { title: "Verifying Downloads",
-                                 themeDesc1: verify_1,
-                                 themeDesc2: verify_2,
+                                 themeDesc1: prolog + verify_1,
+                                 themeDesc2: prolong + verify_2,
                                  source: source,
                                  source2: source2});
 };
