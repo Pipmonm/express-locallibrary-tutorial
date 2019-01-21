@@ -24,7 +24,7 @@ exports.verify_view = function(req, res) {
   "   Also notice that as you type PowerShell allows you to browse to any folder: use if your file is not \n"+
   "   on the Desktop as in our example."
 
-  let verify_4 - "Step 4- PS will then print out SHA-256 results including the long hash code\n"+
+  let verify_4 = "Step 4- PS will then print out SHA-256 results including the long hash code\n"+
   "     HASH part:>  5B1332C19F156E8CCEBF8F7FD749F8D3D23CB30685BC52A35A4FA3C8F6EFCBE8 "
 
   let verify_5 = "Step 5- Next we will copy this Hash code and compare it with the one from our site.\n"+
