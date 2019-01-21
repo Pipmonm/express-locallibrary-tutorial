@@ -85,4 +85,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.VerifyState = {step:0};//2019-01-21 attempt to simplify verification step value for which png is visible
+
 module.exports = app;

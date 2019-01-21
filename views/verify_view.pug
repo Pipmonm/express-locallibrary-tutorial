@@ -12,8 +12,14 @@ block content
 
   br
 
-  a(href=source)
-             button(type="button") #{source2}
-             
+  br
+  .image
+  label(for="verifyimg") source2
+  br
+  .verifyimg
+    <img id="verifyimg"  src=source alt="ScreenShot" width="636" height="200">
+
+
+
   //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
   //- the PUG href requires two lines, gives errors otherwise
