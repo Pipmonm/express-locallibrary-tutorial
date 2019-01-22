@@ -51,10 +51,13 @@ exports.verify_view = function(req, res) {
   //line to force update
   let image = '../public/images/'+ filename; //this provides download href
   let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
-
+  let nextLocation = '/catalog/verification';
+  let nextLabel = 'Next';
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + verify_1,
                                  themeDesc2: verify_2,
                                  source: image,
-                                 source2: imageTitle});
+                                 source2: imageTitle,
+                                 nextLoc: nextLocation,
+                                 nextLbl: nextLabel});
 };
