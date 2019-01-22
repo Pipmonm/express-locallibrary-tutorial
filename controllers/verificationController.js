@@ -52,7 +52,7 @@ exports.verify_view = function(req, res) {
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + verify_1,
-                                 themeDesc2: prolong + verify_2,
+                                 themeDesc2: prolog + verify_2,
                                  source: source,
                                  source2: source2});
 };
