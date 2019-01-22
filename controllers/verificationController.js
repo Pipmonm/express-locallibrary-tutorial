@@ -55,7 +55,7 @@ exports.verify_view = function(req, res) {
   let nextLocation = '/catalog/verification';
   let nextLabel = 'Next';
 res.render('verify_view', { title: "Verifying Downloads",
-                                 themeDesc1: prolog + verify_1,
+                                 themeDesc1: prolog + scriptName,
                                  themeDesc2: verify_2,
                                  source: image,
                                  source2: imageTitle,
