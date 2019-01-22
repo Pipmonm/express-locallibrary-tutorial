@@ -2,7 +2,7 @@ const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async');
-var app = require('app');//2019-01-22 need State variable to track steps for verify_x 
+//var app = require('app');//2019-01-22 need State variable to track steps for verify_x
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 
 //Display unique page details for Verification
@@ -45,10 +45,10 @@ exports.verify_view = function(req, res) {
   "  Do not run any file with an error, attempt to download again, or contact us.\n"+
   "</pre>"
 
-  app.VerifyState.step += 1; //next file
-  let filename = "step" + app.VerifyState.step.toString() + ".png";
+  VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
+  let filename = "step" + VerifyState.step.toString() + ".png";
   let source = '/public/images/'+ filename; //this provides download href
-  let source2 = 'Step ' + app.VerifyState.step.toString() + ' image';
+  let source2 = 'Step ' + VerifyState.step.toString() + ' image';
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + verify_1,
