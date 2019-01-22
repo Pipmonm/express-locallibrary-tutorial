@@ -19,7 +19,7 @@ block content
   label(for="verify1img") #{source2}
   br
   .verify1img
-    <img id="verify1img"  src="/public/images/step1.png" alt="step view" width="450" height="250">
+    <img id="verify1img"  src=require("/public/images/step1.png") alt="step view" width="450" height="250">
   if error
     p Error getting dynamic content.
   else
