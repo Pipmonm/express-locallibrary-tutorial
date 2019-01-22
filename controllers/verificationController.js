@@ -46,6 +46,7 @@ exports.verify_view = function(req, res) {
   "</pre>"
 
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
+  let scriptName = "verify_" + VerifyState.step.toString();
   let filename = "step" + VerifyState.step.toString() + ".png";
   console.log("@@@ $ looking for : " + filename);
   //line to force update
