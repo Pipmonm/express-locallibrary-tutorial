@@ -86,5 +86,6 @@ app.use(function(err, req, res, next) {
 });
 
 VerifyState = {step:0};//2019-01-21 attempt to simplify verification step value for which png is visible
+                      //seems that it must be a global here to be seen as global in any other module importing ../app
 
 module.exports = app;
