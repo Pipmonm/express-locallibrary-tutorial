@@ -2,6 +2,7 @@ const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async');
+var app = require('app');//2019-01-22 need State variable to track steps for verify_x 
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 
 //Display unique page details for Verification
