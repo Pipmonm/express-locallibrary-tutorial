@@ -49,12 +49,12 @@ exports.verify_view = function(req, res) {
   let filename = "step" + VerifyState.step.toString() + ".png";
   console.log("@@@ $ looking for : " + filename);
   //line to force update
-  let source = '../public/images/'+ filename; //this provides download href
-  let source2 = 'Step ' + VerifyState.step.toString() + ' image';
+  let image = '../public/images/'+ filename; //this provides download href
+  let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + verify_1,
                                  themeDesc2: verify_2,
-                                 source: source,
-                                 source2: source2});
+                                 source: image,
+                                 source2: imageTitle});
 };
