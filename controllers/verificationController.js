@@ -47,12 +47,13 @@ exports.verify_view = function(req, res) {
 
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
   let filename = "step" + VerifyState.step.toString() + ".png";
-  let source = '/public/images/'+ filename; //this provides download href
+  console.log("filename: " + filename);
+  let source = '../public/images/'+ filename; //this provides download href
   let source2 = 'Step ' + VerifyState.step.toString() + ' image';
 
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + verify_1,
-                                 themeDesc2: prolog + verify_2,
+                                 themeDesc2: verify_2,
                                  source: source,
                                  source2: source2});
 };
