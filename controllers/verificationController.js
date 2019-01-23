@@ -7,11 +7,10 @@ var app = require('../app');//2019-01-22 need State variable to track steps for 
 exports.verify_back = function(req,res){
   VerifyState.step -=2;//back up two and view will ++ interval
   if(VerifyState<0)VerifyState = 7;//keep it to max-1
-  verify_view();
+  this.verify_view();
 }
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
-  console.log("view Verification Process requested");
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
   let verify = [];
   verify[0] = "Press Next";
