@@ -4,7 +4,11 @@ const { sanitizeBody } = require('express-validator/filter');
 var async = require('async');
 var app = require('../app');//2019-01-22 need State variable to track steps for verify_x
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
-
+exports.verify_back = function(req,res){
+  VerifyState.step -=2;//back up two and view will ++ interval
+  if(VerifyState<0)VerifyState = 7;//keep it to max-1
+  verify_view();
+}
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   console.log("view Verification Process requested");
@@ -47,6 +51,7 @@ exports.verify_view = function(req, res) {
   "</pre>"
 
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
+  if(VerifyState.step>8)VerifyState=1;
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
   console.log("@@@ $ looking for : " + filename);
@@ -54,12 +59,17 @@ exports.verify_view = function(req, res) {
   let image = '../public/images/'+ filename; //this provides download href
   let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
   let nextLocation = '/catalog/verification';
+  let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
+  let prevLocLbl = 'Prev';
 res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + scriptText,
                                  themeDesc2: " ",
                                  source: image,
                                  source2: imageTitle,
                                  nextLoc: nextLocation,
-                                 nextLbl: nextLabel});
+                                 nextLbl: nextLabel,
+                                 prevLoc: prevLocation,
+                                 prevLbl: prevLocLbl});
+
 };

@@ -30,6 +30,7 @@ router.get('/pieSlicer_view',pieSlicer_controller.pieSlicer_view);
 router.get('/fracSpeller_view',fracSpeller_controller.fracSpeller_view);
 
 router.get('/verification',verification_controller.verify_view);//2019-01-15
+router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
