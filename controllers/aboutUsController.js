@@ -12,7 +12,7 @@ exports.aboutUs_view = function(req, res) {
   "  for many years and having noticed that for those who have had difficulty it can \n"+
   "  usually be traced back to some critical details that were not clearly understood \n" +
   "  at some point in their past study of mathematics.  When a few of these lapses pass \n" +
-  "  undetected and not remedied then the outcome is quite naturally, at the very best, \n" +
+  "  undetected and unremedied then the outcome is quite naturally, at the very best, \n" +
   "  mediocre performance in math and at worst an active dislike of mathematics!\n" +
   "  \n"+
   "  There can surely be no worse outcome for a student's personal, and academic future \n"+
@@ -23,7 +23,7 @@ exports.aboutUs_view = function(req, res) {
   "  Our modules are intended to ASSIST teachers with some of the fundamental math concepts\n"+
   "  by presenting these in a way students will  find interesting and memorable.\n"+
   "  By using a striking and more interactive visual presentation coupled with problems\n"+
-  "  linked to the material at hand (including immediate feedback on the student's responses)\n"+
+  "  linked to the material at hand (with immediate feedback on the student's responses)\n"+
   "  we are certain that we can help achieve that goal."
 
   let aboutUs_2 =  "  There is but one of \"Us\" in About Us and I would hope that all visitors to this\n"+

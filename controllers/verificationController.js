@@ -25,8 +25,8 @@ verify[1] = "Microsoft Windows can perform the verification of a file's authenti
 "        This will bring up the menu with PowerShell option. (press 'Next')";
 
 verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' ) \n"+
-"  The PowerShell utility will start up, with probably 'PS c:>' as the prompt.  (It is not\n"+
-"  important if the prompt is different)"
+"  The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt. \n"+
+"  (It is not important if the prompt is different)"
 
 verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
 "  At the prompt type in the command: \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\".\n"+
@@ -35,21 +35,31 @@ verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been do
 "  this feature if your file is not located on the Desktop as in our example.\n"+
 "  PS will then print out the long SHA-256 hash code, as shown below:"
 
-verify[4] = "Step 5- Next we will copy this Hash code and compare it with the one from our site.\n"+
+verify[4] = "Step 4- Next we will copy this Hash code and compare it with the one from our site.\n"+
 " While staying in PowerShell double click directly on the hash code shown (turns highlighted)\n"+
 " then Right-Click on it & copy"
 
-verify[5] = "Step 6- At the prompt (i.e. PS C:>) type: \"compare\" \n"+
-"  PowerShell prints stuff then requests information as shown below:"
+verify[5] = "Step 5- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" \n"+
+"  PowerShell prints stuff then requests information as shown below:\n"+
+"   (we also show where you will need to 'PASTE' the codes being compared)"
 
-verify[7] = "Step 7- The screen image below shows the complete sequence of prompts and required \n"+
+verify[6] = "Step 6- The screen image below shows the complete sequence of prompts and required \n"+
 "  responses to verify the codes.  Note that the last hash code entered is obtained from this site's pages \n"+
-"  for the module being downloaded."
+"  for the module being downloaded.\n"+
+"  NOTE: For exactly matching codes the final 'Enter' (entered for DifferenceObject[1] ) will \n"+
+"        only result in the PowerShell prompt being shown, signalling that the files are the same.\m"+
+"        (proceed to Next step to see the output for files that do not compare)"
 
-verify[8] = "Results:  If codes are exactly the same only the normal prompt, as shown above, is returned.\n"+
-"  If hash codes are shown, with '=<' comparisons or similar (as in the image below), then files are different.\n"+
-"  This normally comes from a download error or file corruption error.\n"+
-"  Do not run any file with an error, attempt to download again, or contact us."
+verify[7] = "Step 7-  If hash codes are shown with '=<' comparisons or similar (as in the\n"+
+"  image below), then the files are different.  This normally comes from a download error or\n"+
+"  a file corruption error.\n"+
+"  Do not run any file with an error, attempt to download again."
+
+verify[8] ="Finally:  The correct hash code for each module is obtained on this web site at\n"+
+" the download page specific to each module.  For each module you need to click on the button\n"+
+" shown at the bottom of the module's description page.   The download instructions are the same\n"+
+" for each module, however the hash code shown is different for each file.  Make sure to use the\n"+
+" correct code for the file you have downloaded."
 
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
