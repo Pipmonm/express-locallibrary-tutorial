@@ -41,8 +41,7 @@ verify[7] = "Step 7- The screen image below shows the complete sequence of promp
 verify[8] = "Results:  If codes are exactly the same only the normal prompt, as shown above, is returned.\n"+
 "  If hash codes are shown, with '=<' comparisons or similar (as in the image below), then files are different.\n"+
 "  This normally comes from a download error or file corruption error.\n"+
-"  Do not run any file with an error, attempt to download again, or contact us.\n"+
-"</pre>"
+"  Do not run any file with an error, attempt to download again, or contact us."
 
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
