@@ -41,13 +41,14 @@ verify[4] = "Step 4- Next we will copy this Hash code and compare it with the on
 
 verify[5] = "Step 5- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" \n"+
 "  PowerShell prints stuff then requests information as shown below:\n"+
-"   (we also show where you will need to 'PASTE' the codes being compared)"
+"   (we also show where you will need to 'PASTE' the codes being compared.  Where no input\n"+
+"    is shown you must press 'ENTER' with no text) "
 
 verify[6] = "Step 6- The screen image below shows the complete sequence of prompts and required \n"+
-"  responses to verify the codes.  Note that the last hash code entered is obtained from this site's pages \n"+
-"  for the module being downloaded.\n"+
+"  responses to verify the codes.  Note that the last hash code entered is obtained from this\n"+
+"  site's page for the module being downloaded.\n"+
 "  NOTE: For exactly matching codes the final 'Enter' (entered for DifferenceObject[1] ) will \n"+
-"        only result in the PowerShell prompt being shown, signalling that the files are the same.\m"+
+"        result in only the PowerShell prompt being shown, signalling that the files are the same.\n"+
 "        (proceed to Next step to see the output for files that do not compare)"
 
 verify[7] = "Step 7-  If hash codes are shown with '=<' comparisons or similar (as in the\n"+
