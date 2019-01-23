@@ -58,9 +58,9 @@ verify[7] = "Step 7-  If hash codes are shown with '=<' comparisons or similar (
 
 verify[8] ="Finally:  The correct hash code for each module is obtained on this web site at\n"+
 " the download page specific to each module.  For each module you need to click on the button\n"+
-" shown at the bottom of the module's description page.   The download instructions are the same\n"+
-" for each module, however the hash code shown is different for each file.  Make sure to use the\n"+
-" correct code for the file you have downloaded."
+" shown at the bottom of the module's description page to see the page with the code.\n"+
+" These download instructions pages are the same for each module, however the hash code shown\n"+
+" is different for each file.  Be sure to use the correct code for the file you have downloaded."
 
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
