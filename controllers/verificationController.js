@@ -5,7 +5,16 @@ var async = require('async');
 var app = require('../app');//2019-01-22 need State variable to track steps for verify_x
 let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
-
+let label = [];
+label[0] = " ";
+label[1] = 'Windows 10 Search Box';
+label[2] = 'starting PowerShell';
+label[3] = 'get Hash command & result';
+label[4] = 'copying PowerShell Hash Code';
+label[5] = 'compare command & result';
+label[6] = 'inputs to compare command & results';
+label[7] = "Compare's output for differing files";
+label[8] = 'locating correct SHA-256 Hash Code';
 
 let verify = [];
 verify[0] = "Press Next";
@@ -53,7 +62,7 @@ exports.verify_view = function(req, res) {
   //line to force update
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
-  let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
+  let imageTitle = label[VerifyState.step];
   let nextLocation = '/catalog/verification';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
