@@ -52,7 +52,8 @@ exports.verify_view = function(req, res) {
   let filename = "step" + VerifyState.step.toString() + ".png";
   console.log("@@@ $ looking for : " + filename);
   //line to force update
-  let image = '../public/images/'+ filename; //this provides download href
+  //let image = '../public/images/'+ filename; //this provides download href
+  let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
   let nextLocation = '/catalog/verification';
   let prevLocation = '/catalog/backVerify';
