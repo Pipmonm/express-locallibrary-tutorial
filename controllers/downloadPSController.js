@@ -28,7 +28,7 @@ exports.downloadPS_view = function(req, res) {
   "(after the REGISTRATION DATA string has been used to set the license key it then serves \n" +
   " as the unique password to access your license key via the \"View Account\" page)\n" +
   "\n" +
-  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification: (using SHA-256 hash code) \n" +
+  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification:\n" +
   "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +
   "(see VERIFICATION page for info on how to verify secure file download using this code)"
 
