@@ -7,7 +7,7 @@ var app = require('../app');//2019-01-22 need State variable to track steps for 
 exports.verify_back = function(req,res){
   VerifyState.step -=2;//back up two and view will ++ interval
   if(VerifyState<0)VerifyState = 7;//keep it to max-1
-  this.verify_view();
+  module.exports.verify_view();//2019-01-22 intra call to exported function
 }
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
