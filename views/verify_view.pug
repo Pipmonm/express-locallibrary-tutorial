@@ -16,10 +16,10 @@ block content
 
 
   .image
-  label(for="verify1img") #{source2}
+  label(for="verify1img") #{source}
   br
   .verify1img
-    <img id="verify1img"  src=source alt="step view" width="450" height="250">
+    <img id="verify1img"  src=#{source} alt="step view" width="450" height="250">
   if error
     p Error getting dynamic content.
   else
