@@ -9,7 +9,7 @@ let label = [];
 label[0] = " ";
 label[1] = 'Windows 10 Search Box';
 label[2] = 'starting PowerShell';
-label[3] = 'get Hash command & result';
+label[3] = 'Get-FileHash command & result';
 label[4] = 'copying PowerShell Hash Code';
 label[5] = 'compare command & result';
 label[6] = 'inputs to compare command & results';
@@ -21,26 +21,25 @@ verify[0] = "Press Next";
 verify[1] = "Microsoft Windows can perform the verification of a file's authenticity by using the\n" +
 "'PowerShell' utility command 'FCI'.   Follow the steps as described below to accomplish this. \n"+
 "\n"+
-"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n"
+"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n" +
+"        This will bring up the menu with PowerShell option. (press 'Next')";
 
-verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' or similar ) \n"+
-"        This will bring up the PowerShell utility as shown below.\n"+
-"        (The PowerShell prompt 'PS C:>' may be different but this will not affect anything. )"
+verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' ) \n"+
+"  The PowerShell utility will start up, with probably 'PS c:>' as the prompt.  (It is not\n"+
+"  important if the prompt is different)"
 
 verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
-"  At the prompt type in the command: \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"  as shown below.\n"+
-"   (as for all commands you must then press ENTER key to execute it)\n"+
-"   Also notice that as you type PowerShell allows you to browse to any folder: use if your file is not \n"+
-"   on the Desktop as in our example."
+"  At the prompt type in the command: \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\".\n"+
+"  (as for all commands you must then press ENTER key to enter it)\n"+
+"  Also notice that as you type PowerShell allows you to browse to any folder: you can use \n"+
+"  this feature if your file is not located on the Desktop as in our example.\n"+
+"  PS will then print out the long SHA-256 hash code, as shown below:"
 
-verify[4] = "Step 4- PS will then print out SHA-256 results including the long hash code\n"+
-"     HASH part:>  5B1332C19F156E8CCEBF8F7FD749F8D3D23CB30685BC52A35A4FA3C8F6EFCBE8 "
+verify[4] = "Step 5- Next we will copy this Hash code and compare it with the one from our site.\n"+
+" While staying in PowerShell double click directly on the hash code shown (turns highlighted)\n"+
+" then Right-Click on it & copy"
 
-verify[5] = "Step 5- Next we will copy this Hash code and compare it with the one from our site.\n"+
-" The following steps are still done in PowerShell\n"+
-"  Double click directly on the hash code (turns highlighted) then Right-Click on it & copy"
-
-verify[6] = "Step 6- At the prompt (i.e. PS C:>) type: \"compare\" \n"+
+verify[5] = "Step 6- At the prompt (i.e. PS C:>) type: \"compare\" \n"+
 "  PowerShell prints stuff then requests information as shown below:"
 
 verify[7] = "Step 7- The screen image below shows the complete sequence of prompts and required \n"+
