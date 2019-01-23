@@ -19,7 +19,7 @@ block content
   label(for="verify1img") #{source2}
   br
   .verify1img
-    <img id="verify1img"  src=require("../public/images/step1.png") alt="step view" width="450" height="250">
+    <img id="verify1img"  src=require("./public/images/step1.png") alt="step view" width="450" height="250">
   if error
     p Error getting dynamic content.
   else
@@ -27,6 +27,9 @@ block content
 
    a(href= nextLoc)
        button(type="button") #{nextLbl}
+
+   a(href= prevLoc)
+       button(type="button") #{prevLbl}
 
   //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
   //- the PUG href requires two lines, gives errors otherwise
