@@ -3,9 +3,9 @@ const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async');
 var app = require('../app');//2019-01-22 need State variable to track steps for verify_x
-var scrWidth = "720px";
+let widthValue = "720px";
+var scrWidth = ["720px","850px","720px","850px","300px","720px","850px","720px","850px"];
 
-let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${scrWidth}; padding:10px; align:center'>"
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 let label = [];
 label[0] = " ";
@@ -70,6 +70,9 @@ exports.verify_view = function(req, res) {
   if(VerifyState.step>8)VerifyState.step=1;
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
+  widthValue = scrWidth[VerifyState.step];//2019-01=25 added
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
+
   console.log("@@@ $ looking for : " + filename);
   //line to force update
   //let image = '../public/images/'+ filename; //this provides download href
