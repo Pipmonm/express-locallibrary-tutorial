@@ -3,7 +3,9 @@ const { sanitizeBody } = require('express-validator/filter');
 
 var async = require('async');
 var app = require('../app');//2019-01-22 need State variable to track steps for verify_x
-let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
+var scrWidth = "720px";
+
+let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${scrWidth}; padding:10px; align:center'>"
 //var mongoose = require('mongoose'); // added  :MOD: 2018-03-08 10:32 AM
 let label = [];
 label[0] = " ";
