@@ -89,6 +89,7 @@ res.render('verify_view', { title: "Verifying Downloads",
 
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
+  console.log("@@@ $ do get to verify_view, with VS.step = ",VerifyState.step.toString());
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
   if(VerifyState.step>8)VerifyState.step=1;
   let scriptText = verify[VerifyState.step];
@@ -101,6 +102,7 @@ exports.verify_view = function(req, res) {
   //forcing update
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
+  console.log("@@@ $ image path/name: ", image);
   let imageTitle = label[VerifyState.step];
   let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
@@ -147,4 +149,4 @@ res.render('verify_view', { title: "Verifying Downloads",
                                  prevLoc: prevLocation,
                                  prevLbl: prevLocLbl});
 
-}
+};
