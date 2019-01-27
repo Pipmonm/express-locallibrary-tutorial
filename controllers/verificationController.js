@@ -53,9 +53,9 @@ verify[6] = "Step 6- The screen image below shows the complete sequence of promp
 "        result in only the PowerShell prompt being shown, signalling that the files are the same.\n"+
 "        (proceed to Next step to see the output for files that do not compare)"
 
-verify[7] = "Step 7-  If hash codes are shown with '=<' comparisons or similar (as in the\n"+
-"  image below), then the files are different.  This normally comes from a download error or\n"+
-"  a file corruption error.\n"+
+verify[7] = "Step 7-  If the final ENTER results in extra output shown with '=<' comparisons\n"+
+"  or similar (as in the image below), then the files are different.  This normally comes from\n"+
+"  a download error or a file corruption error.\n"+
 "  Do not run any file with an error, attempt to download again."
 
 verify[8] ="Finally:  The correct hash code for each module is obtained on this web site at\n"+
@@ -69,7 +69,7 @@ exports.verify_view = function(req, res) {
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
   if(VerifyState.step>8)VerifyState.step=1;
   let scriptText = verify[VerifyState.step];
-  let filename = "step" + VerifyState.step.toString() + ".png";
+  let filename = "step" + VerifyState.step.toString() + ".jpg";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
 
