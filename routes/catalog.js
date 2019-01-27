@@ -30,7 +30,7 @@ router.get('/pieSlicer_view',pieSlicer_controller.pieSlicer_view);
 router.get('/fracSpeller_view',fracSpeller_controller.fracSpeller_view);
 
 router.get('/verification',verification_controller.verify_start);//2019-01-17 for resetting need a 'start'//2019-01-15
-router.get('nextVerify',verification_controller.verify_view);//2019-01-17 complications require 'start' & 'next' & 'prev'
+router.get('/nextVerify',verification_controller.verify_view);//2019-01-17 complications require 'start' & 'next' & 'prev'
 router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
 
