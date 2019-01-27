@@ -100,7 +100,13 @@ exports.verify_back = function(req,res){
   VerifyState.step -=1;//back up two and view will ++ interval
   if(VerifyState.step<=0)VerifyState.step=8;
   let scriptText = verify[VerifyState.step];
-  let filename = "step" + VerifyState.step.toString() + ".png";
+  let extension = ".png";
+  if(VerifyState.step == 1)extension = ".jpg";
+  let filename = "step" + VerifyState.step.toString() + extension;
+  widthValue = scrWidth[VerifyState.step];//2019-01=25 added
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
+
+
   console.log("@@@ $ looking for : " + filename);
   //line to force update
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
