@@ -72,7 +72,7 @@ exports.verify_start = function(req,res) {
 
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
-  let nextLocation = '/catalog/verification';
+  let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
   let prevLocLbl = 'Prev';
@@ -85,7 +85,8 @@ res.render('verify_view', { title: "Verifying Downloads",
                                  nextLbl: nextLabel,
                                  prevLoc: prevLocation,
                                  prevLbl: prevLocLbl});
-}
+};
+
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
@@ -97,12 +98,10 @@ exports.verify_view = function(req, res) {
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
 
-  console.log("@@@ $ looking for : " + filename);
-  //line to force update
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = label[VerifyState.step];
-  let nextLocation = '/catalog/verification';
+  let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
   let prevLocLbl = 'Prev';
