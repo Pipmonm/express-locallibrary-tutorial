@@ -98,6 +98,7 @@ exports.verify_view = function(req, res) {
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
 
+  //forcing update
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = label[VerifyState.step];
