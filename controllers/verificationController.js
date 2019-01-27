@@ -64,6 +64,28 @@ verify[8] ="Finally:  The correct hash code for each module is obtained on this 
 " These download instructions pages are the same for each module, however the hash code shown\n"+
 " is different for each file.  Be sure to use the correct code for the file you have downloaded."
 
+exports.verify_start = function(req,res) {
+  VerifyState.step = 1; //2019-01-21 VerifyState is a global defined in app.js
+  let scriptText = verify[VerifyState.step];
+  let filename = "step" + VerifyState.step.toString() + ".jpg";
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
+
+  //let image = '../public/images/'+ filename; //this provides download href
+  let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
+  let nextLocation = '/catalog/verification';
+  let prevLocation = '/catalog/backVerify';
+  let nextLabel = 'Next';
+  let prevLocLbl = 'Prev';
+res.render('verify_view', { title: "Verifying Downloads",
+                                 themeDesc1: prolog + scriptText,
+                                 themeDesc2: " ",
+                                 source: image,
+                                 source2: "verify step1",
+                                 nextLoc: nextLocation,
+                                 nextLbl: nextLabel,
+                                 prevLoc: prevLocation,
+                                 prevLbl: prevLocLbl});
+}
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
@@ -111,7 +133,7 @@ exports.verify_back = function(req,res){
   //line to force update
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
-  let nextLocation = '/catalog/verification';
+  let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
   let prevLocLbl = 'Prev';
