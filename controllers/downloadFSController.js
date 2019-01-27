@@ -12,21 +12,20 @@ exports.downloadFS_view = function(req, res) {
   console.log("specifics of FS downloads");
   let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
   "FracSpellerDual.exe application is limited to the specific computer (Windows based only)  \n"+
-  "whose system ID and Format Code are used when obtaining the license key.  \n"+
-  "Therefore be sure to get this data from the computer where the software will be used.  \n"+
-  "Installing on a USB is possible, but you should view the demo on a CPU first because\n"+
-  "a 'demo' mode is not available on USB versions.\n"+
-  "Otherwise USB versions are installed using the same procefure as for the computer based\n"+
-  "versions. \n"+
+  "whose system ID was used to obtain the license key.  \n"+
+  "Therefore be sure to get this ID from the computer where the software will be used.  \n"+
+  "Installing on a USB is possible, but you should view the demo versions on a CPU first\n"+
+  "first because a 'demo' mode is not available for USB's.\n"+
+  "Otherwise USB versions are the same as the computer based versions.  NOTE:Some USB's\n"+
+  "cannot be used because they do not have a serial number.  (not often seen)"
   "  \n"+
-  "Getting a license key:\n"+
-  "A distinct System ID and Format Code are placed in your system's clipboard when you click \n"+
-  "on the \"REGISTRATION DATA\" tab shown on the opening page for each demo application. \n"+
-  "Paste this information where requested on this site's \"REGISTER FORM\" page to generate \n"+
-  "the license Key.  Once successfully registered you may immediately obtain the unique \n"+
-  "license key for that specific application from this site's \"VIEW ACCOUNT\" page. \n"+
-  "(after the REGISTRATION DATA string has been used to set the license key it then serves \n" +
-  " as the unique password to access your license key via the \"View Account\" page)\n" +
+  "Getting the license key:\n"+
+  "Every module's first page has a tab labelled \"REGISTRATION DATA\".\n"+
+  "Clicking on that tab automatically puts the system ID in your window's clipboard.\n"+
+  "Paste this information where requested when you fill the \"REGISTER FORM\" to get \n"+
+  "a license Key.\n"+
+  "After registering, immediately use that same System ID code as the password to view\n"+
+  "the license key for that module in the \"VIEW ACCOUNT\" page. \n" +
   "\n" +
   "File Verification (using SHA-256 hash code): \n" +
   "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +

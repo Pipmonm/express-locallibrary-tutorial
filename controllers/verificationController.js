@@ -58,20 +58,21 @@ verify[7] = "Step 7-  If the final ENTER results in extra output shown with '=<'
 "  a download error or a file corruption error.\n"+
 "  Do not run any file with an error, attempt to download again."
 
-verify[8] ="Finally:  The correct hash code for each module is obtained on this web site at\n"+
-" the download page specific to each module.  For each module you need to click on the button\n"+
-" shown at the bottom of the module's description page to see the page with the code.\n"+
-" These download instructions pages are the same for each module, however the hash code shown\n"+
-" is different for each file.  Be sure to use the correct code for the file you have downloaded."
+verify[8] ="Finally:  The correct hash code for each module is available at the download\n"+
+" page specific to each module.  (accessed by clicking \"Downloading Demos\" shown at bottom \n"+
+" of the module's description page)"
+" These download instructions pages look the same for each module, however the hash code given\n"+
+" for each file is different.  Be sure to use the code for the file you have downloaded."
 
 exports.verify_start = function(req,res) {
   VerifyState.step = 1; //2019-01-21 VerifyState is a global defined in app.js
   let scriptText = verify[VerifyState.step];
-  let filename = "step" + VerifyState.step.toString() + ".jpg";
+  let filename = "step" + VerifyState.step.toString() + ".png";
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
 
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
+  let imageTitle = label[VerifyState.step];
   let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
@@ -80,7 +81,7 @@ res.render('verify_view', { title: "Verifying Downloads",
                                  themeDesc1: prolog + scriptText,
                                  themeDesc2: " ",
                                  source: image,
-                                 source2: "verify step1",
+                                 source2: imageTitle,
                                  nextLoc: nextLocation,
                                  nextLbl: nextLabel,
                                  prevLoc: prevLocation,
@@ -89,20 +90,16 @@ res.render('verify_view', { title: "Verifying Downloads",
 
 //Display unique page details for Verification
 exports.verify_view = function(req, res) {
-  console.log("@@@ $ do get to verify_view, with VS.step = ",VerifyState.step.toString());
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
   if(VerifyState.step>8)VerifyState.step=1;
   let scriptText = verify[VerifyState.step];
-  let extension = ".png";
-  if(VerifyState.step == 1)extension = ".jpg";
-  let filename = "step" + VerifyState.step.toString() + extension;
+  let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
 
   //forcing update
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
-  console.log("@@@ $ image path/name: ", image);
   let imageTitle = label[VerifyState.step];
   let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
@@ -124,17 +121,12 @@ exports.verify_back = function(req,res){
   VerifyState.step -=1;//back up two and view will ++ interval
   if(VerifyState.step<=0)VerifyState.step=8;
   let scriptText = verify[VerifyState.step];
-  let extension = ".png";
-  if(VerifyState.step == 1)extension = ".jpg";
-  let filename = "step" + VerifyState.step.toString() + extension;
+  let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
-
-
-  console.log("@@@ $ looking for : " + filename);
   //line to force update
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
-  let imageTitle = 'Step ' + VerifyState.step.toString() + ' image';
+  let imageTitle = label[VerifyState.step];
   let nextLocation = '/catalog/nextVerify';
   let prevLocation = '/catalog/backVerify';
   let nextLabel = 'Next';
