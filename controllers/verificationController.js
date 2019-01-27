@@ -69,7 +69,9 @@ exports.verify_view = function(req, res) {
   VerifyState.step += 1; //2019-01-21 VerifyState is a global defined in app.js
   if(VerifyState.step>8)VerifyState.step=1;
   let scriptText = verify[VerifyState.step];
-  let filename = "step" + VerifyState.step.toString() + ".jpg";
+  let extension = ".png";
+  if(VerifyState.step == 1)extension = ".jpg";
+  let filename = "step" + VerifyState.step.toString() + extension;
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
   let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
 
