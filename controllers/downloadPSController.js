@@ -17,17 +17,15 @@ exports.downloadPS_view = function(req, res) {
   "\n"+
   "Verifying the downloaded file before running it is recommended to ensure the file's\n"+
   "authenticity and integrity.   Using Window's PowerShell utility you can easily compare the\n"+
-  "demo file's SHA-256 hash code (given below) with the one generated using the PowerShell.\n"+
-  "utility as explained in the VERIFICATION page listed on our site's menu.\n"
-  "Installing on a USB is possible, but you should view the demo on a CPU first because\n"+
-  "a 'demo' mode is not available on USB versions.\n"+
+  "demo file's SHA-256 hash code (given below) with the one generated for the downloaded file\n"+
+  "using the PowerShell utility as explained in the VERIFICATION page listed on our site's menu.\n"+
   "\n"+
   "Running the demo:\n"+
   "After verifying the download run the program by simply double-cliking on it."
   "\n" +
-  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification:\n" +
+  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification code:\n" +
   "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +
-  "(use this code when following instructions given in \"VERIFICATION\" menu item.)"
+  "(copy & use this code when following instructions given in \"VERIFICATION\" menu item.)"
 
   let blurb = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
