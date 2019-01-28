@@ -17,7 +17,7 @@ exports.downloadFS_view = function(req, res) {
   "Installing on a USB is possible, but you should view the demo versions on a CPU first\n"+
   "first because a 'demo' mode is not available for USB's.\n"+
   "Otherwise USB versions are the same as the computer based versions.  NOTE:Some USB's\n"+
-  "cannot be used because they do not have a serial number.  (not often seen)"
+  "cannot be used because they do not have a serial number.  (not often seen)\n"+
   "  \n"+
   "Getting the license key:\n"+
   "Every module's first page has a tab labelled \"REGISTRATION DATA\".\n"+
