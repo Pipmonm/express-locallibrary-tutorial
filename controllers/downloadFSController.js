@@ -15,7 +15,7 @@ exports.downloadFS_view = function(req, res) {
   "whose system ID was used to obtain the license key.  \n"+
   "Therefore be sure to get this ID from the computer where the software will be used.  \n"+
   "Installing on a USB is possible, but you should view the demo versions on a CPU first\n"+
-  "first because a 'demo' mode is not available for USB's.\n"+
+  "because a 'demo' mode is not available for USB's.\n"+
   "Otherwise USB versions are the same as the computer based versions.  NOTE:Some USB's\n"+
   "cannot be used because they do not have a serial number.  (not often seen)\n"+
   "  \n"+
