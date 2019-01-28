@@ -18,7 +18,7 @@ exports.downloadPS_view = function(req, res) {
   "Verifying the downloaded file before running it is recommended to ensure the file's\n"+
   "authenticity and integrity.   Using Window's PowerShell utility you can easily compare the\n"+
   "demo file's SHA-256 hash code (given below) with the one generated for the downloaded file\n"+
-  "using the PowerShell utility as explained in the VERIFICATION page listed on our site's menu.\n"+
+  "as explained on this site's VERIFICATION menu item.\n"+
   "\n"+
   "Running the demo:\n"+
   "After verifying the download run the program by simply double-cliking on it."
