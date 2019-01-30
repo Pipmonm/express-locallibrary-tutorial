@@ -39,9 +39,10 @@ verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been do
 "  PowerShell will then print out the long SHA-256 hash code, as shown below:"
 
 verify[4] = "Step 4- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" \n"+
-"  PowerShell prints stuff then requests information as shown below:\n"+
-"   (we also show where you will need to 'PASTE' the codes being compared.  Where \"(nothing)\" \n"+
-"   is shown you must press 'ENTER' with no text) ";
+"  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":\n"+
+"   (we show the completed sequence and where you will need to 'PASTE' the codes.\n"+
+"    Where \"(nothing)\" is shown you are to press 'ENTER' with no text)\n"+
+"   Go on to Step 5 to begin the sequence in order."
 
 verify[5] = "Step 5- Paste the hash code from our site for the module you have downloaded at\n"+
 "  the first position requested by 'Compare' (ie ReferenceObject[0]) then press ENTER twice\n"+
