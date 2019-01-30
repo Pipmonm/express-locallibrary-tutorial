@@ -195,7 +195,7 @@ exports.client_status_post = [
                 console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
                 debug('DEBUG: errors spotted in validationResult for "client_create_post"');
                 // There are errors. Render form again with sanitized values/errors messages.
-                res.render('client_form', { title: 'Create Client', client: req.body, message:'' errors: errors.array() });
+                res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
                 return;
 
             }else{
