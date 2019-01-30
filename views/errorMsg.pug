@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   br
-  div!= message
+  div([innerHtml]="message")
   //- the exclamation is to allow inline HTML
   br
   p= message2
