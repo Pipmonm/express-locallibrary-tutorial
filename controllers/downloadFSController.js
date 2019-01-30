@@ -24,7 +24,7 @@ exports.downloadFS_view = function(req, res) {
   "After verifying it run the program from your desktop by double-cliking on it.\n"+
   "\n" +
   "FracSpellerDual.exe (vrs. 1.0.0.1)  file Verification code:\n" +
-  "SHA-256 Hash Code:   1B20803DDADB9C958AE23D97D6BDFC7EFCFB07C4B20594B947BD61F832D0CB0B \n" +
+  "SHA-256 Hash Code:   FEB16DA5A5885D87ACD7A9E0FA211DEBF96ADEB3820B0ECC38F85417D2B9BD56 \n" +
   "(copy & use this code when following instructions given in \"VERIFICATION\" menu item.)"
 
   let extra = "USB Version: \n" +
