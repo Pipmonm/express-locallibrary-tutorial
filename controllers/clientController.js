@@ -219,7 +219,7 @@ exports.client_status_post = [
                   var errMsg = "This System Id is already in use" +"\n" + "Try logging into 'Account View' with it";
                   // There are errors. Render form again with sanitized values/errors messages.
                   //added comment to fix see no change error
-                  res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
+                  res.render('errorMsg', { title: 'Registration Error', client: req.body, message:`errMsg`, message2:'for Id string: ',  message3:rgrqcd });
                   return;
 
 
