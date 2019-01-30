@@ -71,7 +71,7 @@ exports.verify_start = function(req,res) {
   VerifyState.step = 1; //2019-01-21 VerifyState is a global defined in app.js
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
-  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:400px; padding:10px; align:center'>"
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
 
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
@@ -98,7 +98,7 @@ exports.verify_view = function(req, res) {
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
-  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
 
   //forcing update
   //let image = '../public/images/'+ filename; //this provides download href
@@ -126,7 +126,7 @@ exports.verify_back = function(req,res){
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
-  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:${widthValue}; padding:10px; align:center'>"
+  let prolog = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:720px; padding:10px; align:center'>"
   //line to force update
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = label[VerifyState.step];
