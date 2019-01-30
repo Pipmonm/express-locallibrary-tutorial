@@ -217,6 +217,7 @@ exports.client_status_post = [
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
                   console.log('@@@ $ SystemId already registered"');
                   // There are errors. Render form again with sanitized values/errors messages.
+                  //added comment to fix see no change error
                   res.render('errorMsg', { title: 'Registration Error', client: req.body, message:'This SystemId Data already registered.  Try "View Account" page with it. ', message2:'Id string: ',  message3:rgrqcd });
                   return;
 
