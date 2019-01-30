@@ -11,25 +11,21 @@ var async = require('async');
 exports.downloadFS_view = function(req, res) {
   console.log("specifics of FS downloads");
   let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
-  "FracSpellerDual.exe application is limited to the specific computer (Windows based only)  \n"+
-  "whose system ID was used to obtain the license key.  \n"+
-  "Therefore be sure to get this ID from the computer where the software will be used.  \n"+
-  "Installing on a USB is possible, but you should view the demo versions on a CPU first\n"+
-  "because a 'demo' mode is not available for USB's.\n"+
-  "Otherwise USB versions are the same as the computer based versions.  NOTE:Some USB's\n"+
-  "cannot be used because they do not have a serial number.  (not often seen)\n"+
-  "  \n"+
-  "Getting the license key:\n"+
-  "Every module's first page has a tab labelled \"REGISTRATION DATA\".\n"+
-  "Clicking on that tab automatically puts the system ID in your window's clipboard.\n"+
-  "Paste this information where requested when you fill the \"REGISTER FORM\" to get \n"+
-  "a license Key.\n"+
-  "After registering, immediately use that same System ID code as the password to view\n"+
-  "the license key for that module in the \"VIEW ACCOUNT\" page. \n" +
+  "Dowloading FracSpellerDual Demo:  \n"+
+  "You may download the demo by simply clicking on the \"Download Demo\" button at the \n"+
+  "bottom of this page and running the demo from your desktop after verifying the download.\n"+
+  "\n"+
+  "Verifying the downloaded file before running it is recommended to ensure the file's\n"+
+  "authenticity and integrity.   Using Window's PowerShell utility you can easily compare \n"+
+  "the file's SHA-256 hash code (given below) with the one generated for the downloaded\n"+
+  "file as explained on this site's VERIFICATION menu item.\n"+
+  "\n"+
+  "Running the demo:\n"+
+  "After verifying it run the program from your desktop by double-cliking on it.\n"+
   "\n" +
-  "File Verification (using SHA-256 hash code): \n" +
-  "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +
-  "(see VERIFICATION page for info on how to verify secure file download using this code)"
+  "FracSpellerDual.exe (vrs. 1.0.0.1)  file Verification code:\n" +
+  "SHA-256 Hash Code:   1B20803DDADB9C958AE23D97D6BDFC7EFCFB07C4B20594B947BD61F832D0CB0B \n" +
+  "(copy & use this code when following instructions given in \"VERIFICATION\" menu item.)"
 
   let extra = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
