@@ -192,10 +192,10 @@ exports.client_status_post = [
             // Extract the validation errors from a request.
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
+                console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
                 debug('DEBUG: errors spotted in validationResult for "client_create_post"');
                 // There are errors. Render form again with sanitized values/errors messages.
-                res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
+                res.render('client_form', { title: 'Create Client', client: req.body, message:'' errors: errors.array() });
                 return;
 
             }else{
@@ -215,7 +215,12 @@ exports.client_status_post = [
 
                 //check that not already exists
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
-                  console.log("found a client with curious conditions string in client_create_post ");
+                  console.log('@@@ $ SystemId already registered"');
+                  // There are errors. Render form again with sanitized values/errors messages.
+                  res.render('errorMsg', { title: 'Registration Error', client: req.body, message:'This SystemId Data already registered.  Try "View Account" page with it. ', message2:'Id string: ',  message3:rgrqcd });
+                  return;
+
+
                 }
 
 
