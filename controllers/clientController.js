@@ -216,7 +216,7 @@ exports.client_status_post = [
                 //check that not already exists
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
                   console.log('@@@ $ SystemId already registered"');
-                  var errMsg = "This System Id is already in use" +
+                  var errMsg = "This System Id is already in use" + "<br />" +
                   "Try logging into 'Account View' with it";
                   // There are errors. Render form again with sanitized values/errors messages.
                   //added comment to fix see no change error
