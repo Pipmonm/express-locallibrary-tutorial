@@ -216,7 +216,8 @@ exports.client_status_post = [
                 //check that not already exists
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
                   console.log('@@@ $ SystemId already registered"');
-                  var errMsg = "This System Id is already in use" +"\\n" + "Try logging into 'Account View' with it";
+                  var errMsg = "This System Id is already in use" +
+                  "Try logging into 'Account View' with it";
                   // There are errors. Render form again with sanitized values/errors messages.
                   //added comment to fix see no change error
                   res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
