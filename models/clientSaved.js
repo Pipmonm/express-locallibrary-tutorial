@@ -3,18 +3,17 @@ var moment = require('moment'); //added  :MOD: 2018-03-08 10:01 AM
 
 var Schema = mongoose.Schema;
 
-var ClientSchema = Schema( //2019-01-30 many modifications
+var ClientSchema = Schema(
   {
-    license_string: {type: String, max: 120, unique: true, required: true, dropDups:true}, //2019-01-30 added
-    device_id: {type: String, max : 20},
+    device_id: {type: String, max : 100, unique : true, required : true, dropDups: true },
     device_type: {type: String, max : 20},
     format_code: {type: String, max : 20},
-    moduleIdVrs: {type: String, max : 50}, //2019-01-30 added
     status: {type: String, max : 40, default:'pending'},
-    first_name: {type: String, default: 'anonymous', max: 100}, //defaults added
-    family_name: {type: String, default:'anonymous', max: 100},
-    email_address: {type: String, default: 'xyz@abc.dmn', max: 100},
+    first_name: {type: String, max: 100},
+    family_name: {type: String, max: 100},
+    email_address: {type: String, required: true, max: 100},
     registration_date: {type: Date},
+    license_string: {type: String, max: 100, default:""},
     license_key: {type: String, max: 30, default:""}
 
   }

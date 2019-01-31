@@ -75,19 +75,20 @@ exports.client_status_post = [
      }
      else {
            //find client
-           console.log("@@@ $ finding client with sysIdString: " + sysIdString);
-           var deviceId = sysIdString.split(":")[0]; //extract device id
+           console.log("@@@ $ finding client with license_string (aka sysIdString): " + sysIdString);
+           var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
            var mydoc;
-           Client.find({'device_id':deviceId},function(err, doc){
+           Client.find({'license_string':sysIdString},function(err, doc){ //2019-01-30 TO BE MODIFIED to license_string
+                  //2019-01-30 was: 'device_id' : deviceId
              if(err){
-               console.log("@@@ $ err in Client.find device_id" + err);
+               console.log("@@@ $ err in Client.find license_string" + err);
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             console.log(doc[0].device_type);
+             console.log(doc[0].license_string);//2019-01-30 was device_type
              mydoc = doc;
              if(doc.length > 1 ){
-               console.log("@@@ $ multiples of same deviceId " + deviceId);
+               console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
              }
            //});  //needs to include following
            //we want to find yssId record, generate license key and display it as
@@ -116,9 +117,10 @@ exports.client_status_post = [
 
            result = result ^ randy;
            key = key ^ result;//done at server and sent to client
-           console.log("licenseKey is: " + key.toString());
+           console.log("@@@ $ licenseKey is: " + key.toString());
 
-           Client.findByIdAndUpdate(doc[0]._id, {license_string: 'License is:', license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
+           Client.findByIdAndUpdate(doc[0]._id, {prolog: 'License is:', license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
+                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                if(err){
                  console.log("@@@ $ update error: " + err);
                }
@@ -212,12 +214,13 @@ exports.client_status_post = [
                 var device_type = arrayFCode[2];
                 var device_id = arrayFCode[0];
                 var format_code = arrayFCode[1];//keep FCODE format for now
+                var mod_Id_Vrs = arrayFCode[3];//2019-01-30 added for version control with unique Ids
 
-                //check that not already exists
+                //check that not already exists //2019-01-30 added new view == errorMsg
                 if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
                   console.log('@@@ $ SystemId already registered"');
-                  var errMsg = "This System Id is already in use" + "<br />" +
-                  "Try logging into 'Account View' with it";
+                  var errMsg = "This System Id string is already in use" + "<br />" +
+                  "Try instead to log into 'Account View' with it";
                   // There are errors. Render form again with sanitized values/errors messages.
                   //added comment to fix see no change error
                   res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
@@ -234,9 +237,11 @@ exports.client_status_post = [
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
+                        license_string: rgrqcd, //2019-01-30 added
                         device_id: device_id,
                         device_type: device_type,
                         format_code: format_code,
+                        moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
                         status: "pending",
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
@@ -252,9 +257,11 @@ exports.client_status_post = [
 
                 var clientrequest = new ClientRequest (
                    {
+                     license_string: rgrqcd, //2019-01-30 added complete string to allow multiple modules on same computer (& versions)
                      appname:device_type,
                      client:client._id,   //client._id,
                      formatCode:format_code,
+                     moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
                      status:"pending"
                   });
 

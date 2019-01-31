@@ -5,10 +5,12 @@ var Schema = mongoose.Schema;
 
 var ClientRequestSchema = Schema(
   {
-    appname: {type: String, required: true},
+    license_string: {type: String, max : 100, unique : true, required: true},
+    appname: {type: String, required: true, max : 20},
     client: { type: Schema.Types.ObjectId, ref: 'Client' }, //reference to the associated clientrequest
     formatCode: {type: String, required: true},
     status: {type: String, required: true},
+    moduleIdVrs: {type: String, max : 50}, //2019-01-30 added
     date_entered: {type: Date, default: Date.now}
   }
 );
