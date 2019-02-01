@@ -216,6 +216,7 @@ exports.client_status_post = [
                 var format_code = arrayFCode[1];//keep FCODE format for now
                 var mod_Id_Vrs = arrayFCode[3];//2019-01-30 added for version control with unique Ids
                 var errMsg = "unspecified error";//2019-02-01 added
+                var errMsg2 = "error:  unknown"; //ibid ^
                 //added line to force recompition
 /*
         UserModel.find({ nick: act.params }, function (err, users) {
@@ -265,8 +266,10 @@ exports.client_status_post = [
                     });
                 client.save(function (err) {
                     if (err) {
-                      errMsg = "error: " + err;
-                      res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd });
+                      errMsg = "Probably this System Id string is already in use" + "<br />" +
+                      "Try logging into 'Account View' with it instead.";
+                      errMsg2 = "error: " + err;
+                      res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg2, message2:'for client create Id: ',  message3:rgrqcd, + ExpressErr:errMsg});
                       //return next(err);
                       return;//2019-02-01 temporary???
                     } // go on to create clientrequest entry
@@ -288,9 +291,10 @@ exports.client_status_post = [
                   clientrequest.save(function (err) {
                      if (err) {
                        console.log('@@@ $ an error in clientrequest save: ' + err);
-                       errMsg = "error: " + err;
-                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for clientRequest create: ',  message3:rgrqcd });
-                       //return next(err);
+                       errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
+                                  "If error persists contact us stating exact error message given below.";
+                       errMsg2 = "error: " + err;
+                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg2, message2:'for client create Id: ',  message3:rgrqcd, + ExpressErr:errMsg});                       //return next(err);
                        return;//2019-02-01 maybe getting rid of moding headers after they were sent error
                      }
                      console.log('@@@ $ clientrequest save OK');
