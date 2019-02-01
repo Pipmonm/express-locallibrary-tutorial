@@ -269,7 +269,7 @@ exports.client_status_post = [
                       errMsg = "Probably this System Id string is already in use" + "<br />" +
                       "Try logging into 'Account View' with it instead.";
                       errMsg2 = "error: " + err;
-                      res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg2, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg});
+                      res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});
                       //return next(err);
                       return;//2019-02-01 temporary???
                     } // go on to create clientrequest entry
@@ -294,7 +294,7 @@ exports.client_status_post = [
                        errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
                                   "If error persists contact us stating exact error message given below.";
                        errMsg2 = "error: " + err;
-                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg2, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg});                       //return next(err);
+                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});                       //return next(err);
                        return;//2019-02-01 maybe getting rid of moding headers after they were sent error
                      }
                      console.log('@@@ $ clientrequest save OK');
