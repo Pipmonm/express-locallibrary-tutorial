@@ -227,6 +227,7 @@ exports.client_status_post = [
         });
 */
                 //check that not already exists //2019-01-30 added new view == errorMsg  also check changed
+/*  does not work and new way to be found for checking duplicates
                 Client.find({license_string: "rgrqcd"}, function (err, result){           //2019-02-01 complete redo
                     if(err){console.log("@@@ $ error finding license_string in create client " + err)}
                     if(!result.length) {
@@ -240,7 +241,7 @@ exports.client_status_post = [
                         //above sequence depends on 'res' being in scope from post handler that includes it
                     };
                 });//2019-02-01  end duplicate check
-
+*/
 
                 //var stringId = client._id.toString();
                 //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
@@ -283,6 +284,8 @@ exports.client_status_post = [
                   clientrequest.save(function (err) {
                      if (err) {
                        console.log('@@@ $ an error in clientrequest save: ' + err);
+                       var errMsg = "error: " + err;
+                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
                        return next(err);
                      }
                      console.log('@@@ $ clientrequest save OK');
