@@ -267,7 +267,8 @@ exports.client_status_post = [
                     if (err) {
                       errMsg = "error: " + err;
                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd });
-                      return next(err);
+                      //return next(err);
+                      return;//2019-02-01 temporary???
                     } // go on to create clientrequest entry
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
 
@@ -289,7 +290,8 @@ exports.client_status_post = [
                        console.log('@@@ $ an error in clientrequest save: ' + err);
                        errMsg = "error: " + err;
                        res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for clientRequest create: ',  message3:rgrqcd });
-                       return next(err);
+                       //return next(err);
+                       return;//2019-02-01 maybe getting rid of moding headers after they were sent error
                      }
                      console.log('@@@ $ clientrequest save OK');
                     })
