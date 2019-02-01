@@ -215,6 +215,7 @@ exports.client_status_post = [
                 var device_id = arrayFCode[0];
                 var format_code = arrayFCode[1];//keep FCODE format for now
                 var mod_Id_Vrs = arrayFCode[3];//2019-01-30 added for version control with unique Ids
+                var errMsg = "unspecified error";//2019-02-01 added
 /*
         UserModel.find({ nick: act.params }, function (err, users) {
           if (err) { console.log(err) };
@@ -263,7 +264,8 @@ exports.client_status_post = [
                     });
                 client.save(function (err) {
                     if (err) {
-                      console.log('@@@ $ an error in client save: ' + err);
+                      errMsg = "error: " + err;
+                      res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd });
                       return next(err);
                     } // go on to create clientrequest entry
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
@@ -284,8 +286,8 @@ exports.client_status_post = [
                   clientrequest.save(function (err) {
                      if (err) {
                        console.log('@@@ $ an error in clientrequest save: ' + err);
-                       var errMsg = "error: " + err;
-                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
+                       errMsg = "error: " + err;
+                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for clientRequest create: ',  message3:rgrqcd });
                        return next(err);
                      }
                      console.log('@@@ $ clientrequest save OK');
