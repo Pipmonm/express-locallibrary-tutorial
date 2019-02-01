@@ -119,7 +119,7 @@ exports.client_status_post = [
            key = key ^ result;//done at server and sent to client
            console.log("@@@ $ licenseKey is: " + key.toString());
 
-           Client.findByIdAndUpdate(doc[0]._id, {prolog: 'License is:', license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
+           Client.findByIdAndUpdate(doc[0]._id, {license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
                   //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                if(err){
                  console.log("@@@ $ update error: " + err);
