@@ -230,13 +230,14 @@ exports.client_status_post = [
                 Client.find({license_string: "rgrqcd"}, function (err, res){           //2019-02-01 complete redo
                     if(err){console.log("@@@ $ error finding license_string in create client " + err)}
                     if(!res.length) {
-                        console.log('@@@ $ System Id string  already registered"');
+                        console.log("@@@ $ System Id string  already registered");
                         var errMsg = "This System Id string is already in use" + "<br />" +
                         "Try instead to log into 'Account View' with it";
                         // There are errors. Render form again with sanitized values/errors messages.
                         //added comment to fix see no change error
-                        res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
-                        return;
+                        //res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
+                        //return;
+                        console.log("@@@ $ value for 'res' is: " + res + "  and possibly" + res.toString());
                     };
                 });//2019-02-01  end duplicate check
 
