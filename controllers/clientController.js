@@ -237,6 +237,7 @@ exports.client_status_post = [
                         //added comment to fix see no change error
                         res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
                         return;
+                    };
                 });//2019-02-01  end duplicate check
 
 
