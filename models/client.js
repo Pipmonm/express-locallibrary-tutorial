@@ -5,14 +5,14 @@ var Schema = mongoose.Schema;
 
 var ClientSchema = Schema( //2019-01-30 many modifications
   {
-    license_string: {type: String, max: 120, unique: true, required: true, dropDups:true}, //2019-01-30 added
+    license_string: {type: String, max: 120, unique: true, required: true}, //2019-01-30 added
     device_id: {type: String, max : 20},
     device_type: {type: String, max : 20},
     format_code: {type: String, max : 20},
     moduleIdVrs: {type: String, max : 50}, //2019-01-30 added
     status: {type: String, max : 40, default:'pending'},
-    first_name: {type: String, default: 'anonymous', max: 100}, //defaults added
-    family_name: {type: String, default:'anonymous', max: 100},
+    first_name: {type: String, default: 'anon', max: 100}, //defaults added
+    family_name: {type: String, default:'ymous', max: 100},
     email_address: {type: String, default: 'xyz@abc.dmn', max: 100},
     registration_date: {type: Date},
     license_key: {type: String, max: 30, default:""}
@@ -38,7 +38,7 @@ ClientSchema
 ClientSchema
 .virtual('sysIdString')
 .get(function() {
-  return this.device_id + ":" + this.format_code + ":" + this.device_type;
+  return this.device_id + ":" + this.format_code + ":" + this.device_type + ":" + this.moduleIdVrs;
 })
 
 ClientSchema

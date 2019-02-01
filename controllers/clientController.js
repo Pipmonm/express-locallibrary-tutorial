@@ -1,6 +1,6 @@
 //clientrequest instance controller js
 var Client = require('../models/client');
-var ClientRequest = require('../models/clientrequest');
+//var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -14,7 +14,7 @@ var debug = require('debug')('client');
 //validation check on sysId and Format Code string  //2018-12-14 new function
 function checkValidIdString(inString){
   let stringPieces = inString.split(":");
-  if(stringPieces.length !=3)return "fail";
+  if(stringPieces.length !=4)return "fail";//2019-01-31 now of size 4 with module name-version
   for (var i=0;i<2;i++){
     if(isNaN(stringPieces[i]))return "fail";
   }
@@ -216,9 +216,9 @@ exports.client_status_post = [
                 var format_code = arrayFCode[1];//keep FCODE format for now
                 var mod_Id_Vrs = arrayFCode[3];//2019-01-30 added for version control with unique Ids
 
-                //check that not already exists //2019-01-30 added new view == errorMsg
-                if(Client.find({device_id: "device_id"}, {device_id: 1}).limit(1)){
-                  console.log('@@@ $ SystemId already registered"');
+                //check that not already exists //2019-01-30 added new view == errorMsg  also check changed
+                if(Client.find({license_string: "rgrqcd"}, {license_string: 1}).limit(1)){ //check was on device_id, now full string from  clipboard
+                  console.log('@@@ $ System Id string already registered"');
                   var errMsg = "This System Id string is already in use" + "<br />" +
                   "Try instead to log into 'Account View' with it";
                   // There are errors. Render form again with sanitized values/errors messages.

@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 
 var ClientRequestSchema = Schema(
   {
-    license_string: {type: String, max : 100, unique : true, required: true},
     appname: {type: String, required: true, max : 20},
     client: { type: Schema.Types.ObjectId, ref: 'Client' }, //reference to the associated clientrequest
     formatCode: {type: String, required: true},
