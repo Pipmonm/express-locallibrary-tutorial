@@ -6,15 +6,15 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='first_name') First Name:
-      input#first_name.form-control(type='text', placeholder='FirstName (optional) ', name='first_name', required='false', value=(undefined===client ? '' : client.first_name) )
+      input#first_name.form-control(type='text', placeholder='FirstName (optional) ', name='first_name', required=false, value=(undefined===client ? '' : client.first_name) )
       label(for='family_name') Family Name:
-      input#family_name.form-control(type='text', placeholder='FamilyName (optional)', name='family_name', required='false', value=(undefined===client ? '' : client.family_name) )
+      input#family_name.form-control(type='text', placeholder='FamilyName (optional)', name='family_name', required=false, value=(undefined===client ? '' : client.family_name) )
     div.form-group
       label(for='email_address') Your Email:
-      input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required='false', value=(undefined===client ? '' : client.email_address) )
+      input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value=(undefined===client ? '' : client.email_address) )
     div.form-group
       label(for='register_request_code') Clipboard contents from application's REGISTRATION DATA tab:
-      input#register_request_code.form-control(type='text', placeholder='Registration Data (required)', name='register_request_code', required='true', value=(undefined===client ? '' : client.register_request_code) )
+      input#register_request_code.form-control(type='text', placeholder='Registration Data (required)', name='register_request_code', required=true, value=(undefined===client ? '' : client.register_request_code) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
