@@ -1,6 +1,6 @@
 //clientrequest instance controller js
 var Client = require('../models/client');
-//var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
