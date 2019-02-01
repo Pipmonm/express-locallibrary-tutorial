@@ -215,19 +215,29 @@ exports.client_status_post = [
                 var device_id = arrayFCode[0];
                 var format_code = arrayFCode[1];//keep FCODE format for now
                 var mod_Id_Vrs = arrayFCode[3];//2019-01-30 added for version control with unique Ids
-
+/*
+        UserModel.find({ nick: act.params }, function (err, users) {
+          if (err) { console.log(err) };
+          if (!users.length) { //do stuff here };
+          else {
+            users.forEach(function (user) {
+              console.log(user.nick);
+            });
+          }
+        });
+*/
                 //check that not already exists //2019-01-30 added new view == errorMsg  also check changed
-                if(Client.find({license_string: "rgrqcd"}, {license_string: 1}).limit(1)){ //check was on device_id, now full string from  clipboard
-                  console.log('@@@ $ System Id string already registered"');
-                  var errMsg = "This System Id string is already in use" + "<br />" +
-                  "Try instead to log into 'Account View' with it";
-                  // There are errors. Render form again with sanitized values/errors messages.
-                  //added comment to fix see no change error
-                  res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
-                  return;
-
-
-                }
+                Client.find({license_string: "rgrqcd"}, function (err, res){           //2019-02-01 complete redo
+                    if(err){console.log("@@@ $ error finding license_string in create client " + err)}
+                    if(!res.length) {
+                        console.log('@@@ $ System Id string  already registered"');
+                        var errMsg = "This System Id string is already in use" + "<br />" +
+                        "Try instead to log into 'Account View' with it";
+                        // There are errors. Render form again with sanitized values/errors messages.
+                        //added comment to fix see no change error
+                        res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
+                        return;
+                });//2019-02-01  end duplicate check
 
 
                 //var stringId = client._id.toString();
