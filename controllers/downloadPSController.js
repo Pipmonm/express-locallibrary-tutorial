@@ -15,9 +15,10 @@ exports.downloadPS_view = function(req, res) {
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
   "on your desktop will make it easy to \"verify the download\" as described next.\n"+
   "\n"+
-  "Verifying the file before running it is recommended to ensure its authenticity & integrity.\n"+
-  "Use Window's PowerShell utility to easily compare the file's SHA-256 hash code (given below) \n"+
-  "against the one generated for the downloaded file. (see the \"VERIFICATION\" page on this site)\n"+
+  "Verifying the file before running it is recommended to ensure its authenticity and\n"+
+  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
+  "(shown below) against the one generated for the downloaded file. (follow the detailed\n"+
+  " intructions in the \"VERIFICATION\" page on this site)\n"+
   "\n"+
   "\n"+
   "Running the demo:\n"+
