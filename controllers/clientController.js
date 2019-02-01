@@ -257,7 +257,7 @@ exports.client_status_post = [
 
                 var clientrequest = new ClientRequest (
                    {
-                     license_string: rgrqcd, //2019-01-30 added complete string to allow multiple modules on same computer (& versions)
+                     //license_string: rgrqcd, //2019-01-30 added complete string to allow multiple modules on same computer (& versions)
                      appname:device_type,
                      client:client._id,   //client._id,
                      formatCode:format_code,
