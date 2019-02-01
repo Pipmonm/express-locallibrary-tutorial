@@ -12,20 +12,21 @@ exports.downloadFS_view = function(req, res) {
   console.log("specifics of FS downloads");
   let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
   "Dowloading FracSpellerDual Demo:  \n"+
-  "You may download the demo by simply clicking on the \"Download Demo\" button at the \n"+
-  "bottom of this page and running the demo from your desktop after verifying the download.\n"+
+  "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
+  "on your desktop will make it easy to \"verify the download\" as described next.\n"+
   "\n"+
-  "Verifying the downloaded file before running it is recommended to ensure the file's\n"+
-  "authenticity and integrity.   Using Window's PowerShell utility you can easily compare \n"+
-  "the file's SHA-256 hash code (given below) with the one generated for the downloaded\n"+
-  "file as explained on this site's VERIFICATION menu item.\n"+
+  "Verifying the file before running it is recommended to ensure its authenticity and\n"+
+  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
+  "(shown below) against the one generated for the downloaded file. (follow the detailed\n"+
+  " intructions in the \"VERIFICATION\" page on this site)\n"+
+  "\n"+
   "\n"+
   "Running the demo:\n"+
   "After verifying it run the program from your desktop by double-cliking on it.\n"+
   "\n" +
   "FracSpellerDual.exe (vrs. 1.0.0.1)  file Verification code:\n" +
   "SHA-256 Hash Code:   FEB16DA5A5885D87ACD7A9E0FA211DEBF96ADEB3820B0ECC38F85417D2B9BD56 \n" +
-  "(copy & use this code when following instructions given in \"VERIFICATION\" menu item.)"
+  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.)"
 
   let extra = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
