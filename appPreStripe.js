@@ -1,4 +1,4 @@
-const express = require('express'); //2019-02-10 was 'var'  (const cannot be changed, safer for STRIPE?)
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -18,11 +18,7 @@ var helmet = require('helmet');
 // Set up CF environment variables
 //var appEnv = cfenv.getAppEnv(); //RECOVERY MOD 2018-05-18
 
-const keyPublishable = process.env.PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
-const keySecret = process.env.SECRET_KEY;//2019-02-10 added for STRIPE integration
-const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
-
-const app = express();//2019-02-10 was 'var'  (const cannot be changed, safer for STRIPE?)
+var app = express();
 
 //2018-10-11  adding debug campability
 var debug = require('debug')('http')
