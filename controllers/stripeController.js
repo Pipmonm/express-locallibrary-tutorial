@@ -1,6 +1,6 @@
 //2019-02-10  bare bones to start with
 exports.stripeGet = (req, res) =>
-  res.render("stripe_get.pug", {keyPublishable}));
+  res.render("stripe_get.pug", {keyPublishable});
 
 exports.stripePost = (req, res) => {
   let amount = 500;
@@ -17,4 +17,4 @@ exports.stripePost = (req, res) => {
          customer: customer.id
     }))
   .then(charge => res.render("stripe_charge.pug"));
-});
+};
