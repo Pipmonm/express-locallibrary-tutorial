@@ -20,5 +20,8 @@ exports.stripePost = (req, res) => {
          currency: "usd",
          customer: customer.id
     }))
-  .then(charge => res.render("stripe_post.pug"));
+  .then(charge => {
+    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge);
+    res.render("stripe_post.pug",{charge:charge});
+  });
 };
