@@ -1,8 +1,8 @@
 //2019-02-10  bare bones to start with
-exports.stripeGet = function(req, res) =>
+exports.stripeGet = (req, res) =>
   res.render("stripe_get.pug", {keyPublishable}));
 
-exports.stripePost = function(req, res) => {
+exports.stripePost = (req, res) => {
   let amount = 500;
 
   stripe.customers.create({
