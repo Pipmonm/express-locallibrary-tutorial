@@ -7,8 +7,8 @@ exports.stripeGet = (req, res) =>
   res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY'});//2019-02-11 final version?
                                               //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
-  let amount = 500;
-
+  let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
+  console.log("@@@ $ am at stripePost & stripeCharge is: " + stripeCharge.toString());
   stripe.customers.create({
      email: req.body.stripeEmail,
     source: req.body.stripeToken
