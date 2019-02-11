@@ -20,5 +20,5 @@ exports.stripePost = (req, res) => {
          currency: "usd",
          customer: customer.id
     }))
-  .then(charge => res.render("stripe_charge.pug"));
+  .then(charge => res.render("stripe_post.pug"));
 };
