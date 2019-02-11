@@ -16,6 +16,7 @@ var downloadFS_controller = require('../controllers/downloadFSController');//201
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 var verification_controller = require('../controllers/verificationController');//2019-01-15
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
+var stripe_controller = require('../controllers/stripeController');//2019-02-10 payment tab
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
@@ -33,6 +34,9 @@ router.get('/verification',verification_controller.verify_start);//2019-01-17 fo
 router.get('/nextVerify',verification_controller.verify_view);//2019-01-17 complications require 'start' & 'next' & 'prev'
 router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
+router.get('/stripePay',stripe_controller.stripeGet);//2019-02-11
+router.post('/stripePay',stripe_controller.stripePost);//2019-02-11 not too sure here
+
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
 router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
