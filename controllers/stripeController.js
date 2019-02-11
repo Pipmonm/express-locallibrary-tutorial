@@ -1,6 +1,6 @@
 //2019-02-10  bare bones to start with
 exports.stripeGet = (req, res) =>
-  res.render("stripe_get.pug", {keyPublishable});
+  res.render("stripe_get.pug", {'pk_test_5uHse6DFoVXDYSj8H3l1dYvY'});
 
 exports.stripePost = (req, res) => {
   let amount = 500;
