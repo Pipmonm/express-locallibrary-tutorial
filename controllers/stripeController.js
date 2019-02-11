@@ -1,6 +1,6 @@
-const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
-const keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
-const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
+//const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
+//const keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
+//const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
 
 //2019-02-10  bare bones to start with
 exports.stripeGet = (req, res) =>
