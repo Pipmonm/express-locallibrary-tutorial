@@ -21,7 +21,8 @@ var helmet = require('helmet');
 //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
 STRIPE = {};//2019-02-12 somehow must make globally available
 
-const STRIPE.keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
+//const STRIPE.keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
+//const STRIPE.keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
 const STRIPE.keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
 const STRIPE.stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
 const STRIPE.stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
