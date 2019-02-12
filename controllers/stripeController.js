@@ -6,7 +6,9 @@
 exports.stripeGet = (req, res) => {
   const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
   res.render("stripe_get.pug", {keyPublishable:keyPublishable});//2019-02-11 final version?
-                                              //using variable seems to cause trouble
+ }
+
+                                               //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   let amount = 500;//2019-02-12 revert to original for now
