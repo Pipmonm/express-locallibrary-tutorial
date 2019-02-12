@@ -4,10 +4,11 @@
 
 //2019-02-10  bare bones to start with
 exports.stripeGet = (req, res) =>
-  res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY'});//2019-02-11 final version?
+  res.render("stripe_get.pug", {keyPublishable:keyPublishable});//2019-02-11 final version?
                                               //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
-  let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
+  //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
+  let amount = 500;//2019-02-12 revert to original for now
   console.log("@@@ $ am at stripePost & stripeCharge is: " + stripeCharge.toString());
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -21,7 +22,7 @@ exports.stripePost = (req, res) => {
          customer: customer.id
     }))
   .then(charge => {
-    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge);
-    res.render("stripe_post.pug",{charge:charge});
+    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge);//2019-02-12 notion of using charge in render is mine
+    res.render("stripe_post.pug",{charge:charge});//original only has filename and no variable declaration (no {})
   });
 };
