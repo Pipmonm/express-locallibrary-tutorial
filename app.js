@@ -18,7 +18,8 @@ var helmet = require('helmet');
 // Set up CF environment variables
 //var appEnv = cfenv.getAppEnv(); //RECOVERY MOD 2018-05-18
 
-const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
+//const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
+const keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
 const keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
 const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
 const stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
