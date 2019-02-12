@@ -19,10 +19,13 @@ var helmet = require('helmet');
 //var appEnv = cfenv.getAppEnv(); //RECOVERY MOD 2018-05-18
 
 //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
-const keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
-const keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
-const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
-const stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
+STRIPE = {};//2019-02-12 somehow must make globally available
+
+const STRIPE.keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
+const STRIPE.keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
+const STRIPE.stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
+const STRIPE.stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
+
 const app = express();//2019-02-10 was 'var'  (const cannot be changed, safer for STRIPE?)
 
 //2018-10-11  adding debug campability

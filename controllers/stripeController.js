@@ -4,7 +4,7 @@
 
 //2019-02-10  bare bones to start with
 exports.stripeGet = (req, res) =>
-  res.render("stripe_get.pug", {keyPublishable:app.keyPublishable});//2019-02-11 final version?
+  res.render("stripe_get.pug", {keyPublishable:STRIPE.keyPublishable});//2019-02-11 final version?
                                               //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
