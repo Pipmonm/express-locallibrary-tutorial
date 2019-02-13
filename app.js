@@ -20,12 +20,13 @@ var helmet = require('helmet');
 
 //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
 var keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-13 newer way (const cannot be changed so must initialize with value already set)//2019-02-10 added for STRIPE integ
-const STRIPE = {keyPublishable:keyPublishable};//2019-02-12 somehow must make globally available
+var stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
+const STRIPE = {keyPublishable:keyPublishable, stripeCharge:stripeCharge};//2019-02-12 somehow must make globally available
 //const STRIPE.keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY;//2019-02-10 added for STRIPE integration
 //const STRIPE.keyPublishable = 'pk_test_5uHse6DFoVXDYSj8H3l1dYvY';//2019-02-12 testing
-const STRIPE.keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
+const keySecret = process.env.STRIPE_SECRET_KEY;//2019-02-10 added for STRIPE integration
 stripe = require("stripe")(keySecret);//2019-02-13 temp remove STRIPE.stripe //2019-02-10 added for STRIPE integration
-const STRIPE.stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
+//const STRIPE.stripeCharge = 750;//2019-02-11  testing variable amount for STRIPE charge
 
 const app = express();//2019-02-10 was 'var'  (const cannot be changed, safer for STRIPE?)
 

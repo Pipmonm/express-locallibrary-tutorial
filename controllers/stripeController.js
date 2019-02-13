@@ -11,8 +11,8 @@ exports.stripeGet = (req, res) =>
                                                //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
-  let amount = 500;//2019-02-12 revert to original for now
-  console.log("@@@ $ am at stripePost & stripeCharge is: " + stripeCharge.toString());
+  let amount = STRIPE.stripeCharge;//2019-02-12 revert to original for now
+  console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge.toString());
   stripe.customers.create({
      email: req.body.stripeEmail,
     source: req.body.stripeToken
