@@ -26,7 +26,7 @@ exports.stripePost = (req, res) => {
          customer: customer.id
     }))
   .then(charge => {
-    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge);//2019-02-12 notion of using charge in render is mine
+    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
     res.render("stripe_post.pug",{charge:charge});//original only has filename and no variable declaration (no {})
   });
 };
