@@ -3,16 +3,17 @@
 //const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
 
 //2019-02-10  bare bones to start with
-exports.stripeGet = (req, res) =>
+exports.stripeGet = (req, res) => {
+  console.log("@@@ $$ keyPublishable reported as: " + STRIPE.keyPublishable);
   //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
   res.render("stripe_get.pug", {keyPublishable:STRIPE.keyPublishable, amount:STRIPE.stripeCharge.toString()});//2019-02-11 final version?
-
+}
 
                                                //using variable seems to cause trouble
 exports.stripePost = (req, res) => {
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 testing global value again //2019-02-12 revert to original for now
-  console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge;
+  console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge);
   stripe.customers.create({
      email: req.body.stripeEmail,
     source: req.body.stripeToken
