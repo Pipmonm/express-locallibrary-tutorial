@@ -2,13 +2,11 @@ html
   body
     form(action="/charge", method="post")
       article
-        label Amount: #{amount}
-        //- 2019-02-13 - amount was a string '$5.00'
+        label Amount: amount
       script(
         src="//checkout.stripe.com/v2/checkout.js",
         class="stripe-button",
         data-key=keyPublishable,
         data-locale="auto",
         data-description="Sample Charge",
-        data-amount= #{amount}
-        //- 2019-02-13 - was '500' (with quotation mark)
+        data-amount= '500'
