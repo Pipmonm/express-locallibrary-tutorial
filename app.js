@@ -9,8 +9,10 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
 //TESTING Downloads
-var pieSlicerDwnld = require('./routes/pieSlicerDwnld')
-var fracSpellerDwnld = require('./routes/fracSpellerDwnld')
+var pieSlicerDwnld = require('./routes/pieSlicerDwnld');
+var fracSpellerDwnld = require('./routes/fracSpellerDwnld');
+
+var stripeAcknowledge = require('./routes/stripeAcknowledge');//2019-02-13  looks like stripe checkout needs direct route (not through /catalog)
 
 var compression = require('compression');
 var helmet = require('helmet');
@@ -73,6 +75,7 @@ app.use('/catalog', catalog);  // Add catalog routes to middleware chain.
 //TESTING Download
 app.use('/pieSlicerDwnld', pieSlicerDwnld);
 app.use('/fracSpellerDwnld', fracSpellerDwnld);
+app.use('/charge', stripeAcknowledge);//2019-02-13  tentative
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
