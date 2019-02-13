@@ -35,7 +35,7 @@ router.get('/nextVerify',verification_controller.verify_view);//2019-01-17 compl
 router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
 router.get('/stripePay',stripe_controller.stripeGet);//2019-02-11
-router.post('/stripePay',stripe_controller.stripePost);//2019-02-11 not too sure here
+router.post('/charge',stripe_controller.stripePost);//2019-02-11 not too sure here
 
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
