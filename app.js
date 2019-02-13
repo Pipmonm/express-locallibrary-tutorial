@@ -13,6 +13,7 @@ var pieSlicerDwnld = require('./routes/pieSlicerDwnld');
 var fracSpellerDwnld = require('./routes/fracSpellerDwnld');
 
 var stripeAcknowledge = require('./routes/stripeAcknowledge');//2019-02-13  looks like stripe checkout needs direct route (not through /catalog)
+var stripe_controller = require('../controllers/stripeController');//2019-02-13 try to get at controller directly from app.js
 
 var compression = require('compression');
 var helmet = require('helmet');
@@ -75,7 +76,7 @@ app.use('/catalog', catalog);  // Add catalog routes to middleware chain.
 //TESTING Download
 app.use('/pieSlicerDwnld', pieSlicerDwnld);
 app.use('/fracSpellerDwnld', fracSpellerDwnld);
-app.use('/charge', stripeAcknowledge);//2019-02-13  tentative
+app.use('/charge', stripe_controller.stripePost); //2019-02-13 was   stripeAcknowledge);//2019-02-13  tentative
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
