@@ -3,10 +3,10 @@
 //const stripe = require("stripe")(keySecret);//2019-02-10 added for STRIPE integration
 
 //2019-02-10  bare bones to start with
-exports.stripeGet = (req, res) => {
-  const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
-  res.render("stripe_get.pug", {keyPublishable:keyPublishable});//2019-02-11 final version?
- }
+exports.stripeGet = (req, res) =>
+  //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
+  res.render("stripe_get.pug", {keyPublishable:STRIPE.keyPublishable});//2019-02-11 final version?
+
 
                                                //using variable seems to cause trouble
 exports.stripePost = (req, res) => {

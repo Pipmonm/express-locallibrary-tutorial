@@ -98,3 +98,4 @@ VerifyState = {step:0};//2019-01-21 attempt to simplify verification step value 
                       //seems that it must be a global here to be seen as global in any other module importing ../app
 
 module.exports = app;
+module.exports = STRIPE;//2019-02-13 added to try and see environment variables
