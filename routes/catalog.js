@@ -17,6 +17,8 @@ var downloadPS_controller = require('../controllers/downloadPSController');//ibi
 var verification_controller = require('../controllers/verificationController');//2019-01-15
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
 
+var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
+
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
