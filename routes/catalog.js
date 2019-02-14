@@ -16,7 +16,7 @@ var downloadFS_controller = require('../controllers/downloadFSController');//201
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 var verification_controller = require('../controllers/verificationController');//2019-01-15
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
-var stripe_controller = require('../controllers/stripeController');//2019-02-10 payment tab
+
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
