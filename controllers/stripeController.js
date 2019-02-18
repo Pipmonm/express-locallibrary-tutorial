@@ -9,10 +9,11 @@
 exports.stripeGet = (req, res) => {
   let rawAmount = STRIPE.stripeCharge/100;//2019  need number for fancyAmount
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 must be a penny amount
+  STRIPE.denomination = "USD";
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
   console.log("@@@ $$ keyPublishable reported as: " + fancyAmount);
   //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
-  res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY', amount:amount, labelAmount:fancyAmount});//STRIPE.stripeCharge.toString()});//2019-02-11 final version?
+  res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY', amount:amount, denomination:denomination, labelAmount:fancyAmount});//STRIPE.stripeCharge.toString()});//2019-02-11 final version?
 }
 
                                                //using variable seems to cause trouble
@@ -34,7 +35,8 @@ exports.stripePost = (req, res) => {
          customer: customer.id
     }))
   .then(charge => {
+    let denomination = charge.currency.toUpperCase();
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
-    res.render("stripe_post.pug",{charge:charge,denomination:charge.currency, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
+    res.render("stripe_post.pug",{charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
   });
 };
