@@ -9,7 +9,8 @@
 exports.stripeGet = (req, res) => {
   let rawAmount = STRIPE.stripeCharge/100;//2019  need number for fancyAmount
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 must be a penny amount
-  STRIPE.denomination = "USD";
+  STRIPE.denomination_US = "USD";//2019-02-18  TEMPORARY, move to general STRIPE declarations(?)
+  let denomination = STRIPE.denomination_US;
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
   console.log("@@@ $$ keyPublishable reported as: " + fancyAmount);
   //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
