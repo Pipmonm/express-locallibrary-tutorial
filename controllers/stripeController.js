@@ -28,14 +28,22 @@ exports.stripePost = (req, res) => {
      email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
-  .then(customer =>
+  .then(err, customer =>
+    if(err){
+      console.log("@@@ $$ customer error with error string: " + err);
+      return 1;
+    }
     stripe.charges.create({
       amount,
       description: "Sample Charge",
          currency: "usd",
          customer: customer.id
     }))
-  .then(charge => {
+  .then(err, charge => {
+    if(err){
+      console.log("@@@ $$ charge error with error string: " + err);
+      return 2;
+    }
     let denomination = charge.currency.toUpperCase();
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
     res.render("stripe_post.pug",{charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
