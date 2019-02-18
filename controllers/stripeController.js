@@ -28,7 +28,7 @@ exports.stripePost = (req, res) => {
      email: req.body.stripeEmail,
     source: req.body.stripeToken
   })
-  .then(err, customer =>
+  .then(err, customer) => {
     if(err){
       console.log("@@@ $$ customer error with error string: " + err);
       return 1;
@@ -38,7 +38,8 @@ exports.stripePost = (req, res) => {
       description: "Sample Charge",
          currency: "usd",
          customer: customer.id
-    }))
+    })
+  };//2019-02-18  added err if needs brackets)
   .then(err, charge => {
     if(err){
       console.log("@@@ $$ charge error with error string: " + err);
