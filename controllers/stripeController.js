@@ -37,7 +37,8 @@ exports.stripePost = (req, res) => {
     }))
     .catch(error => {
        console.log("@@@ EE 1st attempt to catch error: " + error);
-       res.render("stripe_error.pug",{errMsg:error});
+       let tactfulMsg = "Stripe reporst: 'Unable to process credit card charge'";
+       res.render("stripe_postError.pug",{errMsg:error, tactfulMsg:tactfulMsg});
        //2019-02-21  sees error but doesn't render and desn't exit
     })
   .then(charge => {
@@ -47,5 +48,5 @@ exports.stripePost = (req, res) => {
   }).catch(error => {
      console.log("@@@ EE 2nd attempt to catch error: " + error);
      res.render("stripe_postError.pug",{errMsg:error});
-  });
+  }).done(()=>return 1;);
 };
