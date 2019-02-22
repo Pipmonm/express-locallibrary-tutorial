@@ -35,12 +35,11 @@ exports.stripePost = (req, res) => {
          currency: "usd",
          customer: customer.id
     }))
-    //.catch(error => {
-      // console.log("@@@ EE 1st attempt to catch error: " + error);
-      // res.render("stripe_error.pug",{errMsg:error});
+    .catch(error => {
+       console.log("@@@ EE 1st attempt to catch error: " + error);
+       res.render("stripe_error.pug",{errMsg:error});
        //2019-02-21  sees error but doesn't render and desn't exit
-
-    //})
+    })
   .then(charge => {
     let denomination = charge.currency.toUpperCase();
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
