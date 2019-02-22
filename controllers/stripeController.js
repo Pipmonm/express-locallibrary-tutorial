@@ -45,8 +45,10 @@ exports.stripePost = (req, res) => {
     })
   .then(charge => {
     let denomination = charge.currency.toUpperCase();
+    let source =   '/';
+    let source2 = "HOME";
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
-    res.render("stripe_post.pug",{charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
+    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';

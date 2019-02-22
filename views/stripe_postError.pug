@@ -2,9 +2,10 @@ h1  Stripe Error Message:
 
 h2 Stripe has signalled an error processing your card.
 br
-h2 <strong>#{errMsg}</strong>
 h2 <strong>#{tactfulMsg}</strong>
-h2 Thank you
+h2 #{errMsg}
+
+h2 Ensure all data is entered correctly and/or use a different card.
 br
 a(href= source)
     button(type="button") #{source2}
