@@ -47,6 +47,6 @@ exports.stripePost = (req, res) => {
     res.render("stripe_post.pug",{charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      console.log("@@@ EE 2nd attempt to catch error: " + error);
-     res.render("stripe_error.pug",{errMsg:error});
+     res.render("stripe_postError.pug",{errMsg:error});
   });
 };
