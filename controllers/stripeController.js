@@ -48,5 +48,5 @@ exports.stripePost = (req, res) => {
   }).catch(error => {
      console.log("@@@ EE 2nd attempt to catch error: " + error);
      res.render("stripe_postError.pug",{errMsg:error});
-  }).done(()=>return 1;);
+  }).done(()=>console.log("@@@ $ done"););
 };
