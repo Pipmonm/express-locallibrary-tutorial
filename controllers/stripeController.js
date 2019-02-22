@@ -37,8 +37,8 @@ exports.stripePost = (req, res) => {
     }))
     .catch(error => {
        console.log("@@@ EE 1st attempt to catch error: " + error);
-       let source =   '/catalog/downloadFS_view';
-       let source2 = "DOWNLOADING DEMOS";
+       let source =   '/';
+       let source2 = "HOME";
        let tactfulMsg = "Unable to process credit card charge";
        res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
        //2019-02-21  sees error but doesn't render and desn't exit
