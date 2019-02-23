@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //let myController = (req, res) => {
   let filename = 'FracSpellerDual.exe';
-  console.log("next for FracSpeller dwnld");
+  console.log("@@@  $ next for FracSpeller dwnld");
   //console.log(__dirname)
   //let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
   let absPath = path.join('https://s3.ca-central-1.amazonaws.com/fracspeller/', filename);
