@@ -4,6 +4,7 @@ var router = express.Router();
 
 let fs = require('fs');
 let path = require('path');
+console.log("@@@ $ in pieSlicerDwnld.js");
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 router.get('/', function(req, res, next) {
   //res.send("starting file download")//can only do 1 response and the download is one!
