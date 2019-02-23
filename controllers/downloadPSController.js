@@ -45,5 +45,6 @@ exports.downloadPS_view = function(req, res) {
 
 res.render('downloadPS_view', { title: "PieSlicer Downloads",
                                  themeDesc1: downloadPSDesc1,
-                                 themeDesc2: downloadPSDesc2});
+                                 themeDesc2: downloadPSDesc2,
+                                 source:source});
 };

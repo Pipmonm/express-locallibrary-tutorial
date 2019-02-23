@@ -45,5 +45,6 @@ exports.downloadFS_view = function(req, res) {
 
 res.render('downloadFS_view', { title: "FracSpeller Downloads",
                                  themeDesc1: downloadFSDesc1,
-                                 themeDesc2: downloadFSDesc2});
+                                 themeDesc2: downloadFSDesc2,
+                                 source:source});
 };
