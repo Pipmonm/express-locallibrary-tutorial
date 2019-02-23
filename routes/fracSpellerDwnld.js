@@ -4,7 +4,7 @@ var router = express.Router();
 
 let fs = require('fs');
 let path = require('path');
-console.log("@@@ $ in fraSpellerDwnld.js")
+console.log("@@@ $ in fracSpellerDwnld.js")
 //VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
 router.get('/', function(req, res, next) {
   //res.send("starting file download")//can only do 1 response and the download is one!
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //let myController = (req, res) => {
   let filename = 'FracSpellerDual.exe';
-  console.log("@@@  $ next for FracSpeller dwnld");
+  console.log("@@@  $ in router.get for FracSpeller dwnld");
   //console.log(__dirname)
   //let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
   let absPath = path.join('https://s3.ca-central-1.amazonaws.com/fracspeller/', filename);
