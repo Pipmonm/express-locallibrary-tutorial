@@ -17,7 +17,7 @@ var downloadPS_controller = require('../controllers/downloadPSController');//ibi
 var verification_controller = require('../controllers/verificationController');//2019-01-15
 
 var s3_fs_controller = require('../controllers/fsS3Controller');
-//var s3_ps_controller = require('../controllers/psS3Controller');
+var s3_ps_controller = require('../controllers/psS3Controller');
 
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
 
@@ -47,7 +47,7 @@ router.post('/charge',stripe_controller.stripePost);//2019-02-11 not too sure he
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
 router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
 router.get('/get_S3_FS',s3_fs_controller.get_S3_FS_file);
-//router.get('/get_S3_PS',s3_ps_controller.get_S3_PS_file);
+router.get('/get_S3_PS',s3_ps_controller.get_S3_PS_file);
 
 //STEP 1 creating client records
 router.get('/clients', client_controller.client_list);

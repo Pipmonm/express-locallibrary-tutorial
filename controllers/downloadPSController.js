@@ -41,7 +41,7 @@ exports.downloadPS_view = function(req, res) {
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
-  let source = "../routes/pieSlicerDwnld.js"; //this provides download href
+  let source = '/catalog/get_S3_PS'; //this provides download href
 
 res.render('downloadPS_view', { title: "PieSlicer Downloads",
                                  themeDesc1: downloadPSDesc1,

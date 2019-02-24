@@ -41,7 +41,7 @@ exports.downloadFS_view = function(req, res) {
 
   let downloadFSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
-  let source = "fracSpellerDwnld.js"; //this provides download href
+  let source = '/catalog/get_S3_FS'; //this provides download href
 
 res.render('downloadFS_view', { title: "FracSpeller Downloads",
                                  themeDesc1: downloadFSDesc1,
