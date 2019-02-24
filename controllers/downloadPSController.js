@@ -9,7 +9,7 @@ var async = require('async');
 
 //Display unique page details for PieSlicer
 exports.downloadPS_view = function(req, res) {
-  console.log("specifics of PS downloads");
+  console.log("@@@ $ details of PieSlicer download");
   let downloadPSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
   "Dowloading PieSlicerDual Demo:  \n"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
@@ -41,7 +41,7 @@ exports.downloadPS_view = function(req, res) {
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
-  let source = "pieSlicerDownld.js"; //this provides download href
+  let source = "pieSlicerDwnld.js"; //this provides download href
 
 res.render('downloadPS_view', { title: "PieSlicer Downloads",
                                  themeDesc1: downloadPSDesc1,

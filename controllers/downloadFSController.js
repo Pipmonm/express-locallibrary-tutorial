@@ -9,7 +9,7 @@ var async = require('async');
 
 //Display unique page details for PieSlicer
 exports.downloadFS_view = function(req, res) {
-  console.log("specifics of FS downloads");
+  console.log("@@@ $ details of FS downloads");
   let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
   "Dowloading FracSpellerDual Demo:  \n"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
