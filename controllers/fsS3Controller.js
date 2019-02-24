@@ -1,6 +1,6 @@
 
 
-exports.get_S3_FS_File = function (req, res) { //2019-02-24 added this controller
+exports.get_S3_FS_file = function (req, res) { //2019-02-24 added this controller
 let fs = require('fs');
 let path = require('path');
 console.log("@@@ $ in getS3_FS_File.js");
