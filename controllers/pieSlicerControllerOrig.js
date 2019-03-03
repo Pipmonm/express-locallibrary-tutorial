@@ -17,31 +17,30 @@ exports.getObjects = function (req, res) {
 //Display unique page details for PieSlicer
 exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
-  let PieSlicerDesc1 = "<p style='position:relative; left:50px; color:yellow;  background:green; padding:10px; align:center'> \n" +
+  let PieSlicerDesc1 = "<pre style='position:relative; left:50px; color:yellow;  background:green; width:650px; padding:10px; align:center'> \n" +
                     "PieSlicer is an interactive visual aid application designed to help students  \n" +
-                    "fully understand the math operations of fraction addition/subtraction.<br />  \n" +
+                    "fully understand the math operations of fraction addition/subtraction.  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
                     "very often able to discover on their own the solutions and the central  \n" +
                     "concepts for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
-                    "As shown on the screenshot above Pie Slicer will:<br /> \n" +
-                    "<UL style:list-style-type='square'>" +
-                    "  <li> easily let you enter problems of your choice when in 'user_mode'</li>" +
-                    "  <li> allow 'user_mode' to generate fraction problems using any denominator</li>" +
-                    "  <li> generate random problems automatically in 3 different level modes</li>" +
-                    "  <li> update the visual representation automatically for correct answers</li>" +
-                    "  <li> track users performance at each level</li>" +
-                    "  <li> provide a dedicated help window for questions about the application " +
-                    "itself or concerning the topic under study.</li>"
-                    "</ul>\n" +
-                    "Download the Demo version ( no obligations ) to experiment with it.<br />" +
-                    "The demo will be functional for a limited time only.<br />" +
-                    "Buying the license to convert the demo to the unlimited version is detailed" +
-                    "on this website\'s HOME page.<br />"  +
+                    "As shown on the screenshot above Pie Slicer will:  \n" +
+                    "  - easily let you enter problems of your choice when in 'user_mode' \n" +
+                    "  - allow 'user_mode' to generate fraction problems using any denominator \n" +
+                    "  - generate random problems automatically in 3 different level modes  \n" +
+                    "  - update the visual representation automatically for correct answers \n" +
+                    "  - track users performance at each level \n" +
+                    "  - provide a dedicated help window for questions about the application  \n" +
+                    "    itself or concerning the topic under study."
+                    "\n" +
+                    "Download the Demo version ( no obligations ) to experiment with it.\n" +
+                    "The demo will be functional for a limited time only.\n" +
+                    "Buying the license to convert the demo to the unlimited version is detailed\n" +
+                    "on this website\'s HOME page.\n"  +
                     " \n" +
                     "<strong>NOTE CAREFULLY:</strong> \n" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.\n" +
-                    "  A browser based version is in development that will run on any computer.</p>"
+                    "  A browser based version is in development that will run on any computer.</pre>"
 
   let h3Header = "About PieSlicer Module"
   let PieSlicerDesc2 = "for download information click on"
