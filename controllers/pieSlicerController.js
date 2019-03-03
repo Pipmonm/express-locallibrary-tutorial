@@ -24,10 +24,11 @@ exports.pieSlicer_view = function(req, res) {
                     "very often able to discover on their own the solutions and the central  \n" +
                     "concepts for the addition and subtraction of positive or negative fractions. \n" +
                     "<br /><br />" +
-                    "As shown on the screenshot above Pie Slicer will:<br /> \n" +
+                    "As shown on the screenshot above Pie Slicer will:<br />" +
                     "<UL style='list-style-type:square; color:yellow;  background:green;>" +
-                    "  <li> easily let you enter problems of your choice when in 'user_mode'</li>" +
-                    "  <li> allow 'user_mode' to generate fraction problems using any denominator</li>" +
+                    "<br />" +
+                    "  <li> easily let you enter problems of your own choice when in 'user_mode'</li>" +
+                    "  <li> user_mode 'set denominator' button enables generating problems with any denominator</li>" +
                     "  <li> generate random problems automatically in 3 different level modes</li>" +
                     "  <li> update the visual representation automatically for correct answers</li>" +
                     "  <li> track users performance at each level</li>" +
