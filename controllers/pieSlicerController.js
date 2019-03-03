@@ -17,7 +17,7 @@ exports.getObjects = function (req, res) {
 //Display unique page details for PieSlicer
 exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
-  let PieSlicerDesc1 = "<p style='position:relative; left:50px; color:yellow;  background:green; padding:10px; align:center'> \n" +
+  let PieSlicerDesc1 = "<p style='position:relative; color:yellow;  background:green; padding:10px; align:center'> \n" +
                     "PieSlicer is an interactive visual aid application designed to help students  \n" +
                     "fully understand the math operations of fraction addition/subtraction.<br />  \n" +
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
@@ -25,7 +25,7 @@ exports.pieSlicer_view = function(req, res) {
                     "concepts for the addition and subtraction of positive or negative fractions. \n" +
                     "\n" +
                     "As shown on the screenshot above Pie Slicer will:<br /> \n" +
-                    "<UL style:list-style-type='square'>" +
+                    "<UL style='list-style-type:square; color:yellow;  background:green;>" +
                     "  <li> easily let you enter problems of your choice when in 'user_mode'</li>" +
                     "  <li> allow 'user_mode' to generate fraction problems using any denominator</li>" +
                     "  <li> generate random problems automatically in 3 different level modes</li>" +
