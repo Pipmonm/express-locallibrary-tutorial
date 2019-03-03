@@ -10,7 +10,7 @@ var async = require('async');
 //Display unique page details for PieSlicer
 exports.downloadPS_view = function(req, res) {
   console.log("@@@ $ details of PieSlicer download");
-  let downloadPSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
+  let downloadPSDesc1 = "< style='color:yellow; background:green; '> \n" +
   "Dowloading PieSlicerDual Demo:  \n"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
   "on your desktop will make it easy to \"verify the download\" as described next.\n"+
