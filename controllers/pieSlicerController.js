@@ -23,7 +23,7 @@ exports.pieSlicer_view = function(req, res) {
                     "By easily manipulating pie pieces representing any fraction students are  \n" +
                     "very often able to discover on their own the solutions and the central  \n" +
                     "concepts for the addition and subtraction of positive or negative fractions. \n" +
-                    "\n" +
+                    "<br /><br />" +
                     "As shown on the screenshot above Pie Slicer will:<br /> \n" +
                     "<UL style='list-style-type:square; color:yellow;  background:green;>" +
                     "  <li> easily let you enter problems of your choice when in 'user_mode'</li>" +
@@ -33,14 +33,14 @@ exports.pieSlicer_view = function(req, res) {
                     "  <li> track users performance at each level</li>" +
                     "  <li> provide a dedicated help window for questions about the application " +
                     "itself or concerning the topic under study.</li>"
-                    "</ul>\n" +
+                    "</ul>" +
+                    "<br /><br />" +
                     "Download the Demo version ( no obligations ) to experiment with it.<br />" +
                     "The demo will be functional for a limited time only.<br />" +
                     "Buying the license to convert the demo to the unlimited version is detailed" +
-                    "on this website\'s HOME page.<br />"  +
-                    " \n" +
-                    "<strong>NOTE CAREFULLY:</strong> \n" +
-                    "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only.\n" +
+                    "on this website\'s HOME page.<br /><br />"  +
+                    "<strong>NOTE CAREFULLY:</strong><br />" +
+                    "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only." +
                     "  A browser based version is in development that will run on any computer.</p>"
 
   let h3Header = "About PieSlicer Module"
