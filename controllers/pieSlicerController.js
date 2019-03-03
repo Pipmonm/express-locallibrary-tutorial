@@ -19,23 +19,23 @@ exports.pieSlicer_view = function(req, res) {
   console.log("trying for pieSlicerView");
   let PieSlicerDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
                     "<p>" +
-                    "PieSlicer is an interactive visual aid application designed to help students  \n" +
-                    "fully understand the math operations of fraction addition/subtraction.<br />  \n" +
-                    "By easily manipulating pie pieces representing any fraction students are  \n" +
-                    "very often able to discover on their own the solutions and the central  \n" +
-                    "concepts for the addition and subtraction of positive or negative fractions. \n" +
-                    "<br /><br />" +
-                    "<UL style='list-style-type:square; color:yellow;  background:green;>" +
-                    "<br />" +
-                    "  <li> As shown on the screenshot above Pie Slicer will:</li>" +
-                    "  <li></li>"
-                    "  <li> easily let you enter problems of your own choice when in 'user_mode'</li>" +
-                    "  <li> 'wild card' button enables generating problems using any denominator</li>" +
-                    "  <li> generate random problems automatically in 3 different level modes</li>" +
-                    "  <li> update the visual representation automatically for correct answers</li>" +
-                    "  <li> track users performance at each level</li>" +
-                    "  <li> provide a dedicated help window for questions about the application " +
-                    "itself or concerning the topic under study.</li>"
+                    "PieSlicer is an interactive visual aid application designed to help students\n"+
+                    "fully understand the math operations of fraction addition/subtraction.<br />\n"+
+                    "By easily manipulating pie pieces representing any fraction students are\n"+
+                    "very often able to discover on their own the solutions and the central\n"+
+                    "concepts for the addition and subtraction of positive or negative fractions.\n"+
+                    "<br /><br />"+
+                    "<UL style='list-style-type:square; color:yellow;  background:green;>"+
+                    "<br />"+
+                    "  <li> As shown on the screenshot above Pie Slicer will:</li>"+
+                    "  <li></li>"+
+                    "  <li> easily let you enter problems of your own choice when in 'user_mode'</li>"+
+                    "  <li> 'wild card' button enables generating problems using any denominator</li>"+
+                    "  <li> generate random problems automatically in 3 different level modes</li>"+
+                    "  <li> update the visual representation automatically for correct answers</li>"+
+                    "  <li> track users performance at each level</li>"+
+                    "  <li> provide a dedicated help window for questions about the application "+
+                    "itself or concerning the topic under study.</li>"+
                     "</ul>" +
                     "<br /><br />" +
                     "Download the Demo version ( no obligations ) to experiment with it.<br />" +
