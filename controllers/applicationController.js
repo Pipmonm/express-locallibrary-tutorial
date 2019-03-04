@@ -26,19 +26,23 @@ exports.index = function(req, res) {
    "retain it better and go on to pursue the matter witn more interest and curiosity for 'What comes next?'." +
    "If you decide to use any of our units, please let us know how we're doing.";
 
- let blurb3 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n"+
- "Welcome \n" +
- "To all teachers and home-schooling parents.   We invite you to try out the interactive \n"+
- "math modules designed to make specific math topics interesting and memorable for your\n"+
- "students.\n"+
- "Download and explore these in 'demo' mode.  If of no interest, simply delete them.\n" +
- "\n"+
- "If on the other hand you would like to obtain a license for unlimited use, just\n"+
- "follow the instructions on each module's page. \n"+
- "\n"+
- "That's it.   Well almost.  Of course we will appreciate and thank you profusely for any \n" +
- "financial support you may provide so as to enable us to continue presenting new modules. \n" +
- "The 'DONATE' menu item allows you to do so.   Thank you"
+ let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
+ "<p>" +
+ "Welcome <br />" +
+ "To all teachers and home-schooling parents.   We invite you to try out the interactive "+
+ "math modules designed to make specific math topics interesting and memorable for students.<br />"+
+ "<br />"+
+ "Download and explore these in 'demo' mode.  If of no interest, simply delete them.<br />" +
+ "<br />"+
+ "If on the other hand you would like to obtain a license for unlimited use, just "+
+ "follow the instructions on each module's page. <br />"+
+ "<br />"+
+ "That's it.   Well almost.  Our policy is to enable people who are interested in our math modules to " +
+ "be able to download, test and obtain the license key for unlimited use of the modules before having to "+
+ "make any payment.   Being able to first ensure that all aspects of the software are functional will, we "+
+ "believe, provide assurance to our clients that they may confidently make the payments afterwards knowing "+
+ "that everything is functional.  This can be done by accessing the 'View Cart' page. <br /> " +
+ "Thank you for your support in helping us produce more and better modules.</p></div>"
 
  let blurb4 = "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +
