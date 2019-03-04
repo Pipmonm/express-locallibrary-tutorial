@@ -37,7 +37,7 @@ exports.index = function(req, res) {
  "If on the other hand you would like to obtain a license for unlimited use, just "+
  "follow the instructions on each module's page. <br />"+
  "<br />"+
- "That's it! @nbsp: @nbsp:  Well almost.<br />"+
+ "That's it! &nbsp;&nbsp;&nbsp;  Well almost.<br />"+
  "  Our policy is to enable people who are interested in our math modules to be able to download," +
  " test and obtain the license key for unlimited use of the modules before having to "+
  "make any payment.<br />"+
