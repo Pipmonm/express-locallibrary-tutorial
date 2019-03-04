@@ -28,17 +28,18 @@ exports.index = function(req, res) {
 
  let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
  "<p>" +
- "Welcome <br />" +
- "To all teachers and home-schooling parents.   We invite you to try out the interactive "+
- "math modules designed to make specific math topics interesting and memorable for students.<br />"+
+ "Welcome to all teachers and home-schooling parents.<br />"+
+ "  We invite you to try out the interactive math modules designed to make specific math topics both interesting, "+
+ "and memorable for students.<br />"+
  "<br />"+
  "Download and explore these in 'demo' mode.  If of no interest, simply delete them.<br />" +
  "<br />"+
  "If on the other hand you would like to obtain a license for unlimited use, just "+
  "follow the instructions on each module's page. <br />"+
  "<br />"+
- "That's it.   Well almost.  Our policy is to enable people who are interested in our math modules to " +
- "be able to download, test and obtain the license key for unlimited use of the modules before having to "+
+ "That's it!   Well almost.<br />"+
+ "  Our policy is to enable people who are interested in our math modules to be able to download," +
+ " test and obtain the license key for unlimited use of the modules before having to "+
  "make any payment.   Being able to first ensure that all aspects of the software are functional will, we "+
  "believe, provide assurance to our clients that they may confidently make the payments afterwards knowing "+
  "that everything is functional.  This can be done by accessing the 'View Cart' page. <br /> " +
