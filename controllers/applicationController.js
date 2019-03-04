@@ -29,6 +29,7 @@ exports.index = function(req, res) {
  let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
  "<p>" +
  "Welcome to all teachers and home-schooling parents.<br />"+
+ "<br />"+
  "  We invite you to try out the interactive math modules designed to make specific math topics both interesting, "+
  "and memorable for students.<br />"+
  "<br />"+
