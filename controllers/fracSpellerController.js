@@ -9,33 +9,36 @@ var async = require('async');
 //Display unique page details for PieSlicer
 exports.fracSpeller_view = function(req, res) {
   console.log("trying for fracSpeller_view");
-  let FracSpellerDesc1 = "<pre style='color:yellow; background:green; width:650px'> \n" +
-                    "FracSpeller is an interactive exerciser for helping practice proper spelling of \n" +
-                    "numbers and fractions.  \n" +
-                    "As a topic that is sometimes not given much attention it can only be beneficial for \n" +
-                    "any student to develop confidence and expertise in the correct spelling of numbers as \n" +
-                    "well as the general rules behind spelling fractions. \n" +
-                    "\n" +
-                    "Naturally, spelling of numbers is bound to the particular language in use.  For the \n" +
-                    "present this module only concentrates on North American English (though other languages \n" +
-                    " may be introduced in later versions). \n" +
-                    "\n" +
-                    "This exerciser: \n" +
-                    "  - generates problems randomly \n" +
-                    "  - students' answers are verified immediately \n" +
-                    "  - poses problems for converting written form to numeric form (eg  five halves >> 5/2)\n" +
-                    "    and converting numerical form to written form   (eg 3/27 >> three twenty-sevenths) \n" +
-                    "  - a dedicated help window is available for questions about the application itself or \n" +
-                    "    concerning the topic under study."
-                    "\n" +
-                    "Download the Demo version ( no obligations ) to find out more.\n" +
-                    "The demo will be functional for a limited time only.\n" +
-                    "The option of buying the license to convert the demo to the unlimited version is \n" +
-                    "presented this site\'s HOME page. (and all for the price of a hamburger!!! ;)\n"  +
-                    " \n" +
-                    "<strong>NOTE CAREFULLY:</strong> \n" +
-                    "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only. \n" +
-                    "  A browser based version is in development that will allow use on any computer. Stay tuned.</pre>"
+  let FracSpellerDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
+                    "<p>" +
+                    "FracSpeller is an interactive exerciser for helping practice proper spelling of " +
+                    "numbers and fractions.<br />" +
+                    "As a topic that is sometimes not given much attention it can only be beneficial for " +
+                    "any student to develop confidence and expertise in the correct spelling of numbers as " +
+                    "well as the general rules behind spelling fractions. <br />" +
+                    "<br />" +
+                    "Naturally, spelling of numbers is bound to the particular language in use.  For the " +
+                    "present this module only concentrates on North American English (though other languages " +
+                    "may be introduced in later versions). <br />" +
+                    "<br />" +
+                    "FracSpeller exerciser: <br />" +
+                    "<UL style='list-style-type:square; color:yellow;  background:green';>"+
+                    "  <li> generates problems randomly </li>" +
+                    "  <li> students' answers are verified immediately </li>" +
+                    "  <li> poses problems for converting written form to numeric form (eg  five halves >> 5/2) " +
+                    "and converting numerical form to written form   (eg 3/27 >> three twenty-sevenths) </li>" +
+                    "  <li> a dedicated help window is available for questions about the application itself or " +
+                    "concerning the topic under study.</li>"
+                    "</ul>" +
+                    "<br /><br />" +
+                    "Download the Demo version to find out more ( no obligations ).<br />" +
+                    "The demo will be functional for a limited time only.<br />" +
+                    "The option of buying the license to convert the demo to the unlimited version is " +
+                    "presented at this site\'s HOME page. (and all for the price of a hamburger!!! ;)<br />"  +
+                    "<br />" +
+                    "<strong>NOTE CAREFULLY:</strong> <br />" +
+                    "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.<br />" +
+                    "  A browser based version is in development that will allow use on any computer. Stay tuned.</p></div>"
 
   //let FracSpellerDesc2 =   `<a href='/fracSpellerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
   let h3Header = "Fraction Speller Module"

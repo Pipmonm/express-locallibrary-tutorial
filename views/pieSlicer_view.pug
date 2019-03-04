@@ -1,20 +1,20 @@
 extends layout
 
 block content
-  h1(href="#" style={'font-size':'5vw'})= title
+  h1(href="#" style={'font-size':'3vw'})= title
   //- significant example of inlining HTML in PUG & responsive scaling of text!
   br
   .image
   label(for="pieslicerimg") PieSlicer Screenshot
   br
   .pieslicerimg
-    <img id="pieslicerimg"  src="https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg" alt="ScreenShot" style="width:80%";>
+    <img id="pieslicerimg"  src="https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg" alt="ScreenShot" style="width:90%";>
 
   if error
     p Error getting dynamic content.
   else
 
-  h3= h3Header
+  h3(href="#" style={'font-size':'2vw'})= h3Header
 
   p!= pieSlicerDesc1
 
