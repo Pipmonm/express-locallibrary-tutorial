@@ -3,6 +3,13 @@ extends layout
 block content
   h1= title
 
+  br
+  .image
+  label(for="pieslicerimg") FracSpeller Screenshot
+  br
+  .fracspellerimg
+    <img id="fracspellerimg"  src="https://s3.ca-central-1.amazonaws.com/pipsbucket/FracSpeller.jpg" alt="ScreenShot" style="width:100%";>
+
   if error
     p Error getting dynamic content.
   else
