@@ -25,10 +25,9 @@ exports.pieSlicer_view = function(req, res) {
                     "very often able to discover on their own the solutions and the central\n"+
                     "concepts for the addition and subtraction of positive or negative fractions.\n"+
                     "<br /><br />"+
+                    "As shown on the screenshot above Pie Slicer will:<br />"+
                     "<UL style='list-style-type:square; color:yellow;  background:green;>"+
-                    "<br />"+
-                    "  <li> As shown on the screenshot above Pie Slicer will:</li>"+
-                    "  <li></li>"+
+                    "  <li> </li>"+
                     "  <li> easily let you enter problems of your own choice when in 'user_mode'</li>"+
                     "  <li> 'wild card' button enables generating problems using any denominator</li>"+
                     "  <li> generate random problems automatically in 3 different level modes</li>"+
@@ -41,7 +40,7 @@ exports.pieSlicer_view = function(req, res) {
                     "Download the Demo version ( no obligations ) to experiment with it.<br />" +
                     "The demo will be functional for a limited time only.<br />" +
                     "Buying the license to convert the demo to the unlimited version is detailed" +
-                    "on this website\'s HOME page.<br /><br />"  +
+                    " on this website\'s HOME page.<br /><br />"  +
                     "<strong>NOTE CAREFULLY:</strong><br />" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only." +
                     "  A browser based version is in development that will run on any computer.</p></div>"
