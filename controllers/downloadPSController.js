@@ -9,24 +9,25 @@ var async = require('async');
 
 //Display unique page details for PieSlicer
 exports.downloadPS_view = function(req, res) {
-  console.log("@@@ $ details of PieSlicer download");
-  let downloadPSDesc1 = "<p style='color:yellow; background:green; '> \n" +
-  "Dowloading PieSlicerDual Demo:  \n"+
+
+  let downloadPSDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
+  "<p>" +
+  "Dowloading PieSlicerDual Demo:<br />"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
-  "on your desktop will make it easy to \"verify the download\" as described next.\n"+
-  "\n"+
+  "on your desktop will make it easy to \"verify the download\" as described next.<br />"+
+  "<br />"+
   "Verifying the file before running it is recommended to ensure its authenticity and\n"+
   "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
-  "(shown below) against the one generated for the downloaded file. (follow the detailed\n"+
-  " intructions in the \"VERIFICATION\" page on this site)\n"+
-  "\n"+
-  "\n"+
-  "Running the demo:\n"+
-  "After verifying it run the program from your desktop by double-cliking on it.\n"+
-  "\n" +
-  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification code:\n" +
-  "SHA-256 Hash Code:   F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA \n" +
-  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.),</p>"
+  "(shown below) against the one generated for the downloaded file.<br />"+
+  " (follow the detailed intructions in the \"VERIFICATION\" page on this site)<br />"+
+  "<br />"+
+  "Running the demo:<br />"+
+  "After verifying it run the program from your desktop by double-cliking on it.<br />"+
+  "<br />"
+  "PieSlicerDual.exe (vrs. 1.0.0.3)  file Verification code:<br />" +
+  "SHA-256 Hash Code:<br />"+
+  "F889CC16B94F51D2A29726773175172D772C9000C168D7B8247552D6F6D239AA<br />" +
+  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.),</p></div>"
 
   let blurb = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
