@@ -26,10 +26,9 @@ exports.pieSlicer_view = function(req, res) {
                     "concepts for the addition and subtraction of positive or negative fractions.\n"+
                     "<br /><br />"+
                     "As shown on the screenshot above Pie Slicer will:<br />"+
-                    "<UL style='list-style-type:square; color:yellow;  background:green;>"+
-                    "  <li> </li>"+
+                    "<UL style='list-style-type:square; color:yellow;  background:green';>"+
                     "  <li> easily let you enter problems of your own choice when in 'user_mode'</li>"+
-                    "  <li> 'wild card' button enables generating problems using any denominator</li>"+
+                    "  <li> allow for generating problems with any denominator using 'wild-card' button</li>"+
                     "  <li> generate random problems automatically in 3 different level modes</li>"+
                     "  <li> update the visual representation automatically for correct answers</li>"+
                     "  <li> track users performance at each level</li>"+
@@ -37,7 +36,7 @@ exports.pieSlicer_view = function(req, res) {
                     "itself or concerning the topic under study.</li>"+
                     "</ul>" +
                     "<br /><br />" +
-                    "Download the Demo version ( no obligations ) to experiment with it.<br />" +
+                    "Download the Demo version and experiment with it ( no obligations ).<br />" +
                     "The demo will be functional for a limited time only.<br />" +
                     "Buying the license to convert the demo to the unlimited version is detailed" +
                     " on this website\'s HOME page.<br /><br />"  +
