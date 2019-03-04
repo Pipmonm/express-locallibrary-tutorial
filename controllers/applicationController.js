@@ -40,9 +40,11 @@ exports.index = function(req, res) {
  "That's it! @nbsp: @nbsp:  Well almost.<br />"+
  "  Our policy is to enable people who are interested in our math modules to be able to download," +
  " test and obtain the license key for unlimited use of the modules before having to "+
- "make any payment.   Being able to first ensure that all aspects of the software are functional will, we "+
- "believe, provide assurance to our clients that they may confidently make the payments afterwards knowing "+
- "that everything is functional.  This can be done by accessing the 'View Cart' page. <br /> " +
+ "make any payment.<br />"+
+ "Ensuring first that all aspects of the software are functional will, we believe, provide "+
+ "assurance to our clients that they may confidently make the payments knowing "+
+ "that all aspects of the software are functional.<br />" +
+ "Once satisfied, payment can be done by accessing the 'View Cart' page on our site. <br /> " +
  "Thank you for your support in helping us produce more and better modules.</p></div>"
 
  let blurb4 = "Downloading: \n" +
