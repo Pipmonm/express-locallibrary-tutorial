@@ -99,7 +99,7 @@ exports.verify_view = function(req, res) {
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
-  let prolog = "<div style='position:relative; left:50px; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
+  let prolog = "<div style='position:relative; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
 
   //forcing update
   //let image = '../public/images/'+ filename; //this provides download href
@@ -127,7 +127,7 @@ exports.verify_back = function(req,res){
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
   widthValue = scrWidth[VerifyState.step];//2019-01=25 added
-  let prolog = "<div style='position:relative; left:50px; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
+  let prolog = "<div style='position:relative; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
   //line to force update
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
   let imageTitle = label[VerifyState.step];
