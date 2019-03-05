@@ -15,7 +15,12 @@ exports.stripeGet = (req, res) => {
   let source =   '/';
   let source2 = "Home";
   //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
-  res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY', amount:amount, denomination:denomination, labelAmount:fancyAmount});//STRIPE.stripeCharge.toString()});//2019-02-11 final version?
+  res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY',
+                                amount:amount,
+                                denomination:denomination,
+                                labelAmount:fancyAmount,
+                                source:source,
+                                source2:source2});//STRIPE.stripeCharge.toString()});//2019-02-11 final version?
 }
 
                                                //using variable seems to cause trouble
