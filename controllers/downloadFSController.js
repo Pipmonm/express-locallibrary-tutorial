@@ -12,9 +12,8 @@ exports.downloadFS_view = function(req, res) {
   let downloadFSDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; width:80%; align:center'>" +
   "<p>"+
   " Dowloading FracSpellerDual Demo: <br />"+
-  "<br />"+
   " Download the demo by clicking on the \"Download Demo\" button shown below.<br />"+
-  " Placing the file on your desktop to easily \"verify the download\"  (as described"+
+  " Placing the file on your desktop will make it easier to \"verify the download\"  (as described"+
   " below) and also run the demo.<br />"+
   " Verifying the file before running it is recommended to ensure its authenticity and"+
   " integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code"+
@@ -22,7 +21,6 @@ exports.downloadFS_view = function(req, res) {
   " instructions by clicking on the 'Verify' button below.)<br />"+
   "<br />"+
   " Running the demo:<br />"+
-  "<br />"+
   " Once verified run the program from your desktop by double-cliking on it.  In demo mode"+
   " it is recommended that you follow the 'quick tour' instructions as described on at startup.<br />"+
   "<br />" +
