@@ -1,19 +1,13 @@
 extends layout
 
 block content
-  h1= title
+  h1(href="#" style={'font-size':'4vw'})= title
   br
 
-  h3 Using Microsoft PowerShell Utility
+  h3(href="#" style={'font-size':'3vw'})= Using Microsoft PowerShell Utility
 
   p!= themeDesc1
   br
-  //- .image
-  //- label(for="verifyimg") #{source2}
-  //- br
-  //- .verifyimg
-  //-  <img id="verifyimg"  src=require("/public/images/step1.png") alt="missing" width="636" height="200">
-
 
   .image
   label(for="verify1img") #{source2}
