@@ -28,25 +28,25 @@ exports.index = function(req, res) {
 
  let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; width:80%; align:center'>" +
  "<p>" +
- "Welcome to all teachers and home-schooling parents.<br />"+
+ " Welcome to all teachers and home-schooling parents.<br />"+
  "<br />"+
- "  We invite you to try out the interactive math modules designed to make specific math topics both interesting, "+
- "and memorable for students.<br />"+
+ " We invite you to try out the interactive math modules designed to make specific math topics both interesting,"+
+ " and memorable for students.<br />"+
  "<br />"+
- "Download and explore these in 'demo' mode.  If of no interest, simply delete them.<br />" +
+ " Download and explore these in 'demo' mode.  If of no interest, simply delete them.<br />" +
  "<br />"+
- "If on the other hand you would like to obtain a license for unlimited use, just "+
- "follow the instructions on each module's page. <br />"+
+ " If on the other hand you would like to obtain a license for unlimited use, just"+
+ " follow the instructions on each module's page. <br />"+
  "<br />"+
- "That's it! &nbsp;&nbsp;&nbsp;  Well almost.<br />"+
+ " That's it! &nbsp;&nbsp;&nbsp;  Well almost.<br />"+
  " Our policy is to enable people who are interested in our math modules to be able to download," +
  " test, and obtain the license key for unlimited use of the modules before having to"+
  " make any payment.<br />"+
- "Ensuring first that all aspects of the software are functional will, we believe, provide"+
+ " Ensuring first that all aspects of the software are functional will, we believe, provide"+
  " assurance to our clients that they may confidently make the payments knowing"+
  " that all aspects of the software are functional.<br />" +
- "Once satisfied, payment can be done by accessing the 'View Cart' page on our site. <br /> " +
- "Thank you for your support in helping us produce more and better modules.</p></div>"
+ " Once satisfied, payment can be done by accessing the 'View Cart' page on our site. <br /> " +
+ " Thank you for your support in helping us produce more and better modules.</p></div>"
 
  let blurb4 = "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +
