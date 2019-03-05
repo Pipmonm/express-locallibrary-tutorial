@@ -72,7 +72,7 @@ exports.verify_start = function(req,res) {
   VerifyState.step = 1; //2019-01-21 VerifyState is a global defined in app.js
   let scriptText = verify[VerifyState.step];
   let filename = "step" + VerifyState.step.toString() + ".png";
-  let prolog = "<div style='position:relative; left:50px; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
+  let prolog = "<div style='position:relative; color:yellow;  background:green; width:80%; padding:10px; align:center'>"
 
   //let image = '../public/images/'+ filename; //this provides download href
   let image = 'https://s3.ca-central-1.amazonaws.com/pipsverifybucket/' + filename;
