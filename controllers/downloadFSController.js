@@ -9,17 +9,17 @@ var async = require('async');
 
 //Display unique page details for PieSlicer
 exports.downloadFS_view = function(req, res) {
-  let downloadFSDesc1 = "<div style='color:yellow; background:green; width:80%'> \n" +
+  let downloadFSDesc1 = "<div style='color:yellow; background:green; align:center; width:80%'>"+
   "<p>"
   "Dowloading FracSpellerDual Demo: <br />"+
   "<br />"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.<br />"+
   "Placing the file on your desktop to easily \"verify the download\"  (as described"+
   "below) and also run the demo.<br />"+
-  "Verifying the file before running it is recommended to ensure its authenticity and\n"+
-  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
-  "(shown below) against the one generated for the downloaded file. (follow the detailed\n"+
-  " intructions in the <a(href='/catalog/verification') button(type='button') Verify> page on this site)\n"+
+  "Verifying the file before running it is recommended to ensure its authenticity and "+
+  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code "+
+  "(shown below) against the one generated for the downloaded file. (follow the detailed "+
+  "instructions by clicking on the 'Verify' button below.)<br />"+
   "<br />"+
   "Running the demo:<br />"+
   "<br />"+

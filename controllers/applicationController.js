@@ -26,7 +26,7 @@ exports.index = function(req, res) {
    "retain it better and go on to pursue the matter witn more interest and curiosity for 'What comes next?'." +
    "If you decide to use any of our units, please let us know how we're doing.";
 
- let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
+ let blurb3 = "<div style='position:relative; color:yellow;  background:green; padding:10px; width:80%; align:center'>" +
  "<p>" +
  "Welcome to all teachers and home-schooling parents.<br />"+
  "<br />"+
