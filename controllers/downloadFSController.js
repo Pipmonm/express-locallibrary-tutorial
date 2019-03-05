@@ -9,24 +9,27 @@ var async = require('async');
 
 //Display unique page details for PieSlicer
 exports.downloadFS_view = function(req, res) {
-  console.log("@@@ $ details of FS downloads");
-  let downloadFSDesc1 = "<pre style='color:yellow; background:green; width:660px'> \n" +
-  "Dowloading FracSpellerDual Demo:  \n"+
-  "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
-  "on your desktop will make it easy to \"verify the download\" as described next.\n"+
-  "\n"+
+  let downloadFSDesc1 = "<div style='color:yellow; background:green; width:80%'> \n" +
+  "<p>"
+  "Dowloading FracSpellerDual Demo: <br />"+
+  "<br />"+
+  "Download the demo by clicking on the \"Download Demo\" button shown below.<br />"+
+  "Placing the file on your desktop to easily \"verify the download\"  (as described"+
+  "below) and also run the demo.<br />"+
   "Verifying the file before running it is recommended to ensure its authenticity and\n"+
   "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
   "(shown below) against the one generated for the downloaded file. (follow the detailed\n"+
-  " intructions in the \"VERIFICATION\" page on this site)\n"+
-  "\n"+
-  "\n"+
-  "Running the demo:\n"+
-  "After verifying it run the program from your desktop by double-cliking on it.\n"+
-  "\n" +
-  "FracSpellerDual.exe (vrs. 1.0.0.1)  file Verification code:\n" +
-  "SHA-256 Hash Code:   FEB16DA5A5885D87ACD7A9E0FA211DEBF96ADEB3820B0ECC38F85417D2B9BD56 \n" +
-  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.)"
+  " intructions in the <a(href='/catalog/verification') button(type='button') Verify> page on this site)\n"+
+  "<br />"+
+  "Running the demo:<br />"+
+  "<br />"+
+  "Once verified run the program from your desktop by double-cliking on it.  In demo mode"+
+  " it is recommended that you follow the 'quick tour' instructions as described on at startup.<br />"+
+  "<br />" +
+  "FracSpellerDual.exe (vrs. 1.0.0.1) SHA-256 Hash file Verification code:<br />" +
+  "<br />"+
+  "FEB16DA5A5885D87ACD7A9E0FA211DEBF96ADEB3820B0ECC38F85417D2B9BD56 <br />" +
+  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.)</p></div>"
 
   let extra = "USB Version: \n" +
   "The application may also be placed on a USB drive allowing use on any computer. \n" +
