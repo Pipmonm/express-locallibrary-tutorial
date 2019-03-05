@@ -10,7 +10,7 @@ exports.index = function(req, res) {
 
    let blurb2 = "<pre style='position:relative; left:50px; color:yellow; background:green; width:650px'> \n" +
    "Our Goal: \n" +
-   " Given the large array of careers out there nowadays most parents are, rightfully, concerned about ensuring \n" +
+   "Given the large array of careers out there nowadays most parents are, rightfully, concerned about ensuring \n" +
    "their children will be able to choose whichever career they may want and that they will have been sufficiently \n" +
    "prepared so as to have the best chances of success at whatever that choice may be. \n" +
    "Fundamental language skills, confidence in their ability to learn, outlets for creative expression and \n" +
@@ -39,13 +39,12 @@ exports.index = function(req, res) {
  "follow the instructions on each module's page. <br />"+
  "<br />"+
  "That's it! &nbsp;&nbsp;&nbsp;  Well almost.<br />"+
- " &nbsp;&nbsp; Our policy is to enable people who are interested in our math modules to be able to download," +
- " test and obtain the license key for unlimited use of the modules before having to "+
- "make any payment.<br />"+
- "Ensuring first that all aspects of the software are functional will, we believe, provide "+
- "assurance to our clients that they may confidently make the payments knowing "+
- "that all aspects of the software are functional.<br />" +
- "<br />"+
+ " Our policy is to enable people who are interested in our math modules to be able to download," +
+ " test and obtain the license key for unlimited use of the modules before having to"+
+ " make any payment.<br />"+
+ "Ensuring first that all aspects of the software are functional will, we believe, provide"+
+ " assurance to our clients that they may confidently make the payments knowing"+
+ " that all aspects of the software are functional.<br />" +
  "Once satisfied, payment can be done by accessing the 'View Cart' page on our site. <br /> " +
  "Thank you for your support in helping us produce more and better modules.</p></div>"
 
