@@ -14,7 +14,8 @@ exports.stripeGet = (req, res) => {
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
   let source =   '/';
   let source2 = "Home";
-  //const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
+  const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
+  console.log("@@@ $ publishable key: "  + keyPublishable + "  & typeof: " + typeof keyPublishable);
   res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY',
                                 amount:amount,
                                 denomination:denomination,
