@@ -87,7 +87,12 @@ exports.client_status_post = [
              console.log("@@@ $ found client(s) for doc req. status >v" );
              if(doc == null || doc == undefined){
                console.log("@@@ $ err Client record is invalid" + doc);
-               return  next(err);
+               // There are errors. Render the form again with sanitized values/error messages.
+               res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
+                              message1: "Use clipboard contents of application's Registration Data to Register first then try again",
+                              message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
+                              sysIdString: sysIdString, errors: errors.array()});
+               return;
              }
              console.log(doc[0]);//2019-01-30 was device_type
              mydoc = doc;
