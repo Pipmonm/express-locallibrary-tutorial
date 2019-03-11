@@ -98,7 +98,7 @@ exports.client_status_post = [
                  console.log("@@@ $ bypassing undefined doc[0]")
                  var returned_doc = [doc];
                  doc = returned_doc;
-                 console.log("@@@ $ doc modified to: " + doc + "  of type: " typeof doc + "  & doc[0]= " + doc[0]);
+                 console.log("@@@ $ doc modified to: " + doc + "  of type: " + typeof doc + "  & doc[0]= " + doc[0]);
                }
              }
              console.log("@@@ $ this is troublesome doc:" + doc + " of type: " + typeof doc);//2019-01-30 was device_type
