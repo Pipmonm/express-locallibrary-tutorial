@@ -85,7 +85,7 @@ exports.client_status_post = [
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             if(doc == null || doc == undefined){
+             if(err || doc == null || doc == undefined){
                console.log("@@@ $ err Client record is invalid" + doc);
                // There are errors. Render the form again with sanitized values/error messages.
                res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
