@@ -85,7 +85,11 @@ exports.client_status_post = [
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             console.log(doc[0].license_string);//2019-01-30 was device_type
+             if(doc == null || doc == undefined){
+               console.log("@@@ $ err Client record is invalid" + doc);
+               return  next(err);
+             }
+             console.log(doc[0]);//2019-01-30 was device_type
              mydoc = doc;
              if(doc.length > 1 ){
                console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
