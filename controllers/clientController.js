@@ -94,7 +94,8 @@ exports.client_status_post = [
                               sysIdString: sysIdString, errors: errors.array()});
                return;
              }
-             console.log(doc[0]);//2019-01-30 was device_type
+             console.log("@@@ $ this is the undefined" + doc[0]);//2019-01-30 was device_type
+             console.log("obliging recompile");
              mydoc = doc;
              if(doc.length > 1 ){
                console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
