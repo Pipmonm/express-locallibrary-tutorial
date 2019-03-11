@@ -112,13 +112,13 @@ exports.client_status_post = [
            //critical values above
            if(!option2){//2019-03-11 required optional processing
              var devId = doc.device_id;
-             let randy = doc.format_code;
-             let docId = doc._id;
+             var randy = doc.format_code;
+             var docId = doc._id;
              console.log("@@@ $ option2 true & devId = " + devId);
            }else{
              var devId = doc[0].device_id;//2019-03-11 very dangerous
-             let randy = doc[0].format_code;//ibid
-             let docId = doc[0]._id;
+             var randy = doc[0].format_code;//ibid
+             var docId = doc[0]._id;
              console.log("@@@ $ option2 false & devId = " + devId);
            }
 
