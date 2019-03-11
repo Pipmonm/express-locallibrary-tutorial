@@ -95,8 +95,10 @@ exports.client_status_post = [
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
                }else{//2019-03-11 seems should be in an array
-                 let returned_doc = doc;
-                 doc = [doc];
+                 console.log("@@@ $ bypassing undefined doc[0]")
+                 var returned_doc = [doc];
+                 doc = returned_doc;
+                 console.log("@@@ $ doc modified to: " + doc + "  of type: " typeof doc + "  & doc[0]= " + doc[0]);
                }
              }
              console.log("@@@ $ this is troublesome doc:" + doc + " of type: " + typeof doc);//2019-01-30 was device_type
