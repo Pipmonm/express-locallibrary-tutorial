@@ -110,7 +110,7 @@ exports.client_status_post = [
            let R1=0x5c3f10bd9a;
            let R2=0xb9a3ce805c;
            //critical values above
-           if(option2){//2019-03-11 required optional processing
+           if(!option2){//2019-03-11 required optional processing
              var devId = doc.device_id;
              let randy = doc.format_code;
              let docId = doc._id;
