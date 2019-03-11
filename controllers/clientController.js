@@ -96,6 +96,7 @@ exports.client_status_post = [
                  return;
                }else{//2019-03-11 seems should be in an array
                  option2 = true;//2019-03-11 seems like record is not an array
+                 console.log("@@@ $ option2 is true & doc is: /n" + doc);
                }
              }
 
@@ -110,31 +111,31 @@ exports.client_status_post = [
            let R2=0xb9a3ce805c;
            //critical values above
            if(option2){//2019-03-11 required optional processing
-             let id = doc.device_id;
+             var devId = doc.device_id;
              let randy = doc.format_code;
              let docId = doc._id;
              console.log("@@@ $ option2 true & id = " + id);
            }else{
-             let id = doc[0].device_id;//2019-03-11 very dangerous
+             var devId = doc[0].device_id;//2019-03-11 very dangerous
              let randy = doc[0].format_code;//ibid
              let docId = doc[0]._id;
-             console.log("@@@ $ option2 false & id = " + id);
+             console.log("@@@ $ option2 false & devId = " + devId);
            }
 
 
-           let idSize = id.length;
-           if(idSize<4)id=id + "1424953867";
-           if(idSize>10)id = id.slice(0,10);
-           id=parseInt(id,16);
+           let idSize = devId.length;
+           if(idSize<4)devId=devId + "1424953867";
+           if(idSize>10)devId = devId.slice(0,10);
+           devId=parseInt(devId,16);
 
            let key = -1;
            key = 0xffffffffff;
            let success = false;
            let result = 0x00000000;
 
-           R1 = R1 + id;
-           let shift = id & 0xf;
-           R1 = R1 + (id>>shift);
+           R1 = R1 + devId;
+           let shift = devId & 0xf;
+           R1 = R1 + (devId>>shift);
            result = R1 ^ R2;
 
            result = result ^ randy;
