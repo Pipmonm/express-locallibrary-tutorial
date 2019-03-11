@@ -85,14 +85,19 @@ exports.client_status_post = [
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             if(err || doc == null || doc == undefined || doc[0] == undefined || doc[0].deviceId == undefined){
-               console.log("@@@ $ err Client record is invalid" + doc);
-               // There are errors. Render the form again with sanitized values/error messages.
-               res.render('clientstatus_form', { title: 'Request Status: This client data is not Registered',
+             if(doc[0] == undefined || doc[0].deviceId == undefined){
+               if(doc == null || doc == undefined){
+                 console.log("@@@ $ err Client record is invalid" + doc);
+                 // There are errors. Render the form again with sanitized values/error messages.
+                 res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
                               message1: "Use clipboard contents of application's Registration Data to Register first then try again",
                               message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
                               sysIdString: sysIdString, errors: errors.array()});
-               return;
+                 return;
+               }else{//2019-03-11 seems should be in an array
+                 let returned_doc = doc;
+                 doc = [doc];
+               }
              }
              console.log("@@@ $ this is troublesome doc:" + doc + " of type: " + typeof doc);//2019-01-30 was device_type
              mydoc = doc;
