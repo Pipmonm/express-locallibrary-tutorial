@@ -77,7 +77,7 @@ exports.client_status_post = [
            //find client
            console.log("@@@ $ finding client with license_string (aka sysIdString): " + sysIdString);
            var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
-           var mydoc;
+           var mydoc = [];
            Client.find({'license_string':sysIdString},function(err, doc){ //2019-01-30 TO BE MODIFIED to license_string
                   //2019-01-30 was: 'device_id' : deviceId
              if(err){
@@ -85,6 +85,7 @@ exports.client_status_post = [
                return  next(err);
              }
              console.log("@@@ $ found client(s) for doc req. status >v" );
+             mydoc = doc;//2019-03-11 new take
              if(doc[0] == undefined || doc[0].deviceId == undefined){
                if(doc == null || doc == undefined){
                  console.log("@@@ $ err Client record is invalid" + doc);
@@ -96,14 +97,13 @@ exports.client_status_post = [
                  return;
                }else{//2019-03-11 seems should be in an array
                  console.log("@@@ $ bypassing undefined doc[0]")
-                 var returned_doc = [doc];
-                 doc = returned_doc;
-                 console.log("@@@ $ doc modified to: " + doc + "  of type: " + typeof doc + "  & doc[0]= " + doc[0]);
+                 mydoc[0]=doc;//2019-03-11 maybe can be made into array element 0
+                 console.log("@@@ $ doc modified to: " + mydoc + "  of type: " + typeof mydoc + "  & mydoc[0]= " + mydoc[0]);
                }
              }
              console.log("@@@ $ this is troublesome doc:" + doc + " of type: " + typeof doc);//2019-01-30 was device_type
-             mydoc = doc;
-             if(doc.length > 1 ){
+
+             if(mydoc.length > 1 ){//2019-03-11 was only 'doc'
                console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
              }
            //});  //needs to include following
@@ -113,8 +113,8 @@ exports.client_status_post = [
            let R1=0x5c3f10bd9a;
            let R2=0xb9a3ce805c;
            //critical values above
-           let id = doc[0].device_id;
-           let randy = doc[0].format_code;
+           let id = mydoc[0].device_id;//2019-03-11 very dangerous
+           let randy = mydoc[0].format_code;//ibid
 
            let idSize = id.length;
            if(idSize<4)id=id + "1424953867";
@@ -135,8 +135,9 @@ exports.client_status_post = [
            key = key ^ result;//done at server and sent to client
            console.log("@@@ $ licenseKey is: " + key.toString());
 
-           Client.findByIdAndUpdate(doc[0]._id, {license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
+           Client.findByIdAndUpdate(mydoc[0]._id, {license_key: key.toString() },{upsert: true, 'new': true}, function(err,newdoc){
                   //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+                  //2019-03-11 worse yet updated from 'doc' to 'mydoc'
                if(err){
                  console.log("@@@ $ update error: " + err);
                }
