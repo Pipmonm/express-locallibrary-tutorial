@@ -39,7 +39,7 @@ verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been do
 "  PowerShell will then print out the long SHA-256 hash code, as shown below:"
 
 verify[4] = "Step 4- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" \n"+
-"  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":\f\n"+
+"  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":<br />\n"+
 "   (we show the completed sequence and where you will need to 'PASTE' the codes.\n"+
 "    Where \"(nothing)\" is shown you are to press 'ENTER' with no text)\n"+
 "   Go on to Step 5 to begin the sequence in order."
