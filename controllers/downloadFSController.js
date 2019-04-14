@@ -45,10 +45,10 @@ exports.download_USB_FS_view = function(req, res) {
   "<p>"+
   " USB Version:<br />" +
   " The application may also be placed on a USB drive allowing use on any computer.<br />" +
-  " The USB version does not offer a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook," +
-  " (WINDOWS only) then if you prefer a USB version, move the .exe file to a USB.<br />"+
-  " Run it there and follow the same procedure as described above to register the application." +
-  " The USB version will not run until you enter its unique Key Code.<br />" +
+  " However the USB version does not offer a \"DEMO\" mode.  First download the DEMO on a CPU or Notebook," +
+  " (WINDOWS only) then if you prefer a USB version, copy the .exe file to the USB.<br />"+
+  " Run it there and follow the same procedure to register the application as described for the CPU version.<br />" +
+  " The USB version will only run after you enter its unique Key Code.<br />" +
   " <br />" +
   " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
   " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Message 'UNKNOWN DRIVE' will alert you to this condition.<br />"+
