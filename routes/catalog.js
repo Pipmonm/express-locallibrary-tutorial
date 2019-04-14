@@ -46,7 +46,7 @@ router.post('/charge',stripe_controller.stripePost);//2019-02-11 not too sure he
 
 router.get('/downloadPS_view',downloadPS_controller.downloadPS_view);
 router.get('/downloadFS_view',downloadFS_controller.downloadFS_view);
-router.get('/downloadUSBFS_view',downloadFS_controller.download_USB_view);
+router.get('/downloadUSBFS_view',downloadFS_controller.download_USB_FS_view);
 router.get('/get_S3_FS',s3_fs_controller.get_S3_FS_file);
 router.get('/get_S3_PS',s3_ps_controller.get_S3_PS_file);
 

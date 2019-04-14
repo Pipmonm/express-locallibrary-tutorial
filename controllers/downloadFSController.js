@@ -29,18 +29,6 @@ exports.downloadFS_view = function(req, res) {
   " FEB16DA5A5885D87ACD7A9E0FA211DEBF96ADEB3820B0ECC38F85417D2B9BD56 <br />" +
   " (copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.)</p></div>";
 
-  let extra = "<div style='color:yellow; background:green; align:center; width:80%'>"+
-  "<p>"+
-  " USB Version:<br />" +
-  " The application may also be placed on a USB drive allowing use on any computer.<br />" +
-  " The USB version does not offer a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook," +
-  " (WINDOWS only) then if you prefer a USB version, move the .exe file to a USB.<br />"+
-  " Run it there and follow the same procedure as described above to register the application." +
-  " The USB version will not run until you enter its unique Key Code.<br />" +
-  " <br />" +
-  " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
-  " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Message 'UNKNOWN DRIVE' will alert you to this condition.<br />"+
-  " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (most USB devices have an ID)</p></div>"
 
   let downloadFSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
 
@@ -65,3 +53,13 @@ exports.download_USB_FS_view = function(req, res) {
   " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
   " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Message 'UNKNOWN DRIVE' will alert you to this condition.<br />"+
   " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (most USB devices have an ID)</p></div>";
+
+  let downloadFSDesc2 =  ' ';
+
+  let source = '/catalog/get_S3_FS'; //this provides download href
+
+res.render('downloadFS_view', { title: "FracSpeller Downloads",
+                                 themeDesc1: downloadUSBFSDesc1,
+                                 themeDesc2: downloadFSDesc2,
+                                 source:source});
+};
