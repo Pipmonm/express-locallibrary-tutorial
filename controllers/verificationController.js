@@ -22,10 +22,10 @@ label[9] = "locating correct SHA-256 Hash Code";
 let verify = [];
 verify[0] = "Press Next";
 verify[1] = "Microsoft Windows can perform the verification of a file's authenticity by using the\n" +
-"'PowerShell' utility command 'Get-FileHash'.   Simply follow the steps as described below. \n"+
-"\n"+
-"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)\n" +
-"        This will bring up the menu with PowerShell option. (press 'Next')";
+"'PowerShell' utility command 'Get-FileHash'. <br />\n" +
+"Simply follow the steps as described below.<br /> \n"+
+"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)<br />\n" +
+"@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;This will bring up the menu with PowerShell option. (press 'Next')";
 
 verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' ) \n"+
 "  The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt. \n"+
@@ -40,8 +40,8 @@ verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been do
 
 verify[4] = "Step 4- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" \n"+
 "  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":<br />\n"+
-"   (we show the completed sequence and where you will need to 'PASTE' the codes.\n"+
-"    Where \"(nothing)\" is shown you are to press 'ENTER' with no text)\n"+
+"   (we show the completed sequence and where you will need to 'PASTE' the codes, \n"+
+"   where \"(nothing)\" is shown you are to press 'ENTER' with no text)<br />\n"+
 "   Go on to Step 5 to begin the sequence in order."
 
 verify[5] = "Step 5- Paste the hash code from our site for the module you have downloaded at\n"+

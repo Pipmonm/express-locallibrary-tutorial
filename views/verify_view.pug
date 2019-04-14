@@ -18,12 +18,12 @@ block content
     p Error getting dynamic content.
   else
    br
-
+   a(href= prevLoc)
+       button(type="button") #{prevLbl}
    a(href= nextLoc)
        button(type="button") #{nextLbl}
 
-   a(href= prevLoc)
-       button(type="button") #{prevLbl}
+
 
   //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
   //- the PUG href requires two lines, gives errors otherwise
