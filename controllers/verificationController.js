@@ -25,11 +25,11 @@ verify[1] = "Microsoft Windows can perform the verification of a file's authenti
 "'PowerShell' utility command 'Get-FileHash'. <br />\n" +
 "Simply follow the steps as described below.<br /> \n"+
 "Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)<br />\n" +
-"<@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;@nbsp;>This will bring up the menu with PowerShell option. (press 'Next')";
+"This will bring up the menu with PowerShell option. (press 'Next')";
 
 verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' ) \n"+
 "  The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt. \n"+
-"  (It is not important if the prompt is different)"
+"  \t(It is not important if the prompt is different)"
 
 verify[3] = "Step 3-  (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
 "  At the prompt type in the command: \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\".\n"+
