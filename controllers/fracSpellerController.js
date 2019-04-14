@@ -28,7 +28,7 @@ exports.fracSpeller_view = function(req, res) {
                     "  <li> poses problems for converting written form to numeric form (eg  five halves >> 5/2) " +
                     "and converting numerical form to written form   (eg 3/27 >> three twenty-sevenths) </li>" +
                     "  <li> a dedicated help window is available for questions about the application itself or " +
-                    "concerning the topic under study.</li>"
+                    "concerning the topic under study.</li>" +
                     "</ul>" +
                     "<br /><br />" +
                     "Download the Demo version to find out more ( no obligations ).<br />" +
