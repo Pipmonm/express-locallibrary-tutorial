@@ -27,8 +27,8 @@ verify[1] = "Microsoft Windows can perform the verification of a file's authenti
 "Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)<br />\n"+
 "This will bring up the menu with PowerShell option. (press 'Next' for Step 2)";
 
-verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' )<br /> \n"+
-"  &#32 &#32 The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt.<br /> \n"+
+verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' )<br />\n \n"+
+"  \t The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt.<br /> \n"+
 "  &nbsp;&nbsp;&nbsp;&nbsp;(It is not important if the prompt is different)";
 
 verify[3] = "Step 3- (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
