@@ -31,17 +31,17 @@ verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' )<br
 "  The PowerShell utility will start up, with probably &nbsp;&nbsp; 'PS C:\\Users\\User>' &nbsp;&nbsp; as the prompt.<br /> \n"+
 "  &nbsp;&nbsp;&nbsp;&nbsp;(It is not important if the prompt is different)";
 
-verify[3] = "Step 3- (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
-"  At the prompt type in the command:<br /> &nbsp;&nbsp;&nbsp;&nbsp; \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"&nbsp;&nbsp; + ENTER<br /><br />\n"+
+verify[3] = "(The following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)<br /><br />\n"+
+"  Step 3- At the prompt type in the command:<br /> &nbsp;&nbsp;&nbsp;&nbsp; \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"&nbsp;&nbsp; + ENTER<br /><br />\n"+
 "  Also notice that as you type PowerShell allows you to browse to any folder: you can use \n"+
 "  this feature if your file is not located on the Desktop as in our example.<br />\n"+
 "  PowerShell will then print out the long SHA-256 hash code, as shown below:";
 
 verify[4] = "Step 4- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" <br /><br /> \n"+
 "  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":<br />\n"+
-"  &nbsp;&nbsp;&nbsp;&nbsp; (we show the completed sequence and where you will need to 'PASTE' the codes, \n"+
-"   where \"(nothing)\" is shown you are to press 'ENTER' with no text)<br />\n"+
-"   Go on to Step 5 to begin the sequence in order.";
+"  &nbsp;&nbsp;&nbsp;&nbsp; We show the completed sequence and where you will need to 'PASTE' the codes. <br /> \n"+
+"  (where &nbsp;&nbsp; \"(nothing)\" &nbsp;&nbsp; is shown you are to press 'ENTER' with no text)<br />\n"+
+"  &nbsp;&nbsp;Go on to Step 5 to begin the sequence in order.";
 
 verify[5] = "Step 5- Paste the hash code from our site for the module you have downloaded at\n"+
 " the first position requested by 'Compare' (ie ReferenceObject[0]) <br /><br /> \n"+

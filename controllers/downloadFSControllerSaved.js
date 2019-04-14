@@ -51,17 +51,3 @@ res.render('downloadFS_view', { title: "FracSpeller Downloads",
                                  themeDesc2: downloadFSDesc2,
                                  source:source});
 };
-
-exports.download_USB_FS_view = function(req, res) {
-  let downloadUSBFSDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; width:80%; align:center'>" +
-  "<p>"+
-  " USB Version:<br />" +
-  " The application may also be placed on a USB drive allowing use on any computer.<br />" +
-  " The USB version does not offer a \"DEMO\" mode.  View the DEMO first on a CPU or Notebook," +
-  " (WINDOWS only) then if you prefer a USB version, move the .exe file to a USB.<br />"+
-  " Run it there and follow the same procedure as described above to register the application." +
-  " The USB version will not run until you enter its unique Key Code.<br />" +
-  " <br />" +
-  " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
-  " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Message 'UNKNOWN DRIVE' will alert you to this condition.<br />"+
-  " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (most USB devices have an ID)</p></div>";
