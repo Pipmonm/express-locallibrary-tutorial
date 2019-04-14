@@ -32,7 +32,7 @@ verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' )<br
 "  &nbsp;&nbsp;&nbsp;&nbsp;(It is not important if the prompt is different)";
 
 verify[3] = "Step 3- (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
-"  At the prompt type in the command: &nbsp;&nbsp; \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"&nbsp;&nbsp; + ENTER<br /><br />\n"+
+"  At the prompt type in the command:<br /> &nbsp;&nbsp;&nbsp;&nbsp; \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\"&nbsp;&nbsp; + ENTER<br /><br />\n"+
 "  Also notice that as you type PowerShell allows you to browse to any folder: you can use \n"+
 "  this feature if your file is not located on the Desktop as in our example.<br />\n"+
 "  PowerShell will then print out the long SHA-256 hash code, as shown below:";
