@@ -49,7 +49,7 @@ exports.download_USB_FS_view = function(req, res) {
   " First download and run the DEMO on a CPU or Notebook, (WINDOWS only)" +
   " then if you prefer a USB version, copy the .exe file to the USB.<br />"+
   " Run it there and follow the same procedure to register the application as described for the CPU version.<br />" +
-  " The USB version will allow reading the required \"REGISTRATION DATA\" required to register it."+
+  " The USB version will start and allow reading the \"REGISTRATION DATA\" required to register it."+
   " but it will only run once you enter its unique Key Code.<br />" +
   " <br />" +
   " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
