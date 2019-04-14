@@ -22,46 +22,47 @@ label[9] = "locating correct SHA-256 Hash Code";
 let verify = [];
 verify[0] = "Press Next";
 verify[1] = "Microsoft Windows can perform the verification of a file's authenticity by using the\n" +
-"'PowerShell' utility command 'Get-FileHash'. <br />\n" +
+"'PowerShell' utility command 'Get-FileHash'. <br />\n"+
 "Simply follow the steps as described below.<br /> \n"+
-"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)<br />\n" +
-"This will bring up the menu with PowerShell option. (press 'Next')";
+"Step 1- Type 'PowerShell' in the Search Command Box (white box bottom left of screen)<br />\n"+
+"This will bring up the menu with PowerShell option. (press 'Next' for Step 2)";
 
 verify[2] = "Step 2- Click the first option ('Windows PowerShell ISE (x86)' )<br /> \n"+
 "  &#32 &#32 The PowerShell utility will start up, with probably 'PS C:\\Users\\User>' as the prompt.<br /> \n"+
-"  &nbsp;&nbsp;&nbsp;&nbsp;(It is not important if the prompt is different)"
+"  &nbsp;&nbsp;&nbsp;&nbsp;(It is not important if the prompt is different)";
 
 verify[3] = "Step 3- (Following example assumes 'PieSlicerDual.exe' has been downloaded onto the desktop)\n"+
 "  At the prompt type in the command: \"Get-FileHash C:\\Users\\User\\Desktop\\PieSlicerDual.exe\".<br />\n"+
 "  (as for all commands you must then press ENTER key to enter it)<br />\n"+
 "  Also notice that as you type PowerShell allows you to browse to any folder: you can use \n"+
 "  this feature if your file is not located on the Desktop as in our example.<br />\n"+
-"  PowerShell will then print out the long SHA-256 hash code, as shown below:"
+"  PowerShell will then print out the long SHA-256 hash code, as shown below:";
 
 verify[4] = "Step 4- At the prompt (i.e. PS C:\\Users\\User>) type: \"compare\" <br /> \n"+
 "  PowerShell prints stuff then requests a prompt for \"ReferenceObject[0]\":<br />\n"+
 "   (we show the completed sequence and where you will need to 'PASTE' the codes, \n"+
 "   where \"(nothing)\" is shown you are to press 'ENTER' with no text)<br />\n"+
-"   Go on to Step 5 to begin the sequence in order."
+"   Go on to Step 5 to begin the sequence in order.";
 
 verify[5] = "Step 5- Paste the hash code from our site for the module you have downloaded at\n"+
-"  the first position requested by 'Compare' (ie ReferenceObject[0]) <br /> \n"+
-"Then press ENTER twice to bring up a request for \"DifferenceObject[0]\". <br /> \n"+ Proceed to Step-6.";
+" the first position requested by 'Compare' (ie ReferenceObject[0]) <br /> \n"+
+" Then press ENTER twice to bring up a request for \"DifferenceObject[0]\". <br /> \n"+
+" Proceed to Step-6.";
 
 verify[6] = "Step 6- Next go back to the Hash code generated in Step-3 above.<br />\n"+
 " Double click directly on the hash code (turns highlighted) then Right-Click on it & copy.<br />\n"+
-" Paste it in the compare dialog at line \"DifferenceObject[0] and press 'ENTER' twice.<br />\n"+
-" Go on to Step 7.\n"
+" Paste it in the compare dialog at line \"DifferenceObject[0]:\" and press 'ENTER' twice.<br />\n"+
+" Go on to Step 7";
 
-verify[7] = "Step 7- For exactly similar files pressing 'ENTER' at the prompt \"DifferenceObject[1]\"\n"+
+verify[7] = "Step 7- For exactly similar files pressing 'ENTER' at the prompt \"DifferenceObject[1]:\"\n"+
 "  will result in only the prompt being shown (see below).<br />\n"
 "  You may safely run this demo.<br />\n"+
-"  Step 8 shows output for files that are different."
+"  Step 8 shows output for files that are different.";
 
 verify[8] = "Step 8-  If the final ENTER results in extra output shown with '=<' comparisons\n"+
 "  or similar (as in the image below), then the files are different.  This normally comes from\n"+
 "  a download error or a file corruption error.<br />\n"+
-"  Do not run any file with an error; attempt to download again."
+"  Do not run any file with an error; attempt to download again.";
 
 verify[9] ="Finally:  The correct hash code for each module is available at the download\n"+
 " page specific to each module.<br /> \n"+
