@@ -33,8 +33,8 @@ exports.fracSpeller_view = function(req, res) {
                     "<br /><br />" +
                     "Download the Demo version to find out more ( no obligations ).<br />" +
                     "The demo will be functional for a limited time only.<br />" +
-                    "The option of buying the license to convert the demo to the unlimited version is " +
-                    "presented at this site\'s HOME page. (and all for the price of a hamburger!!! ;)<br />"  +
+                    "The option of buying the license to convert the demo to the unlimited version is detailed"+
+                    " in the \"Registration Data\" page accessible on each module's startup page.<br />"  +
                     "<br />" +
                     "<strong>NOTE CAREFULLY:</strong> <br />" +
                     "  Fraction Speller is a Windows executable (.exe) meant for Windows operating systems only.<br />" +

@@ -36,10 +36,10 @@ exports.pieSlicer_view = function(req, res) {
                     "itself or concerning the topic under study.</li>"+
                     "</ul>" +
                     "<br /><br />" +
-                    "Download the Demo version and experiment with it ( no obligations ).<br />" +
+                    "Download the Demo version and experiment with it ( no obligations ).<br />"+
                     "The demo will be functional for a limited time only.<br />" +
-                    "Buying the license to convert the demo to the unlimited version is detailed" +
-                    " on this website\'s HOME page.<br /><br />"  +
+                    "Buying the license to convert the demo to the unlimited version is detailed"+
+                    " in the \"Registration Data\" page accessible on each module's startup page.<br /><br />"  +
                     "<strong>NOTE CAREFULLY:</strong><br />" +
                     "  PieSlicer is a Windows executable (.exe) meant for Windows operating systems only." +
                     "  A browser based version is in development that will run on any computer.</p></div>"
