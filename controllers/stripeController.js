@@ -43,7 +43,7 @@ exports.stripePost = (req, res) => {
       description: "Sample Charge",
          currency: "usd",
          customer: customer.id,
-         metadata: ('systemId': registration_Data)
+         metadata: {'systemId': registration_Data}
     }))
     .catch(error => {
        console.log("@@@ EE 1st attempt to catch error: " + error);
