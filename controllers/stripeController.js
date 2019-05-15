@@ -15,7 +15,7 @@ exports.stripeGet = (req, res) => {
   let source =   '/';
   let source2 = "Home";
   const keyPublishable = process.env.STRIPE_PUBLISHABLE_KEY; //2019-02-12 try directly (async???)
-  console.log("@@@ $ publishable key: "  + keyPublishable + "  & typeof: " + typeof keyPublishable);
+  //console.log("@@@ $ publishable key: "  + keyPublishable + "  & typeof: " + typeof keyPublishable);
   //res.render("stripe_get.pug", {keyPublishable:'pk_test_5uHse6DFoVXDYSj8H3l1dYvY',
   res.render("stripe_get.pug", {keyPublishable:keyPublishable,
                                 amount:amount,
@@ -30,6 +30,7 @@ exports.stripePost = (req, res) => {
   let rawAmount = STRIPE.stripeCharge/100;//2019  need number for fancyAmount
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 must be a penny amount
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
+  let registration_Data = "1424953867:1572461:CPU:FS1001";
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
   stripe.customers.create({
@@ -41,7 +42,8 @@ exports.stripePost = (req, res) => {
       amount,
       description: "Sample Charge",
          currency: "usd",
-         customer: customer.id
+         customer: customer.id,
+         metadata: ('systemId': registration_Data)
     }))
     .catch(error => {
        console.log("@@@ EE 1st attempt to catch error: " + error);
@@ -55,8 +57,9 @@ exports.stripePost = (req, res) => {
     let denomination = charge.currency.toUpperCase();
     let source =   '/';
     let source2 = "HOME";
+    let systemId = charge.metadata.systemId;//2019-05-15
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
-    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount});//original only has filename and no variable declaration (no {})
+    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';
