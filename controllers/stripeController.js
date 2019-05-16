@@ -6,6 +6,37 @@
 //**************curiously STRIPE is not defined outside of exported functions
 //               ie only find STRIPE when wherever imported????
 //2019-02-10  bare bones to start with
+
+//stuff from clientController to enable SystemId verification;
+
+//clientrequest instance controller js
+var Client = require('../models/client');
+var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+////var clientrequestInstance = require('../models/clientrequestinstance');
+const { body,validationResult } = require('express-validator/check');
+const { sanitizeBody } = require('express-validator/filter');
+var mongoose = require('mongoose');
+var async = require('async');
+var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
+
+var debug = require('debug')('client');
+    //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
+
+//validation check on sysId and Format Code string  //2018-12-14 new function
+function checkValidIdString(inString){
+  let stringPieces = inString.split(":");
+  if(stringPieces.length !=4)return "fail";//2019-01-31 now of size 4 with module name-version
+  for (var i=0;i<2;i++){
+    if(isNaN(stringPieces[i]))return "fail";
+  }
+  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU")return "fail";
+  return "pass";
+};
+
+
+//end stuff from clientController
+
+
 exports.stripePrePay_get = (req,res) => {   //2019-05-15 part of payment mode mods
   STRIPE.registrationData = ""; //start with nulled system Id
   res.render('stripeprepay_form', {title: 'Payment Pre-Processing', message1: "Please paste clipboard contents from application's Registration Data page",
