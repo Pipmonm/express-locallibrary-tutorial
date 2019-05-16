@@ -40,6 +40,10 @@ router.get('/verification',verification_controller.verify_start);//2019-01-17 fo
 router.get('/nextVerify',verification_controller.verify_view);//2019-01-17 complications require 'start' & 'next' & 'prev'
 router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
+
+router.get('/stripePrePay',stripe_controller.stripePrePay_get);//2019-05-15 payment mode mods
+router.post('/stripePrePay',stripe_controller.stripePrePay_post);//2019-05-15 payment mode mods
+
 router.get('/stripePay',stripe_controller.stripeGet);//2019-02-11
 router.post('/charge',stripe_controller.stripePost);//2019-02-11 not too sure here
 

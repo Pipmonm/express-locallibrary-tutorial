@@ -61,8 +61,8 @@ exports.client_status_post = [
      const errors = validationResult(req);
 
      var sysIdString = req.body.sysIdString;
-     console.log("@@@ $ received status request for: " + sysIdString );
-     let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditins for validating id string
+     console.log("@@@ $ received client_status request for: " + sysIdString );
+     let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditions for validating id string
      console.log("@@@ $ formatCheck says: " + formatCheck);
      if(formatCheck == "fail")sysIdString = "incorrect string values"
      if (!errors.isEmpty()  || formatCheck == "fail") { //2018-12-14 added second condition
