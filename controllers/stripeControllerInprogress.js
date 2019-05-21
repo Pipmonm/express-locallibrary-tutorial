@@ -189,48 +189,15 @@ exports.stripePost = (req, res) => {
         return  next(err);
       } //close 4
       console.log("@@@ $ found client(s) for doc req. status >v" );
-      if(doc[0] == undefined || doc[0].deviceId == undefined){ //open 4
-        if(doc == null || doc == undefined){ //open 5
-          console.log("@@@ $ err Client record is invalid" + doc);
-          // There are errors. Render the form again with sanitized values/error messages.
-          res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
-                       message1: "Use clipboard contents of application's Registration Data to Register first then try again",
-                       message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
-                       message3: "",
-                       sysIdString: systemId, errors: errors.array()});
-          return;
-        }else{//2019-03-11 seems should be in an array
-          option2 = true;//2019-03-11 seems like record is not an array
-          console.log("@@@ $ option2 is true & doc is: /n" + doc);
-        } //close 5
-      } //close 4
+      console.log(" doc is: " + doc);
 
-      if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
-        console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
-        res.render('clientstatus_form', { title: 'Request Status: This client data is invalid',
-                     message1: "Please contact support@k9math.xyz to report this error 'Invalid Record'",
-                     message2: "Please include the Registration Data string that caused the error (shown below).",
-                     message3: "",
-                     sysIdString: sysIdString, errors: errors.array()});
-        return;
-      }
-
-    console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
-    //do call to stripeGet here???? or another render with button to goto page
-
-
+      console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
+      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      //console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';
      let source2 = "HOME";
      let tactfulMsge = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
-  }).then(charge => {
-    console.log("@@@@ WOW charge still available? = " + charge.metadata.status);
-    let source =   '/';
-    let source2 = "HOME";
-    let fancyAmount = "not US $";
-    let systemId = charge.metadata.status;
-    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   })//.done(() => console.log("@@@ $ done"));
 };
