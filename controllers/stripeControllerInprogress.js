@@ -146,7 +146,7 @@ exports.stripeGet = (req, res) => {
 }
 
                                                //using variable seems to cause trouble
-exports.stripePost = (req, res) => {
+exports.stripePost = (req, res) => {//open 1
   let rawAmount = STRIPE.stripeCharge/100;//2019  need number for fancyAmount
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 must be a penny amount
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
@@ -173,7 +173,7 @@ exports.stripePost = (req, res) => {
        res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
        //2019-02-21  sees error but doesn't render and desn't exit
     })
-  .then(charge => {
+  .then(charge => { //open 2 with ({
     let denomination = charge.currency.toUpperCase();
     let source =   '/';
     let source2 = "HOME";
@@ -199,5 +199,5 @@ exports.stripePost = (req, res) => {
      let source2 = "HOME";
      let tactfulMsge = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
-  })//.done(() => console.log("@@@ $ done"));
-};
+  }).done(() => console.log("@@@ $ done"));
+})};
