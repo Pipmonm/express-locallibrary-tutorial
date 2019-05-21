@@ -188,11 +188,20 @@ exports.stripePost = (req, res) => {//open 1
         console.log("@@@ $ err in Client.find license_string" + err);
         return  next(err);
       } //close 4
-      console.log("@@@ $ found client(s) for doc req. status >v" );
-      console.log(" doc is: " + doc);
-
+      console.log("@@@ $ found client(s) for doc req. status" );
       console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
-      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
+
+      Client.findByIdAndUpdate(docId, {status: "validated" },{upsert: true, 'new': true}, function(err,newdoc){
+             //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+             //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+          if(err){
+            console.log("@@@ $ update error: " + err);
+            return next(err);
+          }
+          console.log("@@@ $ post client update  client: >v");
+          console.log(newdoc);
+        });//end client update
+     res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      //console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';
