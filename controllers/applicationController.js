@@ -39,15 +39,15 @@ exports.index = function(req, res) {
  " follow the instructions given in the \"Registration Data\" page which is made available at "+
  " each module's startup page. <br />"+
  "<br />"+
- " That's it! &nbsp;&nbsp;&nbsp;  Well almost.<br />"+
- " Our policy is to enable people who are interested in our math modules to be able to download,"+
- " test, and obtain the license key for unlimited use of the modules before having to"+
- " make any payment.<br />"+
- " Ensuring first that the software is fully functional will, we believe, provide"+
- " assurance to our clients that they may confidently make the payments knowing"+
- " exactly what they will receive and that it is working on their system.<br />"+
- " Once satisfied, payment can be done by accessing the 'View Cart' page on our site. <br /> "+
- " Thank you for your support in helping us produce more and better modules.</p></div>"
+ " The \"Registration Data\" obtained from the module is used by following these steps, in order!:"+
+ "  1- Use the 'Register Form' tab on the site to register your system Id using the \"Registration Data\""+
+ "  2- Use the same \"Registration Data\" string to process the payment via the 'View Cart' tab."+
+ "  3- After a successful payment use that same \"Registration Data\" as the unique password to"+
+ "     access your account (via View Account tab on website) and obtain your License Key."+
+ "     (Use this License Key as requested when starting the module to unlock it permanently)"+
+ "<br />"+
+ " Finally, a most sincere 'thank you' to all who have supported our efforts and whom will have"+
+ " hopefully enabled us to produce more and better modules as a result of your patronage."
 
  let blurb4 = "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +
