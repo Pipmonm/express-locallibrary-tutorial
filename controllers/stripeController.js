@@ -222,6 +222,7 @@ exports.stripePost = (req, res) => {
            //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
         if(err){
           console.log("@@@ $ status update error: " + err);
+          return  next(err);
         }else{ //2019-05-21 added as an else clause what was inline
         console.log("@@@ $ post client status update  client: >v");
         console.log(newdoc);
@@ -236,4 +237,4 @@ exports.stripePost = (req, res) => {
      let tactfulMsge = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
   })//.done(() => console.log("@@@ $ done"));
-};
+});
