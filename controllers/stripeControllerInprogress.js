@@ -217,24 +217,20 @@ exports.stripePost = (req, res) => {
 
     console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
     //do call to stripeGet here???? or another render with button to goto page
-    Client.findByIdAndUpdate(docId, {status: "validated" },{upsert: true, 'new': true}, function(err,newdoc){
-           //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
-           //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
-        if(err){
-          console.log("@@@ $ status update error: " + err);
-          return  next(err);
-        }else{ //2019-05-21 added as an else clause what was inline
-        console.log("@@@ $ post client status update  client: >v");
-        console.log(newdoc);
-       }
-     }); //close 3   //2019-05-21  end added clause for updating status
 
-    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
+
   }).catch(error => {
      //console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';
      let source2 = "HOME";
      let tactfulMsge = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
+  }).then(charge => {
+    console.log("@@@@ WOW charge still available? = " + charge.metadata.status);
+    let source =   '/';
+    let source2 = "HOME";
+    let fancyAmount = "not US $";
+    let systemId = charge.metadata.status;
+    res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   })//.done(() => console.log("@@@ $ done"));
 };

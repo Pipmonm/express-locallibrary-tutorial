@@ -39,12 +39,12 @@ exports.index = function(req, res) {
  " follow the instructions given in the \"Registration Data\" page which is made available at "+
  " each module's startup page. <br />"+
  "<br />"+
- " The \"Registration Data\" obtained from the module is used by following these steps, in order!:"+
- "  1- Use the 'Register Form' tab on the site to register your system Id using the \"Registration Data\""+
- "  2- Use the same \"Registration Data\" string to process the payment via the 'View Cart' tab."+
- "  3- After a successful payment use that same \"Registration Data\" as the unique password to"+
- "     access your account (via View Account tab on website) and obtain your License Key."+
- "     (Use this License Key as requested when starting the module to unlock it permanently)"+
+ " The \"Registration Data\" obtained from the module is used by following these steps, in order!:<br />"+
+ "  1- Use the 'Register Form' tab on the site to register your system Id using the \"Registration Data\"<br />"+
+ "  2- Use the same \"Registration Data\" string to process the payment via the 'View Cart' tab.<br />"+
+ "  3- After a successful payment use that same \"Registration Data\" as the unique password to<br />"+
+ "     access your account (via View Account tab on website) and obtain your License Key.<br />"+
+ "     (Use this License Key as requested when starting the module to unlock it permanently)<br />"+
  "<br />"+
  " Finally, a most sincere 'thank you' to all who have supported our efforts and whom will have"+
  " hopefully enabled us to produce more and better modules as a result of your patronage."
