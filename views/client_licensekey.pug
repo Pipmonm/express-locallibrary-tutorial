@@ -15,8 +15,14 @@ block content
   p  Email: #{client.email_address}
 
   hr
+
+
   p License Key is:
   //-was license_key but now a formal parameter in client schema; so use prolog instead
 
+  if client.status == "validated"
 
-  p #{client.license_key}
+    p #{client.license_key}
+
+  else
+    p Stripe transaction not complete  license key not available
