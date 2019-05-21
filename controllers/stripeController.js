@@ -237,4 +237,4 @@ exports.stripePost = (req, res) => {
      let tactfulMsge = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
   })//.done(() => console.log("@@@ $ done"));
-});
+};
