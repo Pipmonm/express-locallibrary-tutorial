@@ -183,14 +183,15 @@ exports.stripePost = (req, res) => {//open 1
     //2019-05-21  Updating Status to "Paid"
     Client.find({'license_string':systemId},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
            //2019-01-30 was: 'device_id' : deviceId
-      var docId = doc._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+
       if(err){ //open 4
         console.log("@@@ $ err in Client.find license_string" + err);
         return  next(err);
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
       console.log("@@@ $ doc >>: " + doc);
-      console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
+      var docId = doc._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+      console.log("@@@ $ setting STRIPE.Status to 'validated' for doc._id (as docId): " + docId);
 
       Client.findByIdAndUpdate(docId, {status: "validated" },{upsert: true, 'new': true}, function(err,newdoc){
              //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
