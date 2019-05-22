@@ -188,7 +188,8 @@ exports.stripePost = (req, res) => {//open 1
         console.log("@@@ $ err in Client.find license_string" + err);
         return  next(err);
       } //close 4
-      console.log("@@@ $ found client(s) for doc req. status" );
+      console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
+      console.log("@@@ $ doc >>: " + doc);
       console.log("@@@ $ setting STRIPE.Status to 'validated' for license_string (aka sysIdString): " + STRIPE.registrationData);
 
       Client.findByIdAndUpdate(docId, {status: "validated" },{upsert: true, 'new': true}, function(err,newdoc){
