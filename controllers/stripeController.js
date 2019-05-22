@@ -189,8 +189,9 @@ exports.stripePost = (req, res) => {//open 1
         return  next(err);
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
-      console.log("@@@ $ doc >>: " + doc);
-      var docId = doc._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+      console.log("@@@ $ doc type is:" + typeof doc);
+      console.log("@@@ $ doc >>: " + "<br />" + doc);
+      var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
       console.log("@@@ $ setting STRIPE.Status to 'validated' for doc._id (as docId): " + docId);
 
       Client.findByIdAndUpdate(docId, {status: "validated" },{upsert: true, 'new': true}, function(err,newdoc){
