@@ -52,7 +52,6 @@ exports.download_USB_PS_view = function(req, res) {
   " Run it there and follow the same procedure for registration as described for CPU versions.<br />" +
   " An unregistered USB version allows reading the \"REGISTRATION DATA\" required to register it."+
   " But it will not run until you do register it, get its key-code and then enter it when requested. "+
-  " <br /> (purchasing a CPU version includes free usage on 1 USB )<br />" +
   " <br />" +
   " &nbsp;&nbsp;&nbsp;&nbsp; NOTE CAREFULLY: Some USB drives do not have a serial id and cannot be used.<br />"+
   " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Message 'UNKNOWN DRIVE' will alert you to this condition.<br />"+
