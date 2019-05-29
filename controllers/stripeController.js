@@ -98,7 +98,7 @@ exports.stripePrePay_post = [
                  return;
                }else{//2019-03-11 seems should be in an array
                  option2 = true;//2019-03-11 seems like record is not an array
-                 console.log("@@@ $ option2 is true & doc is: /n" + doc);
+                 console.log("@@@ $ option2 is true & doc is:","\n",doc);
                } //close 5
              } //close 4
 
