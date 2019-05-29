@@ -86,7 +86,7 @@ exports.stripePrePay_post = [
              } //close 4
              console.log("@@@ $ found client(s) for doc req. status >v" );
              console.log("@@@ $ typeof doc: " + typeof doc);
-             if(doc[0] == undefined || doc[0].device_id == undefined || doc[0] == null){ //open 4
+             //if(doc[0] == undefined || doc[0] == null){ //open 4
                if(doc == null || doc == undefined  || doc.device_id == undefined || doc == ""){ //open 5
                  console.log("@@@ $ err Client record is invalid" + doc + "  & is type of: " + typeof doc);
                  // There are errors. Render the form again with sanitized values/error messages.
@@ -100,7 +100,7 @@ exports.stripePrePay_post = [
                  option2 = true;//2019-03-11 seems like record is not an array
                  console.log("@@@ $ option2 is true & doc is:","\n",doc);
                } //close 5
-             } //close 4
+             //} //close 4
 
              if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
                console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
