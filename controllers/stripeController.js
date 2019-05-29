@@ -86,13 +86,13 @@ exports.stripePrePay_post = [
              } //close 4
              console.log("@@@ $ found client(s) for doc req. status >v" );
              console.log("@@@ $ typeof doc: " + typeof doc);
-             if(doc[0] == undefined || doc[0].deviceId == undefined || doc[0] == null){ //open 4
-               if(doc == null || doc == undefined  || doc.deviceId == undefined || doc == ""){ //open 5
+             if(doc[0] == undefined || doc[0].device_id == undefined || doc[0] == null){ //open 4
+               if(doc == null || doc == undefined  || doc.device_id == undefined || doc == ""){ //open 5
                  console.log("@@@ $ err Client record is invalid" + doc + "  & is type of: " + typeof doc);
                  // There are errors. Render the form again with sanitized values/error messages.
                  res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
                               message1: "Use clipboard contents of application's Registration Data to Register first then try again",
-                              message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
+                              message2: "(NOTE: These are placed in your Window's ClipBoard upon entering any module's Registration Data page)",
                               message3: "",
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
