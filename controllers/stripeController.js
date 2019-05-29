@@ -85,7 +85,7 @@ exports.stripePrePay_post = [
                return  next(err);
              } //close 4
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             console.log(@@@ $ "typeof doc: " + typeof doc);
+             console.log("@@@ $ typeof doc: " + typeof doc);
              if(doc[0] == undefined || doc[0].deviceId == undefined || doc[0] == null){ //open 4
                if(doc == null || doc == undefined  || doc.deviceId == undefined || doc == ""){ //open 5
                  console.log("@@@ $ err Client record is invalid" + doc + "  & is type of: " + typeof doc);
