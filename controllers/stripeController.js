@@ -88,7 +88,12 @@ exports.stripePrePay_post = [
              console.log("@@@ $ typeof doc: " + typeof doc);
              //if(doc[0] == undefined || doc[0] == null){ //open 4
                if(doc == null || doc == undefined  || doc.device_id == undefined || doc == ""){ //open 5
-                 console.log("@@@ $ err Client record is invalid" + doc + "  & is type of: " + typeof doc);
+                 let msg = [];
+                 if(doc == null)msg.push("doc==null");
+                 if(doc == undefined)msg.push("doc==undefined");
+                 if(doc.device_id==undefined)msg.push("doc.device_id==undefined");
+                 if(doc == "")msg.push('doc==""');
+                 console.log("@@@ $ err Client record is invalid","\n",msg);
                  // There are errors. Render the form again with sanitized values/error messages.
                  res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
                               message1: "Use clipboard contents of application's Registration Data to Register first then try again",
