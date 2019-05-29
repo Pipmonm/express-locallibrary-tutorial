@@ -86,14 +86,21 @@ exports.stripePrePay_post = [
              } //close 4
              console.log("@@@ $ found client(s) for doc req. status >v" );
              console.log(doc);
-             console.log("@@@ $ typeof doc: " + typeof doc);
-             //if(doc[0] == undefined || doc[0] == null){ //open 4
-               if(doc == null || doc == undefined  || doc.device_id == undefined || doc == ""){ //open 5
+             if(doc.length>1){ //open 4
+                 console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
+                 res.render('clientstatus_form', { title: 'Request Status: This client data is invalid',
+                              message1: "Please contact support@k9math.xyz to report this error 'Invalid Record'",
+                              message2: "Please include the Registration Data string that caused the error (shown below).",
+                              message3: "",
+                              sysIdString: sysIdString, errors: errors.array()});
+                 return;
+               }
+             if(doc.length==0 ||doc == null || doc == undefined  || doc[0].device_id == undefined){ //open 4
                  let msg = [];
                  if(doc == null)msg.push("doc==null");
                  if(doc == undefined)msg.push("doc==undefined");
                  if(doc.device_id==undefined)msg.push("doc.device_id==undefined");
-                 if(doc == "")msg.push('doc==""');
+                 if(doc.length==0)msg.push('doc.length==0');
                  console.log("@@@ $ err Client record is invalid","\n",msg);
                  // There are errors. Render the form again with sanitized values/error messages.
                  res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
@@ -102,21 +109,7 @@ exports.stripePrePay_post = [
                               message3: "",
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
-               }else{//2019-03-11 seems should be in an array
-                 option2 = true;//2019-03-11 seems like record is not an array
-                 console.log("@@@ $ option2 is true & doc is:","\n",doc);
-               } //close 5
-             //} //close 4
-
-             if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
-               console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
-               res.render('clientstatus_form', { title: 'Request Status: This client data is invalid',
-                            message1: "Please contact support@k9math.xyz to report this error 'Invalid Record'",
-                            message2: "Please include the Registration Data string that caused the error (shown below).",
-                            message3: "",
-                            sysIdString: sysIdString, errors: errors.array()});
-               return;
-             }
+               }
            STRIPE.registrationData = sysIdString;
            console.log("@@@ $ setting STRIPE.registrationData with license_string (aka sysIdString): " + STRIPE.registrationData);
            //do call to stripeGet here???? or another render with button to goto page
