@@ -95,10 +95,10 @@ exports.stripePrePay_post = [
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
                }
-             if(doc.length==0 ||doc == null || doc == undefined  || doc[0].device_id == undefined){ //open 4
+             if(doc.length==0 ||doc == null || doc[0].device_id == undefined){ //open 4
                  let msg = [];
                  if(doc == null)msg.push("doc==null");
-                 if(doc == undefined)msg.push("doc==undefined");
+                 //if(doc == undefined)msg.push("doc==undefined");//supposedly same as ==null ???
                  if(doc.device_id==undefined)msg.push("doc.device_id==undefined");
                  if(doc.length==0)msg.push('doc.length==0');
                  console.log("@@@ $ err Client record is invalid","\n",msg);
