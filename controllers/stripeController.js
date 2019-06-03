@@ -172,7 +172,7 @@ exports.stripePost = (req, res) => {//open 1
        let tactfulMsg = "Unable to process credit card charge";
        res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
        //2019-02-21  sees error but doesn't render and desn't exit
-       return;//2019-06-03 trying to avoid 'unhandled promise/rejection error as given in heroku logs'
+       return next("silly error");//2019-06-03 trying to avoid 'unhandled promise/rejection error as given in heroku logs'
     })
   .then(charge => { //open 2 with ({
     let denomination = charge.currency.toUpperCase();
