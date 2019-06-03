@@ -165,7 +165,17 @@ exports.stripePost = (req, res) => {//open 1
          customer: customer.id,
          metadata: {'systemId': registration_Data} //2019-05-15 payment mode mods
     }))
-    //here was .catch
+  .catch(error => {
+       console.log("@@@ EE 1st attempt to catch error: " + error);
+       let source =   '/';
+       let source2 = "HOME";
+       let tactfulMsg = "Unable to process credit card charge";
+       res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
+       //2019-02-21  sees error but doesn't render and desn't exit
+       //hrow("silly error");//2019-06-03 trying to avoid 'unhandled promise/rejection error as given in heroku logs'
+       //let failed = Promise.reject("Stripe signals card error")
+       return false;
+    })
   .then(charge => { //open 2 with ({
     let denomination = charge.currency.toUpperCase();
     let source =   '/';
