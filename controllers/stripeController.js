@@ -151,6 +151,7 @@ exports.stripePost = (req, res) => {//open 1
   let amount = STRIPE.stripeCharge.toString();//2019-02-13 must be a penny amount
   let fancyAmount = "$" + rawAmount.toFixed(2).toString();
   let registration_Data = STRIPE.registrationData;//2019-05-15 payment mode mods
+  let exitFlag = false;//2019-06-03  flag to signal not to process if true
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
   stripe.customers.create({
@@ -170,13 +171,15 @@ exports.stripePost = (req, res) => {//open 1
        let source =   '/';
        let source2 = "HOME";
        let tactfulMsg = "Unable to process credit card charge";
+       exitFlag = true;//2019-06-03  signal error was processed
        res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
        //2019-02-21  sees error but doesn't render and desn't exit
        //hrow("silly error");//2019-06-03 trying to avoid 'unhandled promise/rejection error as given in heroku logs'
        //let failed = Promise.reject("Stripe signals card error")
-       return Promise.reject(error);
+       //return Promise.reject(error);
     })
   .then(charge => { //open 2 with ({
+    if(exitFlag)return;//2019-06-03 trying to avoid running this 'then' on previous error
     let denomination = charge.currency.toUpperCase();
     let source =   '/';
     let source2 = "HOME";
@@ -212,7 +215,7 @@ exports.stripePost = (req, res) => {//open 1
      //console.log("@@@ EE 2nd attempt to catch error: " + error);
      let source =   '/';
      let source2 = "HOME";
-     let tactfulMsge = "";
+     let tactfulMsg = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
   })
 })};
