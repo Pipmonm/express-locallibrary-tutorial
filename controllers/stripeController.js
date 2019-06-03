@@ -179,7 +179,7 @@ exports.stripePost = (req, res) => {//open 1
     let source2 = "HOME";
     let systemId = charge.metadata.systemId;//2019-05-15 payment mode mods
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
-
+    console.log("@@@ ### from address: ", charge.billing_details.address.state,"  & city: ",charge.billing_details.address.city);
     //2019-05-21  Updating Status to "Paid"
     Client.find({'license_string':systemId},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
            //2019-01-30 was: 'device_id' : deviceId
