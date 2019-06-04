@@ -40,8 +40,8 @@ function checkValidIdString(inString){
 exports.stripePrePay_get = (req,res) => {   //2019-05-15 part of payment mode mods
   STRIPE.registrationData = ""; //start with nulled system Id
   res.render('stripeprepay_form', {title: 'Payment Pre-Processing', message1: "Please paste clipboard contents from application's Registration Data page",
-                             message2: 'Required to confirm that the SystemId is registered & ensure License Key is generated for that specific system & module',
-                             message3: "(NOTE: These are loaded automatically upon entering module's Registration Data page)",
+                             message2: 'Required to confirm that the SystemId is registered & ensure a License Key is generated for that specific system & module',
+                             message3: "(NOTE: This content is different for each module & is loaded automatically upon entering a module's Registration Data page)",
                              sysIdString: ""});
 
 }; //end stripePrePay_get
@@ -50,6 +50,7 @@ exports.stripePrePay_post = [
    //validation
    body('sysIdString').isLength({ min: 1 }).trim().withMessage('Clipboard data must be provided'),
    //sanitize
+
    sanitizeBody('sysIdString').trim().escape(),
 
    // Process request after validation and sanitization.
@@ -61,6 +62,9 @@ exports.stripePrePay_post = [
 
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received prePay request for: " + sysIdString );
+     if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
+        res.redirect('/clientstatus');
+     }
      let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditions for validating id string
      console.log("@@@ $ formatCheck says: " + formatCheck);
      if(formatCheck == "fail")sysIdString = "incorrect string values"
@@ -153,6 +157,7 @@ exports.stripePost = (req, res) => {//open 1
   let registration_Data = STRIPE.registrationData;//2019-05-15 payment mode mods
   let exitFlag = false;//2019-06-03  flag to signal not to process if true
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
+  let chargeObject;//2019-06-03  make returned object available throughout chain processing
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -179,6 +184,7 @@ exports.stripePost = (req, res) => {//open 1
        //return Promise.reject(error);
     })
   .then(charge => { //open 2 with ({
+    chargeObject = charge; //2019-06-03 keep for all chain
     if(exitFlag)return;//2019-06-03 trying to avoid running this 'then' on previous error
     let denomination = charge.currency.toUpperCase();
     let source =   '/';
