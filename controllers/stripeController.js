@@ -63,7 +63,7 @@ exports.stripePrePay_post = [
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received prePay request for: " + sysIdString );
      if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
-        res.redirect('/clientstatus');
+        res.redirect('/catalog/clientstatus');
      }
      let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditions for validating id string
      console.log("@@@ $ formatCheck says: " + formatCheck);
