@@ -3,10 +3,10 @@ var moment = require('moment');
 
 var Schema = mongoose.Schema;
 
-var TaxAuthoritySchema = new Schema(
+var CountryTaxAuthoritySchema = new Schema(
 
   {
-    region: { type: String, required: true }, //the authority probably here
+    country: { type: String, required: true }, //federal tax authority
     allowed: {type: Boolean, required: true, },//currently allowed to sell?
     restriction:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
     transaction_limit: {type: Number, required: true},//# of transactions allowed
@@ -18,23 +18,23 @@ var TaxAuthoritySchema = new Schema(
 );
 
 // Virtual for clientrequestinstance's URL
-TaxAuthoritySchema
+CountryTaxAuthoritySchema
 .virtual('url')
 .get(function () {
   return '/catalog/taxauthority/' + this._id;
 });
 
-TaxAuthoritySchema
+CountryTaxAuthoritySchema
 .virtual('last_transaction_date_formatted')
 .get(function () {
   return moment(this.transaction_date).format();
 });
 
-TaxAuthoritySchema
+CountryTaxAuthoritySchema
 .virtual('can_sell')
 .get(function(){
   return this.allowed;
 })
 
 //Export model
-module.exports = mongoose.model('TaxAuthority', TaxAuthoritySchema);
+module.exports = mongoose.model('CountryTaxAuthority', CountryTaxAuthoritySchema);

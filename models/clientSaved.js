@@ -3,7 +3,7 @@ var moment = require('moment'); //added  :MOD: 2018-03-08 10:01 AM
 
 var Schema = mongoose.Schema;
 
-var ClientSchema = Schema(
+var ClientSavedSchema = Schema(
   {
     device_id: {type: String, max : 100, unique : true, required : true, dropDups: true },
     device_type: {type: String, max : 20},
@@ -20,27 +20,27 @@ var ClientSchema = Schema(
 );
 
 // Virtual for client's full name
-ClientSchema
+ClientSavedSchema
 .virtual('name')
 .get(function () {
   return this.family_name + ', ' + this.first_name;
 });
 
 // Virtual for client's URL
-ClientSchema
+ClientSavedSchema
 .virtual('url')
 .get(function () {
   console.log('client URL is: ' + this._id);
   return '/catalog/client/' + this._id;
 });
 
-ClientSchema
+ClientSavedSchema
 .virtual('sysIdString')
 .get(function() {
   return this.device_id + ":" + this.format_code + ":" + this.device_type;
 })
 
-ClientSchema
+ClientSavedSchema
 .virtual('date_registered')
 .get(function () {
   return this.validation_date ? moment(this.validation_date).format('YYYY-MM-DD') : '';
@@ -48,4 +48,4 @@ ClientSchema
 
 
 //Export model
-module.exports = mongoose.model('Client', ClientSchema);
+module.exports = mongoose.model('ClientSaved', ClientSavedSchema);
