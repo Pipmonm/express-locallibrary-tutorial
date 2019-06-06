@@ -1,6 +1,6 @@
 //client instance controller js
-var Client = require('../models/client'); //collection will be known as 'clients'
-var ClientRequest = require('../models/clientrequest');//as  'clientrequests'
+var Client = require('../models/client');
+var ClientRequest = require('../models/clientrequest');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');

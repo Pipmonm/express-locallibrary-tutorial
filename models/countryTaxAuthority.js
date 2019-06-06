@@ -6,9 +6,10 @@ var Schema = mongoose.Schema;
 var CountryTaxAuthoritySchema = new Schema(
 
   {
-    country: { type: String, required: true }, //federal tax authority
-    allowed: {type: Boolean, required: true, },//currently allowed to sell?
-    restriction:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
+    country_code: { type: String, required: true }, //federal tax authority
+    allowed: {type: Boolean, required: true },//currently allowed to sell?
+    rate: {type: Number, required: true}, //nominal sales tax rate
+    restriction_code:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
     transaction_limit: {type: Number, required: true},//# of transactions allowed
     amount_limit: {type: Number, required:true},//$ limit
     transaction_period: {type: String, required:true},//restart per month,year???

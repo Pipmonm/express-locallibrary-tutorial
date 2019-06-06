@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 var ProvStateTaxAuthoritySchema = new Schema(
 
   {
-    prov_state: { type: String, required: true }, //regional tax authority
-    inCountry: { type: Schema.ObjectId, ref: 'CountryTaxAuthority', required: true }, //reference to the federal authority
+    ISOabb:  { type: String, required:false}, //possibly not always needed
+    country: { type: Schema.ObjectId, ref: 'CountryTaxAuthority', required: true }, //reference to the federal authority
     allowed: {type: Boolean, required: true, },//currently allowed to sell?
     restriction:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
     transaction_limit: {type: Number, required: true},//# of transactions allowed

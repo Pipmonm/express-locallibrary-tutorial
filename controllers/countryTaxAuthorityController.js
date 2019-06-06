@@ -1,6 +1,6 @@
 //client instance controller js
-var Client = require('../models/client'); //collection will be known as 'clients'
-var ClientRequest = require('../models/clientrequest');//as  'clientrequests'
+var CountryTaxAuthority = require('../models/countrytaxauthority'); //collection 'countrytaxauthorities'
+var ProvStateTaxAuthority = require('../models/provstatetaxauthority');// 'provstatetaxautorities'
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -10,18 +10,18 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 var debug = require('debug');
 
 // Display list of all ClientRequests.
-exports.clientrequest_list = function(req, res, next) {
-  console.log('@@@ $ at clientrequest_list');
-  ClientRequest.find({}) //was   ({}),'status'
+exports.countrytaxauthorities_list = function(req, res, next) {
+  console.log('@@@ $ at countriesTaxAuthorities_list');
+  CountryTaxAuthority.find({}) //was   ({}),'status'
     .populate({
-       path:'clients',
-       model:'Client'})  //have attempted 'Client' & others
-    .exec(function (err, clientrequests) {
-      console.log("@@@ $ executing callback for ClntRqst list; if err> : " + err );
+       path:'provstatetaxauthorities', //2019-06-05 a guess as to path
+       model:'ProvStateTaxAuthority'})  //have attempted 'Client' & others
+    .exec(function (err, provstatetaxauthorities) {
+      console.log("@@@ $ executing callback for provstatetaxauthorities list; if err> : " + err );
       if (err) { return next(err); }
-      console.log('@@@ $ found clientrequests as per: ');
-      console.log(clientrequests);
-      res.render('clientrequest_list', { title: 'Client Request List', clientrequest_list: clientrequests });
+      console.log('@@@ $ found provstatetaxauthorities as per: ');
+      console.log(provstatetaxauthorities);
+      res.render('provstatetaxauthorities_list', { title: 'Province or State List', provstatetaxauthorities_list: provstatetaxauthorities });
     });
 
 };
@@ -60,80 +60,70 @@ exports.clientrequest_detail = function(req, res, next) {
 
   };
 
-// Display ClientRequest create form on GET.
-exports.clientrequest_create_get = function(req, res, next) {
-
-      Client.find() //was {},'client'
-      .exec(function (err, clients) {
-        if (err) { return next(err); }
-        // Successful, so render.
-        console.log("@@@ $ rendering clientrequest_form for clreq_create_get");
-        console.log('@@@ $ client_list: ' + clients);
-        res.render('clientrequest_form', {title: 'Create ClientRequest', client_list:clients});
-      });
-
+// Display ProvStateTaxAuthority create form on GET.
+exports.countrytaxauthority_create_get = function(req, res, next) {
+        res.render('countrytaxauthority_form', {title: 'Create CountryTaxAuthority', countrytaxauthority_list:countrytaxauthorities});
   };
 
 
 // Handle ClientRequest create on POST.
-exports.clientrequest_create_post = [
+exports.countrytaxauthority_create_post = [
     // Validate fields.
-    body('appname', 'choose application from dropdown list').isLength({ min: 1 }).trim(),
-    body('client', 'Client must be specified').isLength({ min: 1 }).trim(),
-    body('formatCode','Clipboard value: SysId:FormatCode:Module').isLength({min:16}).trim(),
-    body('status', 'current status').isLength({min:1}).trim(),
-    body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),
+    body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
+    body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean, must reflect current status of allowed/not allowed to sell'),
+    body('rate', 'tax rate').isNumeric({no_symbols: false}),
+    body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isNumeric({no_symbols: false}),
+    body('transaction_limit').isNumeric({no_symbols: false}),
+    body('amount_limit').isNumeric({no_symbols: false}),
+    body('transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+    body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
     // Sanitize fields.
-    sanitizeBody('appname').trim().escape(),
-    sanitizeBody('client').trim().escape(),
-    sanitizeBody('formatCode').trim().escape(),
-    sanitizeBody('status').trim().escape(),
-    sanitizeBody('date_entered').toDate(),
+    sanitizeBody('country').trim().escape(),
+    sanitizeBody('allowed').trim().escape(),
+    sanitizeBody('restriction').trim().escape(),
+    sanitizeBody('transaction_limit').trim().escape(),
+    sanitizeBody('amount_limit').trim().escape(),
+    sanitizeBody('transaction_period').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
 
         // Extract the validation errors from a request.
+        // Extract the validation errors from a request.
         const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
+            debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority'});
+            return;
 
         // Create a ClientRequest object with escaped and trimmed data.
-        var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
+        var provstatetaxauthority = new ProvStateTaxAuthority( //.body. here is body of request which has many key fields
           {
-            client: req.body.client,  //needs to be ._id of valid client
-            appname: req.body.appname,
+            countrytaxauthority: req.body.country,  //needs to be ._id of valid client
+            countrytaxauthorityname: req.body.StateOrProv,
             status: req.body.status,
             formatCode: req.body.formatCode,
             date_entered: req.body.date_entered
            });
 
-        if (!errors.isEmpty()) {
-            console.log('@@@ $ in clientrequest_create_post, validate error report not empty');
-            console.log('@@@ $ errors: ' + errors);
-            // There are errors. Render form again with sanitized values and error messages.
-            // Get all clients and appnames & statii for form.
-            async.parallel({
-                clients: function(callback) {
-                    Client.find(callback);
-                },
-               clientrequests: function(callback) {
-                    ClientRequest.find(callback);
-               },
-
-            }, function(err, results) {
-                if (err) { return next(err); }
-
-                console.log('@@@ $ rendering clientrequest_form for clrq_create_post');
-                res.render('clientrequest_form', { title: 'Create ClientRequest',clients:results.clients, clientrequest: clientrequest, errors: errors.array() });
-            }); //ends async clause
-            return;
+           // Extract the validation errors from a request.
+           const errors = validationResult(req);
+           if (!errors.isEmpty()) {
+               console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
+               debug('DEBUG: errors spotted in validationResult for "client_create_post"');
+               // There are errors. Render form again with sanitized values/errors messages.
+               res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', client: req.body, errors: errors.array() });
+               return;
 
         } else {
             // Data from form is valid.
-            clientrequest.save(function (err) {
+            countrytaxauthority.save(function (err) {
                 if (err) { return next(err); }
                    //else Successful - redirect to new record.
-                   res.redirect(clientrequest.url);
+                   res.redirect(countrytaxauthority.url);
                 });
         }//end the else
     }
