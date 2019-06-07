@@ -24,7 +24,7 @@ var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-1
 var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
 
 var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
-
+//changed above two to camelBack
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
