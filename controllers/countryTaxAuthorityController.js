@@ -27,24 +27,24 @@ exports.countrytaxauthorities_list = function(req, res, next) {
 };
 
 // Display detail page for a specific ClientRequest.
-exports.clientrequest_detail = function(req, res, next) {
+exports.countrytaxauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
       var id = req.params.id;
-      console.log('@@@ $ looking for ClReq with id: ' + id);
+      console.log('@@@ $ looking for CntryTxAuth with id: ' + id);
 
-      ClientRequest.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
+      CountryTaxAuthority.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         //.populate('client')
-        .exec(function (err, clientrequest) { //results of findById passed as clientrequest
-        console.log('@@@ $ returned value for clientrequest:');
-        console.log(clientrequest);
+        .exec(function (err, countrytaxauthority) { //results of findById passed as countrytaxauthority
+        console.log('@@@ $ returned value for countrytaxauthority:');
+        console.log(countrytaxauthority);
         if (err) {
            console.log("@@@ $ findById error: " + err);
-           debug("clientrequest err: %s ",err);
+           debug("countrytaxauthority err: %s ",err);
            return next(err);
          }
-        if (clientrequest==null) { // No results.
-            console.log('@@@ $  err: no clientrequest found for this id ')
-            var err = new Error('null clientrequest found');
+        if (countrytaxauthority==null) { // No results.
+            console.log('@@@ $  err: no countrytaxauthority found for this id ')
+            var err = new Error('null countrytaxauthority found');
             err.status = 404;
             return next(err);
           }
@@ -54,8 +54,8 @@ exports.clientrequest_detail = function(req, res, next) {
               //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
         //})
         // Successful, so render.
-        console.log('@@@ $ rendering clientrequest_detail with clientrequest: ' + clientrequest);
-        res.render('clientrequest_detail', { title: 'ClientRequest: ', clientrequest:  clientrequest});
+        console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
+        res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ', countrytaxauthority:  countrytaxauthority});
       })
 
   };
@@ -99,21 +99,23 @@ exports.countrytaxauthority_create_post = [
             res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority'});
             return;
 
-        // Create a ClientRequest object with escaped and trimmed data.
-        var provstatetaxauthority = new ProvStateTaxAuthority( //.body. here is body of request which has many key fields
+        // Create a countrytaxauthority object with escaped and trimmed data.
+        var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
           {
-            countrytaxauthority: req.body.country,  //needs to be ._id of valid client
-            countrytaxauthorityname: req.body.StateOrProv,
-            status: req.body.status,
-            formatCode: req.body.formatCode,
-            date_entered: req.body.date_entered
+            country_code: req.body.country_code,  //needs to be ._id of valid client
+            allowed: req.body.allowed,
+            rate: req.body.rate,
+            restriction_code: req.body.restriction_code,
+            transaction_limit: req.body.transaction_limit,
+            amount_limit: req.body.amount_limit,
+            transaction_period: req.body.transaction_period
            });
 
            // Extract the validation errors from a request.
            const errors = validationResult(req);
            if (!errors.isEmpty()) {
-               console.log('@@@ $ Console: errors spotted in validationResult for "client_create_post"');
-               debug('DEBUG: errors spotted in validationResult for "client_create_post"');
+               console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
+               debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
                // There are errors. Render form again with sanitized values/errors messages.
                res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', client: req.body, errors: errors.array() });
                return;
@@ -129,29 +131,29 @@ exports.countrytaxauthority_create_post = [
     }
 ];
 
-// Display ClientRequest delete form on GET.
-exports.clientrequest_delete_get = function(req, res, next) {
-      console.log('@@@ $ entering clientrequest_delete_get params follows');
+// Display countrytaxauthority delete form on GET.
+exports.countrytaxauthority_delete_get = function(req, res, next) {
+      console.log('@@@ $ entering countrytaxauthority_delete_get params follows');
       console.log(req.params);
 
-      ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err){
+      CountryTaxAuthority.findByIdAndRemove(req.params.id, function deletecountrytaxauthority(err){
                  if(err){
-                   console.log('@@@ $ error in deleting (fast) clientrequest: ' + err);
+                   console.log('@@@ $ error in deleting (fast) countrytaxauthority: ' + err);
                    return next(err);
                  }
-                console.log('@@@ $ redirecting to clientrequests for res: ' + res);
-                res.redirect('/catalog/clientrequests')
+                console.log('@@@ $ redirecting to countrytaxauthorities for res: ' + res);
+                res.redirect('/catalog/countrytaxauthorities')
       });//ends findby etc..
   }; //ends export.clientrequest_delete_get
       //here was async.parallel({key1:func,key2:func},function(err,results))
 
 
 // Handle ClientRequest delete on POST.
-exports.clientrequest_delete_post = function(req, res, next) {
-  console.log('@@@ $ entering clientrequest_delete_post req.params below');
+exports.countrytaxauthority_delete_post = function(req, res, next) {
+  console.log('@@@ $ entering countrytaxauthority_delete_post req.params below');
   console.log(req.params);
   // client instances being deleted have no dependencies; just do it.
-  ClientRequest.findByIdAndRemove(req.params.id, function deleteClientRequest(err) {  //was Autthor....req.body.clientid, fn deletclient
+  CountryTaxAuthority.findByIdAndRemove(req.params.id, function deleteCountryTaxAuthority(err) {  //was Autthor....req.body.clientid, fn deletclient
       if (err) {
         console.log('delete_post err is: ' + err);
         return next(err);
@@ -161,103 +163,3 @@ exports.clientrequest_delete_post = function(req, res, next) {
       return;
   })
   };
-
-// Display ClientRequest update form on GET.
-exports.clientrequest_update_get = function(req, res, next) {
-  //console.log('@@@ $ clientrequest_update_get starts; req below');
-  //console.log(req);
-  // Get clientrequest, clients and genres for form.
-  Client = require('../models/client'); //for fun
-  async.parallel({
-      clientrequest: function(callback) {
-          console.log('@@@ $ clientrequest async updt clrq.find + populate: get');
-          console.log('@@@ $ with req.params.id= ' + req.params.id);
-          ClientRequest.findById(req.params.id).populate('client').exec(callback);//.populate('client') removed
-      },
-      clients: function(callback) {
-          console.log('@@@ $ clientrequest async updt clnt.find: get');
-          Client.find(callback);
-        },
-
-      }, function(err, results) {
-          if (err) {
-            console.log('@@@ $ clientrequest get async updt err: ' + err);
-            return next(err);
-          }
-          if (results.clientrequest==null) { // No results.
-              console.log('@@@ $ clientrequest get async callback results == null ');
-              var err = new Error('ClientRequest not found');
-              err.status = 404;
-              return next(err);
-          }
-
-          console.log('@@@ WOW clientrequest get update results: ');
-          //console.log('clients: ' + results.clients);
-          //console.log('clientrequest: ' + results.clientrequest);
-          res.render('clientrequestUpdate_form', { title: 'Update ClientRequest', clients:results.clients, clientrequest: results.clientrequest });
-      });
-
-};
-
-// Handle clientrequest update on POST.
-  exports.clientrequest_update_post = [
-      // Validate fields.
-      body('client','required').isLength({min:1}).trim(),
-      body('formatCode','required').isLength({min:4, max:10}).trim(),
-      body('status', 'optional').isLength({ min: 1 }).trim(),
-      body('date_entered', 'Request date').optional({ checkFalsy: true }).isISO8601(),
-
-      // Sanitize fields.
-      sanitizeBody('appname').trim().escape(),
-      sanitizeBody('client').trim().escape(),
-      sanitizeBody('formatCode').trim().escape(),
-      sanitizeBody('status').trim().escape(),
-      sanitizeBody('date_entered').toDate(),
-
-      // Process request after validation and sanitization.
-      (req, res, next) => {
-
-          // Extract the validation errors from a request.
-          const errors = validationResult(req);
-
-          // Create a ClientRequest object with escaped and trimmed data and old id
-          var clientrequest = new ClientRequest( //.body. here is body of request which has many key fields
-            {
-              appname: req.body.appname,
-              client: req.body.client,
-              formatCode: req.body.formatCode,
-              status: req.body.status,
-              date_entered: req.body.date_entered,
-              _id:req.params.id //This is required, or a new ID will be assigned!
-             });
-
-          if (!errors.isEmpty()) {
-              // There are errors. Render form again with sanitized values and error messages.
-
-              Client.find()
-                  .exec(function (err, clients) {
-                      if (err) {
-                        console.log('@@@ $ clrq_update_post err> ' + err);
-                        return next(err);
-                      }
-                      // Successful, so render.
-                      console.log('@@@ $ rendering clientrequest_form for redisplay in clrq_update_post (validation err)');
-
-                      res.render('clientrequestUpdate_form', { title: 'Create ClientRequest', client_list : clients, selected_client : clientrequest.client._id , errors: errors.array(), clientrequest:clientrequest });
-              });
-              return;
-          }
-          else {
-              console.log('@@@ $ updating clientrequest document');
-              // Data from form is valid.
-              ClientRequest.findByIdAndUpdate(req.params.id,clientrequest,{}, function (err,theclientrequest) {
-                  if (err) {
-                    console.log('@@@ $ updating clientrequest document throws err: ' + err);
-                    return next(err);
-                  }
-                     //else Successful - redirect to new record.
-                     res.redirect(clientrequest.url);
-                  });
-          }
-      }
-  ];

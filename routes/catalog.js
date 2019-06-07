@@ -23,7 +23,7 @@ var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-1
 
 var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
 
-var countrytaxauthority_controller = require('../controllers/countryTaxAuthority');//2019-06-06
+var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
 
 // GET catalog home page.
 //why aboutUsController not found????
@@ -97,6 +97,9 @@ router.get('/clientrequests', client_request_controller.clientrequest_list);
 //generate countrytaxauthority //2019-06-06
 router.get('/countrytaxauthoritycreate', countrytaxauthority_controller.countrytaxauthority_create_get); //2019-06-06
 router.post('/countrytaxauthoritycreate', countrytaxauthority_controller.countrytaxauthority_create_post); //2019-06-06
+//get countrytaxauthority list
+router.get('/countrytaxauthorities', countrytaxauthority_controller.countrytaxauthorities_list);
+
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);
