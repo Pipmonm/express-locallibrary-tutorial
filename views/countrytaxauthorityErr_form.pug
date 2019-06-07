@@ -24,7 +24,7 @@ block content
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= countrytaxauthority.amount_limit)
     div.form-group
        label(for='transaction_period') Current Period Expiry Date
-       input#transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=countrytaxauthority.transaction_period)
+       input#transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=countrytaxauthority.transactPeriod)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
