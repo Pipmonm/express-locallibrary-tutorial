@@ -96,7 +96,7 @@ exports.countrytaxauthority_create_post = [
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority'});
+            res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
             return;
           }
 
