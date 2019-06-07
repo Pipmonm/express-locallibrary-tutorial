@@ -98,6 +98,7 @@ exports.countrytaxauthority_create_post = [
             // There are errors. Render form again with sanitized values/errors messages.
             res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority'});
             return;
+          }
 
         // Create a countrytaxauthority object with escaped and trimmed data.
         var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
@@ -120,16 +121,16 @@ exports.countrytaxauthority_create_post = [
                res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', client: req.body, errors: errors.array() });
                return;
 
-        } else {
-            // Data from form is valid.
-            countrytaxauthority.save(function (err) {
+           } else {
+              // Data from form is valid.
+              countrytaxauthority.save(function (err) {
                 if (err) { return next(err); }
                    //else Successful - redirect to new record.
                    res.redirect(countrytaxauthority.url);
-                });
-        }//end the else
-    }
-];
+                });//ends save function
+        }//ends the else
+    } // ends the fat arrow req, res, next  fn
+]
 
 // Display countrytaxauthority delete form on GET.
 exports.countrytaxauthority_delete_get = function(req, res, next) {
