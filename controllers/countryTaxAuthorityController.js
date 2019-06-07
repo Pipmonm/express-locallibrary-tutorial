@@ -113,7 +113,7 @@ exports.countrytaxauthority_create_post = [
            });
 
            // Extract the validation errors from a request.
-           const errors = validationResult(req);
+           errors = validationResult(req);
            if (!errors.isEmpty()) {
                console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
                debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
