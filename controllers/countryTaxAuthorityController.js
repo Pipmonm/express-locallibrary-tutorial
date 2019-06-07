@@ -100,6 +100,10 @@ exports.countrytaxauthority_create_post = [
             return;
           }
 
+          //temporarily to check out validators, make no record
+          res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+          return;
+
         // Create a countrytaxauthority object with escaped and trimmed data.
         var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
           {
@@ -112,23 +116,13 @@ exports.countrytaxauthority_create_post = [
             transaction_period: req.body.transaction_period
            });
 
-           // Extract the validation errors from a request.
-           errors = validationResult(req);
-           if (!errors.isEmpty()) {
-               console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
-               debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
-               // There are errors. Render form again with sanitized values/errors messages.
-               res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', client: req.body, errors: errors.array() });
-               return;
 
-           } else {
-              // Data from form is valid.
-              countrytaxauthority.save(function (err) {
-                if (err) { return next(err); }
-                   //else Successful - redirect to new record.
-                   res.redirect(countrytaxauthority.url);
-                });//ends save function
-        }//ends the else
+          // Data from form is valid.
+          countrytaxauthority.save(function (err) {
+            if (err) { return next(err); }
+               //else Successful - redirect to new record.
+               res.redirect(countrytaxauthority.url);
+            });//ends save function
     } // ends the fat arrow req, res, next  fn
 ]
 
