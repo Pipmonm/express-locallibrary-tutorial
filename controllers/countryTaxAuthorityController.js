@@ -71,7 +71,7 @@ exports.countrytaxauthority_create_post = [
     // Validate fields.
     body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
     body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean, must reflect current status of allowed/not allowed to sell'),
-    body('rate', 'tax rate').isNumeric({no_symbols: false}),
+    body('rate', 'tax rate').isDecimal("must be decimal", local:"en-US",checkFalsy:true),
     body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isNumeric({no_symbols: false}),
     body('transaction_limit').isNumeric({no_symbols: false}),
     body('amount_limit').isNumeric({no_symbols: false}),
