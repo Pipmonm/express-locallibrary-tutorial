@@ -98,7 +98,7 @@ exports.countrytaxauthority_create_post = [
             res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
             return;
           }
-
+          console.log('@@@ $ req.body transaction_period is given as: ', req.body.transaction_period);
           //temporarily to check out validators, make no record
           res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
           return;
