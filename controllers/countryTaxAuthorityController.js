@@ -60,9 +60,9 @@ exports.countrytaxauthority_detail = function(req, res, next) {
 
   };
 
-// Display ProvStateTaxAuthority create form on GET.
+// Display CountryTaxAuthority create form on GET.
 exports.countrytaxauthority_create_get = function(req, res, next) {
-        res.render('countrytaxauthority_form', {title: 'Create CountryTaxAuthority', countrytaxauthority_list:countrytaxauthorities});
+        res.render('countrytaxauthority_form', {title: 'Create CountryTaxAuthority'});
   };
 
 
