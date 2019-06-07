@@ -12,7 +12,7 @@ block content
       input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=false)
     div.form-group
       label(for='rate') tax_rate
-      input#rate.form-control(type='number', placeholder='0.05 (not 5%)', name='rate', required=false, value= 0.05)
+      input#rate.form-control(type='decimal', placeholder='0.05 (not 5%); 0.0 for zero', name='rate', required=true)
     div.form-group
       label(for='restriction_code') Restriction Code (0:none, 1:#, 2:$, 3:both)
       input#restriction_code.form-control(type='number', placeholder='Restriction Code (required)', name='restriction_code', required=true, value=3 )
