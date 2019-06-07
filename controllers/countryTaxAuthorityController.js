@@ -1,6 +1,6 @@
 //client instance controller js
-var CountryTaxAuthority = require('../models/countrytaxauthority'); //collection 'countrytaxauthorities'
-var ProvStateTaxAuthority = require('../models/provstatetaxauthority');// 'provstatetaxautorities'
+var CountryTaxAuthority = require('../models/countryTaxAuthority'); //collection 'countrytaxauthorities'
+var ProvStateTaxAuthority = require('../models/provstateTaxAuthority');// 'provstatetaxautorities'
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
