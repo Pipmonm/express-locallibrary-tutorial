@@ -88,8 +88,6 @@ exports.countrytaxauthority_create_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-        console.log(@@@ $ req.body following vvv);
-        console.log(req.body);
         // Extract the validation errors from a request.
         // Extract the validation errors from a request.
         const errors = validationResult(req);
