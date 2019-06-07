@@ -92,7 +92,7 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let transactPeriod = req.body.transaction_period.split("T")[0];//take only yyyy-mm-dd portion
+        let transactPeriod = req.body.transaction_period.full_date//take only yyyy-mm-dd portion
 
         if (!errors.isEmpty()) {
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
