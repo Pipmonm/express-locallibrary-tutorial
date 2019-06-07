@@ -65,6 +65,7 @@ exports.stripePrePay_post = [
      if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
         res.redirect('/catalog/countrytaxauthoritycreate');
         //added line to force recompilation
+        return;
      }
      let formatCheck = checkValidIdString(sysIdString);//2018-12-14  added conditions for validating id string
      console.log("@@@ $ formatCheck says: " + formatCheck);
