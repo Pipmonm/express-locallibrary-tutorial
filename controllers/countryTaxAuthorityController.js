@@ -70,11 +70,11 @@ exports.countrytaxauthority_create_get = function(req, res, next) {
 exports.countrytaxauthority_create_post = [
     // Validate fields.
     body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
-    body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean, must reflect current status of allowed/not allowed to sell'),
+    body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
     body('rate', 'tax rate').isDecimal({ local:"en-US",digits_after_decimal: [1,2,3,4],checkFalsy:true}),
-    body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isNumeric({no_symbols: false}),
-    body('transaction_limit').isNumeric({no_symbols: false}),
-    body('amount_limit').isNumeric({no_symbols: false}),
+    body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isNumeric({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
+    body('transaction_limit').isNumeric({no_symbols: true}),
+    body('amount_limit').isNumeric({no_symbols: true}),
     body('transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
