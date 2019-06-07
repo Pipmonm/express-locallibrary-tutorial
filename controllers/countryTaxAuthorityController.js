@@ -88,7 +88,8 @@ exports.countrytaxauthority_create_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+        console.log(@@@ $ req.body following vvv);
+        console.log(req.body);
         // Extract the validation errors from a request.
         // Extract the validation errors from a request.
         const errors = validationResult(req);
@@ -96,12 +97,12 @@ exports.countrytaxauthority_create_post = [
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
             return;
           }
 
           //temporarily to check out validators, make no record
-          res.render('countrytaxauthority_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+          res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
           return;
 
         // Create a countrytaxauthority object with escaped and trimmed data.
