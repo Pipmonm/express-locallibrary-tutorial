@@ -91,16 +91,19 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         // Extract the validation errors from a request.
         const errors = validationResult(req);
+
+        let transactPeriod = req.body.transaction_period.split("T")[0];//take only yyyy-mm-dd portion
+
         if (!errors.isEmpty()) {
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
             return;
           }
           console.log('@@@ $ req.body transaction_period is given as: ', req.body.transaction_period);
           //temporarily to check out validators, make no record
-          res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+          res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
           return;
 
         // Create a countrytaxauthority object with escaped and trimmed data.
