@@ -95,7 +95,6 @@ exports.countrytaxauthority_create_post = [
         let transactPeriod = req.body.transaction_period;
         console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
         transactPeriod = transactPeriod.toISOString().split("T")[0]//take only yyyy-mm-dd portion
-        console.log("@@@ $ after split: ",transactPeriod);
 
         if (!errors.isEmpty()) {
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
@@ -104,7 +103,7 @@ exports.countrytaxauthority_create_post = [
             res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
             return;
           }
-          console.log('@@@ $ modified req.body transaction_period is given as: ', req.body.transactPeriod);
+          console.log('@@@ $ modified transactionPeriod is given as: ', transactionPeriod,"  of type: ",typeof transactionPeriod);
           //temporarily to check out validators, make no record
           res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
           return;
