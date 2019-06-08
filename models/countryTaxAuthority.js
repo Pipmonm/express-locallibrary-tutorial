@@ -11,7 +11,9 @@ var CountryTaxAuthoritySchema = new Schema(
     rate: {type: Number, required: true}, //nominal sales tax rate
     restriction_code:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
     transaction_limit: {type: Number, required: true},//# of transactions allowed
+    current_count: {type: Number, required: false},//# of transactions during this period
     amount_limit: {type: Number, required:true},//$ limit
+    current_amount: {type: Number, required:true},//actual amount amassed
     transaction_period: {type: String, required:true},//restart per month,year???
     current_transaction_period: {type: String, required:true},//which is current period
     transaction_date: {type: Date, default: Date.now}

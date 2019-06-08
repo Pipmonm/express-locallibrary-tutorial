@@ -74,7 +74,9 @@ exports.countrytaxauthority_create_post = [
     body('rate', 'tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
     body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
     body('transaction_limit').isNumeric({no_symbols: true}),
+    body('current_count').isNumeric({no_symbols:true}),
     body('amount_limit').isNumeric({no_symbols: true}),
+    body('current_amount').isNumeric({no_symbols: true}),
     body('transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
@@ -83,7 +85,9 @@ exports.countrytaxauthority_create_post = [
     sanitizeBody('allowed').trim().escape(),
     sanitizeBody('restriction').trim().escape(),
     sanitizeBody('transaction_limit').trim().escape(),
+    sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
+    sanitizeBody("current_amount").trim().escape(),
     sanitizeBody('transaction_period').toDate(),
 
     // Process request after validation and sanitization.
