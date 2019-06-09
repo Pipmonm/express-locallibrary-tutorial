@@ -129,9 +129,12 @@ exports.countrytaxauthority_create_post = [
 
           // Data from form is valid.
           countrytaxauthority.save(function (err) {
-            if (err) { return next(err); }
-               //else Successful - redirect to new record.
-               res.redirect(countrytaxauthority.url);
+            if (err) {
+              console.log("@@@ $ saving new countryTA gives err: ",err); 
+              return next(err);
+            }
+            //else Successful - redirect to new record.
+            res.redirect(countrytaxauthority.url);
             });//ends save function
     } // ends the fat arrow req, res, next  fn
 ]
