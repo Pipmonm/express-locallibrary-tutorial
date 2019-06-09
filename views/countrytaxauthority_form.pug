@@ -15,7 +15,7 @@ block content
       input#rate.form-control(type='decimal', placeholder='0.05 (not 5%); 0.0 for zero', name='rate', required=true)
     div.form-group
       label(for='restriction_code') Restriction Code (0:none, 1:#, 2:$, 3:both)
-      input#restriction_code.form-control(type='number', placeholder='Restriction Code (required)', name='restriction_code', required=true, value=3 )
+      input#restriction_code.form-control(type='number', placeholder='Restriction Code (required)', name='restriction_code', required=true, value=0 )
     div.form-group
       label(for='transaction_limit') Number of Transactions Limit
       input#transaction_limit.form-control(type='number', placeholder= 'transaction # threshold', name='transaction_limit', required=false, value= 100)
@@ -33,9 +33,10 @@ block content
       input#transaction_period_type.form-control(type='string',placeholder='month/year etc.., name='transaction_period_type', required=false)
     div.form-group
        label(for='current_transaction_period') Current Period Expiry Date
-       input#transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=2019-12-31)
+       input#transaction_period.form-control(type='date', placeholder='current period expiry date', name='transaction_period', required = false)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
   if errors
     ul
       for error in errors
