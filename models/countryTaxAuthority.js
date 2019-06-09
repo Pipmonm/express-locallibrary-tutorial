@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var CountryTaxAuthoritySchema = new Schema(
 
   {
+    country_name: {type: String, required: true },
     country_code: { type: String, required: true }, //federal tax authority
     allowed: {type: Boolean, required: true },//currently allowed to sell?
     rate: {type: Number, required: true}, //nominal sales tax rate

@@ -5,6 +5,8 @@ block content
 
   form(method='POST' action='')
     div.form-group
+      label(for='country_name') Country Name
+      input#country_name.form-control(type = 'string', placeholder='Country Name', name= 'country_name', required=true)
       label(for='country_code') Country_postalcode
       input#country_code.form-control(type='text', placeholder='eg. CA (required)', name='country_code', required=true, value="CA")
     div.form-group

@@ -70,6 +70,7 @@ exports.countrytaxauthority_create_get = function(req, res, next) {
 // Handle ClientRequest create on POST.
 exports.countrytaxauthority_create_post = [
     // Validate fields.
+    body('country_name', 'specify country name').trim(),
     body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
     body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
     body('rate', 'tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
@@ -83,6 +84,7 @@ exports.countrytaxauthority_create_post = [
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
     // Sanitize fields.
+    sanitizeBody('country_name').trim().escape(),
     sanitizeBody('country_code').trim().escape(),
     sanitizeBody('allowed').trim().escape(),
     sanitizeBody('restriction').trim().escape(),
@@ -119,6 +121,7 @@ exports.countrytaxauthority_create_post = [
         // Create a countrytaxauthority object with escaped and trimmed data.
         var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
           {
+            country_name: req.body.country_name,
             country_code: req.body.country_code,  //needs to be ._id of valid client
             allowed: req.body.allowed,
             rate: req.body.rate,
@@ -127,7 +130,8 @@ exports.countrytaxauthority_create_post = [
             current_count: req.body.current_count,
             amount_limit: req.body.amount_limit,
             current_amount: req.body.current_amount,
-            transaction_period: req.body.transaction_period
+            transaction_period_type: req.body.transaction_period_type,
+            current_transaction_period: req.body.current_transaction_period
            });
 
 
