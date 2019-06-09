@@ -29,7 +29,8 @@ exports.countrytaxauthorities_list = function(req, res, next) {
 // Display detail page for a specific ClientRequest.
 exports.countrytaxauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
-      var id = req.params.id;
+      //var id = req.params.id;
+      var id = mongoose.Types.ObjectId(req.params.id.toString());
       console.log('@@@ $ looking for CntryTxAuth with id: ', id);
 
       CountryTaxAuthority.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
@@ -130,7 +131,7 @@ exports.countrytaxauthority_create_post = [
           // Data from form is valid.
           countrytaxauthority.save(function (err) {
             if (err) {
-              console.log("@@@ $ saving new countryTA gives err: ",err); 
+              console.log("@@@ $ saving new countryTA gives err: ",err);
               return next(err);
             }
             //else Successful - redirect to new record.
