@@ -14,8 +14,8 @@ var CountryTaxAuthoritySchema = new Schema(
     current_count: {type: Number, required: false},//# of transactions during this period
     amount_limit: {type: Number, required:true},//$ limit
     current_amount: {type: Number, required:true},//actual amount amassed
-    transaction_period: {type: String, required:true},//restart per month,year???
-    current_transaction_period: {type: String, required:true},//which is current period
+    transaction_period_type: {type: String, required:false},//restart per month,year???
+    current_transaction_period: {type: Date, required:false},//which is current period
     transaction_date: {type: Date, default: Date.now}
   }
 );

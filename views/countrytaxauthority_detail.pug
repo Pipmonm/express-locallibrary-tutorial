@@ -2,23 +2,29 @@ extends layout
 
 block content
 
-  h1 Country: #{client.device_id} : #{client.device_type}
+  h1 Country: #{countrytaxauthority.country_name} : #{countrytaxauthority.country_code}
 
-  p  Format Code: #{client.format_code}
+  p  Allow Status: #{countrytaxauthority.allowed}
 
-  p  Request Status: #{client.status}
+  p  Federal Rate: #{countrytaxauthority.rate}
 
-  p  Module Id: #{client.moduleIdVrs}
+  p  Restriction Code: #{countrytaxauthority.restriction_code}
 
-  hr
-  p  Client Name: #{client.name}
+  P  Transaction Limit: #(countrytaxauthority.transaction_limit)
 
-  hr
-  p  Email: #{client.email_address}
+  P  Current Transaction Count: #(countrytaxauthority.current_count)
+
+  P  Amount Limit: #(countrytaxauthority.amount_limit)
+
+  P  Current Amount: #(countrytaxauthority.current_amount)
+
+  P  Period Type: #(countrytaxauthority.transaction_period_type)
+
+  P  Limit Date: #(countrytaxauthority.current_transaction_period)
 
   hr
   p
-    a(href=client.url+'/delete') Delete client
+    a(href=client.url+'/delete') Delete Country Tax Authority
 
   p
-    a(href=client.url+'/update') Update client
+    a(href=client.url+'/update') Update Country Tax Authority

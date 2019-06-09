@@ -28,9 +28,12 @@ block content
     div.form-group
       label(for='current_amount') Current Period Amount Amassed
       input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = 0)
+    div.form-form_group
+      label(for='transaction_period_type') Transaction Period Type
+      input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value ="")
     div.form-group
-       label(for='transaction_period') Current Period Expiry Date
-       input#transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=transactPeriod)
+       label(for='current_transaction_period') Current Period Expiry Date
+       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=transactPeriod)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
