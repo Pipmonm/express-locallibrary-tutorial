@@ -78,7 +78,7 @@ exports.countrytaxauthority_create_post = [
     body('current_count').isNumeric({no_symbols:true}),
     body('amount_limit').isNumeric({no_symbols: true}),
     body('current_amount').isNumeric({no_symbols: true}),
-    body('transaction_period_type').isString(),
+    body('transaction_period_type').isIn(['week','month','year']),
     body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
