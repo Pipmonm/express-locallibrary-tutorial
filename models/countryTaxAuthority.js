@@ -24,7 +24,7 @@ var CountryTaxAuthoritySchema = new Schema(
 CountryTaxAuthoritySchema
 .virtual('url')
 .get(function () {
-  return '/catalog/taxauthority/' + this._id;
+  return '/catalog/countrytaxauthority/' + this._id;
 });
 
 CountryTaxAuthoritySchema

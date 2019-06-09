@@ -99,7 +99,8 @@ router.get('/countrytaxauthoritycreate', countrytaxauthority_controller.countryt
 router.post('/countrytaxauthoritycreate', countrytaxauthority_controller.countrytaxauthority_create_post); //2019-06-06
 //get countrytaxauthority list
 router.get('/countrytaxauthorities', countrytaxauthority_controller.countrytaxauthorities_list);
-
+//get countrytaxauthority detail by mod_Id
+router.get('/countrytaxauthority/:id', countrytaxauthority_controller.countrytaxauthority_detail);
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);

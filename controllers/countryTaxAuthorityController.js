@@ -30,7 +30,7 @@ exports.countrytaxauthorities_list = function(req, res, next) {
 exports.countrytaxauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
       var id = req.params.id;
-      console.log('@@@ $ looking for CntryTxAuth with id: ' + id);
+      console.log('@@@ $ looking for CntryTxAuth with id: ', id);
 
       CountryTaxAuthority.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         //.populate('client')
@@ -109,8 +109,8 @@ exports.countrytaxauthority_create_post = [
           }
           console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
           //temporarily to check out validators, make no record
-          res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
-          return;
+          //res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
+          //return;
 
         // Create a countrytaxauthority object with escaped and trimmed data.
         var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
@@ -120,7 +120,9 @@ exports.countrytaxauthority_create_post = [
             rate: req.body.rate,
             restriction_code: req.body.restriction_code,
             transaction_limit: req.body.transaction_limit,
+            current_count: req.body.current_count,
             amount_limit: req.body.amount_limit,
+            current_amount: req.body.current_amount,
             transaction_period: req.body.transaction_period
            });
 

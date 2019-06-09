@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 Country: #{client.device_id} : #{client.device_type}
+
+  p  Format Code: #{client.format_code}
+
+  p  Request Status: #{client.status}
+
+  p  Module Id: #{client.moduleIdVrs}
+
+  hr
+  p  Client Name: #{client.name}
+
+  hr
+  p  Email: #{client.email_address}
+
+  hr
+  p
+    a(href=client.url+'/delete') Delete client
+
+  p
+    a(href=client.url+'/update') Update client
