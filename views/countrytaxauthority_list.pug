@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each countrytaxauthority in countrytaxauthorities_list
+    li
+      a(href=countrytaxauthority.url) #{countrytaxauthority.country_name}
+      | (#{countrytaxauthority.allowed})
+
+  else
+    li There are no countrytaxauthorities.
