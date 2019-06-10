@@ -187,13 +187,15 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
   console.log("@@@ $ sanitizing body in countrytaxauthorityUpdate");
       //req.params.sanitize('id').escape().trim();
       sanitizeBody('id').trim().escape();
-      //countrytaxauthority: function(callback) {
+      console.log("@@@ $ passed sanitizeBody for id: & id is: ",id);
       async.parallel({
       countrytaxauthority: function(callback) {
       CountryTaxAuthority.findById(req.params.id).exec(callback)
     }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
   }, function(err, results) {   //note leading "}" closes async's opening "{"
+       console.log("@@@ $ in CTA.findById callback")
        if(err) {
+         console.log("@@@ $ error in CTA.findById callback ",err);
          debug('update error ' + err);
          return next(err);
        }
@@ -206,6 +208,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //}else{  //not aware of callback style validator for emails, following is newer version
          //email =  check('email').isEmail().normalizeEmail();
        //}
+       console.log("@@@ $ render CTA update form next");
        res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
