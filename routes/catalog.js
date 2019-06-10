@@ -101,6 +101,15 @@ router.post('/countrytaxauthoritycreate', countrytaxauthority_controller.country
 router.get('/countrytaxauthorities', countrytaxauthority_controller.countrytaxauthorities_list);
 //get countrytaxauthority detail by mod_Id
 router.get('/countrytaxauthority/:id', countrytaxauthority_controller.countrytaxauthority_detail);
+//cntryTA delete and update via url
+router.get('/countrytaxauthority/:id/delete', countrytaxauthority_controller.countrytaxauthority_delete_get);
+// POST process request to delete Client.
+router.post('/countrytaxauthority/:id/delete', countrytaxauthority_controller.countrytaxauthority_delete_post);
+// GET request to update countrytaxauthority.
+router.get('/countrytaxauthority/:id/update', countrytaxauthority_controller.countrytaxauthority_update_get);
+// POST reply to update countrytaxauthority.
+router.post('/countrytaxauthority/:id/update', countrytaxauthority_controller.countrytaxauthority_update_post);
+
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);
