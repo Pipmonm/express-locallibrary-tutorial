@@ -190,7 +190,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       //countrytaxauthority: function(callback) {
       async.parallel({
       countrytaxauthority: function(callback) {
-      countrytaxauthority.findById(req.params.id).exec(callback)
+      CountryTaxAuthority.findById(req.params.id).exec(callback)
     }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
   }, function(err, results) {   //note leading "}" closes async's opening "{"
        if(err) {
