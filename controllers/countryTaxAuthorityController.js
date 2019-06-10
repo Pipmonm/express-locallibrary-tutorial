@@ -9,19 +9,19 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
-// Display list of all countrytaxauthoritys.
+// Display list of all countrytaxauthorities.
 exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countriesTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
-    .populate({
-       path:'provstatetaxauthorities', //2019-06-05 a guess as to path
-       model:'ProvStateTaxAuthority'})  //have attempted 'Client' & others
-    .exec(function (err, provstatetaxauthorities) {
-      console.log("@@@ $ executing callback for provstatetaxauthorities list; if err> : " + err );
+    //.populate({
+       //path:'provstatetaxauthorities', //2019-06-05 a guess as to path
+       //model:'ProvStateTaxAuthority'})  //have attempted 'Client' & others
+    .exec(function (err, countrytaxauthorities) {
+      console.log("@@@ $ executing callback for countrytaxauthorities list; if err> : " + err );
       if (err) { return next(err); }
-      console.log('@@@ $ found provstatetaxauthorities as per: ');
-      console.log(provstatetaxauthorities);
-      res.render('provstatetaxauthorities_list', { title: 'Province or State List', provstatetaxauthorities_list: provstatetaxauthorities });
+      console.log('@@@ $ found countrytaxauthorities as per: ');
+      console.log(countrytaxauthorities);
+      res.render('countrytaxauthorities_list', { title: 'Country Tax Auth List', countrytaxauthorities_list: countrytaxauthorities });
     });
 
 };
