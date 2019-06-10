@@ -2,27 +2,3 @@ extends layout
 
 block content
   h1=title
-  form(method='POST' action='')
-    div.form-group
-      label(for='clientrequest_client') Request from Client:
-      input(type='text' placeholder='client name missing error: delete this copy'  name='clientrequest' required='true' value = clientrequestinstance.clientrequest.client)
-    div.form-group
-      label(for='appname') Module Name:
-      input#appname.form-control(type='text' placeholder="missing appname error" name='appname' required='true' value=(undefined===clientrequestinstance ? '' : clientrequestinstance.appname))
-    div.form-group
-      label(for='formatCode') Clipboard Contents:
-      input#appname.form_control(type='text' placeholder="missing Format Code error" name='formatCode' required='true' value(undefined===clientrequestinstance ? '' : clientrequestinstance.formatCode))
-    div.form-group
-      label(for='status') Status:
-      select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(value= statusArray[0]) #{statusArray[0]}
-        option(value= statusArray[1]) #{statusArray[1]}
-        option(value= statusArray[2]) #{statusArray[2]}
-        option(value= statusArray[3]) #{statusArray[3]}
-
-    button.btn.btn-primary(type='submit') Submit
-
-  if errors
-    ul
-      for error in errors
-        li!= error.msg
