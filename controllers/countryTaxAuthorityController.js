@@ -9,7 +9,7 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
-// Display list of all ClientRequests.
+// Display list of all countrytaxauthoritys.
 exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countriesTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
@@ -26,7 +26,7 @@ exports.countrytaxauthorities_list = function(req, res, next) {
 
 };
 
-// Display detail page for a specific ClientRequest.
+// Display detail page for a specific countrytaxauthority.
 exports.countrytaxauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
       //var id = req.params.id;
@@ -50,7 +50,7 @@ exports.countrytaxauthority_detail = function(req, res, next) {
             return next(err);
           }
         //populate client
-        //ClientRequest.populate(clientrequest,'client',function(err,user){
+        //countrytaxauthority.populate(countrytaxauthority,'client',function(err,user){
               //console.log('@@@ $$ should have user: ' + user ); // + '  +user.client.name:' + user.client.name);
               //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
         //})
@@ -68,7 +68,7 @@ exports.countrytaxauthority_create_get = function(req, res, next) {
   };
 
 
-// Handle ClientRequest create on POST.
+// Handle countrytaxauthority create on POST.
 exports.countrytaxauthority_create_post = [
     // Validate fields.
     body('country_name', 'specify country name').trim(),
@@ -94,7 +94,7 @@ exports.countrytaxauthority_create_post = [
     sanitizeBody('amount_limit').trim().escape(),
     sanitizeBody("current_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
-    sanitizeBody('current_transaction_period').toDate(),
+    //sanitizeBody('current_transaction_period').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -161,11 +161,11 @@ exports.countrytaxauthority_delete_get = function(req, res, next) {
                 console.log('@@@ $ redirecting to countrytaxauthorities for res: ' + res);
                 res.redirect('/catalog/countrytaxauthorities')
       });//ends findby etc..
-  }; //ends export.clientrequest_delete_get
+  }; //ends export.countrytaxauthority_delete_get
       //here was async.parallel({key1:func,key2:func},function(err,results))
 
 
-// Handle ClientRequest delete on POST.
+// Handle countrytaxauthority delete on POST.
 exports.countrytaxauthority_delete_post = function(req, res, next) {
   console.log('@@@ $ entering countrytaxauthority_delete_post req.params below');
   console.log(req.params);
@@ -175,8 +175,91 @@ exports.countrytaxauthority_delete_post = function(req, res, next) {
         console.log('delete_post err is: ' + err);
         return next(err);
       }
-      // Success - go to clientrequests list
-      //res.redirect('/catalog/clientrequests')
+      // Success - go to countrytaxauthoritys list
+      //res.redirect('/catalog/countrytaxauthoritys')
       return;
   })
   };
+
+  // Handle countrytaxauthority update on POST.
+    exports.countrytaxauthority_update_post = [
+      // Validate fields.
+      body('country_name', 'specify country name').trim(),
+      body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
+      body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
+      body('rate', 'tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
+      body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
+      body('transaction_limit').isNumeric({no_symbols: true}),
+      body('current_count').isNumeric({no_symbols:true}),
+      body('amount_limit').isNumeric({no_symbols: true}),
+      body('current_amount').isNumeric({no_symbols: true}),
+      body('transaction_period_type').isIn(['week','month','year']),
+      body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+      body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
+
+      // Sanitize fields.
+      sanitizeBody('country_name').trim().escape(),
+      sanitizeBody('country_code').trim().escape(),
+      sanitizeBody('allowed').trim().escape(),
+      sanitizeBody('restriction').trim().escape(),
+      sanitizeBody('transaction_limit').trim().escape(),
+      sanitizeBody('current_count').trim().escape(),
+      sanitizeBody('amount_limit').trim().escape(),
+      sanitizeBody("current_amount").trim().escape(),
+      sanitizeBody('transaction_period_type').trim().escape(),
+      //sanitizeBody('current_transaction_period').toDate(),
+
+        // Process request after validation and sanitization.
+        (req, res, next) => {
+
+            // Extract the validation errors from a request.
+            const errors = validationResult(req);
+
+            // Create a countrytaxauthority object with escaped and trimmed data and old id
+            var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
+              {
+                country_name: req.body.country_name,
+                country_code: req.body.country_code,
+                allowed: req.body.allowed,
+                rate: req.body.rate,
+                restriction_code: req.body.restriction_code,
+                transaction_limit: req.body.transaction_limit,
+                current_count: req.body.current_count,
+                amount_limit: req.body.amount_limit,
+                current_amount: req.body.current_amount,
+                transaction_period_type: req.body.transaction_period_type,
+                current_transaction_period: req.body.current_transaction_period,
+                transaction_date: req.body.transaction_date,
+                _id:req.params.id //This is required, or a new ID will be assigned!
+               });
+
+            if (!errors.isEmpty()) {
+                // There are errors. Render form again with sanitized values and error messages.
+
+                //Client.find()
+                    //.exec(function (err, clients) {
+                      //  if (err) {
+                      //    console.log('@@@ $ clrq_update_post err> ' + err);
+                      //    return next(err);
+                      //  }
+                        // Successful, so render.
+                        console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
+
+                        res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
+                });
+                return;
+            }
+            else {
+                console.log('@@@ $ updating countrytaxauthority document');
+                // Data from form is valid.
+                countrytaxauthority.findByIdAndUpdate(req.params.id,countrytaxauthority,{}, function (err,thecountrytaxauthority) {
+                    if (err) {
+                      console.log('@@@ $ updating countrytaxauthority document throws err: ' + err);
+                      return next(err);
+                    }
+                       //else Successful - redirect to new record.
+                       res.redirect(countrytaxauthority.url);
+                    });
+            }
+        }
+    ];
