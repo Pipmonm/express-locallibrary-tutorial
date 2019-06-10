@@ -56,7 +56,7 @@ exports.countrytaxauthority_detail = function(req, res, next) {
         //})
         // Successful, so render.
         console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
-        console.log('@@@ $ time data for date now: ',countrytaxauthority.transaction_date,"   of type: ", typeof countretaxuathority.transaction_date);
+        console.log('@@@ $ time data for date now: ',countrytaxauthority.transaction_date,"   of type: ", typeof countrytaxauthority.transaction_date);
         res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ', countrytaxauthority:  countrytaxauthority});
       })
 
