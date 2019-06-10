@@ -246,24 +246,6 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             // Extract the validation errors from a request.
             const errors = validationResult(req);
 
-            // Create a countrytaxauthority object with escaped and trimmed data and old id
-            var countrytaxauthority = new CountryTaxAuthority( //.body. here is body of request which has many key fields
-              {
-                country_name: req.body.country_name,
-                country_code: req.body.country_code,
-                allowed: req.body.allowed,
-                rate: req.body.rate,
-                restriction_code: req.body.restriction_code,
-                transaction_limit: req.body.transaction_limit,
-                current_count: req.body.current_count,
-                amount_limit: req.body.amount_limit,
-                current_amount: req.body.current_amount,
-                transaction_period_type: req.body.transaction_period_type,
-                current_transaction_period: req.body.current_transaction_period,
-                transaction_date: req.body.transaction_date,
-                _id:req.params.id //This is required, or a new ID will be assigned!
-               });
-
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
 
@@ -279,18 +261,18 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                         res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 //});
                 return;
-            }
-            else {
+
+            } else {
                 console.log('@@@ $ updating countrytaxauthority document');
                 // Data from form is valid.
-                countrytaxauthority.findByIdAndUpdate(req.params.id,countrytaxauthority,{}, function (err,thecountrytaxauthority) {
+                countrytaxauthority.findByIdAndUpdate(req.params.id,countrytaxauthority,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
                     if (err) {
                       console.log('@@@ $ updating countrytaxauthority document throws err: ' + err);
                       return next(err);
                     }
                        //else Successful - redirect to new record.
-                       res.redirect(countrytaxauthority.url);
+                       res.redirect(thecountrytaxauthority.url);
                     });//closes findbyidandupdate
             }//closes else clause
         }//closes fat arrow req,res,next
-    ];
+    ]
