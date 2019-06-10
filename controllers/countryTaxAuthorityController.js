@@ -181,6 +181,37 @@ exports.countrytaxauthority_delete_post = function(req, res, next) {
   })
   };
 
+//adding missing countrytaxauthority_update_get
+// Display countrytaxauthority update form on GET.
+exports.countrytaxauthority_update_get = function(req, res, next) {
+  console.log("@@@ $ sanitizing body in countrytaxauthorityUpdate");
+      //req.params.sanitize('id').escape().trim();
+      sanitizeBody('id').trim().escape();
+      //countrytaxauthority: function(callback) {
+      async.parallel({
+      countrytaxauthority: function(callback) {
+      countrytaxauthority.findById(req.params.id).exec(callback)
+    }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
+  }, function(err, results) {   //note leading "}" closes async's opening "{"
+       if(err) {
+         debug('update error ' + err);
+         return next(err);
+       }
+
+       //let email = results.client.email_address;
+       //if(!check('email').isEmail){
+         //debug('invalid email');
+         //console.log('@@@ $ doing funny error for inv. email in client_update_get');
+         //return -1;//need to generate an error of some sort here
+       //}else{  //not aware of callback style validator for emails, following is newer version
+         //email =  check('email').isEmail().normalizeEmail();
+       //}
+       res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
+  });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
+}; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
+
+
+
   // Handle countrytaxauthority update on POST.
     exports.countrytaxauthority_update_post = [
       // Validate fields.
