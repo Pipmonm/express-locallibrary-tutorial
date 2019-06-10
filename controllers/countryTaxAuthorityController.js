@@ -246,7 +246,7 @@ exports.countrytaxauthority_delete_post = function(req, res, next) {
                         console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
 
                         res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
-                });
+                //});
                 return;
             }
             else {
@@ -259,7 +259,7 @@ exports.countrytaxauthority_delete_post = function(req, res, next) {
                     }
                        //else Successful - redirect to new record.
                        res.redirect(countrytaxauthority.url);
-                    });
-            }
-        }
+                    });//closes findbyidandupdate
+            }//closes else clause
+        }//closes fat arrow req,res,next
     ];
