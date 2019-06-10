@@ -186,8 +186,8 @@ exports.countrytaxauthority_delete_post = function(req, res, next) {
 exports.countrytaxauthority_update_get = function(req, res, next) {
   console.log("@@@ $ sanitizing body in countrytaxauthorityUpdate");
       //req.params.sanitize('id').escape().trim();
-      sanitizeBody('id').trim().escape();
-      console.log("@@@ $ passed sanitizeBody for id: & id is: ",id);
+      sanitizeBody(req.params.id).trim().escape();
+      console.log("@@@ $ passed sanitizeBody for id: & id is: ",req.params.id);
       async.parallel({
       countrytaxauthority: function(callback) {
       CountryTaxAuthority.findById(req.params.id).exec(callback)
