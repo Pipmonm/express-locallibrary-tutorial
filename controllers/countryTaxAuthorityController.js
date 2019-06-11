@@ -102,8 +102,8 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let transactPeriod = req.body.transaction_period;
-        console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+        let transactPeriod = mongoose.Types.ObjectId(req.body.transaction_period.toString());//was   req.params.id.toString())
+        console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
         transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                       //take only yyyy-mm-dd portion
 
