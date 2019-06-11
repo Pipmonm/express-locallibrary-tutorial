@@ -1,4 +1,5 @@
 const express = require('express'); //2019-02-10 was 'var'  (const cannot be changed, safer for STRIPE?)
+console.log("**Express Version: ", require('express/package').version);
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');

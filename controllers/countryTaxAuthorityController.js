@@ -11,7 +11,7 @@ var debug = require('debug');
 
 // Display list of all countrytaxauthorities.
 exports.countrytaxauthorities_list = function(req, res, next) {
-  console.log('@@@ $ at countriesTaxAuthorities_list');
+  console.log('@@@ $ at countryTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
     //.populate({
        //path:'provstatetaxauthorities', //2019-06-05 a guess as to path
@@ -209,7 +209,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
          //email =  check('email').isEmail().normalizeEmail();
        //}
        console.log("@@@ $ render CTA update form next");
-       res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
+       //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
 
@@ -260,8 +261,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                       //  }
                         // Successful, so render.
                         console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-
-                        res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
+                        res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
+                        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 //});
                 return;
 
