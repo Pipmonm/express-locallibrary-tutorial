@@ -268,8 +268,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
             console.log("@@@ $ req.body: below vvvv");
             if(req.body != undefined)console.log(req.body);
+            console.log("@@@ or from params: ");
             if(req.params!=undefined)console.log(req.params);
-            if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.params.current_transaction_period);
+            if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.body.current_transaction_period);
             let transactPeriod = "2019:12:31";
             //let transactPeriod = req.body.current_transaction_period;
             //mod to force recompile
@@ -301,7 +302,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 if(req.params!=undefined)console.log("req.params: ",req.params);
                 if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
                 // Data from form is valid.
-                CountryTaxAuthority.findByIdAndUpdate(req.params.id,countrytaxauthority,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
+                CountryTaxAuthority.findByIdAndUpdate(req.params.id,req.body,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
                     if (err) {
                       console.log('@@@ $ updating countrytaxauthority document throws err: ' + err);
                       return next(err);
