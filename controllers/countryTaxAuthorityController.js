@@ -259,10 +259,10 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             const errors = validationResult(req);
 
             //let transactPeriod = req.body.transaction_period;
-            let transactPeriod = mongoose.Types.ObjectId(req.body.transaction_period.toString());//was   req.params.id.toString())
+            let transactPeriod = mongoose.Types.Date(req.body.transaction_period.toString());//was   req.params.id.toString())
             console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
             transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
-                                                          //take only yyyy-mm-dd portion
+            //let transactPeriod = "2019-12-31";                         //take only yyyy-mm-dd portion
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
