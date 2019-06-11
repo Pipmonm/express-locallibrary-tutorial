@@ -297,8 +297,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             } else {
                 console.log('@@@ $ updating countrytaxauthority document');
+                if(req.body != undefined)console.log(req.body);
+                if(req.params!=undefined)console.log("req.params: ",req.params);
+                if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
                 // Data from form is valid.
-                CountryTaxAuthority.findByIdAndUpdate(req.body._id,countrytaxauthority,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
+                CountryTaxAuthority.findByIdAndUpdate(req.params.id,countrytaxauthority,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
                     if (err) {
                       console.log('@@@ $ updating countrytaxauthority document throws err: ' + err);
                       return next(err);
