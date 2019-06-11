@@ -212,7 +212,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log(results);
        console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
-       let transactPeriod = results.countrytaxauthority.transaction_period;
+       let transactPeriod = req.body.current_transaction_period.toJSON();
        console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
