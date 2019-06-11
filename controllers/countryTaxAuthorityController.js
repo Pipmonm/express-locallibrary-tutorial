@@ -209,6 +209,12 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
          //email =  check('email').isEmail().normalizeEmail();
        //}
        console.log("@@@ $ render CTA update form next");
+
+       let transactPeriod = req.body.transaction_period;
+       console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+       transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
+                                                     //take only yyyy-mm-dd portion
+
        res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
@@ -249,6 +255,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             // Extract the validation errors from a request.
             const errors = validationResult(req);
+
+            let transactPeriod = req.body.transaction_period;
+            console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+            transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
+                                                          //take only yyyy-mm-dd portion
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
