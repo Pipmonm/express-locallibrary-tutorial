@@ -259,7 +259,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             const errors = validationResult(req);
 
             //let transactPeriod = req.body.transaction_period;
-            let transactPeriod = req.body.transaction_period.toJSON());//was   req.params.id.toString())
+            //mod to force recompile
+            let transactPeriod = req.body.transaction_period.toJSON();//was   req.params.id.toString())
             console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
             transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
             //let transactPeriod = "2019-12-31";                         //take only yyyy-mm-dd portion
