@@ -23,19 +23,19 @@ block content
       input#transaction_limit.form-control(type='number', placeholder= 'transaction # threshold', name='transaction_limit', required=false, value= countrytaxauthority.transaction_limit)
     div.form-group
       label(for='current_count') Current # of transactions
-      input#current_count.form-control(type='number',placeholder='# transactions processed', name= 'current_count', required=false, value= 0)
+      input#current_count.form-control(type='number',placeholder='# transactions processed', name= 'current_count', required=false, value= countrytaxauthority.current_count)
     div.form-group
       label(for='amount_limit') Dollar Amount Limit
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= countrytaxauthority.amount_limit)
     div.form-group
       label(for='current_amount') Current Period Amount Amassed
-      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = 0)
+      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = countrytaxauthority.current_amount)
     div.form-group
       label(for='transaction_period_type') Transaction Period Type
-      input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value ="")
+      input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =countrytaxauthority.transaction_period_type)
     div.form-group
        label(for='current_transaction_period') Current Period Expiry Date
-       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=transactPeriod)
+       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='transaction_period', required = false, value=countrytaxauthority.current_transaction_period)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
