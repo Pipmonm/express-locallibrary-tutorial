@@ -189,16 +189,16 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       sanitizeBody(req.params.id).trim().escape();
       console.log("@@@ $ passed sanitizeBody for id: & id is: ",req.params.id);
       async.parallel({
-      countrytaxauthority: function(callback) {
-      CountryTaxAuthority.findById(req.params.id).exec(callback)
-    }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
-  }, function(err, results) {   //note leading "}" closes async's opening "{"
-       console.log("@@@ $ in CTA.findById callback")
-       if(err) {
+       countrytaxauthority: function(callback) {
+        CountryTaxAuthority.findById(req.params.id).exec(callback)
+        }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
+       }, function(err, results) {   //note leading "}" closes async's opening "{"
+        console.log("@@@ $ in CTA.findById callback")
+        if(err) {
          console.log("@@@ $ error in CTA.findById callback ",err);
          debug('update error ' + err);
          return next(err);
-       }
+         }
 
        //let email = results.client.email_address;
        //if(!check('email').isEmail){
@@ -208,9 +208,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //}else{  //not aware of callback style validator for emails, following is newer version
          //email =  check('email').isEmail().normalizeEmail();
        //}
-       console.log("@@@ $ render CTA update form next");
+       console.log("@@@ $ render CTA update form next:  using results???  vv");
+       console.log(results);
+       console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
-       let transactPeriod = req.body.transaction_period;
+       let transactPeriod = results.countrytaxauthority.transaction_period;
        console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
