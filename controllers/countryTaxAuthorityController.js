@@ -212,9 +212,17 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log(results);
        console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
-       let transactPeriod = req.body.transaction_date.toJSON();
-       console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
-       transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
+       if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
+       console.log("results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period);
+       console.log("@@@ $ req.body: below vvvv");
+       if(req.body != undefined)console.log(req.body);
+       if(req.params!=undefined)console.log(req.params);
+       let transactPeriod = "2019:12:31";
+
+
+       //let transactPeriod = req.body.transaction_date.toJSON();
+       //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+       //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
        res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
@@ -257,13 +265,18 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             // Extract the validation errors from a request.
             const errors = validationResult(req);
-
-            //let transactPeriod = req.body.transaction_period;
+            if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
+            console.log("@@@ $ req.body: below vvvv");
+            if(req.body != undefined)console.log(req.body);
+            if(req.params!=undefined)console.log(req.params);
+            if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.body.current_transaction_period);
+            let transactPeriod = "2019:12:31";
+            //let transactPeriod = req.body.current_transaction_period;
             //mod to force recompile
             //yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
-            let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
-            console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
-            transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
+            //let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
+            //console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+            //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
             //let transactPeriod = "2019-12-31";                         //take only yyyy-mm-dd portion
 
             if (!errors.isEmpty()) {
