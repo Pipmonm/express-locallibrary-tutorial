@@ -214,7 +214,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
        if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
        console.log("results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period);
-       console.log("@@@ $ req.body: below vvvv");
+       console.log("@@@ $ req.body: below 1111");
        if(req.body != undefined)console.log(req.body);
        if(req.params!=undefined)console.log(req.params);
        let transactPeriod = "2019:12:31";
@@ -225,7 +225,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod});
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
