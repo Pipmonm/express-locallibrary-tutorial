@@ -212,7 +212,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log(results);
        console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
-       let transactPeriod = req.body.current_transaction_period.toJSON();
+       let transactPeriod = req.body.transaction_date.toJSON();
        console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
@@ -261,7 +261,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             //let transactPeriod = req.body.transaction_period;
             //mod to force recompile
             //yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
-            let transactPeriod = req.body.current_transaction_period.toJSON();//was   req.params.id.toString())
+            let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
             console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
             transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
             //let transactPeriod = "2019-12-31";                         //take only yyyy-mm-dd portion
