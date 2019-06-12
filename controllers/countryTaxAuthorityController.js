@@ -102,6 +102,7 @@ exports.countrytaxauthority_create_post = [
         const errors = validationResult(req);
 
         let stringDate = req.body.current_transaction_period;//2019-06-12
+        console.log("stringdate1 is: ",stringDate,"  of type: ",typeof stringDate)
         //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
@@ -218,7 +219,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //results.countrytaxauthority.current_transaction_period
        console.log("@@@ $ after '=' results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period,"  of type: ", typeof results.countrytaxauthority.current_transaction_period);
        let stringDate = new Date(results.countrytaxauthority.current_transaction_period); //possible convert to string for mongodb dates
-       console.log("@@@ $ stringDate is: ",stringDate,"  of type: ", typeof stringDate);
+       console.log("@@@ $ stringDate2 is: ",stringDate,"  of type: ", typeof stringDate);
+       console.log("@@@ $ while stringDate.toLocaleString gives: ",stringDate.toLocaleString());
        let allowedProxy = false;
        if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
        //let transactPeriod = req.body.transaction_date.toJSON();
@@ -281,6 +283,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
                 let stringDate = new Date(results.countrytaxauthority.current_transaction_period);//2019-06-12
+                console.log("stringdate3 is: ",stringDate,"  of type: ",typeof stringDate)
                 let allowedProxy = false;
                 if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
