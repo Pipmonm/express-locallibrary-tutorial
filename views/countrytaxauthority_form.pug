@@ -11,7 +11,7 @@ block content
       input#country_code.form-control(type='text', placeholder='eg. CA (required)', name='country_code', required=true, value="CA")
     div.form-group
       label(for='allowed') Allowed
-      input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=false)
+      input#allowed.form-control(type='Boolean', placeholder='true/false', name='allowed', required=true, value=false)
     div.form-group
       label(for='rate') tax_rate
       input#rate.form-control(type='decimal', placeholder='0.05 (not 5%); 0.0 for zero', name='rate', required=true)
@@ -35,7 +35,7 @@ block content
       input#transaction_period_type.form-control(type='string',placeholder='month/year etc..', name='transaction_period_type', required=false)
     div.form-group
        label(for='current_transaction_period') Current Period Expiry Date
-       input#transaction_period.form-control(type='date', placeholder='current period expiry date', name='transaction_period', required = false)
+       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date', name='current_transaction_period', required = false)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
 
