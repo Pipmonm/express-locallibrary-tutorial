@@ -219,8 +219,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //results.countrytaxauthority.current_transaction_period
        console.log("@@@ $ after '=' results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period,"  of type: ", typeof results.countrytaxauthority.current_transaction_period);
        let stringDate = new Date(results.countrytaxauthority.current_transaction_period); //possible convert to string for mongodb dates
+       stringDate = stringDate.toLocaleString();//2019-06-12
        console.log("@@@ $ stringDate2 is: ",stringDate,"  of type: ", typeof stringDate);
-       console.log("@@@ $ while stringDate.toLocaleString gives: ",stringDate.toLocaleString());
+
        let allowedProxy = false;
        if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
        //let transactPeriod = req.body.transaction_date.toJSON();
