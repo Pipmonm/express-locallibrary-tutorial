@@ -217,15 +217,15 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log("@@@ $ req.body: below 1111");
        if(req.body != undefined)console.log(req.body);
        if(req.params!=undefined)console.log(req.params);
-       let transactPeriod = "2019:12:31";
-
+       let transactPeriod = "2019-12-31";
+       results.countrytaxauthority.current_transaction_period = transactPeriod;
 
        //let transactPeriod = req.body.transaction_date.toJSON();
        //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority, transactPeriod:transactPeriod});
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority});
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
@@ -282,18 +282,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-
-                //Client.find()
-                    //.exec(function (err, clients) {
-                      //  if (err) {
-                      //    console.log('@@@ $ clrq_update_post err> ' + err);
-                      //    return next(err);
-                      //  }
-                        // Successful, so render.
-                        console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-                        res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
-                        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
-                //});
+                transactPeriod = "2019-12-25";
+                results.countrytaxauthority.current_transaction_period = transactPeriod;
+                console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
+                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+                //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 return;
 
             } else {
