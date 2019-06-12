@@ -104,17 +104,17 @@ exports.countrytaxauthority_create_post = [
 
         let transactPeriod = req.body.current_transaction_period;
         console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
-        transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
-        console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
+        //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
+        //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
         if (!errors.isEmpty()) {
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
             return;
           }
-          console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
+          //console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
           //temporarily to check out validators, make no record
           //res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
           //return;
