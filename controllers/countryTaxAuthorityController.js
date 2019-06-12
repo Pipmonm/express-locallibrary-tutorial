@@ -283,10 +283,10 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                let stringDate = new Date(results.countrytaxauthority.current_transaction_period);//2019-06-12
+                let stringDate = new Date(req.body.current_transaction_period);//2019-06-12
                 console.log("stringdate3 is: ",stringDate,"  of type: ",typeof stringDate)
                 let allowedProxy = false;
-                if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
+                if(req.body.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
                 res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
                 //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
