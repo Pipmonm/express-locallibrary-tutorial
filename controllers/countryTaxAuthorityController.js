@@ -108,10 +108,12 @@ exports.countrytaxauthority_create_post = [
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
         if (!errors.isEmpty()) {
+            let allowedProxy = false;
+            if(req.body.allowed)allowedProxy = 'true';//as a string???
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
             return;
           }
           //console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
@@ -217,15 +219,17 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log("@@@ $ req.body: below 1111");
        if(req.body != undefined)console.log(req.body);
        if(req.params!=undefined)console.log(req.params);
-       let transactPeriod = "2019-12-31";
+       let transactPeriod = "2019-12-31";//do the ISO(date) thing converting string to iso8601
        results.countrytaxauthority.current_transaction_period = transactPeriod;
-
+       console.log("@@@ $ after '=' results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period);
+       let allowedProxy = false;
+       if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
        //let transactPeriod = req.body.transaction_date.toJSON();
        //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority});
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority,allowedProxy:allowedProxy});//2019-06-12
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
@@ -284,8 +288,10 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 // There are errors. Render form again with sanitized values and error messages.
                 transactPeriod = "2019-12-25";
                 results.countrytaxauthority.current_transaction_period = transactPeriod;
+                let allowedProxy = false;
+                if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body, errors: errors.array() });
+                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
                 //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 return;
 
