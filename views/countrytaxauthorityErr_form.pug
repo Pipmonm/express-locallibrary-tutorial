@@ -35,7 +35,7 @@ block content
       input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =countrytaxauthority.transaction_period_type)
     div.form-group
        label(for='current_transaction_period') Current Period Expiry Date
-       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='current_transaction_period', required = false, value=countrytaxauthority.current_transaction_period)
+       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='current_transaction_period', required = false, value=stringDate)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
