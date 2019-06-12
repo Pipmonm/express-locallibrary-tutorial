@@ -283,7 +283,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                let stringDate = new Date(req.body.current_transaction_period);//2019-06-12
+                let stringDate =req.body.current_transaction_period;//2019-06-12
                 console.log("stringdate3 is: ",stringDate,"  of type: ",typeof stringDate)
                 let allowedProxy = false;
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
