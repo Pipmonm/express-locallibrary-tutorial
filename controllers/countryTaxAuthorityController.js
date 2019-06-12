@@ -102,10 +102,10 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let transactPeriod = req.body.transaction_period;
+        let transactPeriod = req.body.current_transaction_period;
         console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
-        transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
-                                                      //take only yyyy-mm-dd portion
+        transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
+        console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
         if (!errors.isEmpty()) {
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
