@@ -56,7 +56,6 @@ exports.countrytaxauthority_detail = function(req, res, next) {
         //})
         // Successful, so render.
         console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
-        console.log('@@@ $ time data for date now: ',countrytaxauthority.transaction_date,"   of type: ", typeof countrytaxauthority.transaction_date);
         res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ', countrytaxauthority:  countrytaxauthority});
       })
 
@@ -102,8 +101,7 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let transactPeriod = req.body.current_transaction_period;
-        console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
+        let stringDate = req.body.current_transaction_period;//2019-06-12
         //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
@@ -113,7 +111,7 @@ exports.countrytaxauthority_create_post = [
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
             return;
           }
           //console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
@@ -219,7 +217,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //2019-06-12 req.body == {} at this point- confirmed
        //results.countrytaxauthority.current_transaction_period
        console.log("@@@ $ after '=' results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period,"  of type: ", typeof results.countrytaxauthority.current_transaction_period);
-       let stringDate = new Date(results.countrytaxauthority.current_transaction); //possible convert to string for mongodb dates
+       let stringDate = new Date(results.countrytaxauthority.current_transaction_period); //possible convert to string for mongodb dates
        console.log("@@@ $ stringDate is: ",stringDate,"  of type: ", typeof stringDate);
        let allowedProxy = false;
        if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
@@ -274,9 +272,6 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             console.log("@@@ or from params: ");
             if(req.params!=undefined)console.log(req.params);
             if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.body.current_transaction_period);
-            let transactPeriod = "2019:12:31";
-            //let transactPeriod = req.body.current_transaction_period;
-            //mod to force recompile
             //yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
             //let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
             //console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
@@ -285,12 +280,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                transactPeriod = "2019-12-25";
-                results.countrytaxauthority.current_transaction_period = transactPeriod;
+                let stringDate = new Date(results.countrytaxauthority.current_transaction_period);//2019-06-12
                 let allowedProxy = false;
                 if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
+                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
                 //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 return;
 
