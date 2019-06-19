@@ -32,7 +32,7 @@ exports.regionalauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
       //var id = req.params.id;
       var id = mongoose.Types.ObjectId(req.params.id.toString());
-      console.log('@@@ $ looking for CntryTxAuth with id: ', id);
+      console.log('@@@ $ looking for RegTxAuth with id: ', id);
 
       RegionalAuthority.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         //.populate('client')
@@ -151,6 +151,7 @@ exports.regionalauthority_create_post = [
               return next(err);
             }
             //else Successful - redirect to new record.
+            console.log("@@@ $ redirecting to url for detailed view")
             res.redirect(regionalauthority.url);
             });//ends save function
     } // ends the fat arrow req, res, next  fn

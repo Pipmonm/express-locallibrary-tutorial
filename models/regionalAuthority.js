@@ -27,7 +27,7 @@ var RegionalAuthoritySchema = new Schema(
 RegionalAuthoritySchema
 .virtual('url')
 .get(function () {
-  return '/catalog/regionauthority/' + this._id;
+  return '/catalog/regionalauthority/' + this._id;
 });
 
 RegionalAuthoritySchema
