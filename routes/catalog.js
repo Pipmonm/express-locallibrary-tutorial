@@ -24,7 +24,8 @@ var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-1
 var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
 
 var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
-//changed above two to camelBack
+
+var regionalauthority_controller = require('../controllers/regionalAuthorityController');//2019-06-17
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
@@ -109,6 +110,22 @@ router.post('/countrytaxauthority/:id/delete', countrytaxauthority_controller.co
 router.get('/countrytaxauthority/:id/update', countrytaxauthority_controller.countrytaxauthority_update_get);
 // POST reply to update countrytaxauthority.
 router.post('/countrytaxauthority/:id/update', countrytaxauthority_controller.countrytaxauthority_update_post);
+
+//repeat for Regions
+router.get('/regionalauthoritycreate', regionalauthority_controller.regionalauthority_create_get); //2019-06-06
+router.post('/regionalauthoritycreate', regionalauthority_controller.regionalauthority_create_post); //2019-06-06
+//get regionalauthority list
+router.get('/regionalauthorities', regionalauthority_controller.regionalauthorities_list);
+//get regionalauthority detail by mod_Id
+router.get('/regionalauthority/:id', regionalauthority_controller.regionalauthority_detail);
+//cntryTA delete and update via url
+router.get('/regionalauthority/:id/delete', regionalauthority_controller.regionalauthority_delete_get);
+// POST process request to delete Client.
+router.post('/regionalauthority/:id/delete', regionalauthority_controller.regionalauthority_delete_post);
+// GET request to update regionalauthority.
+router.get('/regionalauthority/:id/update', regionalauthority_controller.regionalauthority_update_get);
+// POST reply to update regionalauthority.
+router.post('/regionalauthority/:id/update', regionalauthority_controller.regionalauthority_update_post);
 
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).

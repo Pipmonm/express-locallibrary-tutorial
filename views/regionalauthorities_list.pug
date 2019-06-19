@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each regionalauthority in regionalauthorities_list
+    li
+      a(href=regionalauthority.url) #{regionalauthority.region_name}
+      | (#{regionalauthority.allowed})
+
+  else
+    li There are no regionalauthorities.
+
+  <br />
+  hr
+  p
+    a(href='/catalog/regionalauthoritycreate') Add Region Tax Authority

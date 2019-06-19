@@ -46,8 +46,9 @@ exports.index = function(req, res) {
  "     access your account (via View Account tab on website) and obtain your License Key.<br />"+
  "     (Use this License Key as requested when starting the module to unlock it permanently)<br />"+
  "<br />"+
- " Finally, a most sincere 'thank you' to all who have supported our efforts and whom will have"+
- " hopefully enabled us to produce more and better modules as a result of your patronage."
+ " A license for unlimited use for any module is currently priced at $10 US. <br />"+
+ " Finally, a most sincere 'thank you' to all who have supported our efforts and thereby have"+
+ " hopefully enabled us to produce more and better modules."
 
  let blurb4 = "Downloading: \n" +
  "Click on either of the available modules and follow the instructions for downloading. \n" +

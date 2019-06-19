@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='region_name') Region Name
+      input#region_name.form-control(type = 'string', placeholder='Region Name', name= 'region_name', required=true)
+      label(for='region_code') Region Abbreviation
+      input#region_code.form-control(type='text', placeholder='eg. CA (required)', name='region_code', required=true, value="CA")
+    div.form-group
+      label(for='allowed') Allowed
+      input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=false)
+    div.form-group
+      label(for='rate') tax_rate
+      input#rate.form-control(type='decimal', placeholder='0.05 (not 5%); 0.0 for zero', name='rate', required=true)
+    div.form-group
+      label(for='restriction_code') Restriction Code (0:none, 1:#, 2:$, 3:both)
+      input#restriction_code.form-control(type='number', placeholder='Restriction Code (required)', name='restriction_code', required=true, value=0 )
+    div.form-group
+      label(for='transaction_limit') Number of Transactions Limit
+      input#transaction_limit.form-control(type='number', placeholder= 'transaction # threshold', name='transaction_limit', required=false, value= 100)
+    div.form-group
+      label(for='current_count') Current # of transactions
+      input#current_count.form-control(type='number',placeholder='# transactions processed', name= 'current_count', required=false, value= 0)
+    div.form-group
+      label(for='amount_limit') Dollar Amount Limit
+      input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= 30000)
+    div.form-group
+      label(for='current_amount') Current Period Amount Amassed
+      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = 0)
+    div.form-group
+      label(for='transaction_period_type') Period Type (duration)
+      input#transaction_period_type.form-control(type='string',placeholder='month/year etc..', name='transaction_period_type', required=false)
+    div.form-group
+       label(for='current_transaction_period') Current Period Expiry Date
+       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date', name='current_transaction_period', required = false)
+    div.form-group
+       label(for='attempted') # Attempted
+       input#attempted.form-control(type='number', placeholder='attempted so far', name= 'attempted', require = true)
+
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
+  if error
+    ul
+      li
+        error

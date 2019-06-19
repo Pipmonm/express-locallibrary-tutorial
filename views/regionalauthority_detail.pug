@@ -1,0 +1,37 @@
+extends layout
+
+block content
+
+  h1 Region: #{regionalauthority.region_name} : #{regionalauthority.region_code}
+
+  P  Country: #{regionalauthority.countrytaxauthority.name}
+
+  p  Allow Status: #{regionalauthority.allowed}
+
+  p  Regional Rate: #{regionalauthority.rate}
+
+  p  Restriction Code: #{regionalauthority.restriction_code}
+
+  P  Transaction Limit: #{regionalauthority.transaction_limit}
+
+  P  Current Transaction Count: #{regionalauthority.current_count}
+
+  P  Amount Limit: #{regionalauthority.amount_limit}
+
+  P  Current Amount: #{regionalauthority.current_amount}
+
+  P  Period Type: #{regionalauthority.transaction_period_type}
+
+  P  Limit Date: #{regionalauthority.current_transaction_period}
+
+  P  # of Attempts: #{regionalauthority.attempted}
+
+  hr
+  p
+    a(href=regionalauthority.url+'/delete') Delete Regional Tax Authority
+
+  p
+    a(href=regionalauthority.url+'/update') Update Regional Tax Authority
+
+  P
+    a(href='/catalog/regionalauthorities') List Regional Tax Authorities
