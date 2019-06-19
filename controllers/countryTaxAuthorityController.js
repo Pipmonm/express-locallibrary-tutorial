@@ -1,6 +1,6 @@
 //client instance controller js
 var CountryTaxAuthority = require('../models/countryTaxAuthority'); //collection 'countrytaxauthorities'
-var ProvStateTaxAuthority = require('../models/provstateTaxAuthority');// 'provstatetaxautorities'
+var RegionalAuthority = require('../models/regionalAuthority');// 'regionaltaxautorities'
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
 var mongoose = require('mongoose');
@@ -14,8 +14,8 @@ exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countryTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
     //.populate({
-       //path:'provstatetaxauthorities', //2019-06-05 a guess as to path
-       //model:'ProvStateTaxAuthority'})  //have attempted 'Client' & others
+       //path:'regionaltaxauthorities', //2019-06-05 a guess as to path
+       //model:'regionalTaxAuthority'})  //have attempted 'Client' & others
     .exec(function (err, countrytaxauthorities) {
       console.log("@@@ $ executing callback for countrytaxauthorities list; if err> : " + err );
       if (err) { return next(err); }
