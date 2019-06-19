@@ -310,3 +310,4 @@ exports.regionalauthority_update_get = function(req, res, next) {
                     });//closes findbyidandupdate
             }//closes else clause
         }//closes fat arrow req,res,next
+      ]
