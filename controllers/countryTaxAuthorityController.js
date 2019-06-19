@@ -87,12 +87,14 @@ exports.countrytaxauthority_create_post = [
     sanitizeBody('country_name').trim().escape(),
     sanitizeBody('country_code').trim().escape(),
     sanitizeBody('allowed').trim().escape(),
+    sanitizeBody('rate').trim().escape(),
     sanitizeBody('restriction').trim().escape(),
     sanitizeBody('transaction_limit').trim().escape(),
     sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
     sanitizeBody("current_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
+    sanitizeBody('current_transaction_period').trim().escape(),
     //sanitizeBody('current_transaction_period').toDate(),
 
     // Process request after validation and sanitization.

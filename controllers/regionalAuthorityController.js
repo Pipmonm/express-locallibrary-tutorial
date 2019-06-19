@@ -71,8 +71,9 @@ exports.regionalauthority_create_get = function(req, res, next) {
 // Handle regionalauthority create on POST.
 exports.regionalauthority_create_post = [
     // Validate fields.
-    body('country_name', 'specify country name').trim(),
-    body('country_code', 'choose country code from dropdown list').isLength({ max: 2 }).trim(),
+    body('region_name', 'specify region name').trim(),
+    body('region_code', 'choose region code from dropdown list').isLength({ max: 2 }).trim(),
+    body('country', 'country name').trim(),
     body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
     body('rate', 'tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
     body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
@@ -83,17 +84,20 @@ exports.regionalauthority_create_post = [
     body('transaction_period_type').isIn(['week','month','year']),
     body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
-
+    body('attempted','# attempts').trim(),
     // Sanitize fields.
-    sanitizeBody('country_name').trim().escape(),
-    sanitizeBody('country_code').trim().escape(),
+    sanitizeBody('region_name').trim().escape(),
+    sanitizeBody('region_code').trim().escape(),
+    sanitizeBody('country').trim().escape(),
     sanitizeBody('allowed').trim().escape(),
-    sanitizeBody('restriction').trim().escape(),
+    sanitizeBody('restriction_code').trim().escape(),
     sanitizeBody('transaction_limit').trim().escape(),
     sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
     sanitizeBody("current_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
+    sanitizeBody('current_transaction_period').trim().escape(),
+    sanitizeBody('attempted').trim().escape(),
     //sanitizeBody('current_transaction_period').toDate(),
 
     // Process request after validation and sanitization.
@@ -259,7 +263,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('country_name').trim().escape(),
       sanitizeBody('country_code').trim().escape(),
       sanitizeBody('allowed').trim().escape(),
-      sanitizeBody('restriction').trim().escape(),
+      sanitizeBody('restriction_code').trim().escape(),
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
       sanitizeBody('amount_limit').trim().escape(),

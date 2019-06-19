@@ -10,6 +10,9 @@ block content
       label(for='region_code') Region Abbreviation
       input#region_code.form-control(type='text', placeholder='eg. CA (required)', name='region_code', required=true, value="CA")
     div.form-group
+      label(for='country') Country
+      input#country.form-control(type = 'string', placeholder='Country',name= 'country',required=true)
+    div.form-group
       label(for='allowed') Allowed
       input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=false)
     div.form-group
