@@ -22,7 +22,7 @@ exports.regionalauthorities_list = function(req, res, next) {
       if (err) { return next(err); }
       console.log('@@@ $ found regionalauthorities as per: ');
       console.log(regionalauthorities);
-      res.render('regionalauthorities_list', { title: 'Country Tax Auth List', regionalauthorities_list: regionalauthorities });
+      res.render('regionalauthorities_list', { title: 'Regional Tax Auth List', regionalauthorities_list: regionalauthorities });
     });
 
 };
@@ -57,7 +57,7 @@ exports.regionalauthority_detail = function(req, res, next) {
         //})
         // Successful, so render.
         console.log('@@@ $ rendering regionalauthority_detail with regionalauthority: ' + regionalauthority);
-        res.render('regionalauthority_detail', { title: 'Country Tax Authority Detail: ', regionalauthority:  regionalauthority});
+        res.render('regionalauthority_detail', { title: 'Regional Tax Authority Detail: ', regionalauthority:  regionalauthority});
       })
 
   };
@@ -130,7 +130,7 @@ exports.regionalauthority_create_post = [
           {
             region_name: req.body.region_name,
             region_code: req.body.region_code,  //needs to be ._id of valid client
-            country_name: req.body.country_name,
+            country: req.body.country_name,
             allowed: req.body.allowed,
             rate: req.body.rate,
             restriction_code: req.body.restriction_code,
