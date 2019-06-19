@@ -130,7 +130,7 @@ exports.regionalauthority_create_post = [
           {
             region_name: req.body.region_name,
             region_code: req.body.region_code,  //needs to be ._id of valid client
-            country: req.body.country_name,
+            country: req.body.country,
             allowed: req.body.allowed,
             rate: req.body.rate,
             restriction_code: req.body.restriction_code,
