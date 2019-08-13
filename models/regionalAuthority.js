@@ -10,7 +10,9 @@ var RegionalAuthoritySchema = new Schema(
     region_code:  { type: String, required:true},
     country: {type: String, required:true}, // { type: Schema.ObjectId, ref: 'CountryTaxAuthority', required: true }, //reference to the federal authority
     allowed: {type: Boolean, required: true },//currently allowed to sell?
-    rate: {type: Number, required: true},
+    harmonized:{type: Boolean, required:true},//2019=08-13 false Xf =  'x + x*GST + x*RST'    true Xf = 'x + x*HST'
+    fed_rate: {type: Number, required: true},//2019-08-13 for US  use 0.0
+    reg_rate: {type: Number, required: true},//2019-08-13 modded, there are prov/states with no sales tax, use 0.0
     restriction_code:{type: Number, required:true},//0:no restrictions, 1:transaction lim only 2:  amount only 3: both
     transaction_limit: {type: Number, required:false},//# of transactions allowed
     current_count: {type: Number, required: false},//# of transactions during this period
