@@ -16,11 +16,11 @@ block content
 
     div.form-group
       label(for='allowed') Allowed
-      input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=regionalauthority.allowedProxy)
+      input#allowed.form-control(type='boolean', placeholder='true/false', name='allowed', required=true, value=allowedProxy)
 
     div.form-group
       label(for='harmonized') Harmonized?
-      input#harmonized.form-control(type='boolean', placeholder='true/false',name='harmonized',required=true, value=regionalauthority.harmonizedProxy)
+      input#harmonized.form-control(type='boolean', placeholder='true/false',name='harmonized',required=true, value=harmonizedProxy)
     div.form-group
       label(for='fed_rate') Federal Rate (GST)
       input#fed_rate.form-control(type='decimal',placeholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=true, value=regionalauthority.fed_rate)
