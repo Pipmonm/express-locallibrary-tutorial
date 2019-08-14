@@ -77,7 +77,7 @@ exports.regionalauthority_create_post = [
     body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
     body('harmonized','True/False value for "harmonized"').isBoolean().withMessage('Boolean (true/false), true = fed + reg tax is combined'),
     body('fed_rate', 'fed tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
-    body('fed_rate_active','fed rate active').isBoolean().withMessage('If Fed sales tax is triggered set to "true"'),
+    body('fed_rate_active','True/False value for "fed_rate_active"').isBoolean().withMessage('If Fed sales tax is triggered set to "true"'),
     body('reg_rate', 'region tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
     body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
     body('transaction_limit').isNumeric({no_symbols: true}),
@@ -112,7 +112,7 @@ exports.regionalauthority_create_post = [
         const errors = validationResult(req);
 
         let stringDate = req.body.current_transaction_period;//2019-06-12
-        console.log("stringdate1 is: ",stringDate,"  of type: ",typeof stringDate)
+        //console.log("stringdate1 is: ",stringDate,"  of type: ",typeof stringDate)
         //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
