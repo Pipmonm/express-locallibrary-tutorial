@@ -327,9 +327,10 @@ exports.regionalauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                let fed_rate_active =req.body.fed_rate_active;//2019-08-14
+                let stringDate =req.body.current_transaction_period;//2019-06-12
+                let fed_rate_activeSnap =req.body.fed_rate_active;//2019-08-14
                 console.log("@@@ $ update errors: ",errors);//2019-08-14
-                console.log("@@@ $ fed_rate_active is: ",fed_rate_active,"  of type: ",typeof fed_rate_active)
+                console.log("@@@ $ fed_rate_active is: ",fed_rate_activeSnap,"  of type: ",typeof fed_rate_activeSnap)
                 let allowedProxy = 'false';
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
                 //2019-08-14  similar for Harmonized
