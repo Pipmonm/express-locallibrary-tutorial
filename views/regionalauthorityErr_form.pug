@@ -23,9 +23,9 @@ block content
       input#hamonized.form-control(type='boolean', placeholder='true/false',name='harmonized',required=true, value=regionalauthority.harmonized)
     div.form-group
       label(for='fed_rate') Federal Rate (GST)
-      input#fed_rate.form-control(type='decimal',placholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=regionalauthority.fed_rate)
+      input#fed_rate.form-control(type='decimal',placeholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=true,value=regionalauthority.fed_rate)
       label(for='reg_rate') Regional Rate (PST,QST,..)
-      input#reg_rate.form-control(type='decimal', placeholder='0.xx (decimal not %); 0.0 for zero', name='reg_rate', required=regionalauthority.reg_rate)
+      input#reg_rate.form-control(type='decimal', placeholder='0.xx (decimal not %); 0.0 for zero', name='reg_rate', required=true, value=regionalauthority.reg_rate)
     div.form-group
       label(for='restriction_code') Restriction Code (0:none, 1:#, 2:$, 3:both)
       input#restriction_code.form-control(type='number', placeholder='Restriction Code (required)', name='restriction_code', required=true, value=regionalauthority.restriction_code )
