@@ -121,9 +121,9 @@ exports.regionalauthority_create_post = [
             if(req.body.allowed)allowedProxy = 'true';//as a string???
             //2019-08-14  similar for Harmonized
             let harmonizedProxy = 'false';
-            if(req.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
+            if(req.re.body.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
             let fed_rate_activeProxy = 'false';
-            if(req.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
+            if(req.req.body.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
             console.log('@@@ $ Console: errors spotted in validationResult for "regionalauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "regionalauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
@@ -333,9 +333,9 @@ exports.regionalauthority_update_get = function(req, res, next) {
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
                 //2019-08-14  similar for Harmonized
                 let harmonizedProxy = 'false';
-                if(req.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
+                if(req.req.body.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
                 let fed_rate_activeProxy = 'false';
-                if(req.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
+                if(req.req.body.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
                 console.log('@@@ $ rendering regionalauthority_form for redisplay in clrq_update_post (validation err)');
                 //res.render('regionalauthorityErr_form', { title: 'Update Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
                 res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority',
