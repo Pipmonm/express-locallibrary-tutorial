@@ -224,7 +224,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
        //}
        console.log("@@@ $ render CTA update form next:  using results???  vv");
        console.log(results);
-       console.log("@@@ $ try a results parameter: results.regionalauthority.country_name: ",results.regionalauthority.country_name);
+       console.log("@@@ $ try a results parameter: results.regionalauthority.allowed: ",results.regionalauthority.allowed);
 
        if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
        console.log("@@@ $ results.regionalauthority.current_transaction_period is ",results.regionalauthority.current_transaction_period);
@@ -237,12 +237,15 @@ exports.regionalauthority_update_get = function(req, res, next) {
 
        let allowedProxy = false;
        if(results.regionalauthority.allowed)allowedProxy = 'true';//as a string???
+       //2019-08-14  similar for Harmonized
+       let harmonizedProxy = false;
+       if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
        //let transactPeriod = req.body.transaction_date.toJSON();
        //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority', regionalauthority: results.regionalauthority,allowedProxy:allowedProxy,stringDate:stringDate});//2019-06-12
+       res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority', regionalauthority: results.regionalauthority,allowedProxy:allowedProxy, harmonizedProxy:harmonizedProxy, stringDate:stringDate});//2019-06-12
        //res.render('regionalauthorityUpdate_form', { title: 'Update regionalAuthority', regionalauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
