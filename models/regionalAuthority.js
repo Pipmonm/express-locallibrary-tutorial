@@ -23,7 +23,7 @@ var RegionalAuthoritySchema = new Schema(
     current_transaction_period: {type: String, required:true},//which is current period
     transaction_date: {type: Date, default: Date.now},
     attempted: {type:Number, required:true} //keep track of rejected requests
-  }
+  }//2019-08-14  IMPORTANT changes here must be replicated in reg.AuthorityController (starts line 146)
 );
 
 // Virtual for clientrequestinstance's URL

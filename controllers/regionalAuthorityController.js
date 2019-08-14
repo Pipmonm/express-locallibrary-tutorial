@@ -151,6 +151,7 @@ exports.regionalauthority_create_post = [
             allowed: req.body.allowed,
             harmonized: req.body.harmonized,
             fed_rate: req.body.fed_rate,
+            fed_rate_active: req.body.fed_rate_active,
             reg_rate: req.body.reg_rate,
             restriction_code: req.body.restriction_code,
             transaction_limit: req.body.transaction_limit,
