@@ -77,6 +77,7 @@ exports.regionalauthority_create_post = [
     body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
     body('harmonized','True/False value for "harmonized"').isBoolean().withMessage('Boolean (true/false), true = fed + reg tax is combined'),
     body('fed_rate', 'fed tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
+    body('fed_rate_active','fed rate active').isBoolean().withMessage('If Fed sales tax is triggered set to "true"'),
     body('reg_rate', 'region tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
     body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
     body('transaction_limit').isNumeric({no_symbols: true}),
@@ -93,6 +94,7 @@ exports.regionalauthority_create_post = [
     sanitizeBody('country').trim().escape(),
     sanitizeBody('allowed').trim().escape(),
     sanitizeBody('harmonized').trim().escape(),
+    sanitizeBody('fed_rate_active').trim().escape(),
     sanitizeBody('restriction_code').trim().escape(),
     sanitizeBody('transaction_limit').trim().escape(),
     sanitizeBody('current_count').trim().escape(),
@@ -240,12 +242,20 @@ exports.regionalauthority_update_get = function(req, res, next) {
        //2019-08-14  similar for Harmonized
        let harmonizedProxy = 'false';
        if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
+       let fed_rate_active = 'false';
+       if(results.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
+
        //let transactPeriod = req.body.transaction_date.toJSON();
        //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority', regionalauthority: results.regionalauthority,allowedProxy:allowedProxy, harmonizedProxy:harmonizedProxy, stringDate:stringDate});//2019-06-12
+       res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority',
+                                           regionalauthority: results.regionalauthority,
+                                           allowedProxy:allowedProxy,
+                                           harmonizedProxy:harmonizedProxy,
+                                           fed_rate_activeProxy:fed_rate_activeProxy,
+                                           stringDate:stringDate});//2019-06-12
        //res.render('regionalauthorityUpdate_form', { title: 'Update regionalAuthority', regionalauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
@@ -260,6 +270,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       body('allowed', 'True/False value for "allowed"').isBoolean().withMessage('Boolean (true/false), must reflect current status of allowed/not allowed to sell'),
       body('harmonized','True/False value for "harmonized"').isBoolean().withMessage('Boolean (true/false), true = fed + reg tax is combined'),
       body('fed_rate', 'fed tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
+      body('fed_rate_active','fed rate active').isBoolean().withMessage('If Fed sales tax is triggered set to "true"'),
       body('reg_rate', 'region tax rate').isDecimal({ local:"en-US",checkFalsy:true}),
       body('restriction_code','0:none,1:#transactions,2:total sales, 3:both').isInt({no_symbols: true, max:3}).withMessage("only codes allowed: 0:none, 1:# trans., 2:$ amnt., 3:both"),
       body('transaction_limit').isNumeric({no_symbols: true}),
@@ -275,6 +286,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('country_code').trim().escape(),
       sanitizeBody('allowed').trim().escape(),
       sanitizeBody('harmonized').trim().escape(),
+      sanitizeBody('fed_rate_active').trim().escape(),
       sanitizeBody('restriction_code').trim().escape(),
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
@@ -304,11 +316,23 @@ exports.regionalauthority_update_get = function(req, res, next) {
                 // There are errors. Render form again with sanitized values and error messages.
                 let stringDate =req.body.current_transaction_period;//2019-06-12
                 console.log("stringdate3 is: ",stringDate,"  of type: ",typeof stringDate)
-                let allowedProxy = false;
+                let allowedProxy = 'false';
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
+                //2019-08-14  similar for Harmonized
+                let harmonizedProxy = 'false';
+                if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
+                let fed_rate_active = 'false';
+                if(results.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
                 console.log('@@@ $ rendering regionalauthority_form for redisplay in clrq_update_post (validation err)');
                 res.render('regionalauthorityErr_form', { title: 'Update Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
-                //res.render('regionalauthorityUpdate_form', { title: 'Update regionalAuthority', errors: errors.array(), regionalauthority:regionalauthority });
+                res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority',
+                                                    regionalauthority: req.body,
+                                                    allowedProxy:allowedProxy,
+                                                    harmonizedProxy:harmonizedProxy,
+                                                    fed_rate_activeProxy:fed_rate_activeProxy,
+                                                    stringDate:stringDate,
+                                                    errors: errors.array() });//2019-06-12
+
                 return;
 
             } else {
