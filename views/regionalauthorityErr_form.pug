@@ -20,10 +20,10 @@ block content
 
     div.form-group
       label(for='harmonized') Harmonized?
-      input#hamonized.form-control(type='boolean', placeholder='true/false',name='harmonized',required=true, value=regionalauthority.harmonized)
+      input#harmonized.form-control(type='boolean', placeholder='true/false',name='harmonized',required=true, value=regionalauthority.harmonized)
     div.form-group
       label(for='fed_rate') Federal Rate (GST)
-      input#fed_rate.form-control(type='decimal',placeholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=true,value=regionalauthority.fed_rate)
+      input#fed_rate.form-control(type='decimal',placeholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=true, value=regionalauthority.fed_rate)
       label(for='reg_rate') Regional Rate (PST,QST,..)
       input#reg_rate.form-control(type='decimal', placeholder='0.xx (decimal not %); 0.0 for zero', name='reg_rate', required=true, value=regionalauthority.reg_rate)
     div.form-group
