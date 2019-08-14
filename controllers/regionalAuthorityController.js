@@ -271,7 +271,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('country_name').trim().escape(),
       sanitizeBody('country_code').trim().escape(),
       sanitizeBody('allowed').trim().escape(),
-      sanitizeBody('harmonized'.trim().escape(),
+      sanitizeBody('harmonized').trim().escape(),
       sanitizeBody('restriction_code').trim().escape(),
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
