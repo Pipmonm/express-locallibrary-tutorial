@@ -117,12 +117,24 @@ exports.regionalauthority_create_post = [
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
 
         if (!errors.isEmpty()) {
-            let allowedProxy = false;
+            let allowedProxy = 'false';
             if(req.body.allowed)allowedProxy = 'true';//as a string???
+            //2019-08-14  similar for Harmonized
+            let harmonizedProxy = 'false';
+            if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
+            let fed_rate_activeProxy = 'false';
+            if(results.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
             console.log('@@@ $ Console: errors spotted in validationResult for "regionalauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "regionalauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('regionalauthorityErr_form', { title: 'Create Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
+            //res.render('regionalauthorityErr_form', { title: 'Create Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
+            res.render('regionalauthorityErr_form', { title: 'Create RegionalAuthority',
+                                                regionalauthority: req.body,
+                                                allowedProxy:allowedProxy,
+                                                harmonizedProxy:harmonizedProxy,
+                                                fed_rate_activeProxy:fed_rate_activeProxy,
+                                                stringDate:stringDate,
+                                                errors: errors.array()});//2019-06-12
             return;
           }
           //console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
@@ -242,7 +254,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
        //2019-08-14  similar for Harmonized
        let harmonizedProxy = 'false';
        if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
-       let fed_rate_active = 'false';
+       let fed_rate_activeProxy = 'false';
        if(results.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
 
        //let transactPeriod = req.body.transaction_date.toJSON();
@@ -321,10 +333,10 @@ exports.regionalauthority_update_get = function(req, res, next) {
                 //2019-08-14  similar for Harmonized
                 let harmonizedProxy = 'false';
                 if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
-                let fed_rate_active = 'false';
+                let fed_rate_activeProxy = 'false';
                 if(results.regionalauthority.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
                 console.log('@@@ $ rendering regionalauthority_form for redisplay in clrq_update_post (validation err)');
-                res.render('regionalauthorityErr_form', { title: 'Update Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
+                //res.render('regionalauthorityErr_form', { title: 'Update Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
                 res.render('regionalauthorityErr_form', { title: 'Update RegionalAuthority',
                                                     regionalauthority: req.body,
                                                     allowedProxy:allowedProxy,
