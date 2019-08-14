@@ -235,10 +235,10 @@ exports.regionalauthority_update_get = function(req, res, next) {
        stringDate = stringDate.toLocaleString().split(" ")[0];//2019-06-12
        console.log("@@@ $ stringDate2 is: ",stringDate,"  of type: ", typeof stringDate);
 
-       let allowedProxy = false;
+       let allowedProxy = 'false';
        if(results.regionalauthority.allowed)allowedProxy = 'true';//as a string???
        //2019-08-14  similar for Harmonized
-       let harmonizedProxy = false;
+       let harmonizedProxy = 'false';
        if(results.regionalauthority.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
        //let transactPeriod = req.body.transaction_date.toJSON();
        //console.log("@@@ $ transPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
