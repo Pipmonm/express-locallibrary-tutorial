@@ -124,7 +124,7 @@ exports.regionalauthority_create_post = [
             if(req.body.harmonized)harmonizedProxy = 'true';//since do not display on form if sent as Booleans
             let fed_rate_activeProxy = 'false';
             if(req.body.fed_rate_active)fed_rate_activeProxy = 'true';//must start collecting GST or HST
-            console.log('@@@ $ Console: errors spotted in validationResult for "regionalauthority_create_post"');
+            console.log('@@@ $ Console: errors spotted in validationResult for "regionalauthority_create_post"  f_r_aProxy: ',fed_rate_activeProxy);
             debug('DEBUG: errors spotted in validationResult for "regionalauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
             //res.render('regionalauthorityErr_form', { title: 'Create Regional Authority', regionalauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
