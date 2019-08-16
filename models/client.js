@@ -35,7 +35,7 @@ ClientSchema
 .virtual('url')
 .get(function () {
   console.log('client URL is: ' + this._id);
-  return '/catalog/client/' + this._id;
+  return '/catalog/client/' + this._id;//goes to client_detail
 });
 
 ClientSchema

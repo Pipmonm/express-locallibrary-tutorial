@@ -420,7 +420,7 @@ exports.client_status_post = [
 
   // Display Client update form on GET.
   exports.client_update_get = function(req, res, next) {
-    console.log("@@@ $ sanitizing body in clientUpdate");
+    console.log("@@@ $ sanitizing body in client_update_get");
         //req.params.sanitize('id').escape().trim();
         sanitizeBody(req.params.id).trim().escape();//2019-08-16 modded from simple 'id'
         //client: function(callback) {
