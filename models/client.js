@@ -11,8 +11,11 @@ var ClientSchema = Schema( //2019-01-30 many modifications
     format_code: {type: String, max : 20},
     moduleIdVrs: {type: String, max : 50}, //2019-01-30 added
     status: {type: String, max : 40, default:'pending'},
-    first_name: {type: String, default: 'anon', max: 100}, //defaults added
-    family_name: {type: String, default:'ymous', max: 100},
+    first_name: {type: String, default: 'first', max: 50}, //defaults added
+    family_name: {type: String, default:'last', max: 50},
+    country: {type: String, max : 64},//2019-08-16
+    tax_region: {type: String, max : 64},//2019=08-16
+    city_address: {type: String, default:'# street,city' max : 100},
     email_address: {type: String, default: 'xyz@abc.dmn', max: 100},
     registration_date: {type: Date},
     license_key: {type: String, max: 30, default:""}

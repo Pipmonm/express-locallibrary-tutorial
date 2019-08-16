@@ -6,16 +6,16 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='first_name') First Name:
-      input#first_name.form-control(type='text', placeholder='FirstName (optional) ', name='first_name', required=false, value="optional")
+      input#first_name.form-control(type='text', placeholder='FirstName (required)', name='first_name', required=true )
       label(for='family_name') Family Name:
-      input#family_name.form-control(type='text', placeholder='FamilyName (optional)', name='family_name', required=false, value="optional")
-      div.form-form_group
-        label(for='country') Country:
-        input#country.form-control(type='text', placeholder='Country of residence(optional)', name= 'country', required=false)
-        label(for='tax_region') Province/Territory/State:
-        input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(optional)', name= 'tax_region', required=false)
-        label(for='city_address') City Address:
-        input#city_address.form-control(type='text', placeholder='#, street, city (optional)', name= 'city_address', required=false)
+      input#family_name.form-control(type='text', placeholder='FamilyName (required)', name='family_name', required=true )
+    div.form-form_group
+      label(for='country') Country:
+      input#country.form-control(type='text', placeholder='Country of residence(required)', name= 'country', required=true)
+      label(for='tax_region') Province/Territory/State:
+      input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true)
+      label(for='city_address') City Address:
+      input#city_address.form-control(type='text', placeholder='#, street, city (CDN's: only if receipt required)', name= 'city_address')
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value= "optional@somewhere.xxx")

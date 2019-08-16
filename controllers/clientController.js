@@ -203,12 +203,18 @@ exports.client_status_post = [
         // Validate fields.
         body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
         body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+        body('country').isLength({min: 1}).trim().withMessage('Please fill in Country of Residence.'),//2019-08-16
+        body('tax_region').isLength({min: 1}).trim().withMessage('Enter Pov. or Territory or State'),
+        body('city_address').isLength({min: 1}).trim().withMessage('Fill in "#, street, city"'),
         body('email_address').isEmail().trim().withMessage('your email address'),
         body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
         sanitizeBody('family_name').trim().escape(),
+        sanitizeBody('country').trim().escape(),//2019-08-16
+        sanitizeBody('tax_region').trim().escape(),
+        sanitizeBody('city_address').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
         sanitizeBody('register_request_code').trim().escape(),
 
@@ -285,6 +291,9 @@ exports.client_status_post = [
                         status: "pending",
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
+                        country: req.body.country,//2019-08-16
+                        tax_region: req.body.tax_region,
+                        city_address: req.body.city_address,
                         email_address: req.body.email_address,
                         registration_date: now,
                     });
