@@ -16,7 +16,7 @@ var ClientSchema = Schema( //2019-01-30 many modifications
     country: {type: String, max : 64},//2019-08-16
     tax_region: {type: String, max : 64},//2019=08-16
     city_address: {type: String, default:'# street,city', max : 100},
-    email_address: {type: String, default: 'xyz@abc.dmn', max: 100},
+    email_address: {type: String, default: 'xyz@abc.mno', max: 100},
     registration_date: {type: Date},
     license_key: {type: String, max: 30, default:""}
 

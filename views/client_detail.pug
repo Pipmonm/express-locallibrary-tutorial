@@ -6,9 +6,9 @@ block content
 
   p  Format Code: #{client.format_code}
 
-  p  Request Status: #{client.status}
-
   p  Module Id: #{client.moduleIdVrs}
+
+  p  Request Status: #{client.status}
 
   hr
   p  Client Name: #{client.name}
@@ -30,11 +30,11 @@ block content
   p
     a(href=client.url+'/update') Update client
 
-    p
-      a(href='/catalog//countrytaxauthorities') List Country Authorities
+  p
+    a(href='/catalog//countrytaxauthorities') List Country Authorities
 
-    P
-      a(href='/catalog/regionalauthorities') List Regional Authorities
+  P
+    a(href='/catalog/regionalauthorities') List Regional Authorities
 
-    p
-      a(href='/catalog/clients') List Clients
+  p
+    a(href='/catalog/clients') List Clients

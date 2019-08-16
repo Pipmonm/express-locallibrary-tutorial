@@ -422,14 +422,16 @@ exports.client_status_post = [
   exports.client_update_get = function(req, res, next) {
     console.log("@@@ $ sanitizing body in clientUpdate");
         //req.params.sanitize('id').escape().trim();
-        sanitizeBody('id').trim().escape();
+        sanitizeBody(req.params.id).trim().escape();//2019-08-16 modded from simple 'id'
         //client: function(callback) {
         async.parallel({
         client: function(callback) {
         Client.findById(req.params.id).exec(callback)
       }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
     }, function(err, results) {   //note leading "}" closes async's opening "{"
+         console.log("@@@ # in client findById callback")
          if(err) {
+           console.log("@@@ # in client findById error callback",err)
            debug('update error ' + err);
            return next(err);
          }
@@ -442,28 +444,43 @@ exports.client_status_post = [
          //}else{  //not aware of callback style validator for emails, following is newer version
            //email =  check('email').isEmail().normalizeEmail();
          //}
-         res.render('client_form', { title: 'Update Client', client: results.client, query: "Update"});
+         console.log("@@@ $ render Client update form next:  using results???  vv");
+         console.log(results);
+         let stringRegisterDate = new Date(results.client.registration_date); //possible convert to string for mongodb dates
+         stringRegisterDate = stringRegisterDate.toLocaleString().split(" ")[0];//2019-08-16
+         console.log("@@@ $ stringRegisterDate is: ",stringRegisterDate,"  of type: ", typeof stringRegisterDate);
+
+         res.render('client_form_Update', { title: 'Update Client',
+                                     client: results.client,
+                                     stringRegisterDate: stringRegisterDate,
+                                     query: "Update"});
     });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
   }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
 
   //new function for clientrequest for this specific client
   // Handle Client update on POST.
-  exports.client_update_post = function(req, res, next)  {   //for validation this first line (past = sign) dissappears
-          //[  //the line reads   blah blah blah = [    and following   (uncomment closing ]  at function end)
+  exports.client_update_post = [  //2019-08-16   try again
              // Validate fields.
-             //body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
-             //body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
-             //body('email_address').isEmail().trim().withMessage('your email address'),
-             //body('registration_date').isLength({min: 1 }).trim().withMessage('registration_date'),
+             body('first_name').isLength({ min: 1 }).trim().withMessage('First name must be specified.'),
+             body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
+             body('registration_date','Invalid date').optional({ checkFalsy: true }).isISO8601(),
                  //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
+             body('country', 'specify country name').trim(),
+             body('tax_region','specify Prov./Territory/State').trim(),
+             body('city_address','enter: #, street, city').trim(),
+             body('email_address').isEmail().trim().withMessage('your email address'),
+             body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
              // Sanitize fields.
-             //sanitizeBody('first_name').trim().escape(),
-             //sanitizeBody('family_name').trim().escape(),
-             //sanitizeBody('email_address').trim().escape(),
-             //sanitizeBody('registration_date').trim().escape(),
+             sanitizeBody('first_name').trim().escape(),
+             sanitizeBody('family_name').trim().escape(),
+             sanitizeBody('email_address').trim().escape(),
+             sanitizeBody('country').trim().escape(),//2019-08-16
+             sanitizeBody('tax_region').trim().escape(),
+             sanitizeBody('city_address').trim().escape(),
+             sanitizeBody('registration_date').trim().escape(),
 
-             // Process request after validation and sanitization.
-             //(req, res, next) =>
+             //Process request after validation and sanitization.
+             (req, res, next) =>
 
           //
           console.log("@@@ ++ in POST client update, function part");
@@ -473,7 +490,7 @@ exports.client_status_post = [
           if (!errors.isEmpty()) {
               console.log("@@@ ++ POST client update err: " + err);
               // There are errors. Render form again with sanitized values/errors messages.
-              res.render('client_form', { title: 'Create Client', client: req.body, errors: errors.array() });
+              res.render('client_form_Update', { title: 'Create Client', client: req.body, errors: errors.array() });
               return;
           }
           else {
@@ -486,4 +503,4 @@ exports.client_status_post = [
             });
           }
         }
-    //]; //validation stuff hangs system up!!!
+    ]; //validation stuff hangs system up!!!
