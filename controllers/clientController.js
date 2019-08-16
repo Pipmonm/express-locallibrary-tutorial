@@ -499,7 +499,7 @@ exports.client_status_post = [
               console.log("@@@ $ error trying to update client, err> " + err);
               if (err) {
                 console.log('@@@ $ updating client document throws err: ' + err);
-                return next(err); 
+                return next(err);
               }
               // Successful - redirect to clientrequest detail page.
               res.redirect(theclient.url);
