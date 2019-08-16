@@ -480,10 +480,10 @@ exports.client_status_post = [
              sanitizeBody('registration_date').trim().escape(),
 
              //Process request after validation and sanitization.
-             (req, res, next) =>
+             (req, res, next) => {
 
           //
-          console.log("@@@ ++ in POST client update, function part");
+          console.log("@@@ # in POST client update, function part");
           // Extract the validation errors from a request.
           const errors = validationResult(req);
 
@@ -492,15 +492,18 @@ exports.client_status_post = [
               // There are errors. Render form again with sanitized values/errors messages.
               res.render('client_form_Update', { title: 'Create Client', client: req.body, errors: errors.array() });
               return;
-          }
-          else {
+
+          } else {
             // Data from form is valid. Update the record.
             Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
               console.log("@@@ $ error trying to update client, err> " + err);
-              if (err) { return next(err); }
+              if (err) {
+                console.log('@@@ $ updating client document throws err: ' + err);
+                return next(err); 
+              }
               // Successful - redirect to clientrequest detail page.
               res.redirect(theclient.url);
             });
           }
         }
-    ]; //validation stuff hangs system up!!!
+    ] //validation stuff hangs system up!!!
