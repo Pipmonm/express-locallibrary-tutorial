@@ -3,17 +3,39 @@ extends layout
 block content
   h1=title
 
+  h3  Address information is required (for verifying if salestaxes are required)
+      (must be same as that on card used for payment: order may be refused otherwise)
+
   form(method='POST' action='')
     div.form-group
       label(for='first_name') First Name:
       input#first_name.form-control(type='text', placeholder='FirstName (required)', name='first_name', required=true )
       label(for='family_name') Family Name:
       input#family_name.form-control(type='text', placeholder='FamilyName (required)', name='family_name', required=true )
-    div.form-form_group
+    div.form-group
       label(for='country') Country:
       input#country.form-control(type='text', placeholder='Country of residence(required)', name= 'country', required=true)
+    div.form-group
       label(for='tax_region') Province/Territory/State:
-      input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true)
+
+      select#status.form-control(type='select' placeholder='Select Region' name='tax_region' required='true')
+        option(value= canadaRegions[0]) #{canadaRegions[0]}
+        option(value= canadaRegions[1]) #{canadaRegions[1]}
+        option(value= canadaRegions[2]) #{canadaRegions[2]}
+        option(value= canadaRegions[3]) #{canadaRegions[3]}
+        option(value= canadaRegions[4]) #{canadaRegions[4]}
+        option(value= canadaRegions[5]) #{canadaRegions[5]}
+        option(value= canadaRegions[6]) #{canadaRegions[6]}
+        option(value= canadaRegions[7]) #{canadaRegions[7]}
+        option(value= canadaRegions[8]) #{canadaRegions[8]}
+        option(value= canadaRegions[9]) #{canadaRegions[9]}
+        option(value= canadaRegions[10]) #{canadaRegions[10]}
+        option(value= canadaRegions[11]) #{canadaRegions[11]}
+        option(value= canadaRegions[12]) #{canadaRegions[12]}
+
+      //- input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true)
+
+    div.form-group
       label(for='city_address') City Address:
       input#city_address.form-control(type='text', placeholder='#, street, city (CDN's: only if receipt required)', name= 'city_address')
     div.form-group
