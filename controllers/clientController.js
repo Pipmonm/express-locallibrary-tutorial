@@ -163,21 +163,6 @@ exports.client_status_post = [
   // Display detail page for a specific Client.
   exports.client_detail = function(req, res, next) {
         var id = mongoose.Types.ObjectId(req.params.id.toString()); // added  :MOD: 2018-03-08 9:45 AM
-        var canadaRegions = [AB,
-                             BC,
-                             MB,
-                             NB,
-                             Nl,
-                             NS,
-                             NT,
-                             NU,
-                             ON,
-                             PE,
-                             QC,
-                             SK,
-                             YT];
-
-
         async.parallel({
             client: function(callback) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
@@ -210,7 +195,20 @@ exports.client_status_post = [
 
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
-      res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
+    var canadaRegions = [AB,
+                         BC,
+                         MB,
+                         NB,
+                         Nl,
+                         NS,
+                         NT,
+                         NU,
+                         ON,
+                         PE,
+                         QC,
+                         SK,
+                         YT];
+    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
   };
 
   // Handle Client create on POST.
