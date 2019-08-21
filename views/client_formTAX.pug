@@ -3,8 +3,8 @@ extends layout
 block content
   h1=title
 
-  h3  Address information is required (for verifying if salestaxes are required)
-      (must be same as that on card used for payment: order may be refused otherwise)
+  h3  Address information is required (for verifying if sales taxes are required)
+      |  (must be same as that on card used for payment: order may be refused otherwise)
 
   form(method='POST' action='')
     div.form-group
@@ -36,7 +36,7 @@ block content
 
     div.form-group
       label(for='city_address') City Address:
-      input#city_address.form-control(type='text', placeholder='#, street, city (CDN: only if receipt required)', name= 'city_address')
+      input#city_address.form-control(type='text', placeholder='#, street, city (CDN: only if receipt required)', name= 'city_address', required=false)
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false )
@@ -45,6 +45,7 @@ block content
       input#register_request_code.form-control(type='text', placeholder='Registration Data (required)', name='register_request_code', required=true, value=(undefined===client ? '' : client.register_request_code) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
   if errors
     ul
       for error in errors
