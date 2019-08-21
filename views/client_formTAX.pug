@@ -18,7 +18,7 @@ block content
     div.form-group
       label(for='tax_region') Province/Territory/State:
 
-      select#status.form-control(type='select' placeholder='Select Region' name='tax_region' required='true')
+      select#tax_region.form-control(type='select' placeholder='Select Region' name='tax_region' required='true')
         option(value= canadaRegions[0]) #{canadaRegions[0]}
         option(value= canadaRegions[1]) #{canadaRegions[1]}
         option(value= canadaRegions[2]) #{canadaRegions[2]}
@@ -33,14 +33,12 @@ block content
         option(value= canadaRegions[11]) #{canadaRegions[11]}
         option(value= canadaRegions[12]) #{canadaRegions[12]}
 
-      //- input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true)
-
     div.form-group
       label(for='city_address') City Address:
       input#city_address.form-control(type='text', placeholder='#, street, city (CDN's: only if receipt required)', name= 'city_address')
     div.form-group
       label(for='email_address') Your Email:
-      input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value= "optional@somewhere.xxx")
+      input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false )
     div.form-group
       label(for='register_request_code') Clipboard contents from application's REGISTRATION DATA tab:
       input#register_request_code.form-control(type='text', placeholder='Registration Data (required)', name='register_request_code', required=true, value=(undefined===client ? '' : client.register_request_code) )
