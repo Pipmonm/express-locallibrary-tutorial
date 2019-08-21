@@ -195,19 +195,19 @@ exports.client_status_post = [
 
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
-    var canadaRegions = [AB,
-                         BC,
-                         MB,
-                         NB,
-                         Nl,
-                         NS,
-                         NT,
-                         NU,
-                         ON,
-                         PE,
-                         QC,
-                         SK,
-                         YT];
+    var canadaRegions = ['AB',
+                         'BC',
+                         'MB',
+                         'NB',
+                         'Nl',
+                         'NS',
+                         'NT',
+                         'NU',
+                         'ON',
+                         'PE',
+                         'QC',
+                         'SK',
+                         'YT'];
     res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
   };
 
