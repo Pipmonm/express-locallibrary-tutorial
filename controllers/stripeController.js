@@ -269,14 +269,14 @@ exports.stripePost = (req, res) => {//open 1
       });//2019-08-21  WOKING HERE    end country find
 
       //2019-08-21  updating amounts and count in region and region tax Authorities
-      RegionAuthority.find({'region_name':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+      RegionalAuthority.find({'region_name':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
 
        if(err){
-         console.log("@@@ $ err in RegionAuthority find" + err);
+         console.log("@@@ $ err in RegionalAuthority find" + err);
          return  next(err);
        }
-       console.log("@@@ $ found RegionAuthority for doc pre-update status: as follows" );
+       console.log("@@@ $ found RegionalAuthority for doc pre-update status: as follows" );
        console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
        console.log("@@@ $ current_amount is: ", doc[0].current_amount);
        //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
@@ -286,7 +286,7 @@ exports.stripePost = (req, res) => {//open 1
        region_current_amount = doc[0].current_amount + rawAmount;//change to variable
 
        var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
-       RegionAuthority.findByIdAndUpdate(docId, {current_count:region_current_count, current_amount:region_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
+       RegionalAuthority.findByIdAndUpdate(docId, {current_count:region_current_count, current_amount:region_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
            if(err){
