@@ -10,9 +10,9 @@ block content
       label(for='client.device_type') Client Device Type:
       input#client.device_type.form-control(type='text', placeholder='from registration data/dev_type',name='device_type', required=false,value=client.device_type)
       label(for='client.format_code') Format Code:
-      input#client.format_code.form-control(type='text', placeholder='from reg. data/format_code',name='format_code', required=false,value=client.format_code)
+      input#client.format_code.form-control(type='text', placeholder='from reg. data/format_code',name='format_code', required=false, value=client.format_code)
       label(for='client.moduleIdVrs') Module Id:
-      input#client.moduleIdVrs.form-control(type='text', placeholder='from reg. data>moduleIdVrs',name='moduleIdVrs', required=false,value=client.moduleIdvrs)
+      input#client.moduleIdVrs.form-control(type='text', placeholder='from reg. data>moduleIdVrs',name='moduleIdVrs', required=false, value=client.moduleIdVrs)
       label(for='client.status')  Client Status:
       input#client.status.form-control(type='text', placeholder='from Stripe Controller',name='status',required = true,value=client.status)
 
@@ -35,7 +35,7 @@ block content
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value=client.email_address)
     div.form-group
-      label(for='register_request_code') Clipboard contents from application's REGISTRATION DATA tab:
+      label(for='license_string') Clipboard contents from application's REGISTRATION DATA tab:
       input#license_string.form-control(type='text', placeholder='Registration Data (required)', name='license_string', required=true, value=(undefined===client ? '' : client.license_string) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
