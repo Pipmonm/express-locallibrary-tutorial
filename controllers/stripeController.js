@@ -57,7 +57,7 @@ exports.stripePrePay_post = [
 
    // Process request after validation and sanitization.
    (req, res, next) => { //open 1
-     console.log("@@@ $ starting processing of clientstatus_form post with req V ");
+     console.log("@@@ $ starting processing of stripeprepay_form post with req V ");
      console.log(req);
      // Extract the validation errors from a request.
      const errors = validationResult(req);
