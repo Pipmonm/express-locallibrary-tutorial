@@ -203,9 +203,9 @@ exports.stripePost = (req, res) => {//open 1
         return  next(err);
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
-      console.log("@@@ $ country is: ",doc.country);
-      console.log("@@@ $ region is: ",doc.tax_region);
-      console.log("@@@ $ doc >>: " + "<br />" + doc);
+      console.log("@@@ $ country is: ",doc[0].country);
+      console.log("@@@ $ region is: ",doc[0].tax_region);
+      console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
       console.log("@@@ $ setting STRIPE.Status to 'validated' for doc._id (as docId): " + docId);
 
