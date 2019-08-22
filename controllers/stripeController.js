@@ -10,8 +10,9 @@
 //stuff from clientController to enable SystemId verification;
 
 //clientrequest instance controller js
-var Client = require('../models/client');
+var Client = require('../models/client');//client is filename minus extension
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+var CountryTaxAuthority = require('../models/countryTaxAuthority')
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
