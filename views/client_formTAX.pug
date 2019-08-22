@@ -41,8 +41,8 @@ block content
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false )
     div.form-group
-      label(for='register_request_code') Clipboard contents from application's REGISTRATION DATA tab:
-      input#register_request_code.form-control(type='text', placeholder='Registration Data (required)', name='register_request_code', required=true, value=(undefined===client ? '' : client.register_request_code) )
+      label(for='license_string') Clipboard contents from application's REGISTRATION DATA tab:
+      input#license_string.form-control(type='text', placeholder='Registration Data (required)', name='license_string', required=true, value=(undefined===client ? '' : client.license_string) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
 
