@@ -230,9 +230,9 @@ exports.stripePost = (req, res) => {//open 1
           console.log("@@@ $ post client update  client: >v");
           console.log(newdoc);
         });//end client update
-      });
+      //});//relocate to end
     //2019-08-21  updating amounts and count in country and region tax Authorities
-    CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+      CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
 
        if(err){
@@ -258,8 +258,8 @@ exports.stripePost = (req, res) => {//open 1
            }
            console.log("@@@ $ post client update  client: >v");
            console.log(newdoc);
-         });//end client update
-
+         });//end country update
+      });//2019-08-21  WOKING HERE    end country find
 
      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
