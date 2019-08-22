@@ -220,7 +220,7 @@ exports.stripePost = (req, res) => {//open 1
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
       targetCountry = doc[0].country;//2019-08-21
-      targetRegion = doc[0].tax_region; //ibid
+      targetRegion = doc[0].region_code; //though region_name is available, we are only asking for CODE  (ie ON)
       console.log("@@@ $ country is: ",targetCountry);
       console.log("@@@ $ region is: ",targetRegion);
       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
@@ -269,7 +269,7 @@ exports.stripePost = (req, res) => {//open 1
       });//2019-08-21  WOKING HERE    end country find
 
       //2019-08-21  updating amounts and count in region and region tax Authorities
-      RegionalAuthority.find({'region_name':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+      RegionalAuthority.find({'region_code':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
 
        if(err){
