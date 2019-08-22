@@ -13,6 +13,7 @@
 var Client = require('../models/client');//client is filename minus extension
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
 var CountryTaxAuthority = require('../models/countryTaxAuthority')
+var RegionalAuthority = require('../models/regionalAuthority')
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -168,6 +169,11 @@ exports.stripePost = (req, res) => {//open 1
   let country_current_count;
   let country_amount_limit;
   let country_current_amount;
+  let region_transaction_limit;
+  let region_current_count;
+  let region_amount_limit;
+  let region_current_amount;
+
 
 
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
@@ -232,7 +238,7 @@ exports.stripePost = (req, res) => {//open 1
           console.log(newdoc);
         });//end client update
       //});//relocate to end
-    //2019-08-21  updating amounts and count in country and region tax Authorities
+      //2019-08-21  updating amounts and count in country and region tax Authorities
       CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
 
@@ -247,7 +253,7 @@ exports.stripePost = (req, res) => {//open 1
        country_transaction_limit = doc[0].transaction_limit;
        country_current_count = doc[0].current_count + 1;//update
        country_amount_limit = doc[0].amount_limit;
-       country_current_amount = doc[0].current_amount + 7.50;//change to variable
+       country_current_amount = doc[0].current_amount + rawAmount;//change to variable
 
        var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
        CountryTaxAuthority.findByIdAndUpdate(docId, {current_count:country_current_count, current_amount:country_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
@@ -261,6 +267,36 @@ exports.stripePost = (req, res) => {//open 1
            console.log(newdoc);
          });//end country update
       });//2019-08-21  WOKING HERE    end country find
+
+      //2019-08-21  updating amounts and count in region and region tax Authorities
+      RegionAuthority.find({'region_name':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+            //2019-01-30 was: 'device_id' : deviceId
+
+       if(err){
+         console.log("@@@ $ err in RegionAuthority find" + err);
+         return  next(err);
+       }
+       console.log("@@@ $ found RegionAuthority for doc pre-update status: as follows" );
+       console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
+       console.log("@@@ $ current_amount is: ", doc[0].current_amount);
+       //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
+       region_transaction_limit = doc[0].transaction_limit;
+       region_current_count = doc[0].current_count + 1;//update
+       region_amount_limit = doc[0].amount_limit;
+       region_current_amount = doc[0].current_amount + rawAmount;//change to variable
+
+       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+       RegionAuthority.findByIdAndUpdate(docId, {current_count:region_current_count, current_amount:region_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
+              //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+              //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+           if(err){
+             console.log("@@@ $ update error: " + err);
+             return next(err);
+           }
+           console.log("@@@ $ post client update  client: >v");
+           console.log(newdoc);
+         });//end region update
+      });//2019-08-21  WOKING HERE    end region find
 
      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {

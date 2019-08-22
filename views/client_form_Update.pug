@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div.form_group
       label(for='client.device_id') Client Device Id:
-      input#client.device_id.form-control(type='text', placeholder='from registration data/dev_id',name='device_id', required=false,value=client.device_id)
+      input#client.device_id.form-control(type='text', placeholder='from registration data/dev_id',name='device_id', required=false, value=client.device_id)
       label(for='client.device_type') Client Device Type:
       input#client.device_type.form-control(type='text', placeholder='from registration data/dev_type',name='device_type', required=false,value=client.device_type)
       label(for='client.format_code') Format Code:
@@ -18,19 +18,19 @@ block content
 
     div.form-group
       label(for='first_name') First Name:
-      input#first_name.form-control(type='text', placeholder='FirstName (optional) ', name='first_name', required=false, value= client.first_name)
+      input#first_name.form-control(type='text', placeholder='FirstName (required) ', name='first_name', required=true, value= client.first_name)
       label(for='family_name') Family Name:
-      input#family_name.form-control(type='text', placeholder='FamilyName (optional)', name='family_name', required=false, value=client.family_name)
+      input#family_name.form-control(type='text', placeholder='FamilyName (required)', name='family_name', required=true, value=client.family_name)
     div.form-group
       label(for='registration_date') Registration Date:
       input#registration_date.form-control(type='date', placeholder='registration date',name='registration_date', required = false, value=stringRegisterDate)
     div.form-form_group
       label(for='country') Country:
-      input#country.form-control(type='text', placeholder='Country of residence(optional)', name= 'country', required=false, value=client.country)
+      input#country.form-control(type='text', placeholder='Country of residence(required)', name= 'country', required=true, value=client.country)
       label(for='tax_region') Province/Territory/State:
-      input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(optional)', name= 'tax_region', required=false, value=client.tax_region)
+      input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true, value=client.tax_region)
       label(for='city_address') City Address:
-      input#city_address.form-control(type='text', placeholder='#, street, city (optional)', name= 'city_address', required=false, value=client.city_address)
+      input#city_address.form-control(type='text', placeholder='#, street, city ', name= 'city_address', required=false, value=client.city_address)
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value=client.email_address)
