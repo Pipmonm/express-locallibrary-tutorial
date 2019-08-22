@@ -160,8 +160,8 @@ exports.stripePost = (req, res) => {//open 1
   let exitFlag = false;//2019-06-03  flag to signal not to process if true
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   let chargeObject;//2019-06-03  make returned object available throughout chain processing
-  let targetCountry;
-  let targetRegion;
+  var targetCountry;
+  var targetRegion;
   let allowed = true;
   let country_transaction_limit;
   let country_current_count;
