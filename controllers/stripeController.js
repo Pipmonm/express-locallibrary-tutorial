@@ -213,7 +213,7 @@ exports.stripePost = (req, res) => {//open 1
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
       targetCountry = doc[0].country;//2019-08-21
-      targetRegion = doc[0].region; //ibid
+      targetRegion = doc[0].tax_region; //ibid
       console.log("@@@ $ country is: ",targetCountry);
       console.log("@@@ $ region is: ",targetRegion);
       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
@@ -231,28 +231,25 @@ exports.stripePost = (req, res) => {//open 1
           console.log(newdoc);
         });//end client update
       });
-     //2019-08-21  updating amounts and count in country and region tax Authorities
-     CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+    //2019-08-21  updating amounts and count in country and region tax Authorities
+    CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
 
-       if(err){ //open 4
+       if(err){
          console.log("@@@ $ err in CountryTaxAuthority find" + err);
          return  next(err);
-       } //close 4
+       }
        console.log("@@@ $ found CountryTaxAuthority for doc pre-update status: as follows" );
        console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
        console.log("@@@ $ current_amount is: ", doc[0].current_amount);
-       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
+       //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
        country_transaction_limit = doc[0].transaction_limit;
        country_current_count = doc[0].current_count + 1;//update
        country_amount_limit = doc[0].amount_limit;
        country_current_amount = doc[0].current_amount + 7.50;//change to variable
 
-
        var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
-       CountryTaxAuthority.findByIdAndUpdate(docId, {current_count:country_current_count,
-                                                    current_amount:country_current_amount},
-                                                    {upsert: true, 'new': true}, function(err,newdoc){
+       CountryTaxAuthority.findByIdAndUpdate(docId, {current_count:country_current_count, current_amount:country_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
            if(err){
