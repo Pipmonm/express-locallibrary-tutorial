@@ -220,7 +220,7 @@ exports.client_status_post = [
         body('tax_region').isLength({min: 1}).trim().withMessage('Enter Pov. or Territory or State'),
         body('city_address').isLength({min: 1}).trim().withMessage('Fill in "#, street, city"'),
         body('email_address').isEmail().trim().withMessage('your email address'),
-        body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+        body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
         // Sanitize fields.
         sanitizeBody('first_name').trim().escape(),
@@ -229,7 +229,7 @@ exports.client_status_post = [
         sanitizeBody('tax_region').trim().escape(),
         sanitizeBody('city_address').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
-        sanitizeBody('register_request_code').trim().escape(),
+        sanitizeBody('license_string').trim().escape(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -247,7 +247,7 @@ exports.client_status_post = [
                 // Data from form is valid.
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
-                var rgrqcd = req.body.register_request_code;
+                var rgrqcd = req.body.license_string;
                 console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
                 var arrayFCode = [];
                 arrayFCode = rgrqcd.split(":");
@@ -346,7 +346,7 @@ exports.client_status_post = [
                      console.log('@@@ $ clientrequest save OK');
                     })
                  // Successful - redirect to new clientrecord.
-                 res.redirect(client.url);
+                 res.redirect(client.url);//send to show client_detail
                 });
             }
         }
@@ -482,7 +482,7 @@ exports.client_status_post = [
              body('tax_region','specify Prov./Territory/State').trim(),
              body('city_address','enter: #, street, city').trim(),
              body('email_address').isEmail().trim().withMessage('your email address'),
-             body('register_request_code').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+             body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
              // Sanitize fields.
              sanitizeBody('first_name').trim().escape(),
              sanitizeBody('family_name').trim().escape(),
@@ -491,6 +491,7 @@ exports.client_status_post = [
              sanitizeBody('tax_region').trim().escape(),
              sanitizeBody('city_address').trim().escape(),
              sanitizeBody('registration_date').trim().escape(),
+             sanitizeBody('license_string').trim().escape(),
 
              //Process request after validation and sanitization.
              (req, res, next) => {
