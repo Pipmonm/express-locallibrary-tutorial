@@ -160,6 +160,15 @@ exports.stripePost = (req, res) => {//open 1
   let exitFlag = false;//2019-06-03  flag to signal not to process if true
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   let chargeObject;//2019-06-03  make returned object available throughout chain processing
+  let targetCountry;
+  let targetRegion;
+  let allowed = true;
+  let country_transaction_limit;
+  let country_current_count;
+  let country_amount_limit;
+  let country_current_amount;
+
+
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
   stripe.customers.create({
      email: req.body.stripeEmail,
@@ -203,8 +212,10 @@ exports.stripePost = (req, res) => {//open 1
         return  next(err);
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
-      console.log("@@@ $ country is: ",doc[0].country);
-      console.log("@@@ $ region is: ",doc[0].tax_region);
+      targetCountry = doc[0].country;//2019-08-21
+      targetRegion = doc[0].region; //ibid
+      console.log("@@@ $ country is: ",targetCountry);
+      console.log("@@@ $ region is: ",targetRegion);
       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
       console.log("@@@ $ setting STRIPE.Status to 'validated' for doc._id (as docId): " + docId);
@@ -219,6 +230,40 @@ exports.stripePost = (req, res) => {//open 1
           console.log("@@@ $ post client update  client: >v");
           console.log(newdoc);
         });//end client update
+
+     //2019-08-21  updating amounts and count in country and region tax Authorities
+     CountryTaxAuthority.find({'country_name':targetCountry},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+            //2019-01-30 was: 'device_id' : deviceId
+
+       if(err){ //open 4
+         console.log("@@@ $ err in CountryTaxAuthority find" + err);
+         return  next(err);
+       } //close 4
+       console.log("@@@ $ found CountryTaxAuthority for doc pre-update status: as follows" );
+       console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
+       console.log("@@@ $ current_amount is: ", doc[0].current_amount);
+       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
+       country_transaction_limit = doc[0].transaction_limit;
+       country_current_count = doc[0].current_count + 1;//update
+       country_amount_limit = doc[0].amount_limit;
+       country_current_amount = doc[0].current_amount + 7.50;//change to variable
+
+
+       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+       CountryTaxAuthority.findByIdAndUpdate(docId, {current_count:country_current_count,
+                                                    current_amount:country_current_amount},
+                                                    {upsert: true, 'new': true}, function(err,newdoc){
+              //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+              //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+           if(err){
+             console.log("@@@ $ update error: " + err);
+             return next(err);
+           }
+           console.log("@@@ $ post client update  client: >v");
+           console.log(newdoc);
+         });//end client update
+
+
      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
      //console.log("@@@ EE 2nd attempt to catch error: " + error);
