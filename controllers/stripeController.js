@@ -220,7 +220,10 @@ exports.stripePost = (req, res) => {//open 1
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
       targetCountry = doc[0].country;//2019-08-21
-      targetRegion = doc[0].region_code; //though region_name is available, we are only asking for CODE  (ie ON)
+      targetRegion = doc[0].tax_region; //2019-08-23 CAREFUL, region authorities have both
+                                         // region_name & region_code, but client only has tax_region
+                                         // set as region_code!!
+                                         //though region_name is available, we are only asking for CODE  (ie ON)
       console.log("@@@ $ country is: ",targetCountry);
       console.log("@@@ $ region is: ",targetRegion);
       console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
@@ -279,18 +282,18 @@ exports.stripePost = (req, res) => {//open 1
          console.log("@@@ $ err in RegionalAuthority find" + err);
          return  next(err);
        }
-       console.log("@@@ $ found RegionalAuthority for doc pre-update status: as follows", doc,"  of type: ", typeof doc );
-       console.log("@@@ $ containing possibly: ", typeof doc[0]);
-       console.log("@@@ $  and doc[1] as: ",doc[1])
-       //console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
-       //console.log("@@@ $ current_amount is: ", doc[0].current_amount);
-       //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
-       //region_transaction_limit = doc[0].transaction_limit;
-       //region_current_count = doc[0].current_count + 1;//update
-       //region_amount_limit = doc[0].amount_limit;
-       //region_current_amount = doc[0].current_amount + rawAmount;//change to variable
+       //console.log("@@@ $ found RegionalAuthority for doc pre-update status: as follows", doc,"  of type: ", typeof doc );
+       //console.log("@@@ $ containing possibly: ", typeof doc[0]);
 
-       var docId = doc[1]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+       //console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
+       console.log("@@@ $ current_amount is: ", doc[0].current_amount);
+       //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
+       region_transaction_limit = doc[0].transaction_limit;
+       region_current_count = doc[0].current_count + 1;//update
+       region_amount_limit = doc[0].amount_limit;
+       region_current_amount = doc[0].current_amount + rawAmount;//change to variable
+
+       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
        RegionalAuthority.findByIdAndUpdate(docId, {current_count:region_current_count, current_amount:region_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
