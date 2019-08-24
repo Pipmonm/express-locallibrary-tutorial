@@ -204,10 +204,10 @@ exports.stripePost = (req, res) => {//open 1
   .then(charge => { //open 2 with ({
     chargeObject = charge; //2019-06-03 keep for all chain
     if(exitFlag)return;//2019-06-03 trying to avoid running this 'then' on previous error
-    let denomination = charge.currency.toUpperCase();
-    let source =   '/';
-    let source2 = "HOME";
-    let systemId = charge.metadata.systemId;//2019-05-15 payment mode mods
+    var denomination = charge.currency.toUpperCase();//was let
+    var source =   '/';//ibid
+    var source2 = "HOME";//also
+    var systemId = charge.metadata.systemId;//2019-05-15 payment mode mods //was let
     console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
     console.log("@@@ ### from address: ", charge.billing_details.address.state,"  & city: ",charge.billing_details.address.city);
     //2019-05-21  Updating Status to "Paid"
@@ -278,16 +278,18 @@ exports.stripePost = (req, res) => {//open 1
          console.log("@@@ $ err in RegionalAuthority find" + err);
          return  next(err);
        }
-       console.log("@@@ $ found RegionalAuthority for doc pre-update status: as follows" );
-       console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
-       console.log("@@@ $ current_amount is: ", doc[0].current_amount);
+       console.log("@@@ $ found RegionalAuthority for doc pre-update status: as follows", doc,"  of type: ", typeof doc );
+       console.log("@@@ $ containing possibly: ", typeof doc[0]);
+       console.log("@@@ $  and doc[1] as: ",doc[1])
+       //console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
+       //console.log("@@@ $ current_amount is: ", doc[0].current_amount);
        //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
-       region_transaction_limit = doc[0].transaction_limit;
-       region_current_count = doc[0].current_count + 1;//update
-       region_amount_limit = doc[0].amount_limit;
-       region_current_amount = doc[0].current_amount + rawAmount;//change to variable
+       //region_transaction_limit = doc[0].transaction_limit;
+       //region_current_count = doc[0].current_count + 1;//update
+       //region_amount_limit = doc[0].amount_limit;
+       //region_current_amount = doc[0].current_amount + rawAmount;//change to variable
 
-       var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
+       var docId = doc[1]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
        RegionalAuthority.findByIdAndUpdate(docId, {current_count:region_current_count, current_amount:region_current_amount},{upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
