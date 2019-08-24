@@ -270,6 +270,7 @@ exports.stripePost = (req, res) => {//open 1
 
     })
   .then(combo => {
+      console.log("@@@ $ seeking regAuth for region: ",targetRegion, "  & combo is: ",combo)
     //2019-08-21  updating amounts and count in region and region tax Authorities
       RegionalAuthority.find({'region_code':targetRegion},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
