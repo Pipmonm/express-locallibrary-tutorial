@@ -28,14 +28,14 @@ block content
       label(for='amount_limit') Dollar Amount Limit
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= countrytaxauthority.amount_limit)
     div.form-group
-      label(for='current_amount') Current Period Amount Amassed
-      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = countrytaxauthority.current_amount)
+      label(for='current_year_amount') Current Year Amount Amassed
+      input#current_year_amount.form-control(type='number',placeholder='amount amassed this period', name='current_year_amount', required=false,value = countrytaxauthority.current_year_amount)
     div.form-group
       label(for='transaction_period_type') Transaction Period Type
       input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =countrytaxauthority.transaction_period_type)
     div.form-group
-       label(for='current_transaction_period') Current Period Expiry Date
-       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='current_transaction_period', required = false, value=stringDate)
+       label(for='for_period_index') Current Period Array Index
+       input#for_period_index.form-control(type='number', placeholder='current quarters array index',name='for_period_index', required = false, value=countrytaxauthority.for_period_index)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors

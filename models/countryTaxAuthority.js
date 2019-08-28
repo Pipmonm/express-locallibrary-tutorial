@@ -14,10 +14,17 @@ var CountryTaxAuthoritySchema = new Schema(
     transaction_limit: {type: Number, required: true},//# of transactions allowed
     current_count: {type: Number, required: false},//# of transactions during this period
     amount_limit: {type: Number, required:true},//$ limit
-    current_amount: {type: Number, required:true},//actual amount amassed
+    current_year_amount: {type: Number, required:true},//actual amount amassed THIS  YEAR
+    previous_years_amounts: {type: Array, required:false},//record keeping
+                                                      //required for tax purposes (confirm with banking records)
+    current_quarter_amount: {type: Number, required:false},//for current quarter
+    last_three_quarters_array: {type: Array, required:false},//for tracking last four quarters (for sales taxes limit)
+    current_four_quarters_amount: {type: Number, required:false},//keep tally of last four quarters
+    previous_quarters_amounts: {type: Array, required: false},//keep records
     transaction_period_type: {type: String, required:false},//restart per month,year???
-    current_transaction_period: {type: Date, required:false},//which is current period
-    transaction_date: {type: Date, default: Date.now}
+    for_period_index: {type: Number, required:false},//to simplify quaters cycling
+    transaction_date: {type: Date, default: Date.now},
+    attempted: {type:Number, required:false} //keep track of rejected requests
   }
 );
 

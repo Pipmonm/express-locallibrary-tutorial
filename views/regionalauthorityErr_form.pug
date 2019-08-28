@@ -41,14 +41,14 @@ block content
       label(for='amount_limit') Dollar Amount Limit
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= regionalauthority.amount_limit)
     div.form-group
-      label(for='current_amount') Current Period Amount Amassed
-      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = regionalauthority.current_amount)
+      label(for='current_year_amount') Current Year Amount Amassed
+      input#current_year_amount.form-control(type='number',placeholder='amount amassed this period', name='current_year_amount', required=false,value = regionalauthority.current_year_amount)
     div.form-group
       label(for='transaction_period_type') Transaction Period Type
       input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =regionalauthority.transaction_period_type)
     div.form-group
-       label(for='current_transaction_period') Current Period Expiry Date
-       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date',name='current_transaction_period', required = false, value=stringDate)
+    label(for='for_period_index') Current Period Index
+    input#for_period_index.form-control(type='number', placeholder='current period index', name='for_period_index', required = true, value = regionalauthority.for_period_index)
     div.form-group
        label(for='attempted') # Attempted
        input#attempted.form-control(type='number', placeholder= '# of attempts', name='attempted', required = true, value=regionalauthority.attempted)

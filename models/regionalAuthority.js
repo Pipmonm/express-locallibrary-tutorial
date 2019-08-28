@@ -18,11 +18,17 @@ var RegionalAuthoritySchema = new Schema(
     transaction_limit: {type: Number, required:false},//# of transactions allowed
     current_count: {type: Number, required: false},//# of transactions during this period
     amount_limit: {type: Number, required:false},//$ limit
-    current_amount: {type: Number, required:false},//actual amount amassed
-    transaction_period_type: {type: String, required:true},//restart per month,year???
-    current_transaction_period: {type: String, required:true},//which is current period
+    current_year_amount: {type: Number, required:false},//actual amount amassed THIS YEAR
+    previous_years_amounts: {type: Array, required:false},//record keeping
+                                                      //required for tax purposes (confirm with banking records)
+    current_quarter_amount: {type: Number, required:false},//for current quarter
+    last_three_quarters_array: {type: Array, required:false},//for tracking last four quarters (for sales taxes limit)
+    current_four_quarters_amount: {type: Number, required:false},//keep tally of last four quarters
+    previous_quarters_amounts: {type: Array, required: false},//keep records
+    transaction_period_type: {type: String, required:false},//restart per month,year???
+    for_period_index: {type: Number, required:false},//to simplify quaters cycling
     transaction_date: {type: Date, default: Date.now},
-    attempted: {type:Number, required:true} //keep track of rejected requests
+    attempted: {type:Number, required:false} //keep track of rejected requests
   }//2019-08-14  IMPORTANT changes here must be replicated in reg.AuthorityController (starts line 146)
 );
 

@@ -16,11 +16,23 @@ block content
 
   P  Amount Limit: #{countrytaxauthority.amount_limit}
 
-  P  Current Amount: #{countrytaxauthority.current_amount}
+  P  Current Year Amount: #{countrytaxauthority.current_year_amount}
+
+  p  Previous Year Amounts: #{countryTaxAuthority.previous_years_amounts}
+
+  P  Current Quarter Amount: #{countrytaxauthority.current_quarter_amount}
+
+  P  Last Three Quarters:  #{countrytaxauthority.last_three_quarters_array}
+
+  P  Current 4 Quarters Amount: #{countrytaxauthority.current_four_quarters_amount}
+
+  P  Previous Quarters Amounts: #{countrytaxauthority.previous_quarters_amounts}
 
   P  Period Type: #{countrytaxauthority.transaction_period_type}
 
-  P  Limit Date: #{countrytaxauthority.current_transaction_period}
+  P  Period Index #{countrytaxauthority.for_period_index}
+
+  P  Last Transaction: #{countrytaxauthority.transaction_date}
 
   hr
   p

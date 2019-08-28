@@ -78,9 +78,9 @@ exports.countrytaxauthority_create_post = [
     body('transaction_limit').isNumeric({no_symbols: true}),
     body('current_count').isNumeric({no_symbols:true}),
     body('amount_limit').isNumeric({no_symbols: true}),
-    body('current_amount').isNumeric({no_symbols: true}),
+    body('current_year_amount').isNumeric({no_symbols: true}),
     body('transaction_period_type').isIn(['week','month','year']),
-    body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+    body('for_period_index',isIn([0,1,2,3]),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
     // Sanitize fields.
@@ -92,10 +92,10 @@ exports.countrytaxauthority_create_post = [
     sanitizeBody('transaction_limit').trim().escape(),
     sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
-    sanitizeBody("current_amount").trim().escape(),
+    sanitizeBody("current_year_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
-    sanitizeBody('current_transaction_period').trim().escape(),
-    //sanitizeBody('current_transaction_period').toDate(),
+    sanitizeBody('for_period_index').trim().escape(),
+    //sanitizeBody('for_period_index').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -103,21 +103,15 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let stringDate = req.body.current_transaction_period;//2019-06-12
-        console.log("stringdate1 is: ",stringDate,"  of type: ",typeof stringDate)
-        //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
-        //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
-
         if (!errors.isEmpty()) {
             let allowedProxy = false;
             if(req.body.allowed)allowedProxy = 'true';//as a string???
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
             return;
           }
-          //console.log('@@@ $ modified transactionPeriod is given as: ', transactPeriod,"  of type: ",typeof transactPeriod);
           //temporarily to check out validators, make no record
           //res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body, transactPeriod:transactPeriod, errors: errors.array() });
           //return;
@@ -133,9 +127,9 @@ exports.countrytaxauthority_create_post = [
             transaction_limit: req.body.transaction_limit,
             current_count: req.body.current_count,
             amount_limit: req.body.amount_limit,
-            current_amount: req.body.current_amount,
+            current_year_amount: req.body.current_year_amount,
             transaction_period_type: req.body.transaction_period_type,
-            current_transaction_period: req.body.current_transaction_period
+            for_period_index: req.body.for_period_index
            });
 
 
@@ -216,13 +210,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
        if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
-       console.log("@@@ $ results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period);
+       console.log("@@@ $ results.countrytaxauthority.for_period_index is ",results.countrytaxauthority.for_period_index);
        //2019-06-12 req.body == {} at this point- confirmed
-       //results.countrytaxauthority.current_transaction_period
-       console.log("@@@ $ after '=' results.countrytaxauthority.current_transaction_period is ",results.countrytaxauthority.current_transaction_period,"  of type: ", typeof results.countrytaxauthority.current_transaction_period);
-       let stringDate = new Date(results.countrytaxauthority.current_transaction_period); //possible convert to string for mongodb dates
-       stringDate = stringDate.toLocaleString().split(" ")[0];//2019-06-12
-       console.log("@@@ $ stringDate2 is: ",stringDate,"  of type: ", typeof stringDate);
 
        let allowedProxy = false;
        if(results.countrytaxauthority.allowed)allowedProxy = 'true';//as a string???
@@ -231,7 +220,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority,allowedProxy:allowedProxy,stringDate:stringDate});//2019-06-12
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority,allowedProxy:allowedProxy});//2019-06-12
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
   });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
@@ -249,9 +238,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       body('transaction_limit').isNumeric({no_symbols: true}),
       body('current_count').isNumeric({no_symbols:true}),
       body('amount_limit').isNumeric({no_symbols: true}),
-      body('current_amount').isNumeric({no_symbols: true}),
+      body('current_year_amount').isNumeric({no_symbols: true}),
       body('transaction_period_type').isIn(['week','month','year']),
-      body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+      body('for_period_index',isIn([0,1,2,3]),
       body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
       // Sanitize fields.
@@ -262,9 +251,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
       sanitizeBody('amount_limit').trim().escape(),
-      sanitizeBody("current_amount").trim().escape(),
+      sanitizeBody("current_year_amount").trim().escape(),
       sanitizeBody('transaction_period_type').trim().escape(),
-      //sanitizeBody('current_transaction_period').toDate(),
+      //sanitizeBody('for_period_index').toDate(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -276,7 +265,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             if(req.body != undefined)console.log(req.body);
             console.log("@@@ or from params: ");
             if(req.params!=undefined)console.log(req.params);
-            if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.body.current_transaction_period);
+            if(req.body.for_period_index != undefined)console.log("period index is: ",req.body.for_period_index);
             //yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
             //let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
             //console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
@@ -285,12 +274,10 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                let stringDate =req.body.current_transaction_period;//2019-06-12
-                console.log("stringdate3 is: ",stringDate,"  of type: ",typeof stringDate)
                 let allowedProxy = false;
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy,stringDate:stringDate, errors: errors.array() });
+                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
                 //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 return;
 

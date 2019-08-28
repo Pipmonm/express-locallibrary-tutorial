@@ -38,14 +38,14 @@ block content
       label(for='amount_limit') Dollar Amount Limit
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= 30000)
     div.form-group
-      label(for='current_amount') Current Period Amount Amassed
-      input#current_amount.form-control(type='number',placeholder='amount amassed this period', name='current_amount', required=false,value = 0)
+      label(for='current_year_amount') Current Year Amount Amassed
+      input#current_year_amount.form-control(type='number',placeholder='amount amassed this period', name='current_year_amount', required=false,value = 0)
     div.form-group
       label(for='transaction_period_type') Period Type (duration)
       input#transaction_period_type.form-control(type='string',placeholder='month/year etc..', name='transaction_period_type', required=true, value = "year")
     div.form-group
-       label(for='current_transaction_period') Current Period Expiry Date
-       input#current_transaction_period.form-control(type='date', placeholder='current period expiry date', name='current_transaction_period', required = true, value = "2019-12-31")
+       label(for='for_period_index') Current Period Index
+       input#for_period_index.form-control(type='number', placeholder='current period index', name='for_period_index', required = true, value = "0")
     div.form-group
        label(for='attempted') # Attempted
        input#attempted.form-control(type='number', placeholder='attempted so far', name= 'attempted', require = true, value = 0)

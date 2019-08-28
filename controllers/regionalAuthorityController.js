@@ -83,9 +83,9 @@ exports.regionalauthority_create_post = [
     body('transaction_limit').isNumeric({no_symbols: true}),
     body('current_count').isNumeric({no_symbols:true}),
     body('amount_limit').isNumeric({no_symbols: true}),
-    body('current_amount').isNumeric({no_symbols: true}),
+    body('current_year_amount').isNumeric({no_symbols: true}),
     body('transaction_period_type').isIn(['week','month','year']),
-    body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+    body('for_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
     body('attempted','# attempts').trim(),
     // Sanitize fields.
@@ -99,11 +99,11 @@ exports.regionalauthority_create_post = [
     sanitizeBody('transaction_limit').trim().escape(),
     sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
-    sanitizeBody("current_amount").trim().escape(),
+    sanitizeBody("current_year_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
-    sanitizeBody('current_transaction_period').trim().escape(),
+    sanitizeBody('for_transaction_period').trim().escape(),
     sanitizeBody('attempted').trim().escape(),
-    //sanitizeBody('current_transaction_period').toDate(),
+    //sanitizeBody('for_transaction_period').toDate(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -111,7 +111,7 @@ exports.regionalauthority_create_post = [
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
-        let stringDate = req.body.current_transaction_period;//2019-06-12
+        let stringDate = req.body.for_transaction_period;//2019-06-12
         //console.log("stringdate1 is: ",stringDate,"  of type: ",typeof stringDate)
         //transactPeriod = transactPeriod.toISOString().split("T")[0]//suddenly need to remove .toISOString() ???
         //console.log("@@@ $ transactPeriod post conversion",transactPeriod);                                              //take only yyyy-mm-dd portion
@@ -157,9 +157,9 @@ exports.regionalauthority_create_post = [
             transaction_limit: req.body.transaction_limit,
             current_count: req.body.current_count,
             amount_limit: req.body.amount_limit,
-            current_amount: req.body.current_amount,
+            current_year_amount: req.body.current_year_amount,
             transaction_period_type: req.body.transaction_period_type,
-            current_transaction_period: req.body.current_transaction_period,
+            for_transaction_period: req.body.for_transaction_period,
             attempted: req.body.attempted
            });
 
@@ -242,11 +242,11 @@ exports.regionalauthority_update_get = function(req, res, next) {
        console.log("@@@ $ try a results parameter: results.regionalauthority.allowed: ",results.regionalauthority.allowed);
 
        if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
-       console.log("@@@ $ results.regionalauthority.current_transaction_period is ",results.regionalauthority.current_transaction_period);
+       console.log("@@@ $ results.regionalauthority.for_transaction_period is ",results.regionalauthority.for_transaction_period);
        //2019-06-12 req.body == {} at this point- confirmed
-       //results.regionalauthority.current_transaction_period
-       console.log("@@@ $ after '=' results.regionalauthority.current_transaction_period is ",results.regionalauthority.current_transaction_period,"  of type: ", typeof results.regionalauthority.current_transaction_period);
-       let stringDate = new Date(results.regionalauthority.current_transaction_period); //possible convert to string for mongodb dates
+       //results.regionalauthority.for_transaction_period
+       console.log("@@@ $ after '=' results.regionalauthority.for_transaction_period is ",results.regionalauthority.for_transaction_period,"  of type: ", typeof results.regionalauthority.for_transaction_period);
+       let stringDate = new Date(results.regionalauthority.for_transaction_period); //possible convert to string for mongodb dates
        stringDate = stringDate.toLocaleString().split(" ")[0];//2019-06-12
        console.log("@@@ $ stringDate2 is: ",stringDate,"  of type: ", typeof stringDate);
 
@@ -289,9 +289,9 @@ exports.regionalauthority_update_get = function(req, res, next) {
       body('transaction_limit').isNumeric({no_symbols: true}),
       body('current_count').isNumeric({no_symbols:true}),
       body('amount_limit').isNumeric({no_symbols: true}),
-      body('current_amount').isNumeric({no_symbols: true}),
+      body('current_year_amount').isNumeric({no_symbols: true}),
       body('transaction_period_type').isIn(['week','month','year']),
-      body('current_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+      body('for_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
       body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
       // Sanitize fields.
@@ -304,9 +304,9 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
       sanitizeBody('amount_limit').trim().escape(),
-      sanitizeBody("current_amount").trim().escape(),
+      sanitizeBody("current_year_amount").trim().escape(),
       sanitizeBody('transaction_period_type').trim().escape(),
-      //sanitizeBody('current_transaction_period').toDate(),
+      //sanitizeBody('for_transaction_period').toDate(),
 
         // Process request after validation and sanitization.
         (req, res, next) => {
@@ -318,7 +318,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
             if(req.body != undefined)console.log(req.body);
             console.log("@@@ or from params: ");
             if(req.params!=undefined)console.log(req.params);
-            if(req.body.current_transaction_period != undefined)console.log("ctp is: ",req.body.current_transaction_period);
+            if(req.body.for_transaction_period != undefined)console.log("ctp is: ",req.body.for_transaction_period);
             //yearMonthDayUTC: { $dateToString: { format: "%Y-%m-%d", date: "$date" } }
             //let transactPeriod = req.body.transaction_date.toJSON();//was   req.params.id.toString())
             //console.log("@@@ $ transactPeriod & type: ",transactPeriod,"   & type: ",typeof transactPeriod);
@@ -327,7 +327,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
 
             if (!errors.isEmpty()) {
                 // There are errors. Render form again with sanitized values and error messages.
-                let stringDate =req.body.current_transaction_period;//2019-06-12
+                let stringDate =req.body.for_transaction_period;//2019-06-12
                 let fed_rate_activeSnap =req.body.fed_rate_active;//2019-08-14
                 console.log("@@@ $ update errors: ",errors);//2019-08-14
                 console.log("@@@ $ fed_rate_active is: ",fed_rate_activeSnap,"  of type: ",typeof fed_rate_activeSnap)
