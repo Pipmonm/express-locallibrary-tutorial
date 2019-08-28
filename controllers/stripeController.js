@@ -87,7 +87,7 @@ function updateQuarter(doc){
   temp2 = doc2[0].previous_quarters_amounts;
   doc2[0].previous_quarters_amounts = temp.concat(temp2);//place at top
 
-  doc2[0].current_four_quarters_amount = Totalize(doc2);
+  doc2[0].current_four_quarters_amount = sumTotal(doc2);
 
   //document.getElementById("demo").innerHTML = doc2[0].current_four_quarters_amount;
   return doc2;
@@ -95,7 +95,7 @@ function updateQuarter(doc){
   //as outlined above
 }
 
-function Totalize(doc) {//for summing arrays
+function sumTotal(doc) {//for summing arrays
   let innerDoc = doc;
   let total = 0;
   let size = innerDoc[0].last_three_quarters_array.length; //don't need current quarter (= 0 for sure)
