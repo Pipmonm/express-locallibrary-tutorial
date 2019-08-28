@@ -396,7 +396,8 @@ exports.stripePost = (req, res) => {//open 1
                                                      current_four_quarters_amount:target_four_quarters_amount,
                                                      previous_quarters_amounts:target_previous_quarters_amounts,
                                                      for_period_index:target_period_index,
-                                                     transaction_date:Date.now}{upsert: true, 'new': true}, function(err,newdoc){
+                                                     transaction_date:Date.now},
+                                                     {upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
            if(err){
@@ -463,7 +464,8 @@ exports.stripePost = (req, res) => {//open 1
                                                    current_four_quarters_amount:target_four_quarters_amount,
                                                    previous_quarters_amounts:target_previous_quarters_amounts,
                                                    for_period_index:target_period_index,
-                                                   transaction_date:Date.now}{upsert: true, 'new': true}, function(err,newdoc){
+                                                   transaction_date:Date.now},
+                                                   {upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
            if(err){
