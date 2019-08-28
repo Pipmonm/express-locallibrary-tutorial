@@ -348,14 +348,12 @@ exports.stripePost = (req, res) => {//open 1
        //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
        //first check if changes in fiscal quarter or year
        target_period_index = doc[0].for_period_index;
-       if(this_transaction_period_index != target_period_index)(
-         cycleQuarters(doc);//take care of year change in here too
+       if(this_transaction_period_index != target_period_index)cycleQuarters(doc);
+         //take care of year change in here too
          //will result in many doc[0] items being modified
          //make sure to recalculate (& mod target for it) four_quarters_amount
          //also on year change we update items "first, second, etc... for year"
          //and we reset current_count & current_year_amount to zero (keep record???)
-
-       )
 
 
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
