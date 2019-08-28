@@ -24,6 +24,8 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 var debug = require('debug')('client');
     //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
 
+
+
 //validation check on sysId and Format Code string  //2018-12-14 new function
 function checkValidIdString(inString){
   let stringPieces = inString.split(":");
@@ -85,7 +87,7 @@ function updateQuarter(doc){
   temp2 = doc2[0].previous_quarters_amounts;
   doc2[0].previous_quarters_amounts = temp.concat(temp2);//place at top
 
-  doc2[0].current_four_quarters_amount = doc2[0].last_three_quarters_array.reduce(Totalize);
+  doc2[0].current_four_quarters_amount = Totalize(doc2);
 
   //document.getElementById("demo").innerHTML = doc2[0].current_four_quarters_amount;
   return doc2;
@@ -93,8 +95,12 @@ function updateQuarter(doc){
   //as outlined above
 }
 
-function Totalize(total, num) {//for summing arrays
-  return total + num;
+function Totalize(doc) {//for summing arrays
+  let innerDoc = doc;
+  let total = 0;
+  let size = innerDoc[0].last_three_quarters_array.length; //don't need current quarter (= 0 for sure)
+  for(var k=0;k<size;k++)total += innerDoc[0].last_three_quarters_array[k];
+  return total;
 }
 
 function cycleQuarters(doc){
