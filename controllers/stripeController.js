@@ -93,7 +93,6 @@ function updateQuarter(doc){
   return doc2;
   }
   //as outlined above
-}
 
 function sumTotal(doc) {//for summing arrays
   let innerDoc = doc;
