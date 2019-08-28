@@ -85,7 +85,7 @@ exports.regionalauthority_create_post = [
     body('amount_limit').isNumeric({no_symbols: true}),
     body('current_year_amount').isNumeric({no_symbols: true}),
     body('transaction_period_type').isIn(['week','month','year']),
-    body('for_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+    body('for_period_index').isIn([0,1,2,3]),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
     body('attempted','# attempts').trim(),
     // Sanitize fields.
@@ -101,7 +101,7 @@ exports.regionalauthority_create_post = [
     sanitizeBody('amount_limit').trim().escape(),
     sanitizeBody("current_year_amount").trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
-    sanitizeBody('for_transaction_period').trim().escape(),
+    sanitizeBody('for_period_index').trim().escape(),
     sanitizeBody('attempted').trim().escape(),
     //sanitizeBody('for_transaction_period').toDate(),
 
@@ -291,7 +291,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       body('amount_limit').isNumeric({no_symbols: true}),
       body('current_year_amount').isNumeric({no_symbols: true}),
       body('transaction_period_type').isIn(['week','month','year']),
-      body('for_transaction_period','expiry date of current transaction period').optional({ checkFalsy: true }).isISO8601(),
+      body('for_period_index'),isIn([0,1,2,3]),
       body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
       // Sanitize fields.
@@ -306,6 +306,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('amount_limit').trim().escape(),
       sanitizeBody("current_year_amount").trim().escape(),
       sanitizeBody('transaction_period_type').trim().escape(),
+      sanitizeBody('for_period_index').trim().escape(),
       //sanitizeBody('for_transaction_period').toDate(),
 
         // Process request after validation and sanitization.

@@ -80,7 +80,7 @@ exports.countrytaxauthority_create_post = [
     body('amount_limit').isNumeric({no_symbols: true}),
     body('current_year_amount').isNumeric({no_symbols: true}),
     body('transaction_period_type').isIn(['week','month','year']),
-    body('for_period_index',isIn([0,1,2,3]),
+    body('for_period_index'),isIn([0,1,2,3]),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
     // Sanitize fields.
@@ -240,8 +240,8 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       body('amount_limit').isNumeric({no_symbols: true}),
       body('current_year_amount').isNumeric({no_symbols: true}),
       body('transaction_period_type').isIn(['week','month','year']),
-      body('for_period_index',isIn([0,1,2,3]),
-      body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
+      body('for_period_index'),isIn([0,1,2,3]),
+      body('transaction_date', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 
       // Sanitize fields.
       sanitizeBody('country_name').trim().escape(),
