@@ -115,7 +115,7 @@ function cycleQuarters(doc){
         if(target_index == 0)updateYear(doc);
     }
   }
-}
+
 
 
 //end stuff from clientController
