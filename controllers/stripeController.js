@@ -359,7 +359,7 @@ exports.stripePost = (req, res) => {//open 1
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
        target_transaction_limit = doc[0].transaction_limit;
        target_current_count = doc[0].current_count + 1;//update count FOR YEARLY TOTAL
-       target_amount_limit; = doc[0].amount_limit;
+       target_amount_limit = doc[0].amount_limit;
        target_current_year_amount = doc[0].current_year_amount + rawAmount;//change to variable
        target_previous_years_amounts = doc[0].previous_years_amounts;
        //check for year cycling to be done on entry with "now" date
@@ -428,7 +428,7 @@ exports.stripePost = (req, res) => {//open 1
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
        target_transaction_limit = doc[0].transaction_limit;
        target_current_count = doc[0].current_count + 1;//update count FOR YEARLY TOTAL
-       target_amount_limit; = doc[0].amount_limit;
+       target_amount_limit = doc[0].amount_limit;
        target_current_year_amount = doc[0].current_year_amount + rawAmount;//change to variable
        target_previous_years_amounts = doc[0].previous_years_amounts;
        //check for year cycling to be done on entry with "now" date
