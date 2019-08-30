@@ -29,8 +29,20 @@ block content
       input#amount_limit.form-control(type='number', placeholder= 'total amount threshold', name='amount_limit', required=false, value= countrytaxauthority.amount_limit)
     div.form-group
       label(for='current_year_amount') Current Year Amount Amassed
-      input#current_year_amount.form-control(type='number',placeholder='amount amassed this period', name='current_year_amount', required=false,value = countrytaxauthority.current_year_amount)
+      input#current_year_amount.form-control(type='number',placeholder='amount amassed this period', name='current_year_amount', required=false, value = countrytaxauthority.current_year_amount)
+      label(for='previous_years_amounts') Previous Years amounts
+      input#previous_years_amounts.form-control(type='array',placeholder='array of previous years amounts',name='previous_years_amounts', required=true, value = countrytaxauthority.previous_years_amounts)
+      label(for='current_quarter_amount') Current Quarter Amount
+      input#current_quarter_amount.form-control(type='number',placeholder='amount this quarter', name='current_quarter_amount', required=true, value= countrytaxauthority.current_quarter_amount)
     div.form-group
+      label(for='last_three_quarters_array') Last Three Quarters (array)
+      input#last_three_quarters_array.form-control(type='array', placeholder= 'last 3 qrtrs array', name= 'last_three_quarters_array', required = true, value= countrytaxauthority.last_three_quarters_array)
+      label(for='current_four_quarters_amount') Current 4 Qrtrs Amount
+      input#current_four_quarters_amount.form-control(type= 'number',placeholder='current 4 qrtrs amount', name='current_four_quarters_amount', required= true, value = countrytaxauthority.current_four_quarters_amount )
+      label(for='previous_quarters_amounts') Previous Quarters Amounts
+      input#target_previous_quarters_amounts.form-control(type='array',placeholder='previous quarters amounts (array)', required=true, value= countrytaxauthority.previous_quarters_amounts)
+
+  div.form-group
       label(for='transaction_period_type') Transaction Period Type
       input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =countrytaxauthority.transaction_period_type)
     div.form-group
