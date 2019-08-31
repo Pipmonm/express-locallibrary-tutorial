@@ -42,7 +42,7 @@ block content
       label(for='previous_quarters_amounts') Previous Quarters Amounts
       input#target_previous_quarters_amounts.form-control(type='array',placeholder='previous quarters amounts (array)',name='previous_quarters_amounts', required=true, value= countrytaxauthority.previous_quarters_amounts)
 
-  div.form-group
+    div.form-group
       label(for='transaction_period_type') Transaction Period Type
       input#transaction_period_type.form-control(type='string',placeholder='period till renewal', name='transaction_period_type', required = false value =countrytaxauthority.transaction_period_type)
     div.form-group
@@ -50,6 +50,7 @@ block content
        input#for_period_index.form-control(type='number', placeholder='current quarters array index',name='for_period_index', required = false, value=countrytaxauthority.for_period_index)
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
   if errors
     ul
       for error in errors
