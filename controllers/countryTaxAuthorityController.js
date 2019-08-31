@@ -112,6 +112,7 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         // Extract the validation errors from a request.
         const errors = validationResult(req);
+        console.log("typeof arrays: ",typeof req.body.last_three_quarters_array,"  & value: ",req.body.last_three_quarters_array)
 
         if (!errors.isEmpty()) {
             let allowedProxy = false;
