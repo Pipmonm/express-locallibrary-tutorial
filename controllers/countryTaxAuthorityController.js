@@ -55,8 +55,15 @@ exports.countrytaxauthority_detail = function(req, res, next) {
               //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
         //})
         // Successful, so render.
+        //see if arrays can be rendered by proxy somehow
+        let lastThreeQrtrsArrayProxy = "[ ";//2019-08-31  we'll build it ourselves
+        let arrayString = countrytaxauthority.last_three_quarters_array;
+        lastThreeQrtrsArrayProxy += arrayString + " ]";
+        console.log("@@@ $ last3qrtrsarrProxy is: ",lastThreeQrtrsArrayProxy,"  from CTA.last3qrtsarray: ",countrytaxauthority.last_three_quarters_array);
         console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
-        res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ', countrytaxauthority:  countrytaxauthority});
+        res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ',
+                                     countrytaxauthority:  countrytaxauthority,
+                                     lastThreeQrtrsArrayProxy: lastThreeQrtrsArrayProxy});
       })
 
   };
@@ -112,7 +119,7 @@ exports.countrytaxauthority_create_post = [
         // Extract the validation errors from a request.
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-        console.log("typeof arrays: ",typeof req.body.last_three_quarters_array,"  & value: ",req.body.last_three_quarters_array)
+        console.log("@@@ $ typeof arrays: ",typeof req.body.last_three_quarters_array,"  & value: ",req.body.last_three_quarters_array)
 
         if (!errors.isEmpty()) {
             let allowedProxy = false;
