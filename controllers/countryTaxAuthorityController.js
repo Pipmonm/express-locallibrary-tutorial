@@ -56,14 +56,14 @@ exports.countrytaxauthority_detail = function(req, res, next) {
         //})
         // Successful, so render.
         //see if arrays can be rendered by proxy somehow
-        let lastThreeQrtrsArrayProxy = "[ ";//2019-08-31  we'll build it ourselves
+        let lastThreeQrtrsArrayProxy = "[";//2019-08-31  we'll build it ourselves
         let arrayString = countrytaxauthority.last_three_quarters_array;
-        lastThreeQrtrsArrayProxy += arrayString + " ]";
+        lastThreeQrtrsArrayProxy += arrayString + "]";
         console.log("@@@ $ last3qrtrsarrProxy is: ",lastThreeQrtrsArrayProxy,"  from CTA.last3qrtsarray: ",countrytaxauthority.last_three_quarters_array);
         console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
         res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ',
                                      countrytaxauthority:  countrytaxauthority,
-                                     lastThreeQrtrsArrayProxy: lastThreeQrtrsArrayProxy});
+                                     lastThreeQrtrsArrayProxy: [lastThreeQrtrsArrayProxy]});
       })
 
   };
