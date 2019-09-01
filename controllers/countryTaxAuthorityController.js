@@ -333,11 +333,13 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 console.log("@@@ $ last 3 1/4's array initial: ",stringArray);
                 stringArray = stringArray.replace("[","");
                 stringArray = stringArray.replace("]","");
-                stringArray = stringArray.split(",");
+                stringArray = stringArray.split(",");//array with string values for numbers
                 let arraySize = stringArray.length;
 
                 console.log("@@@ $ last 3 1/4's array final: ",stringArray);
-
+                req.body.previous_years_amounts = 0;
+                req.body.last_three_quarters_array = 0;
+                req.body.previous_quarters_amounts = 0;
 
 
                 // Data from form is valid.
