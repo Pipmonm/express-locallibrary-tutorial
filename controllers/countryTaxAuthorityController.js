@@ -328,7 +328,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 let stringArray = req.body.last_three_quarters_array;
                 stringArray.replace("[","");
                 stringArray.replace("]","");
-                stringArray = stringArray.splice(",");
+                stringArray = stringArray.split(",");
 
                 console.log("@@@ $ last 3 1/4's array: ",stringArray);
 
