@@ -4,6 +4,9 @@ block content
   h1=title
 
   form(method='POST' action='')
+    //-  div.form-group
+    //-     label(for='requestParamsId') Country requestParamsId:
+    //-     input#requestParamsId.form-control(type='string', placeholder='do not modify', name= 'requestParamsId', required=false, value= params.requestParamsId)
     div.form-group
       label(for='country_name') Country Name
       input#country_name.form-control(type = 'string', placeholder='Country Name', name= 'country_name', required=true, value=countrytaxauthority.country_name)

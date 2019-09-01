@@ -209,11 +209,12 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
       //req.params.sanitize('id').escape().trim();
       sanitizeBody(req.params.id).trim().escape();
       console.log("@@@ $ passed sanitizeBody for id: & id is: ",req.params.id);
+      //let params = {'requestParamsId':req.params.id};
       async.parallel({
        countrytaxauthority: function(callback) {
         CountryTaxAuthority.findById(req.params.id).exec(callback)
         }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
-       }, function(err, results) {   //note leading "}" closes async's opening "{"
+      }, function(err, results) { //this is the callback function.  //note leading "}" closes async's opening "{"
         console.log("@@@ $ in CTA.findById callback")
         if(err) {
          console.log("@@@ $ error in CTA.findById callback ",err);
@@ -244,9 +245,12 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        //transactPeriod = transactPeriod.split("T")[0]//suddenly need to remove .toISOString() ???
                                                      //take only yyyy-mm-dd portion
 
-       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.countrytaxauthority,allowedProxy:allowedProxy});//2019-06-12
+       res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority',
+                                            countrytaxauthority: results.countrytaxauthority,
+                                            allowedProxy:allowedProxy
+                                            });//2019-06-12
        //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: results.client, query: "Update"});
-  });//async ends note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
+  });//async "(" ends.   note closing } is not for async's opening "{", that's closed above, this one closes  fn(err,rslts){
 }; //export fn ends  NOTE this is a request to update with changes, only accepted if posted (as follows)
 
 
@@ -326,11 +330,15 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
                 //2019-08-31  array Updating
                 let stringArray = req.body.last_three_quarters_array;
-                stringArray.replace("[","");
-                stringArray.replace("]","");
+                console.log("@@@ $ last 3 1/4's array initial: ",stringArray);
+                stringArray = stringArray.replace("[","");
+                stringArray = stringArray.replace("]","");
                 stringArray = stringArray.split(",");
+                let arraySize = stringArray.length;
 
-                console.log("@@@ $ last 3 1/4's array: ",stringArray);
+                console.log("@@@ $ last 3 1/4's array final: ",stringArray);
+
+
 
                 // Data from form is valid.
                 CountryTaxAuthority.findByIdAndUpdate(req.params.id,req.body,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
