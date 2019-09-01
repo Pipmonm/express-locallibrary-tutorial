@@ -323,6 +323,15 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 if(req.body != undefined)console.log(req.body);
                 if(req.params!=undefined)console.log("req.params: ",req.params);
                 if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
+
+                //2019-08-31  array Updating
+                let stringArray = req.body.last_three_quarters_array;
+                stringArray.replace("[","");
+                stringArray.replace("]","");
+                stringArray = stringArray.splice(",");
+
+                console.log("@@@ $ last 3 1/4's array: ",stringArray);
+
                 // Data from form is valid.
                 CountryTaxAuthority.findByIdAndUpdate(req.params.id,req.body,{}, function (err,thecountrytaxauthority) { //2019-06-10  was "thecountrytaxauthority"
                     if (err) {
