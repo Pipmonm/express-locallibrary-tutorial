@@ -59,11 +59,12 @@ exports.countrytaxauthority_detail = function(req, res, next) {
         let lastThreeQrtrsArrayProxy = "[";//2019-08-31  we'll build it ourselves
         let arrayString = countrytaxauthority.last_three_quarters_array;
         lastThreeQrtrsArrayProxy += arrayString + "]";
-        console.log("@@@ $ last3qrtrsarrProxy is: ",lastThreeQrtrsArrayProxy,"  from CTA.last3qrtsarray: ",countrytaxauthority.last_three_quarters_array);
+        let threeQ = {'threeQProxy': lastThreeQrtrsArrayProxy};
+        console.log("@@@ $ threeQ.threeQProxy is: ",threeQ.threeQProxy,"  from CTA.last3qrtsarray: ",countrytaxauthority.last_three_quarters_array);
         console.log('@@@ $ rendering countrytaxauthority_detail with countrytaxauthority: ' + countrytaxauthority);
         res.render('countrytaxauthority_detail', { title: 'Country Tax Authority Detail: ',
                                      countrytaxauthority:  countrytaxauthority,
-                                     lastThreeQrtrsArrayProxy: [lastThreeQrtrsArrayProxy]});
+                                     threeQ: threeQ});
       })
 
   };
