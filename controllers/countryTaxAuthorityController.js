@@ -353,7 +353,11 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
                 .then(function(thecountrytaxauthority){
+                  thecountrytaxauthority.last_three_quarters_array.set(0,"99");
+                  last_three_quarters_array.save();
                   console.log('@@@ $ and away we go into the "then"');
+                  })
+                .then(function(thecountrytaxauthority){
                   res.redirect(thecountrytaxauthority.url);
                 })
             }//closes else clause
