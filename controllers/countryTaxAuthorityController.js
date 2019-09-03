@@ -349,8 +349,13 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                       return next(err);
                     }
                        //else Successful - redirect to new record.
-                       res.redirect(thecountrytaxauthority.url);
-                    });//closes findbyidandupdate
+                       //res.redirect(thecountrytaxauthority.url);
+                       console.log('@@@ $ updating countrytaxauthority document successful!');
+                    })//closes findbyidandupdate
+                .then(function(thecountrytaxauthority){
+                  console.log('@@@ $ and away we go into the "then"');
+                  res.redirect(thecountrytaxauthority.url
+                })
             }//closes else clause
         }//closes fat arrow req,res,next
     ]
