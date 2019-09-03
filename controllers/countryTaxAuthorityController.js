@@ -373,15 +373,10 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
                     results.countrytaxauthority.last_three_quarters_array.set(0,"99");
                     results.countrytaxauthority.save();
-                  })
-                })
-                .then(function(thecountrytaxauthority){
-                  if (err) {
-                    console.log('@@@ $ second .then after findbyIdAndUpdate throws err: ' + err);
-                    return next(err);
-                  }
-                  res.redirect(thecountrytaxauthority.url);
-                })
+                  }) //nested .then follows
+
+                })//now closes first .then
+              //}) //was for first .then when 2 .thens were in use
             }//closes else clause
         }//closes fat arrow req,res,next
     ]
