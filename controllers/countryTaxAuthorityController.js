@@ -354,7 +354,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                     })//closes findbyidandupdate
                 .then(function(thecountrytaxauthority){
                   console.log('@@@ $ and away we go into the "then"');
-                  res.redirect(thecountrytaxauthority.url
+                  res.redirect(thecountrytaxauthority.url);
                 })
             }//closes else clause
         }//closes fat arrow req,res,next
