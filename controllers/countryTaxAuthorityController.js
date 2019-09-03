@@ -369,11 +369,12 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                      debug('update error ' + err);
                      return next(err);
                      }
-                   //otherwise:
+                    //otherwise:
 
-                  results.countrytaxauthority.last_three_quarters_array.set(0,"99");
-                  results.countrytaxauthority.save();
+                    results.countrytaxauthority.last_three_quarters_array.set(0,"99");
+                    results.countrytaxauthority.save();
                   })
+                })
                 .then(function(thecountrytaxauthority){
                   if (err) {
                     console.log('@@@ $ second .then after findbyIdAndUpdate throws err: ' + err);
