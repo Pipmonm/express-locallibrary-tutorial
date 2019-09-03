@@ -352,12 +352,33 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        //res.redirect(thecountrytaxauthority.url);
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
-                .then(function(thecountrytaxauthority){
-                  thecountrytaxauthority.last_three_quarters_array.set(0,"99");
-                  last_three_quarters_array.save();
-                  console.log('@@@ $ and away we go into the "then"');
+                .then(function(req){
+                  if (err) {
+                    console.log('@@@ $ first .then after findbyIdAndUpdate throws err: ' + err);
+                    return next(err);
+                  }
+                  //new stuff
+                  async.parallel({
+                   countrytaxauthority: function(callback) {
+                    CountryTaxAuthority.findById(req.params.id).exec(callback)
+                    }, //only one function called asynchronously. ending comma allowed to simplify chaining a possible next one
+                  }, function(err, results) { //this is the callback function.  //note leading "}" closes async's opening "{"
+                    console.log("@@@ $ in .then #1 with findById callback")
+                    if(err) {
+                     console.log("@@@ $ error in .then #1 findById callback ",err);
+                     debug('update error ' + err);
+                     return next(err);
+                     }
+                   //otherwise:
+
+                  results.countrytaxauthority.last_three_quarters_array.set(0,"99");
+                  results.countrytaxauthority.save();
                   })
                 .then(function(thecountrytaxauthority){
+                  if (err) {
+                    console.log('@@@ $ second .then after findbyIdAndUpdate throws err: ' + err);
+                    return next(err);
+                  }
                   res.redirect(thecountrytaxauthority.url);
                 })
             }//closes else clause
