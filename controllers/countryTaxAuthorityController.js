@@ -352,7 +352,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        //res.redirect(thecountrytaxauthority.url);
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
-                .then(function(req, thecountrytaxauthority){
+                .then(function(thecountrytaxauthority){
                   console.log("@@@ $ entering .then #1 with req.params.id= ", req.params.id);
                   console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
 
