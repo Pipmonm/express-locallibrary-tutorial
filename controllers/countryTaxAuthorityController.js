@@ -234,7 +234,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
        console.log(results);
        console.log("@@@ $ try a results parameter: results.countrytaxauthority.country_name: ",results.countrytaxauthority.country_name);
 
-       if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
+       //if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
        console.log("@@@ $ results.countrytaxauthority.for_period_index is ",results.countrytaxauthority.for_period_index);
        //2019-06-12 req.body == {} at this point- confirmed
 
@@ -301,7 +301,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
             // Extract the validation errors from a request.
             const errors = validationResult(req);
-            if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
+            //if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
             console.log("@@@ $ req.body: below vvvv");
             if(req.body != undefined)console.log(req.body);
             console.log("@@@ or from params: ");
@@ -353,10 +353,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
                 .then(function(req){
-                  if (err) {
-                    console.log('@@@ $ first .then after findbyIdAndUpdate throws err: ' + err);
-                    return next(err);
-                  }
+                  console.log("@@@ $ entering .then #1")
                   //new stuff
                   async.parallel({
                    countrytaxauthority: function(callback) {
