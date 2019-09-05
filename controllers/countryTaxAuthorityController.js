@@ -305,7 +305,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
             // Extract the validation errors from a request.
             const errors = validationResult(req);
             //if(req != undefined)console.log("@@@ $ req is: ",req,"  of type: ",typeof req);
-            console.log("@@@ $ req.body: below vvvv");
+            //console.log("@@@ $ req.body: below vvvv");
             if(req.body != undefined)console.log(req.body);
             console.log("@@@ or from params: ");
             if(req.params!=undefined)console.log(req.params);
@@ -333,7 +333,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
 
                 //2019-08-31  array Updating
                 let stringArray = req.body.last_three_quarters_array;
-                console.log("@@@ $ last 3 1/4's array initial: ",stringArray);
+                console.log("@@@ $ last 3 1/4's array initial: ",stringArray, "  of type: ", typeof stringArray);
                 stringArray = stringArray.replace("[","");
                 stringArray = stringArray.replace("]","");
                 stringArray = stringArray.split(",");//array with string values for numbers
@@ -359,6 +359,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 .then(function(thecountrytaxauthority){
                   console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
                   thecountrytaxauthority.last_three_quarters_array.set(0,"98");
+                  thecountrytaxauthority.last_three_quarters_array.set(1,"97");
                   thecountrytaxauthority.save();
 
                 })//now closes first .then
