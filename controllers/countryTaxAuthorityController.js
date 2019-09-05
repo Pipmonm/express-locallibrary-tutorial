@@ -367,7 +367,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                    // Simulate a mouse click to a fixed name catalog entry:
                    router.get('/countrytaxauthorities',function(req,res,next){
                       res.send('OK');
-                   };
+                   });
                 })
             }//closes else clause
         }//closes fat arrow req,res,next
