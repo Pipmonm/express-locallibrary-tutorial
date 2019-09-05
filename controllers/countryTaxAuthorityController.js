@@ -353,14 +353,16 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
                     //update needs a comment to force recopilation
-                .then(function(thecountrytaxauthority,res){
+                .then(function(thecountrytaxauthority){
                   console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
                   thecountrytaxauthority.last_three_quarters_array.set(0,"99");
                   thecountrytaxauthority.save();
 
                 })//now closes first .then
-                .then(function(thecountrytaxauthority,res){
-                   res.redirect(thecountrytaxauthority.url);
+                .then(function(thecountrytaxauthority){
+                   //res.redirect(thecountrytaxauthority.url);
+                   // Simulate a mouse click to a fixed name catalog entry:
+                   window.location.href = '/catalog/countrytaxauthorities';
                 })
             }//closes else clause
         }//closes fat arrow req,res,next
