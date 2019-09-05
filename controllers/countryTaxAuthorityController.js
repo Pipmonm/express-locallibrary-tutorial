@@ -352,13 +352,14 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                        //res.redirect(thecountrytaxauthority.url);
                        console.log('@@@ $ updating countrytaxauthority document successful!');
                     })//closes findbyidandupdate
-                .then(function(thecountrytaxauthority){
+                    //update needs a comment to force recopilation
+                .then(function(thecountrytaxauthority,res){
                   console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
                   thecountrytaxauthority.last_three_quarters_array.set(0,"99");
                   thecountrytaxauthority.save();
 
                 })//now closes first .then
-                .then(function(thecountrytaxauthority){
+                .then(function(thecountrytaxauthority,res){
                    res.redirect(thecountrytaxauthority.url);
                 })
             }//closes else clause
