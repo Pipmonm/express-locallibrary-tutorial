@@ -365,7 +365,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 .then(function(thecountrytaxauthority){
                    //res.redirect(thecountrytaxauthority.url);
                    // Simulate a mouse click to a fixed name catalog entry:
-                   router.get('/countrytaxauthorities',function(req,res,next){
+                   router.get(thecountrytaxauthority,function(req,res,next){
                       res.send('OK');
                    });
                 })
