@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var async = require('async');
 var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
+var express = require('express');
+var router = express.Router();
+
 var debug = require('debug');
 
 // Display list of all countrytaxauthorities.
@@ -362,7 +365,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 .then(function(thecountrytaxauthority){
                    //res.redirect(thecountrytaxauthority.url);
                    // Simulate a mouse click to a fixed name catalog entry:
-                   window.location.href = '/catalog/countrytaxauthorities';
+                   router.get('/countrytaxauthorities',function(req,res,next){
+                      res.send('OK');
+                   };
                 })
             }//closes else clause
         }//closes fat arrow req,res,next
