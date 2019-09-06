@@ -332,11 +332,21 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
 
                 //2019-08-31  array Updating
-                var stringArray = req.body.last_three_quarters_array;
-                console.log("@@@ $ last 3 1/4's array initial: ",stringArray, "  of type: ", typeof stringArray);
-                stringArray = stringArray.replace("[","");
-                stringArray = stringArray.replace("]","");
-                stringArray = stringArray.split(",");//array with string values for numbers
+                var p_y_amounts = req.body.previous_years_amounts;
+                var p_q_amounts = req.body.previous_quarters_amounts;
+                var l_t_q_a_Array = req.body.last_three_quarters_array;
+                console.log("@@@ $ last 3 1/4's array initial: ",l_t_q_a_Array, "  of type: ", typeof l_t_q_a_Array);
+                p_y_amounts = p_y_amounts.replace("[","");
+                p_y_amounts = p_y_amounts.replace("]","");
+                p_y_amounts = p_y_amounts.split(",");
+
+                p_q_amounts = p_q_amounts.replace("[","");
+                p_q_amounts = p_q_amounts.replace("]","");
+                p_q_amounts = p_q_amounts.split(",");
+
+                l_t_q_a_Array = l_t_q_a_Array.replace("[","");
+                l_t_q_a_Array = l_t_q_a_Array.replace("]","");
+                l_t_q_a_Array = l_t_q_a_Array.split(",");//array with string values for numbers
 
                 req.body.previous_years_amounts = 0;
                 req.body.last_three_quarters_array = 0;
@@ -355,21 +365,24 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                     })//closes findbyidandupdate
                     //update needs a comment to force recopilation
                 .then(function(thecountrytaxauthority){
-                  console.log("@@@ $ last 3 1/4's array final: ",stringArray);
-                  let arraySize = stringArray.length;
-
-
-                  console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
+                  console.log("@@@ $ last 3 1/4's array final: ",l_t_q_a_Array);
+                  let arraySize = l_t_q_a_Array.length;
+                  //console.log("@@@ $ and thecountrytaxsauthority= ",thecountrytaxauthority);
                   for(let k = 0;k<arraySize;k++){
-                    thecountrytaxauthority.last_three_quarters_array.set(k,stringArray[k]);
+                    thecountrytaxauthority.last_three_quarters_array.set(k,l_t_q_a_Array[k]);
+                  }
+                  arraySize = p_y_amounts.length;
+                  for(let k = 0;k<arraySize;k++){
+                    thecountrytaxauthority.previous_years_amounts.set(k,p_y_amounts[k]);
+                  }
+                  arraySize = p_q_amounts.length;
+                  for(let k = 0;k<arraySize;k++){
+                    thecountrytaxauthority.previous_years_amounts.set(k,p_q_amounts[k]);
                   }
 
-
-                  //thecountrytaxauthority.last_three_quarters_array.set(0,"98");
-                  //thecountrytaxauthority.last_three_quarters_array.set(1,"97");
                   thecountrytaxauthority.save();
 
-                })//now closes first .then
+                })//closes .then
             }//closes else clause
         }//closes fat arrow req,res,next
     ]
