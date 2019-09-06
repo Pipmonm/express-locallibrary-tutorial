@@ -65,12 +65,12 @@ exports.countrytaxauthority_detail = function(req, res, next) {
         let pyaProxy = {'pyaProxy': p_y_amounts_Proxy};
 
         let p_q_amounts_Proxy = "[";//2019-08-31  we'll build it ourselves
-        let arrayString = countrytaxauthority.previous_quarters_amounts;
+        arrayString = countrytaxauthority.previous_quarters_amounts;
         p_q_amounts_Proxy += arrayString + "]";
         let pqaProxy = {'pqaProxy': p_q_amounts_Proxy};
 
         let l_t_q_a_Proxy = "[";//2019-08-31  we'll build it ourselves
-        let arrayString = countrytaxauthority.last_three_quarters_array;
+        arrayString = countrytaxauthority.last_three_quarters_array;
         l_t_q_a_Proxy += arrayString + "]";
         let threeQ = {'threeQProxy': l_t_q_a_Proxy};
         console.log("@@@ $ threeQ.threeQProxy is: ",threeQ.threeQProxy,"  from CTA.last3qrtsarray: ",countrytaxauthority.last_three_quarters_array);
