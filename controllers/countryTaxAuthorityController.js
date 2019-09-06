@@ -389,7 +389,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                   }
                   arraySize = p_q_amounts.length;
                   for(let k = 0;k<arraySize;k++){
-                    thecountrytaxauthority.previous_years_amounts.set(k,p_q_amounts[k]);
+                    thecountrytaxauthority.previous_quarters_amounts.set(k,p_q_amounts[k]);
                   }
 
                   thecountrytaxauthority.save();
