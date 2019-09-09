@@ -76,10 +76,10 @@ exports.regionalauthority_detail = function(req, res, next) {
         // Successful, so render.
         console.log('@@@ $ rendering regionalauthority_detail with regionalauthority: ' + regionalauthority);
         res.render('regionalauthority_detail', { title: 'Regional Tax Authority Detail: ',
-                                                              regionalauthority:  regionalauthority',
-                                                              threeQ: threeQ,
-                                                              pyaProxy: pyaProxy,
-                                                              pqaProxy: pqaProxy
+                                                 regionalauthority:  regionalauthority,
+                                                 threeQ: threeQ,
+                                                 pyaProxy: pyaProxy,
+                                                 pqaProxy: pqaProxy
                                                               });
       })
 
