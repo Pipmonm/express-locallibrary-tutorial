@@ -143,7 +143,10 @@ exports.countrytaxauthority_create_post = [
             console.log('@@@ $ Console: errors spotted in validationResult for "countrytaxauthority_create_post"');
             debug('DEBUG: errors spotted in validationResult for "countrytaxauthority_create_post"');
             // There are errors. Render form again with sanitized values/errors messages.
-            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
+            res.render('countrytaxauthorityErr_form', { title: 'Create CountryTaxAuthority',
+                                                        countrytaxauthority: req.body,
+                                                        allowedProxy:allowedProxy,
+                                                        errors: errors.array() });
             return;
           }
           //temporarily to check out validators, make no record
@@ -333,7 +336,9 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 let allowedProxy = false;
                 if(req.body.allowed)allowedProxy = 'true';//as a string???
                 console.log('@@@ $ rendering countrytaxauthority_form for redisplay in clrq_update_post (validation err)');
-                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority', countrytaxauthority: req.body,allowedProxy:allowedProxy, errors: errors.array() });
+                res.render('countrytaxauthorityErr_form', { title: 'Update CountryTaxAuthority',
+                                                            countrytaxauthority: req.body,allowedProxy:allowedProxy,
+                                                            errors: errors.array() });
                 //res.render('countrytaxauthorityUpdate_form', { title: 'Update CountryTaxAuthority', errors: errors.array(), countrytaxauthority:countrytaxauthority });
                 return;
 
@@ -343,7 +348,7 @@ exports.countrytaxauthority_update_get = function(req, res, next) {
                 if(req.params!=undefined)console.log("req.params: ",req.params);
                 if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
 
-                //2019-08-31  array Updating
+                //2019-09-09  array Updating
                 var p_y_amounts = req.body.previous_years_amounts;
                 var p_q_amounts = req.body.previous_quarters_amounts;
                 var l_t_q_a_Array = req.body.last_three_quarters_array;

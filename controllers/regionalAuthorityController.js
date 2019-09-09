@@ -1,6 +1,6 @@
 //client instance controller js
 var RegionalAuthority = require('../models/regionalAuthority');// 'regionaltaxautorities'
-var CountryTaxAuthority = require('../models/countryTaxAuthority'); //collection 'Regionalauthorities'
+var regionalAuthority = require('../models/regionalAuthority'); //collection 'Regionalauthorities'
 console.log("@@@ $ force update");
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -56,8 +56,31 @@ exports.regionalauthority_detail = function(req, res, next) {
               //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
         //})
         // Successful, so render.
+        //see if arrays can be rendered by proxy somehow
+        let p_y_amounts_Proxy = "[";//2019-08-31  we'll build it ourselves
+        let arrayString = regionalauthority.previous_years_amounts;
+        p_y_amounts_Proxy += arrayString + "]";
+        let pyaProxy = {'pyaProxy': p_y_amounts_Proxy};
+
+        let p_q_amounts_Proxy = "[";//2019-08-31  we'll build it ourselves
+        arrayString = regionalauthority.previous_quarters_amounts;
+        p_q_amounts_Proxy += arrayString + "]";
+        let pqaProxy = {'pqaProxy': p_q_amounts_Proxy};
+
+        let l_t_q_a_Proxy = "[";//2019-08-31  we'll build it ourselves
+        arrayString = regionalauthority.last_three_quarters_array;
+        l_t_q_a_Proxy += arrayString + "]";
+        let threeQ = {'threeQProxy': l_t_q_a_Proxy};
+        console.log("@@@ $ threeQ.threeQProxy is: ",threeQ.threeQProxy,"  from CTA.last3qrtsarray: ",regionalauthority.last_three_quarters_array);
         console.log('@@@ $ rendering regionalauthority_detail with regionalauthority: ' + regionalauthority);
-        res.render('regionalauthority_detail', { title: 'Regional Tax Authority Detail: ', regionalauthority:  regionalauthority});
+        // Successful, so render.
+        console.log('@@@ $ rendering regionalauthority_detail with regionalauthority: ' + regionalauthority);
+        res.render('regionalauthority_detail', { title: 'Regional Tax Authority Detail: ',
+                                                              regionalauthority:  regionalauthority',
+                                                              threeQ: threeQ,
+                                                              pyaProxy: pyaProxy,
+                                                              pqaProxy: pqaProxy
+                                                              });
       })
 
   };
@@ -356,6 +379,29 @@ exports.regionalauthority_update_get = function(req, res, next) {
                 if(req.body != undefined)console.log(req.body);
                 if(req.params!=undefined)console.log("req.params: ",req.params);
                 if(req.params!=undefined)console.log("req.params.id: ",req.params.id);
+
+                //2019-09-09  array Updating
+                var p_y_amounts = req.body.previous_years_amounts;
+                var p_q_amounts = req.body.previous_quarters_amounts;
+                var l_t_q_a_Array = req.body.last_three_quarters_array;
+                console.log("@@@ $ last 3 1/4's array initial: ",l_t_q_a_Array, "  of type: ", typeof l_t_q_a_Array);
+                p_y_amounts = p_y_amounts.replace("[","");
+                p_y_amounts = p_y_amounts.replace("]","");
+                p_y_amounts = p_y_amounts.split(",");
+
+                p_q_amounts = p_q_amounts.replace("[","");
+                p_q_amounts = p_q_amounts.replace("]","");
+                p_q_amounts = p_q_amounts.split(",");
+
+                l_t_q_a_Array = l_t_q_a_Array.replace("[","");
+                l_t_q_a_Array = l_t_q_a_Array.replace("]","");
+                l_t_q_a_Array = l_t_q_a_Array.split(",");//array with string values for numbers
+
+                req.body.previous_years_amounts = 0;
+                req.body.last_three_quarters_array = 0;
+                req.body.previous_quarters_amounts = 0;
+
+
                 // Data from form is valid.
                 RegionalAuthority.findByIdAndUpdate(req.params.id,req.body,{}, function (err,theregionalauthority) { //2019-06-10  was "theregionalauthority"
                     if (err) {
@@ -365,6 +411,26 @@ exports.regionalauthority_update_get = function(req, res, next) {
                        //else Successful - redirect to new record.
                        res.redirect(theregionalauthority.url);
                     });//closes findbyidandupdate
+
+                    .then(function(theregionalauthority){
+                      console.log("@@@ $ last 3 1/4's REGIONAL array final: ",l_t_q_a_Array);
+                      let arraySize = l_t_q_a_Array.length;
+                      //console.log("@@@ $ and theregionalsauthority= ",theregionalauthority);
+                      for(let k = 0;k<arraySize;k++){
+                        theregionalauthority.last_three_quarters_array.set(k,l_t_q_a_Array[k]);
+                      }
+                      arraySize = p_y_amounts.length;
+                      for(let k = 0;k<arraySize;k++){
+                        theregionalauthority.previous_years_amounts.set(k,p_y_amounts[k]);
+                      }
+                      arraySize = p_q_amounts.length;
+                      for(let k = 0;k<arraySize;k++){
+                        theregionalauthority.previous_quarters_amounts.set(k,p_q_amounts[k]);
+                      }
+
+                      theregionalauthority.save();
+
+                    })//closes .then
             }//closes else clause
         }//closes fat arrow req,res,next
       ]
