@@ -208,7 +208,12 @@ exports.client_status_post = [
                          'QC',
                          'SK',
                          'YT'];
-    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
+
+    var countryOptions = ['Canada',
+                          'United States',
+                          'Other'];
+
+    res.render('client_formTAX', { title: 'Register Form',countryOptions:countryOptions, canadaRegions:canadaRegions});
   };
 
   // Handle Client create on POST.
@@ -261,40 +266,43 @@ exports.client_status_post = [
                 var errMsg = "unspecified error";//2019-02-01 added
                 var errMsg2 = "error:  unknown"; //ibid ^
                 //added line to force recompition
-/*
-        UserModel.find({ nick: act.params }, function (err, users) {
-          if (err) { console.log(err) };
-          if (!users.length) { //do stuff here };
-          else {
-            users.forEach(function (user) {
-              console.log(user.nick);
-            });
-          }
-        });
-*/
-                //check that not already exists //2019-01-30 added new view == errorMsg  also check changed
-/*  does not work and new way to be found for checking duplicates
-                Client.find({license_string: "rgrqcd"}, function (err, result){           //2019-02-01 complete redo
-                    if(err){console.log("@@@ $ error finding license_string in create client " + err)}
-                    if(!result.length) {
-                        console.log("@@@ $ System Id string  already registered");
-                        var errMsg = "This System Id string is already in use" + "<br />" +
-                        "Try instead to log into 'Account View' with it";
-                        // There are errors. Render form again with sanitized values/errors messages.
-                        //added comment to fix see no change error
-                        res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
-                        return;
-                        //above sequence depends on 'res' being in scope from post handler that includes it
-                    };
-                });//2019-02-01  end duplicate check
-*/
 
-                //var stringId = client._id.toString();
-                //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
-                //get date
                 const now = Date();
-                // Create a Client object with escaped and trimmed data.
-                var client = new Client(
+                //find country_id and region_id from country_name and region_name, insert as countr_id & region_id variables
+
+                async.parallel({
+                 countrytaxauthority: function(callback){
+                  CountryTaxAuthority.find({'country_name':target_country}).exec(callback)
+                 },
+                 regionalauthority: function(callback){
+                  RegionalAuthority.find({'region_code':target_region_code}).exec(callback)
+                 }
+                }, function(err,results) {
+                   console.log("@@@ $ in CTA.findById for create client callback")
+                   if(err){
+                     console.log('@@@ $ error in clientcontroller ASYNC for country & region.find for populate _id');
+                     return  next(err);
+                   }
+                   if(results.countrytaxauthority==null){
+                     console.log("@@@ $ clientcontroller can't find countrytaxauthority");
+                     var err = new Error('CountryTaxAuthority not found');
+                     err.status = 404;
+                     return next(err);
+                   }
+                   if(results.regionalauthority==null){
+                     console.log("@@@ $ clientcontroller can't find regionalauthority");
+                     var err = new Error('RegionalAuthority not found');
+                     err.status = 404;
+                     return next(err);
+                   }
+                   var country_id = countrytaxauthority._id;
+                   var regional_id = regionalauthority._id;
+
+                 })//ends function(err,results) 2nd clause of ASYNC.PARALLEL
+
+                .then(()=> {
+                  // Create a Client object with escaped and trimmed data.
+                  var client = new Client(
                     {
                         license_string: rgrqcd, //2019-01-30 added
                         device_id: device_id,
@@ -305,7 +313,9 @@ exports.client_status_post = [
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         country: req.body.country,//2019-08-16
+                        country_id: country_id,//2019-09-10
                         tax_region: req.body.tax_region,
+                        region_id: regional_id,//2019-09-19
                         city_address: req.body.city_address,
                         email_address: req.body.email_address,
                         registration_date: now,
@@ -319,6 +329,7 @@ exports.client_status_post = [
                       //return next(err);
                       return;//2019-02-01 temporary???
                     } // go on to create clientrequest entry
+
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
 
                 var clientrequest = new ClientRequest (
@@ -347,9 +358,10 @@ exports.client_status_post = [
                     })
                  // Successful - redirect to new clientrecord.
                  res.redirect(client.url);//send to show client_detail
-                });
-            }
-        }
+               });//end client.save
+             })//ends .then clause
+          }//ends major else clause
+        }//ends initial (req,res,next) opening function
     ];
 
 
