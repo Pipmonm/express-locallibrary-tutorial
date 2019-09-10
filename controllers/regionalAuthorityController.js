@@ -112,7 +112,7 @@ exports.regionalauthority_create_post = [
     body('current_four_quarters_amount').isNumeric({no_symbols:false}),
     //body('previous_quarters_amounts').isArray(),
 
-    body('transaction_period_type').isIn(['week','month','year']),
+    body('transaction_period_type').isIn(['week','month','quarter','year']),
     body('for_period_index').isIn([0,1,2,3]),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
     body('attempted','# attempts').trim(),
@@ -333,7 +333,7 @@ exports.regionalauthority_update_get = function(req, res, next) {
       //body('last_three_quarters_array').isArray(),
       body('current_four_quarters_amount').isNumeric({no_symbols:false}),
       //body('previous_quarters_amounts').isArray(),
-      body('transaction_period_type').isIn(['week','month','year']),
+      body('transaction_period_type').isIn(['week','month','quarter','year']),
       body('for_period_index').isIn([0,1,2,3]),
       body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
 

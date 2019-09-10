@@ -13,12 +13,14 @@ var ClientSchema = Schema( //2019-01-30 many modifications
     status: {type: String, max : 40, default:'pending'},
     first_name: {type: String, default: 'first', max: 50}, //defaults added
     family_name: {type: String, default:'last', max: 50},
-    country: {type: String, max : 64},//2019-08-16
-    tax_region: {type: String, max : 64},//2019=08-16
+    country: {type: String, max : 64,required:true},//2019-08-16
+    tax_region: {type: String, max : 64,required:true},//2019=08-16
     city_address: {type: String, default:'# street,city', max : 100},
+    postal_code: {type: String, required:true},
     email_address: {type: String, default: 'xyz@abc.mno', max: 100},
     registration_date: {type: Date},
-    license_key: {type: String, max: 30, default:""}
+    license_key: {type: String, max: 30, default:""},
+    test_code: {type:String,max:100,default:"0"}
 
   }
 );

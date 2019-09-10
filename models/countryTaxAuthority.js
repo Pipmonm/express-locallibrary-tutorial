@@ -21,7 +21,7 @@ var CountryTaxAuthoritySchema = new Schema(
     last_three_quarters_array: [{type: Number, required:true, default:[0,0,0]}],//for tracking last four quarters (for sales taxes limit)
     current_four_quarters_amount: {type: Number, required:true, default:0},//keep tally of last four quarters
     previous_quarters_amounts: [{type: Number, required: true, default:[0,0]}],//keep records
-    transaction_period_type: {type: String, required:false},//restart per month,year???
+    transaction_period_type: {type: String, required:true,default:"quarter"},//restart per month,year???
     for_period_index: {type: Number, required:true, default:0},//to simplify quaters cycling
     transaction_date: {type: Date, default: Date.now},
     attempted: {type:Number, required:false, default:0} //keep track of rejected requests

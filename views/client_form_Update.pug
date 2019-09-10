@@ -31,12 +31,18 @@ block content
       input#tax_region.form-control(type='text', placeholder='Prov/State/Territory(required)', name= 'tax_region', required=true, value=client.tax_region)
       label(for='city_address') City Address:
       input#city_address.form-control(type='text', placeholder='#, street, city ', name= 'city_address', required=false, value=client.city_address)
+      label(for='postal_code') Postal Code:
+      input#postal_code.form-control(type='text', placeholder='postal code/zip code',name='postal_code', required=true)
     div.form-group
       label(for='email_address') Your Email:
       input#email_address.form-control(type='text', placeholder='usrnm@xxx.yyy (optional but recommended)', name='email_address', required=false, value=client.email_address)
     div.form-group
       label(for='license_string') Clipboard contents from application's REGISTRATION DATA tab:
       input#license_string.form-control(type='text', placeholder='Registration Data (required)', name='license_string', required=true, value=(undefined===client ? '' : client.license_string) )
+
+    div.form-group
+      label(for='test_code') Test Code:
+      input#test_code.form-control(type = 'text', placeholder= ' "0"= no tests, "1,yyyy/mm/dd"= date cycling tests', required=false, value=(undefined===client ? '' : client.test_code) )
 
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
   if errors
