@@ -25,7 +25,7 @@ block content
       label(for='fed_rate') Federal Rate (GST)
       input#fed_rate.form-control(type='decimal',placeholder='0.05 (not 5%) 0.0 for zero', name= 'fed_rate', required=true, value=regionalauthority.fed_rate)
       label(for='fed_rate_active') Fed Rate Active?
-      input#fed_rate_active.form-control(type='boolean',placholder='true/false',name= 'fed_rate_active,required=false, value=fed_rate_activeProxy)
+      input#fed_rate_active.form-control(type='boolean',placholder='true/false',name= 'fed_rate_active',required=false, value=fed_rate_activeProxy)
       label(for='reg_rate') Regional Rate (PST,QST,..)
       input#reg_rate.form-control(type='decimal', placeholder='0.xx (decimal not %); 0.0 for zero', name='reg_rate', required=true, value=regionalauthority.reg_rate)
     div.form-group
