@@ -1,8 +1,8 @@
 //clientrequest instance controller js
 var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
-var CountryTaxAuthority = required('../models/countryTaxAuthority');//2019-09-10
-var RegionalAuthority = required('../models/regionalAuthority');
+var CountryTaxAuthority = require('../models/countryTaxAuthority');//2019-09-10
+var RegionalAuthority = require('../models/regionalAuthority');
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
