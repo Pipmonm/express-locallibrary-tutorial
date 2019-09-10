@@ -410,9 +410,10 @@ exports.regionalauthority_update_get = function(req, res, next) {
                     }
                        //else Successful - redirect to new record.
                        res.redirect(theregionalauthority.url);
-                    });//closes findbyidandupdate
+                       console.log('@@@ $ updating regionalauthority document successful!');
+                    })//closes findbyidandupdate
 
-                    .then(function(theregionalauthority){
+                  .then(function(theregionalauthority){
                       console.log("@@@ $ last 3 1/4's REGIONAL array final: ",l_t_q_a_Array);
                       let arraySize = l_t_q_a_Array.length;
                       //console.log("@@@ $ and theregionalsauthority= ",theregionalauthority);
