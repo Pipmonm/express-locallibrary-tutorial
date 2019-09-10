@@ -79,8 +79,7 @@ exports.regionalauthority_detail = function(req, res, next) {
                                                  regionalauthority:  regionalauthority,
                                                  threeQ: threeQ,
                                                  pyaProxy: pyaProxy,
-                                                 pqaProxy: pqaProxy
-                                                              });
+                                                 pqaProxy: pqaProxy});
       })
 
   };
@@ -107,6 +106,12 @@ exports.regionalauthority_create_post = [
     body('current_count').isNumeric({no_symbols:true}),
     body('amount_limit').isNumeric({no_symbols: true}),
     body('current_year_amount').isNumeric({no_symbols: true}),
+    //body('previous_years_amounts').isArray(),
+    body('current_quarter_amount').isNumeric({no_symbols: false}),
+    //body('last_three_quarters_array').isArray(),
+    body('current_four_quarters_amount').isNumeric({no_symbols:false}),
+    //body('previous_quarters_amounts').isArray(),
+
     body('transaction_period_type').isIn(['week','month','year']),
     body('for_period_index').isIn([0,1,2,3]),
     body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
@@ -123,6 +128,11 @@ exports.regionalauthority_create_post = [
     sanitizeBody('current_count').trim().escape(),
     sanitizeBody('amount_limit').trim().escape(),
     sanitizeBody("current_year_amount").trim().escape(),
+    sanitizeBody('target_previous_years_amounts').trim().escape(),
+    sanitizeBody('current_quarter_amount').trim().escape(),
+    sanitizeBody('target_last_three_quarters_array').trim().escape(),
+    sanitizeBody('current_four_quarters_amount').trim().escape(),
+    sanitizeBody('previous_quarters_amounts').trim().escape(),
     sanitizeBody('transaction_period_type').trim().escape(),
     sanitizeBody('for_period_index').trim().escape(),
     sanitizeBody('attempted').trim().escape(),
@@ -181,6 +191,11 @@ exports.regionalauthority_create_post = [
             current_count: req.body.current_count,
             amount_limit: req.body.amount_limit,
             current_year_amount: req.body.current_year_amount,
+            previous_years_amounts:req.body.previous_years_amounts,
+            current_quarter_amount:req.body.current_quarter_amount,
+            last_three_quarters_array:req.body.last_three_quarters_array,
+            current_four_quarters_amount:req.body.current_four_quarters_amount,
+            previous_quarters_amounts:req.body.previous_quarters_amounts,
             transaction_period_type: req.body.transaction_period_type,
             for_transaction_period: req.body.for_transaction_period,
             attempted: req.body.attempted
@@ -313,6 +328,11 @@ exports.regionalauthority_update_get = function(req, res, next) {
       body('current_count').isNumeric({no_symbols:true}),
       body('amount_limit').isNumeric({no_symbols: true}),
       body('current_year_amount').isNumeric({no_symbols: true}),
+      //body('previous_years_amounts').isArray(),
+      body('current_quarter_amount').isNumeric({no_symbols: false}),
+      //body('last_three_quarters_array').isArray(),
+      body('current_four_quarters_amount').isNumeric({no_symbols:false}),
+      //body('previous_quarters_amounts').isArray(),
       body('transaction_period_type').isIn(['week','month','year']),
       body('for_period_index').isIn([0,1,2,3]),
       body('date_entered', 'Invalid date').optional({ checkFalsy: true }).isISO8601(),  //need to integrate isBefore(str [, date])
@@ -327,6 +347,12 @@ exports.regionalauthority_update_get = function(req, res, next) {
       sanitizeBody('transaction_limit').trim().escape(),
       sanitizeBody('current_count').trim().escape(),
       sanitizeBody('amount_limit').trim().escape(),
+      sanitizeBody('current_year_amount').trim().escape(),
+      sanitizeBody('target_previous_years_amounts').trim().escape(),
+      sanitizeBody('current_quarter_amount').trim().escape(),
+      sanitizeBody('target_last_three_quarters_array').trim().escape(),
+      sanitizeBody('current_four_quarters_amount').trim().escape(),
+      sanitizeBody('previous_quarters_amounts').trim().escape(),
       sanitizeBody("current_year_amount").trim().escape(),
       sanitizeBody('transaction_period_type').trim().escape(),
       sanitizeBody('for_period_index').trim().escape(),
