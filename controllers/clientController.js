@@ -254,6 +254,8 @@ exports.client_status_post = [
                 // Data from form is valid.
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
+                var target_country = req.body.country;
+                var target_region_code = req.body.tax_region;
                 var rgrqcd = req.body.license_string;
                 console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
                 var arrayFCode = [];
