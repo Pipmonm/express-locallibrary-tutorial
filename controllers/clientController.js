@@ -302,9 +302,7 @@ exports.client_status_post = [
                    var country_id = countrytaxauthority._id;
                    var regional_id = regionalauthority._id;
 
-                 })//ends function(err,results) 2nd clause of ASYNC.PARALLEL
-
-                .then(()=> {
+                 }).then(()=> {
                   // Create a Client object with escaped and trimmed data.
                   var client = new Client(
                     {
