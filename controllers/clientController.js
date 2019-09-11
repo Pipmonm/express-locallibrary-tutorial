@@ -324,9 +324,9 @@ exports.client_status_post = [
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         country: req.body.country,//2019-08-16
-                        country_id: country_id,//2019-09-10
+                        country_id: results.countrytaxauthority._id, // country_id,//2019-09-10
                         tax_region: req.body.tax_region,
-                        region_id: regional_id,//2019-09-19
+                        region_id: results.regionalauthority._id,//regional_id,//2019-09-19
                         city_address: req.body.city_address,
                         postal_code: req.body.postal_code,
                         email_address: req.body.email_address,
