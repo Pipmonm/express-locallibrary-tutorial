@@ -170,18 +170,18 @@ exports.client_status_post = [
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
                   .populate('country_id')//2019-09-11  should insert country data here
                   .exec(callback)
-            },
-            clients_requests: function(callback) {
-              ClientRequest .find({ 'client':id}) // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
-              .exec(callback)
-            } //,
+            }
+            //clients_requests: function(callback) {
+            //  ClientRequest .find({ 'client':id}) // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+            //  .exec(callback)
+            //} //,
             //clients_transactions: function(callback){
               //ClientClientRequest  .find({ 'client': id},'status')
               //.exec(callback)
             //}
         }, function(err, results) {
             if (err) {
-          console.log('@@@ $ error in clientcontroller ASYNC');
+          console.log('@@@ $ error in clientcontroller ASYNC>', err);
               return next(err); } // Error in API usage.
             if (results.client==null) { // No results.
             console.log("@@@ $ clientcontroller can't find client");
@@ -192,7 +192,7 @@ exports.client_status_post = [
             console.log("@@@ $ should see country name via populate: ",results.client.country_id.country_code);
             // Successful, so render.
             console.log('@@@ $ rendering client detail for client: ',results.client);
-            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
+            res.render('client_detail', { title: 'Client Detail', client: results.client});// was with>>> , client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
         });
 
     };
