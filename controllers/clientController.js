@@ -304,8 +304,8 @@ exports.client_status_post = [
 
                  })
 
-               }//try ending req,res,next here
-               .then(()=> {
+
+               //.then(()=> {
                   // Create a Client object with escaped and trimmed data.
                   var client = new Client(
                     {
@@ -364,9 +364,9 @@ exports.client_status_post = [
                  // Successful - redirect to new clientrecord.
                  res.redirect(client.url);//send to show client_detail
                });//end client.save
-             })//ends .then clause
+             //})//ends .then clause
           }//ends major else clause
-        //}//ends initial (req,res,next) opening function
+        }//ends initial (req,res,next) opening function
     ];
 
 
