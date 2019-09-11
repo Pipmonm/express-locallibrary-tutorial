@@ -303,6 +303,7 @@ exports.client_status_post = [
                    }
                    var country_id = results.countrytaxauthority._id;
                    var regional_id = results.regionalauthority._id;
+                   console.log("@@@ $ country_id: ",country_id,"  region: ",regional_id);
 
                  //}) was here
 
