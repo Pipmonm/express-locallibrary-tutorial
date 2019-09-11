@@ -373,7 +373,7 @@ exports.client_status_post = [
                  // Successful - redirect to new clientrecord.
               res.redirect(client.url);//send to show client_detail
                //});//end client.save
-             };//ends callback (function (err,results...))
+             });//ends callback (function (err,results...))
           }//ends major else clause
         }//ends initial (req,res,next) opening function
     ];
