@@ -226,6 +226,7 @@ exports.client_status_post = [
         body('country').isLength({min: 1}).trim().withMessage('Please fill in Country of Residence.'),//2019-08-16
         body('tax_region').isLength({min: 1}).trim().withMessage('Enter Pov. or Territory or State'),
         body('city_address').isLength({min: 1}).trim().withMessage('Fill in "#, street, city"'),
+        body('postal_code').isLength({min:1}).trim().withMessage('Postal Code (ZipCode) required'),
         body('email_address').isEmail().trim().withMessage('your email address'),
         body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
@@ -235,6 +236,7 @@ exports.client_status_post = [
         sanitizeBody('country').trim().escape(),//2019-08-16
         sanitizeBody('tax_region').trim().escape(),
         sanitizeBody('city_address').trim().escape(),
+        sanitizeBody('postal_code').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
         sanitizeBody('license_string').trim().escape(),
 
@@ -322,6 +324,7 @@ exports.client_status_post = [
                         tax_region: req.body.tax_region,
                         region_id: regional_id,//2019-09-19
                         city_address: req.body.city_address,
+                        postal_code: req.body.postal_code,
                         email_address: req.body.email_address,
                         registration_date: now,
                     });
@@ -498,6 +501,7 @@ exports.client_status_post = [
              body('country', 'specify country name').trim(),
              body('tax_region','specify Prov./Territory/State').trim(),
              body('city_address','enter: #, street, city').trim(),
+             body('postal_code','Postal Code (ZipCode) required').trim(),
              body('email_address').isEmail().trim().withMessage('your email address'),
              body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
              // Sanitize fields.
@@ -507,6 +511,7 @@ exports.client_status_post = [
              sanitizeBody('country').trim().escape(),//2019-08-16
              sanitizeBody('tax_region').trim().escape(),
              sanitizeBody('city_address').trim().escape(),
+             sanitizeBody('postal_code').trim().escape(),
              sanitizeBody('registration_date').trim().escape(),
              sanitizeBody('license_string').trim().escape(),
 
