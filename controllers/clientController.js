@@ -189,7 +189,7 @@ exports.client_status_post = [
                 return next(err);
             }
             // Successful, so render.
-            console.log('@@@ $ rendering client detail');
+            console.log('@@@ $ rendering client detail for client: ',results.client);
             res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
         });
 
@@ -307,7 +307,7 @@ exports.client_status_post = [
                    var regional_id = results.regionalauthority._id;
                    console.log("@@@ $ countrytaxauthority: ",results.countrytaxauthority);
                    console.log("@@@ $ regionalauthority: ",results.regionalauthority);
-
+                   console.log("@@@ $ country_id: ",country_id,"  regional_id: ",regional_id);
                  //}) was here
 
 
