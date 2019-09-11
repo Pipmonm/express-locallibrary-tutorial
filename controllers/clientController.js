@@ -168,6 +168,7 @@ exports.client_status_post = [
         async.parallel({
             client: function(callback) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
+                  .populate('country_id')//2019-09-11  should insert country data here
                   .exec(callback)
             },
             clients_requests: function(callback) {
@@ -188,6 +189,7 @@ exports.client_status_post = [
                 err.status = 404;
                 return next(err);
             }
+            console.log("@@@ $ should see country name via populate: ",results.client.country_id.country_code);
             // Successful, so render.
             console.log('@@@ $ rendering client detail for client: ',results.client);
             res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
@@ -344,34 +346,34 @@ exports.client_status_post = [
 
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
 
-                var clientrequest = new ClientRequest (
-                   {
+                //var clientrequest = new ClientRequest (
+                  // {
                      //license_string: rgrqcd, //2019-01-30 added complete string to allow multiple modules on same computer (& versions)
-                     appname:device_type,
-                     client:client._id,   //client._id,
-                     formatCode:format_code,
-                     moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
-                     status:"pending"
-                  });
+                  //   appname:device_type,
+                  //   client:client._id,   //client._id,
+                  //   formatCode:format_code,
+                  //   moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
+                  //   status:"pending"
+              //    });
 
-                  console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
+              //    console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
                   //Statii available are:  ['pending','validated','canceled','invalid']
                   //these values have already been checked and sanitized so commit right away
-                  clientrequest.save(function (err) {
-                     if (err) {
-                       console.log('@@@ $ an error in clientrequest save: ' + err);
-                       errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
-                                  "If error persists contact us stating exact error message given below.";
-                       errMsg2 = "error: " + err;
-                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});                       //return next(err);
-                       return;//2019-02-01 maybe getting rid of moding headers after they were sent error
-                     }
-                     console.log('@@@ $ clientrequest save OK');
-                    })
+            //      clientrequest.save(function (err) {
+              //       if (err) {
+                //       console.log('@@@ $ an error in clientrequest save: ' + err);
+                //       errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
+                //                  "If error persists contact us stating exact error message given below.";
+                //       errMsg2 = "error: " + err;
+                //       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});                       //return next(err);
+                //       return;//2019-02-01 maybe getting rid of moding headers after they were sent error
+                //     }
+                //     console.log('@@@ $ clientrequest save OK');
+              })//ends client save
                  // Successful - redirect to new clientrecord.
-                 res.redirect(client.url);//send to show client_detail
-               });//end client.save
-             });//ends callback (function (err,results...))
+              res.redirect(client.url);//send to show client_detail
+               //});//end client.save
+             };//ends callback (function (err,results...))
           }//ends major else clause
         }//ends initial (req,res,next) opening function
     ];
