@@ -302,7 +302,7 @@ exports.client_status_post = [
                    var country_id = countrytaxauthority._id;
                    var regional_id = regionalauthority._id;
 
-                 })
+                 //}) was here
 
 
                //.then(()=> {
@@ -364,7 +364,7 @@ exports.client_status_post = [
                  // Successful - redirect to new clientrecord.
                  res.redirect(client.url);//send to show client_detail
                });//end client.save
-             //})//ends .then clause
+             });//ends callback (function (err,results...))
           }//ends major else clause
         }//ends initial (req,res,next) opening function
     ];
