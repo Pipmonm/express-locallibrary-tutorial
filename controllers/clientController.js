@@ -302,7 +302,10 @@ exports.client_status_post = [
                    var country_id = countrytaxauthority._id;
                    var regional_id = regionalauthority._id;
 
-                 }).then(()=> {
+                 })
+
+               }//try ending req,res,next here
+               .then(()=> {
                   // Create a Client object with escaped and trimmed data.
                   var client = new Client(
                     {
@@ -363,7 +366,7 @@ exports.client_status_post = [
                });//end client.save
              })//ends .then clause
           }//ends major else clause
-        }//ends initial (req,res,next) opening function
+        //}//ends initial (req,res,next) opening function
     ];
 
 
