@@ -299,8 +299,8 @@ exports.client_status_post = [
                      err.status = 404;
                      return next(err);
                    }
-                   var country_id = countrytaxauthority._id;
-                   var regional_id = regionalauthority._id;
+                   var country_id = results.countrytaxauthority._id;
+                   var regional_id = results.regionalauthority._id;
 
                  //}) was here
 
