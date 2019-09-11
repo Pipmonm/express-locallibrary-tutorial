@@ -257,13 +257,15 @@ exports.client_status_post = [
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
                 var target_country = req.body.country;
+                console.log("@@@ $ target_country: ",target_country);
                 var target_region_code = req.body.tax_region;
+                console.log("@@@ $ target_region_code: ",target_region_code);
                 var rgrqcd = req.body.license_string;
-                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                //console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
                 var arrayFCode = [];
                 arrayFCode = rgrqcd.split(":");
-                console.log('@@@ $ arrayFCode follows');
-                console.log(arrayFCode);
+                //console.log('@@@ $ arrayFCode follows');
+                //console.log(arrayFCode);
                 //var appname = arrayFCode[2]; //name part USB or CPU
                 var device_type = arrayFCode[2];
                 var device_id = arrayFCode[0];
@@ -303,7 +305,8 @@ exports.client_status_post = [
                    }
                    var country_id = results.countrytaxauthority._id;
                    var regional_id = results.regionalauthority._id;
-                   console.log("@@@ $ country_id: ",country_id,"  region: ",regional_id);
+                   console.log("@@@ $ countrytaxauthority: ",results.countrytaxauthority);
+                   console.log("@@@ $ regionalauthority: ",results.regionalauthority);
 
                  //}) was here
 
