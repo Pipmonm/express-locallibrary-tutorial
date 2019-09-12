@@ -307,8 +307,8 @@ exports.client_status_post = [
                      err.status = 404;
                      return next(err);
                    }
-                   var country_id = results.countrytaxauthority._id.toString();
-                   var regional_id = results.regionalauthority._id.toString();
+                   var country_id = results.countrytaxauthority._id;
+                   var regional_id = results.regionalauthority._id;
                    console.log("@@@ $ countrytaxauthority: ",results.countrytaxauthority);
                    console.log("@@@ $ regionalauthority: ",results.regionalauthority);
                    console.log("@@@ $ country_id: ",country_id,"  regional_id: ",regional_id);
@@ -319,6 +319,7 @@ exports.client_status_post = [
                   // Create a Client object with escaped and trimmed data.
                   var client = new Client(
                     {
+                        _id: mongoose.Schema.Types.ObjectId,
                         license_string: rgrqcd, //2019-01-30 added
                         device_id: device_id,
                         device_type: device_type,
