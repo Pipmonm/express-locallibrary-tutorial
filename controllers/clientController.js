@@ -169,7 +169,7 @@ exports.client_status_post = [
             client: function(callback) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
                  //model: Customer.findOne({}).populate({ path: 'created_by', model: User })
-                  .populate({path:'country_id', model: CountryTaxAuthority)//2019-09-11  should insert country data here
+                  .populate({path:'country_id', model: CountryTaxAuthority})//2019-09-11  should insert country data here
                   .exec(callback)
             }
             //clients_requests: function(callback) {
