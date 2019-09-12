@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var CountryTaxAuthoritySchema = new Schema(
 
-  {n
+  {
     _id: new mongoose.Types.ObjectId(),
     country_name: {type: String, required: true },
     country_code: { type: String, required: true }, //federal tax authority

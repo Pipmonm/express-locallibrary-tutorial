@@ -1,5 +1,5 @@
 //clientrequest instance controller js
-var Client = require('../models/client');
+var Client = require('../models/client');//as per js filenames in folder 'models'
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
 var CountryTaxAuthority = require('../models/countryTaxAuthority');//2019-09-10
 var RegionalAuthority = require('../models/regionalAuthority');
