@@ -168,7 +168,8 @@ exports.client_status_post = [
         async.parallel({
             client: function(callback) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
-                  .populate('country_id')//2019-09-11  should insert country data here
+                 //model: Customer.findOne({}).populate({ path: 'created_by', model: User })
+                  .populate({path:'country_id', model: CountryTaxAuthority)//2019-09-11  should insert country data here
                   .exec(callback)
             }
             //clients_requests: function(callback) {
