@@ -290,7 +290,7 @@ exports.client_status_post = [
                   RegionalAuthority.find({'region_code':target_region_code}).exec(callback)
                  }
                 }, function(err,results) {
-                   console.log("@@@ $ in CTA.findById for create client callback")
+                   console.log("@@@ $ in CTA.find in create client async callback")
                    if(err){
                      console.log('@@@ $ error in clientcontroller ASYNC for country & region.find for populate _id');
                      return  next(err);
@@ -307,8 +307,8 @@ exports.client_status_post = [
                      err.status = 404;
                      return next(err);
                    }
-                   var country_id = results.countrytaxauthority._id;
-                   var regional_id = results.regionalauthority._id;
+                   var country_id = results.countrytaxauthority._id.toString();
+                   var regional_id = results.regionalauthority._id.toString();
                    console.log("@@@ $ countrytaxauthority: ",results.countrytaxauthority);
                    console.log("@@@ $ regionalauthority: ",results.regionalauthority);
                    console.log("@@@ $ country_id: ",country_id,"  regional_id: ",regional_id);
