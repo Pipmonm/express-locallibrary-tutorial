@@ -208,6 +208,10 @@ exports.client_status_post = [
                          'QC',
                          'SK',
                          'YT'];
+    var countryOptions = ['Canada',
+                          'United States',
+                          'Other'];
+
     res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
   };
 
