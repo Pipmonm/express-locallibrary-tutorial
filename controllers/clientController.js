@@ -190,7 +190,8 @@ exports.client_status_post = [
                 err.status = 404;
                 return next(err);
             }
-            console.log("@@@ $ should see country name via populate: ",results.client.country_id.country_code);
+            console.log("@@@ $ should see country via populate: ",results.client.country_id
+          );
             // Successful, so render.
             console.log('@@@ $ rendering client detail for client: ',results.client);
             res.render('client_detail', { title: 'Client Detail', client: results.client});// was with>>> , client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
