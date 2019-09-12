@@ -212,7 +212,7 @@ exports.client_status_post = [
                           'United States',
                           'Other'];
 
-    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
+    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions, countryOptions:countryOptions});
   };
 
   // Handle Client create on POST.
