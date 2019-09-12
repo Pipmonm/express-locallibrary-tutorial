@@ -1,6 +1,8 @@
 //clientrequest instance controller js
-var Client = require('../models/client');
+var Client = require('../models/client');//as per js filenames in folder 'models'
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+var CountryTaxAuthority = require('../models/countryTaxAuthority');//2019-09-10
+var RegionalAuthority = require('../models/regionalAuthority');
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -166,19 +168,21 @@ exports.client_status_post = [
         async.parallel({
             client: function(callback) {
                 Client.findById(id)   //  was  req.params.id  // added  :MOD: 2018-03-08 9:45 AM
+                 //model: Customer.findOne({}).populate({ path: 'created_by', model: User })
+                  .populate({path:'country_id', model: CountryTaxAuthority})//2019-09-11  should insert country data here
                   .exec(callback)
-            },
-            clients_requests: function(callback) {
-              ClientRequest .find({ 'client':id}) // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
-              .exec(callback)
-            } //,
+            }
+            //clients_requests: function(callback) {
+            //  ClientRequest .find({ 'client':id}) // was required.params.id   // added  :MOD: 2018-03-08 9:45 AM
+            //  .exec(callback)
+            //} //,
             //clients_transactions: function(callback){
               //ClientClientRequest  .find({ 'client': id},'status')
               //.exec(callback)
             //}
         }, function(err, results) {
             if (err) {
-          console.log('@@@ $ error in clientcontroller ASYNC');
+          console.log('@@@ $ error in clientcontroller ASYNC>', err);
               return next(err); } // Error in API usage.
             if (results.client==null) { // No results.
             console.log("@@@ $ clientcontroller can't find client");
@@ -186,9 +190,11 @@ exports.client_status_post = [
                 err.status = 404;
                 return next(err);
             }
+            console.log("@@@ $ should see country via populate: ",results.client.country_id
+          );
             // Successful, so render.
-            console.log('@@@ $ rendering client detail');
-            res.render('client_detail', { title: 'Client Detail', client: results.client, client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
+            console.log('@@@ $ rendering client detail for client: ',results.client);
+            res.render('client_detail', { title: 'Client Detail', client: results.client});// was with>>> , client_requests: results.clients_requests}); //, client_transactions: results.clients_transactions } );
         });
 
     };
@@ -208,7 +214,12 @@ exports.client_status_post = [
                          'QC',
                          'SK',
                          'YT'];
-    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
+
+    var countryOptions = ['Canada',
+                          'United States',
+                          'Other'];
+
+    res.render('client_formTAX', { title: 'Register Form',countryOptions:countryOptions, canadaRegions:canadaRegions});
   };
 
   // Handle Client create on POST.
@@ -219,6 +230,7 @@ exports.client_status_post = [
         body('country').isLength({min: 1}).trim().withMessage('Please fill in Country of Residence.'),//2019-08-16
         body('tax_region').isLength({min: 1}).trim().withMessage('Enter Pov. or Territory or State'),
         body('city_address').isLength({min: 1}).trim().withMessage('Fill in "#, street, city"'),
+        body('postal_code').isLength({min:1}).trim().withMessage('Postal Code (ZipCode) required'),
         body('email_address').isEmail().trim().withMessage('your email address'),
         body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
@@ -228,6 +240,7 @@ exports.client_status_post = [
         sanitizeBody('country').trim().escape(),//2019-08-16
         sanitizeBody('tax_region').trim().escape(),
         sanitizeBody('city_address').trim().escape(),
+        sanitizeBody('postal_code').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
         sanitizeBody('license_string').trim().escape(),
 
@@ -247,12 +260,16 @@ exports.client_status_post = [
                 // Data from form is valid.
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
+                var target_country = req.body.country;
+                console.log("@@@ $ target_country: ",target_country);
+                var target_region_code = req.body.tax_region;
+                console.log("@@@ $ target_region_code: ",target_region_code);
                 var rgrqcd = req.body.license_string;
-                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                //console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
                 var arrayFCode = [];
                 arrayFCode = rgrqcd.split(":");
-                console.log('@@@ $ arrayFCode follows');
-                console.log(arrayFCode);
+                //console.log('@@@ $ arrayFCode follows');
+                //console.log(arrayFCode);
                 //var appname = arrayFCode[2]; //name part USB or CPU
                 var device_type = arrayFCode[2];
                 var device_id = arrayFCode[0];
@@ -261,41 +278,48 @@ exports.client_status_post = [
                 var errMsg = "unspecified error";//2019-02-01 added
                 var errMsg2 = "error:  unknown"; //ibid ^
                 //added line to force recompition
-/*
-        UserModel.find({ nick: act.params }, function (err, users) {
-          if (err) { console.log(err) };
-          if (!users.length) { //do stuff here };
-          else {
-            users.forEach(function (user) {
-              console.log(user.nick);
-            });
-          }
-        });
-*/
-                //check that not already exists //2019-01-30 added new view == errorMsg  also check changed
-/*  does not work and new way to be found for checking duplicates
-                Client.find({license_string: "rgrqcd"}, function (err, result){           //2019-02-01 complete redo
-                    if(err){console.log("@@@ $ error finding license_string in create client " + err)}
-                    if(!result.length) {
-                        console.log("@@@ $ System Id string  already registered");
-                        var errMsg = "This System Id string is already in use" + "<br />" +
-                        "Try instead to log into 'Account View' with it";
-                        // There are errors. Render form again with sanitized values/errors messages.
-                        //added comment to fix see no change error
-                        res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for Id string: ',  message3:rgrqcd });
-                        return;
-                        //above sequence depends on 'res' being in scope from post handler that includes it
-                    };
-                });//2019-02-01  end duplicate check
-*/
 
-                //var stringId = client._id.toString();
-                //console.log('stringId: ' + stringId + '  of type: ' + typeof stringId);
-                //get date
                 const now = Date();
-                // Create a Client object with escaped and trimmed data.
-                var client = new Client(
+                //find country_id and region_id from country_name and region_name, insert as countr_id & region_id variables
+
+                async.parallel({
+                 countrytaxauthority: function(callback){
+                  CountryTaxAuthority.find({'country_name':target_country}).exec(callback)
+                 },
+                 regionalauthority: function(callback){
+                  RegionalAuthority.find({'region_code':target_region_code}).exec(callback)
+                 }
+                }, function(err,results) {
+                   console.log("@@@ $ in CTA.find in create client async callback")
+                   if(err){
+                     console.log('@@@ $ error in clientcontroller ASYNC for country & region.find for populate _id');
+                     return  next(err);
+                   }
+                   if(results.countrytaxauthority==null){
+                     console.log("@@@ $ clientcontroller can't find countrytaxauthority");
+                     var err = new Error('CountryTaxAuthority not found');
+                     err.status = 404;
+                     return next(err);
+                   }
+                   if(results.regionalauthority==null){
+                     console.log("@@@ $ clientcontroller can't find regionalauthority");
+                     var err = new Error('RegionalAuthority not found');
+                     err.status = 404;
+                     return next(err);
+                   }
+                   var country_id = results.countrytaxauthority._id;
+                   var regional_id = results.regionalauthority._id;
+                   console.log("@@@ $ countrytaxauthority: ",results.countrytaxauthority);
+                   console.log("@@@ $ regionalauthority: ",results.regionalauthority);
+                   console.log("@@@ $ country_id: ",country_id,"  regional_id: ",regional_id);
+                 //}) was here
+
+
+               //.then(()=> {
+                  // Create a Client object with escaped and trimmed data.
+                  var client = new Client(
                     {
+                        _id: mongoose.Schema.Types.ObjectId,
                         license_string: rgrqcd, //2019-01-30 added
                         device_id: device_id,
                         device_type: device_type,
@@ -305,8 +329,11 @@ exports.client_status_post = [
                         first_name: req.body.first_name,
                         family_name: req.body.family_name,
                         country: req.body.country,//2019-08-16
+                        //country_id: results.countrytaxauthority._id, // country_id,//2019-09-10
                         tax_region: req.body.tax_region,
+                        //region_id: results.regionalauthority._id,//regional_id,//2019-09-19
                         city_address: req.body.city_address,
+                        postal_code: req.body.postal_code,
                         email_address: req.body.email_address,
                         registration_date: now,
                     });
@@ -319,37 +346,39 @@ exports.client_status_post = [
                       //return next(err);
                       return;//2019-02-01 temporary???
                     } // go on to create clientrequest entry
+
                 console.log('@@@ $ CREATE client & clientrequest successful redirect to client URL: ' + client.url);
 
-                var clientrequest = new ClientRequest (
-                   {
+                //var clientrequest = new ClientRequest (
+                  // {
                      //license_string: rgrqcd, //2019-01-30 added complete string to allow multiple modules on same computer (& versions)
-                     appname:device_type,
-                     client:client._id,   //client._id,
-                     formatCode:format_code,
-                     moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
-                     status:"pending"
-                  });
+                  //   appname:device_type,
+                  //   client:client._id,   //client._id,
+                  //   formatCode:format_code,
+                  //   moduleIdVrs: mod_Id_Vrs,//2019-01-30 added
+                  //   status:"pending"
+              //    });
 
-                  console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
+              //    console.log('@@@ ++ clientrequest.client is: ' + clientrequest.client);
                   //Statii available are:  ['pending','validated','canceled','invalid']
                   //these values have already been checked and sanitized so commit right away
-                  clientrequest.save(function (err) {
-                     if (err) {
-                       console.log('@@@ $ an error in clientrequest save: ' + err);
-                       errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
-                                  "If error persists contact us stating exact error message given below.";
-                       errMsg2 = "error: " + err;
-                       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});                       //return next(err);
-                       return;//2019-02-01 maybe getting rid of moding headers after they were sent error
-                     }
-                     console.log('@@@ $ clientrequest save OK');
-                    })
+            //      clientrequest.save(function (err) {
+              //       if (err) {
+                //       console.log('@@@ $ an error in clientrequest save: ' + err);
+                //       errMsg = "Unknown error, verify if this Id String is already used for 'View Account'" +"<br />" +
+                //                  "If error persists contact us stating exact error message given below.";
+                //       errMsg2 = "error: " + err;
+                //       res.render('errorMsg', { title: 'Registration Error', client: req.body, message:errMsg, message2:'for client create Id: ',  message3:rgrqcd, ExpressErr:errMsg2});                       //return next(err);
+                //       return;//2019-02-01 maybe getting rid of moding headers after they were sent error
+                //     }
+                //     console.log('@@@ $ clientrequest save OK');
+              })//ends client save
                  // Successful - redirect to new clientrecord.
-                 res.redirect(client.url);//send to show client_detail
-                });
-            }
-        }
+              res.redirect(client.url);//send to show client_detail
+               //});//end client.save
+             });//ends callback (function (err,results...))
+          }//ends major else clause
+        }//ends initial (req,res,next) opening function
     ];
 
 
@@ -481,6 +510,7 @@ exports.client_status_post = [
              body('country', 'specify country name').trim(),
              body('tax_region','specify Prov./Territory/State').trim(),
              body('city_address','enter: #, street, city').trim(),
+             body('postal_code','Postal Code (ZipCode) required').trim(),
              body('email_address').isEmail().trim().withMessage('your email address'),
              body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
              // Sanitize fields.
@@ -490,6 +520,7 @@ exports.client_status_post = [
              sanitizeBody('country').trim().escape(),//2019-08-16
              sanitizeBody('tax_region').trim().escape(),
              sanitizeBody('city_address').trim().escape(),
+             sanitizeBody('postal_code').trim().escape(),
              sanitizeBody('registration_date').trim().escape(),
              sanitizeBody('license_string').trim().escape(),
 
