@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var RegionalAuthoritySchema = new Schema(
 
   {
-    _id: new mongoose.mongo.ObjectId,
+    _id: new mongoose.mongo.ObjectId(),
     region_name: {type: String, required: true},
     region_code:  { type: String, required:true},
     country: {type: String, required:true}, // { type: Schema.ObjectId, ref: 'CountryTaxAuthority', required: true }, //reference to the federal authority
