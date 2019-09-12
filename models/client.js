@@ -14,8 +14,9 @@ var ClientSchema = Schema( //2019-01-30 many modifications
     first_name: {type: String, default: 'first', max: 50}, //defaults added
     family_name: {type: String, default:'last', max: 50},
     //country_id: { type: Schema.Types.ObjectId, ref: 'countrytaxauthority'},
-    country_id: { type: mongoose.Schema.Types.ObjectId, ref: 'CountryTaxAuthority'},
-    region_id: { type: mongoose.Schema.Types.ObjectId, ref: 'RegionalAuthority'},
+    //ex: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+    country_id: { type: mongoose.Schema.Types.ObjectId, ref: 'CountryTaxAuthority', required:true},
+    region_id: { type: mongoose.Schema.Types.ObjectId, ref: 'RegionalAuthority', required:true},
     country: {type: String, max : 64,required:true,default:"Unknown"},//2019-08-16
     tax_region: {type: String, max : 64,required:true,default:"Unknown"},//2019=08-16
     city_address: {type: String, default:'# street,city', max : 100},
