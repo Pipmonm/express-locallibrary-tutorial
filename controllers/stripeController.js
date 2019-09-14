@@ -103,7 +103,7 @@ function sumTotal(doc) {//for summing arrays
 }
 
 function cycleQuarters(doc){
-  console.log("@@@ $ cyclingQuarterPeriod for target_country",target_country);
+  console.log("@@@ $ cyclingQuarterPeriod for target_object",target_object);
   let target_year = doc[0].transaction_date.getYear();
   let target_index = doc[0].for_period_index;
 
@@ -246,6 +246,7 @@ exports.stripePost = (req, res) => {//open 1
   let chargeObject;//2019-06-03  make returned object available throughout chain processing
   var target_country;
   var target_region;
+  var target_object;
   let allowed = true;
   let target_transaction_limit;
   let target_current_count;
@@ -348,6 +349,7 @@ exports.stripePost = (req, res) => {//open 1
        //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
        //first check if changes in fiscal quarter or year
        target_period_index = doc[0].for_period_index;
+       target_object = target_country;//ensure cycling country document values
        if(this_transaction_period_index != target_period_index)cycleQuarters(doc);
          //take care of year change in here too
          //will result in many doc[0] items being modified
@@ -426,6 +428,17 @@ exports.stripePost = (req, res) => {//open 1
        //console.log("@@@ $ transaction_limit is: ",doc[0].transaction_limit);
        console.log("@@@ $ current_year_amount is: ", doc[0].current_year_amount);
        //console.log("@@@ $ doc >>: " + "type: ", typeof doc,"<br/>",doc);
+       //first check if changes in fiscal quarter or year
+       target_period_index = doc[0].for_period_index;
+       target_object = target_region;//ensure cycling region document values
+       if(this_transaction_period_index != target_period_index)cycleQuarters(doc);
+         //take care of year change in here too
+         //will result in many doc[0] items being modified
+         //make sure to recalculate (& mod target for it) four_quarters_amount
+         //also on year change we update items "first, second, etc... for year"
+         //and we reset current_count & current_year_amount to zero (keep record???)
+
+
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
        target_transaction_limit = doc[0].transaction_limit;
        target_current_count = doc[0].current_count + 1;//update count FOR YEARLY TOTAL
