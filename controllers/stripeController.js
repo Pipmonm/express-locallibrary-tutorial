@@ -47,11 +47,13 @@ function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is 
   }else if(month<=8){
     quarter = 2;
   }else{quarter = 3;}
+  console.log("@@@ $  'current quarter' is: ",quarter);
   return quarter;
 }
 
 
 function updateYear(doc){
+  console.log("@@@ $ updating year now.");
   let innerDoc = doc;
   first.year += 1;//new fiscal dates for upcoming year
   second.year += 1;
@@ -76,6 +78,7 @@ function updateYear(doc){
 }
 
 function updateQuarter(doc){
+  console.log("@@@ $ updating quarter now");
   let doc2 = doc;
   let temp = [];
   let temp2 = [];
@@ -99,6 +102,7 @@ function sumTotal(doc) {//for summing arrays
   let total = 0;
   let size = innerDoc[0].last_three_quarters_array.length; //don't need current quarter (= 0 for sure)
   for(var k=0;k<size;k++)total += innerDoc[0].last_three_quarters_array[k];
+  console.log("@@@ $ new sum total= ",total);
   return total;
 }
 
