@@ -314,7 +314,7 @@ exports.stripePost = (req, res) => {//open 1
 
       if(err){ //open 4
         console.log("@@@ $ err in Client.find license_string" + err);
-        return  next(err);
+        return  next(err);//HERE MUST FIND OUT HOW TO CANCEL CHARGE & NOTIFY CUSTOMER
       } //close 4
       console.log("@@@ $ found client(s) for doc pre-update, status: as follows",doc[0].status );
       target_country = doc[0].country;//2019-08-21
@@ -415,9 +415,9 @@ exports.stripePost = (req, res) => {//open 1
          });//end country update
       });//2019-08-21  WOKING HERE    end country find
 
-    })
-  .then(target_region => {
-      console.log("@@@ $ seeking regAuth for region: ",target_region, "  & combo is: ",combo)
+    //}) //end Client find
+  .then(() => {
+      console.log("@@@ $ seeking regAuth for region: ",target_region, "  & combo.price is: ",combo.price);
     //2019-08-21  updating amounts and count in region and region tax Authorities
       RegionalAuthority.find({'region_code':target_region},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
             //2019-01-30 was: 'device_id' : deviceId
@@ -501,4 +501,5 @@ exports.stripePost = (req, res) => {//open 1
      let tactfulMsg = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
   })
-})};
+ }) //end Client find (maybe)
+})}; //end the Charge then end it all!
