@@ -354,6 +354,7 @@ exports.stripePost = (req, res) => {//open 1
        //first check if changes in fiscal quarter or year
        target_period_index = doc[0].for_period_index;
        target_object = target_country;//ensure cycling country document values
+       console.log("@@@ $ period indices: now: ",this_transaction_period_index,"  then: ",target_period_index);
        if(this_transaction_period_index != target_period_index)cycleQuarters(doc);
          //take care of year change in here too
          //will result in many doc[0] items being modified
