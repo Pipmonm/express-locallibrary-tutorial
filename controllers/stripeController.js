@@ -24,6 +24,9 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 var debug = require('debug')('client');
     //debugging specific module,   start prog setting   "set DEBUG= client_controller, ...+ others"
 
+var target_country;
+var target_region;
+var target_object;
 
 
 //validation check on sysId and Format Code string  //2018-12-14 new function
@@ -248,9 +251,10 @@ exports.stripePost = (req, res) => {//open 1
   let exitFlag = false;//2019-06-03  flag to signal not to process if true
   //let amount = stripeCharge;//2019-02-11 was 500 pennies (number not string)
   let chargeObject;//2019-06-03  make returned object available throughout chain processing
-  var target_country;
-  var target_region;
-  var target_object;
+  //2019-09-14 have moved below to top
+  //var target_country;
+  //var target_region;
+  //var target_object;
   let allowed = true;
   let target_transaction_limit;
   let target_current_count;
