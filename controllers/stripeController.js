@@ -415,8 +415,8 @@ exports.stripePost = (req, res) => {//open 1
          });//end country update
       });//2019-08-21  WOKING HERE    end country find
 
-    //}) //end Client find
-  .then(() => {
+   //}) //end Client find
+//.then(() => {
       console.log("@@@ $ seeking regAuth for region: ",target_region, "  & combo.price is: ",combo.price);
     //2019-08-21  updating amounts and count in region and region tax Authorities
       RegionalAuthority.find({'region_code':target_region},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
@@ -495,11 +495,11 @@ exports.stripePost = (req, res) => {//open 1
 
      res.render("stripe_post.pug",{source:source,source2:source2,charge:charge,denomination:denomination, fancyAmount:fancyAmount, systemId:systemId});//original only has filename and no variable declaration (no {})
   }).catch(error => {
-     //console.log("@@@ EE 2nd attempt to catch error: " + error);
+     //2019-09-14  above close bracket now becomes end of Client Find ()
      let source =   '/';
      let source2 = "HOME";
      let tactfulMsg = "";
      res.render("stripe_postError.pug",{errMsg:error,source:source,source2:source2, tactfulMsg:tactfulMsg});
   })
- }) //end Client find (maybe)
+ //}) //end Client find (maybe)
 })}; //end the Charge then end it all!
