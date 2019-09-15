@@ -27,6 +27,14 @@ var debug = require('debug')('client');
 var target_country;
 var target_region;
 var target_object;
+var this_transaction_period_index;//from (0,1,2,3) for using modulo 4 cycling
+var this_year;
+var fiscalPeriods = ["first","second","third","fourth"];
+//must provide for update of year in following objects at each year end!
+var first={year:2019,month:2,date:31};//set to this for now but liable to be updated
+var second={year:2019,month:5,date:30};
+var third={year:2019,month:8,date:30};
+var fourth={year:2019,month:11,date:31};
 
 
 //validation check on sysId and Format Code string  //2018-12-14 new function
@@ -265,14 +273,7 @@ exports.stripePost = (req, res) => {//open 1
   let target_current_four_quarters_amount;
   let target_restrictionCode;
   let target_for_period_index;
-  let this_transaction_period_index;//from (0,1,2,3) for using modulo 4 cycling
-  let this_year;
-  let fiscalPeriods = ["first","second","third","fourth"];
-  //must provide for update of year in following objects at each year end!
-  let first={year:2019,month:2,date:31};//set to this for now but liable to be updated
-  let second={year:2019,month:5,date:30};
-  let third={year:2019,month:8,date:30};
-  let fourth={year:2019,month:11,date:31};
+
   let combo = {price:7.50,currency:"CDN",sku:"unknown"}
   let now = new Date();//must ensure which fiscal quarter we are now in
   this_year = now.getYear();//format number  ie. 2019
