@@ -482,7 +482,7 @@ exports.stripePost = (req, res) => {//open 1
                                                    previous_years_amounts:target_previous_years_amounts,
                                                    current_quarter_amount:target_current_quarter_amount,
                                                    last_three_quarters_array:target_last_three_quarters_array,
-                                                   current_four_quarters_amount:targetcurrent_four_quarters_amount,
+                                                   current_four_quarters_amount:target_current_four_quarters_amount,
                                                    previous_quarters_amounts:target_previous_quarters_amounts,
                                                    for_period_index:target_period_index},
                                                    //transaction_date:Date.now},  //defaults to now
