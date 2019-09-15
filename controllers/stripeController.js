@@ -316,7 +316,7 @@ exports.stripePost = (req, res) => {//open 1
         console.log("@@@ $ err in Client.find license_string" + err);
         return  next(err);
       } //close 4
-      console.log("@@@ $ found client(s) for doc pre-update status: as follows" );
+      console.log("@@@ $ found client(s) for doc pre-update, status: as follows",doc[0].status );
       target_country = doc[0].country;//2019-08-21
       target_region = doc[0].tax_region; //2019-08-23 CAREFUL, region authorities have both
                                          // region_name & region_code, but client only has tax_region
@@ -398,7 +398,7 @@ exports.stripePost = (req, res) => {//open 1
                                                      previous_years_amounts:target_previous_years_amounts,
                                                      current_quarter_amount:target_current_quarter_amount,
                                                      last_three_quarters_array:target_last_three_quarters_array,
-                                                     current_four_quarters_amount:target_four_quarters_amount,
+                                                     current_four_quarters_amount:target_current_four_quarters_amount,
                                                      previous_quarters_amounts:target_previous_quarters_amounts,
                                                      for_period_index:target_period_index,
                                                      transaction_date:Date.now},
@@ -476,7 +476,7 @@ exports.stripePost = (req, res) => {//open 1
                                                    previous_years_amounts:target_previous_years_amounts,
                                                    current_quarter_amount:target_current_quarter_amount,
                                                    last_three_quarters_array:target_last_three_quarters_array,
-                                                   current_four_quarters_amount:target_four_quarters_amount,
+                                                   current_four_quarters_amount:targetcurrent_four_quarters_amount,
                                                    previous_quarters_amounts:target_previous_quarters_amounts,
                                                    for_period_index:target_period_index,
                                                    transaction_date:Date.now},
