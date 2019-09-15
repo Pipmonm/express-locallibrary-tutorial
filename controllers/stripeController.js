@@ -416,7 +416,7 @@ exports.stripePost = (req, res) => {//open 1
       });//2019-08-21  WOKING HERE    end country find
 
     })
-  .then(combo => {
+  .then(target_region => {
       console.log("@@@ $ seeking regAuth for region: ",target_region, "  & combo is: ",combo)
     //2019-08-21  updating amounts and count in region and region tax Authorities
       RegionalAuthority.find({'region_code':target_region},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
