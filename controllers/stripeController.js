@@ -161,8 +161,7 @@ exports.stripePrePay_post = [
      const errors = validationResult(req);
 
      var sysIdString = req.body.sysIdString;
-     var country_name = req.body.country_name;
-     console.log("@@@ $ received prePay request for: " + country_name );
+     var country_name;
      if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
         res.redirect('/catalog/countrytaxauthorities');
         //added line to force recompilation
@@ -186,28 +185,13 @@ exports.stripePrePay_post = [
            var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
            var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
 
-           async.parallel({
-             client: function(callback){
-                Client.find({'license_string':sysIdString}).exec(callback);
-             },
-             country: function(callback){
-                CountryTaxAuthority.findOne({'country_name':country_name}).exec(callback);
-             },
-             country2: function(callback){
-                CountryTaxAuthority.findOne({'country_name':"Canada"}).exec(callback);
-             },
-
-           },function(err, results){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+           Client.find({'license_string':sysIdString},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
                   //2019-01-30 was: 'device_id' : deviceId
              if(err){ //open 4
                console.log("@@@ $ err in Client.find license_string" + err);
                return  next(err);
-             } //close 4
-             console.log("@@@ $  results.country.country_name is: ",results.country.country_name,"  & allowed = ",results.country.allowed);
-             console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
-             console.log("@@@ $ found client(s) for doc req. status >v" );
-             console.log(results.client);
-             if(results.client.length>1){ //open 4
+             }
+             if(doc.length>1){ //open 4
                  console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
                  res.render('clientstatus_form', { title: 'Request Status: This client data is invalid',
                               message1: "Please contact support@k9math.xyz to report this error 'Invalid Record'",
@@ -216,12 +200,12 @@ exports.stripePrePay_post = [
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
                }
-             if(results.client.length==0 ||results.client == null || results.client[0].device_id == undefined){ //open 4
+             if(doc.length==0 ||doc == null || doc[0].device_id == undefined){ //open 4
                  let msg = [];
-                 if(results.client == null)msg.push("results.client==null");
-                 //if(results.client == undefined)msg.push("results.client==undefined");//supposedly same as ==null ???
-                 if(results.client.device_id==undefined)msg.push("results.client.device_id==undefined");
-                 if(results.client.length==0)msg.push('results.client.length==0');
+                 if(doc == null)msg.push("doc==null");
+                 //if(doc == undefined)msg.push("doc==undefined");//supposedly same as ==null ???
+                 if(doc.device_id==undefined)msg.push("doc.device_id==undefined");
+                 if(doc.length==0)msg.push('doc.length==0');
                  console.log("@@@ $ err Client record is invalid","\n",msg);
                  // There are errors. Render the form again with sanitized values/error messages.
                  res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
@@ -231,10 +215,31 @@ exports.stripePrePay_post = [
                               sysIdString: sysIdString, errors: errors.array()});
                  return;
                }
-             STRIPE.registrationData = sysIdString;
-             STRIPE.stripeCharge = 1000;//CDN in pennies
-             STRIPE.denomination_US = 'CDN';//canadian
-             if(results.client[0].country == "United States"){
+              //2019-09-16 extract client info here
+              country_name = doc[0].country_name;
+              console.log("@@@ $ request for country_name: ",country_name);
+
+              async.parallel({
+                country: function(callback){
+                  CountryTaxAuthority.findOne({'country_name':country_name}).exec(callback);
+                  },
+                country2: function(callback){
+                  CountryTaxAuthority.findOne({'country_name':"Canada"}).exec(callback);
+                  },
+
+              },function(err, results){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+                  //2019-01-30 was: 'device_id' : deviceId
+              if(err){ //open 4
+                console.log("@@@ $ err in ASYNC for countries + err);
+                return  next(err);
+              } //close 4
+              console.log("@@@ $  results.country.country_name is: ",results.country.country_name,"  & allowed = ",results.country.allowed);
+              console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
+
+              STRIPE.registrationData = sysIdString;
+              STRIPE.stripeCharge = 1000;//CDN in pennies
+              STRIPE.denomination_US = 'CDN';//canadian
+              if(country_name == "United States"){
                 STRIPE.stripeCharge = 900;//for now
                 STRIPE.denomination_US = "USD";
              }
@@ -247,6 +252,7 @@ exports.stripePrePay_post = [
              return;
 
          });//end callback  //close 3
+       });//end clientFind
       };//end else clause
 
    }// close 1   //end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
