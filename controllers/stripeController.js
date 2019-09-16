@@ -191,6 +191,7 @@ exports.stripePrePay_post = [
                console.log("@@@ $ err in Client.find license_string" + err);
                return  next(err);
              }
+             console.log("@@@ $ checking client validity doc[0] is: ",doc[0]);
              if(doc.length>1){ //open 4
                  console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
                  res.render('clientstatus_form', { title: 'Request Status: This client data is invalid',
@@ -216,7 +217,7 @@ exports.stripePrePay_post = [
                  return;
                }
               //2019-09-16 extract client info here
-              country_name = doc[0].country_name;
+              country_name = doc[0].country;
               console.log("@@@ $ request for country_name: ",country_name);
 
               async.parallel({
