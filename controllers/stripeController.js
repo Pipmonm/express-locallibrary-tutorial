@@ -234,9 +234,9 @@ exports.stripePrePay_post = [
                 console.log("@@@ $ err in ASYNC for countries" + err);
                 return  next(err);
               } //close 4
-              console.log("@@@ $  allowed's are:  c1: ",country.allowed, "  $ c2: ",country2.allowed);//,"  & allowed = ",results.country.allowed);
+              console.log("@@@ $  allowed's are:  c1: ",results.country.allowed, "  $ c2: ",results.country2.allowed);//,"  & allowed = ",results.country.allowed);
               //console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
-              if(!country.allowed || !country2.allowed){//2019-09-16 WORKING HERE
+              if(!results.country.allowed || !results.country2.allowed){//2019-09-16 WORKING HERE
                  res.redirect('/catalog/countrytaxauthorities');
                  //added line to force recompilation
                  return;
