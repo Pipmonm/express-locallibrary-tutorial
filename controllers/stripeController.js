@@ -188,13 +188,13 @@ exports.stripePrePay_post = [
 
            async.parallel({
              client: function(callback){
-                Client.find({'license_string':sysIdString}.exe(callback);
+                Client.find({'license_string':sysIdString}).exe(callback);
              },
              country: function(callback){
-                CountryTaxAuthority.findOne({'country_name':country_name}.exe(callback);
+                CountryTaxAuthority.findOne({'country_name':country_name}).exe(callback);
              },
              country2: function(callback){
-                CountryTaxAuthority.findOne({'country_name':"Canada"}.exe(callback);
+                CountryTaxAuthority.findOne({'country_name':"Canada"}).exe(callback);
              },
 
            },function(err, results){ //open3  //2019-01-30 TO BE MODIFIED to license_string
