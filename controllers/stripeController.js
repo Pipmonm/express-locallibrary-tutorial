@@ -234,8 +234,8 @@ exports.stripePrePay_post = [
                 console.log("@@@ $ err in ASYNC for countries" + err);
                 return  next(err);
               } //close 4
-              console.log("@@@ $  results.country.country_name is: ",results.country.country_name,"  & allowed = ",results.country.allowed);
-              console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
+              console.log("@@@ $  results is: ",results, "  $ typeof: ",typeof results)//,"  & allowed = ",results.country.allowed);
+              //console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
 
               STRIPE.registrationData = sysIdString;
               STRIPE.stripeCharge = 1000;//CDN in pennies
