@@ -126,6 +126,7 @@ function cycleQuarters(doc){
         //complicated
         //update quarter by quarter and year by year as target_period hits zero till they're equal (both)
         target_index = (target_index + 1)%4; //modulo 4 to stay in (0~3) range
+        doc[0].for_period_index = target_index;//update in document
         updateQuarter(doc);
         if(target_index == 0)updateYear(doc);
     }
