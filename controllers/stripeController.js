@@ -230,7 +230,7 @@ exports.stripePrePay_post = [
               },function(err, results){ //open3  //2019-01-30 TO BE MODIFIED to license_string
                   //2019-01-30 was: 'device_id' : deviceId
               if(err){ //open 4
-                console.log("@@@ $ err in ASYNC for countries + err);
+                console.log("@@@ $ err in ASYNC for countries" + err);
                 return  next(err);
               } //close 4
               console.log("@@@ $  results.country.country_name is: ",results.country.country_name,"  & allowed = ",results.country.allowed);
