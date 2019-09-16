@@ -127,8 +127,8 @@ function cycleQuarters(doc){
         //update quarter by quarter and year by year as target_period hits zero till they're equal (both)
         target_index = (target_index + 1)%4; //modulo 4 to stay in (0~3) range
         doc[0].for_period_index = target_index;//update in document
-        updateQuarter(doc);
-        if(target_index == 0)updateYear(doc);
+        doc = updateQuarter(doc);//2019-09-16 capturing returned value
+        if(target_index == 0)doc = updateYear(doc);
     }
   }
 
@@ -217,6 +217,12 @@ exports.stripePrePay_post = [
                  return;
                }
            STRIPE.registrationData = sysIdString;
+           STRIPE.stripeCharge = 1000;//CDN in pennies
+           STRIPE.denomination_US = 'CDN';//canadian
+           if(doc[0].country == "United States"){
+              STRIPE.stripeCharge = 900;//for now
+              STRIPE.denomination_US = "USD";
+           }
            console.log("@@@ $ setting STRIPE.registrationData with license_string (aka sysIdString): " + STRIPE.registrationData);
            //do call to stripeGet here???? or another render with button to goto page
            res.render('stripePay_redirect', { title: 'Data Confirmed',
@@ -368,7 +374,7 @@ exports.stripePost = (req, res) => {//open 1
          //also on year change we update items "first, second, etc... for year"
          //and we reset current_count & current_year_amount to zero (keep record???)
 
-
+       target_period_index = doc[0].for_period_index;//2019-09-16
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
        target_transaction_limit = doc[0].transaction_limit;
        target_current_count = doc[0].current_count + 1;//update count FOR YEARLY TOTAL
@@ -448,7 +454,7 @@ exports.stripePost = (req, res) => {//open 1
          //also on year change we update items "first, second, etc... for year"
          //and we reset current_count & current_year_amount to zero (keep record???)
 
-
+       target_period_index = doc[0].for_period_index;//2019-09-16
        allowed = doc[0].allowed;//currently (either for $ or # transactions)
        target_transaction_limit = doc[0].transaction_limit;
        target_current_count = doc[0].current_count + 1;//update count FOR YEARLY TOTAL
