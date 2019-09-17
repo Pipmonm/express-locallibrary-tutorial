@@ -218,7 +218,9 @@ exports.stripePrePay_post = [
                }
               //2019-09-16 extract client info here
               country_name = doc[0].country;
-              console.log("@@@ $ request for country_name: ",country_name);
+              region_code = doc[0].tax_region;
+
+              console.log("@@@ $ request for region_code: ",region_code);
 
               async.parallel({
                 country: function(callback){
@@ -227,6 +229,9 @@ exports.stripePrePay_post = [
                 country2: function(callback){
                   CountryTaxAuthority.findOne({'country_name':"Canada"}).exec(callback);
                   },
+                tax_region: function(callback){
+                  RegionalAuthority.findOne({'region_code':region_code}).exec(callback);
+                }
 
               },function(err, results){ //open3  //2019-01-30 TO BE MODIFIED to license_string
                   //2019-01-30 was: 'device_id' : deviceId
@@ -235,6 +240,7 @@ exports.stripePrePay_post = [
                 return  next(err);
               } //close 4
               console.log("@@@ $  allowed's are:  c1: ",results.country.allowed, "  $ c2: ",results.country2.allowed);//,"  & allowed = ",results.country.allowed);
+              console.log("@@@ $  tax_region allowed: ",results.tax_region.allowed, "  $ harmonized?: ",results.tax_region.harmonized);
               //console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
               if(!results.country.allowed || !results.country2.allowed){//2019-09-16 WORKING HERE
                  res.redirect('/catalog/countrytaxauthorities');
