@@ -25,7 +25,8 @@ var CountryTaxAuthoritySchema = new Schema(
     transaction_period_type: {type: String, required:true,default:"quarter"},//restart per month,year???
     for_period_index: {type: Number, required:true, default:0},//to simplify quaters cycling
     transaction_date: {type: Date, default: Date.now},
-    attempted: {type:Number, required:false, default:0} //keep track of rejected requests
+    attempted: {type:Number, required:false, default:0}, //keep track of rejected requests
+    message: {type: String, required: false, default:""}//2019-09-18 for passing allowed yes/no & other msgs do default view
   }
 );
 

@@ -16,9 +16,11 @@ var debug = require('debug');
 exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countryTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
-    //.populate({
-       //path:'regionaltaxauthorities', //2019-06-05 a guess as to path
-       //model:'regionalTaxAuthority'})  //have attempted 'Client' & others
+     //2019-09-18  here need to use query language to get potential msg from country Canada
+     //should consider here haveing a demo version with extended time limit TAILORED exactly to 
+     //this customers device id  (which should be registered)  This would entail download of
+     //demo with abitlity to modify a parameter (a bypass to standard demo time) for this id.
+     //line by line download I recall as being a possibility  check on it
     .exec(function (err, countrytaxauthorities) {
       console.log("@@@ $ executing callback for countrytaxauthorities list; if err> : " + err );
       if (err) { return next(err); }

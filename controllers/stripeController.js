@@ -242,7 +242,7 @@ exports.stripePrePay_post = [
               console.log("@@@ $  allowed's are:  c1: ",results.country.allowed, "  $ c2: ",results.country2.allowed);//,"  & allowed = ",results.country.allowed);
               console.log("@@@ $  tax_region allowed: ",results.tax_region.allowed, "  $ harmonized?: ",results.tax_region.harmonized);
               //console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
-              if(!results.country.allowed || !results.country2.allowed){//2019-09-16 WORKING HERE
+              if(!results.country.allowed || !results.country2.allowed || !results.tax_region.allowed){//2019-09-16 WORKING HERE
                  res.redirect('/catalog/countrytaxauthorities');
                  //added line to force recompilation
                  return;
