@@ -243,9 +243,9 @@ exports.stripePrePay_post = [
               console.log("@@@ $  tax_region allowed: ",results.tax_region.allowed, "  $ harmonized?: ",results.tax_region.harmonized);
               //console.log("@@@ $  results.country.country_name is: ",results.country2.country_name,"  & allowed = ",results.country2.allowed);
               if(!results.country.allowed || !results.country2.allowed || !results.tax_region.allowed){//2019-09-16 WORKING HERE
-                 if(!results.tax_region.allowed)//2019-09-28 more specificity for error
+                 if(!results.tax_region.allowed){             //2019-09-28 more specificity for error
                     res.redirect('/catalog/regiondisallowed');//specific region not allowed
-                 }else if(!results.country.allowed);//specific country not allowed
+                 }else if(!results.country.allowed){          //specific country not allowed
                     res.redirect('/catalog/countrydisallowed');
                  }else{
                     res.redirect('/catalog/canadadisallowed');//reached threshold for small supplier
