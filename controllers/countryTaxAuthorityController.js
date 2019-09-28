@@ -17,7 +17,7 @@ exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countryTaxAuthorities_list');
   CountryTaxAuthority.find({}) //was   ({}),'status'
      //2019-09-18  here need to use query language to get potential msg from country Canada
-     //should consider here haveing a demo version with extended time limit TAILORED exactly to 
+     //should consider here haveing a demo version with extended time limit TAILORED exactly to
      //this customers device id  (which should be registered)  This would entail download of
      //demo with abitlity to modify a parameter (a bypass to standard demo time) for this id.
      //line by line download I recall as being a possibility  check on it
@@ -30,6 +30,32 @@ exports.countrytaxauthorities_list = function(req, res, next) {
     });
 
 };
+
+//Message facility for country disallowed message
+exports.countrytaxauthority_disallowed_msg = function(req,res,next) {//2019-09-26  added
+
+    let errMsg = "We are currently unable to honour your request due to Sales Taxes<br />" +
+                  "collection and remittance requirements as set by your country.";
+    let errMsg2 = "We regret the inconvenience and hope to have this matter <br />" +
+                  "resolved in the near future. <br />" +
+                  "Thank you for your patronage and please try again at a later date.";
+    res.render('disallowedErrorMsg', { title: 'Registration Cancelled', message:errMsg, message2:errMsg2});
+    return;
+
+}
+
+exports.countrytaxauthority_canada_msg = function(req,res,next) {//2019-09-26  added
+
+    let errMsg = "We are currently unable to honour your request due to Sales Taxes<br />" +
+                  "collection and remittance requirements as apply in Canada.";
+    let errMsg2 = "As a 'Small Supplier' we may not sell any more modules until the <br />" +
+                  "beginning of the next fiscal quarter. <br />" +
+                  "(our fiscal qrtrs end dates are: March 31st., June 30th.,Aug. 30th., & Dec. 31st.)" +
+                  "Thank you for your patronage and please try again at a later date.";
+    res.render('disallowedErrorMsg', { title: 'Registration Cancelled', message:errMsg, message2:errMsg2});
+    return;
+
+}
 
 // Display detail page for a specific countrytaxauthority.
 exports.countrytaxauthority_detail = function(req, res, next) {

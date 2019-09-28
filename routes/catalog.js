@@ -100,6 +100,10 @@ router.get('/countrytaxauthoritycreate', countrytaxauthority_controller.countryt
 router.post('/countrytaxauthoritycreate', countrytaxauthority_controller.countrytaxauthority_create_post); //2019-06-06
 //get countrytaxauthority list
 router.get('/countrytaxauthorities', countrytaxauthority_controller.countrytaxauthorities_list);
+//restriction messages sent to ClientS
+router.get('/countrydisallowed', countrytaxauthority_controller.countrytaxauthority_disallowed_msg);
+//Canada disallowed on over threshold value
+router.get('/canadadisallowed', countrytaxauthority_controller.countrytaxauthority_canada_msg);
 //get countrytaxauthority detail by mod_Id
 router.get('/countrytaxauthority/:id', countrytaxauthority_controller.countrytaxauthority_detail);
 //cntryTA delete and update via url
@@ -116,6 +120,8 @@ router.get('/regionalauthoritycreate', regionalauthority_controller.regionalauth
 router.post('/regionalauthoritycreate', regionalauthority_controller.regionalauthority_create_post); //2019-06-06
 //get regionalauthority list
 router.get('/regionalauthorities', regionalauthority_controller.regionalauthorities_list);
+//region disallowed messages
+router.get('/regiondisallowed', regionalauthority_controller.regionalauthority_disallowed_msg);
 //get regionalauthority detail by mod_Id
 router.get('/regionalauthority/:id', regionalauthority_controller.regionalauthority_detail);
 //cntryTA delete and update via url

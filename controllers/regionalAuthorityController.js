@@ -27,6 +27,19 @@ exports.regionalauthorities_list = function(req, res, next) {
 
 };
 
+//Message facility for region disallowed message
+exports.regionalauthority_disallowed_msg = function(req,res,next) {//2019-09-26  added
+
+    let errMsg = "We are currently unable to  process your request due to" + "<br />" +
+                  "Sales Tax restrictions in your province, state, or region.";
+    let errMsg2 = "We regret the inconvenience and hope to have this matter <br />" +
+                  "resolved in the near future. <br />" +
+                  "Thank you for your patronage and please try again at a later date.";
+    res.render('disallowedErrorMsg', { title: 'Registration Cancelled', message:errMsg, message2:errMsg2});
+    return;
+
+}
+
 // Display detail page for a specific regionalauthority.
 exports.regionalauthority_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
