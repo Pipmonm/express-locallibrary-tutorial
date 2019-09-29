@@ -5,13 +5,15 @@ block content
 
   p!= msg1
   br
+  <div style="text-align: left">
+  a(href= '/catalog/clientmessages_in')
+      button(type="button") Send Message
+  |$nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  a(href= '/catalog/system_FAQ')
+      button(type="button") FAQ
+  </div>
   br
-  a(href= sourceA)  Send Message
-      button(type="button") #{sourceA2}
-  p "  or  "
-  a(href= sourceB)
-      button(type="button") #{sourceB2}
-
   p!= msg2
-  br
+
   p!= msg3
+  br
