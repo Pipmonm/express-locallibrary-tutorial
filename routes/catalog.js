@@ -61,7 +61,7 @@ router.get('/get_S3_PS',s3_ps_controller.get_S3_PS_file);
 //STEP 1 creating client records
 router.get('/clients', client_controller.client_list);
 //finding what client requests
-router.get('/clients', client_controller.prolog);
+router.get('/clients', client_controller.client_prolog);
 //listing FAQs
 router.get('/system_FAQ', appname_controller.appname_list);//replace with FAQ_list
 //messaging ClientS
