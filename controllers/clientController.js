@@ -226,10 +226,10 @@ exports.client_status_post = [
 
   exports.messages_in_post = [
     // Validate fields.
-    body('sysIdString').isLength({min: 10 }).trim().withMessage('Paste text from clipboard here')
-        .isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),\
-    body('msgString').isLength({min:5, max:300}).trim().withMessage("Place comment here")
-        .isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers')
+    body('sysIdString').isLength({min: 10 }).trim().withMessage('Paste text from clipboard here'),
+    body('sysIdString').isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),\
+    body('msgString').isLength({min:5, max:300}).trim().withMessage("Place comment here"),
+    body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
     // Sanitize fields.
     sanitizeBody('sysIdString').trim().escape(),
     sanitizeBody('msgString').trim().escape(),
