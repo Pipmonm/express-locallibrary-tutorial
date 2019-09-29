@@ -317,7 +317,8 @@ exports.client_status_post = [
              // Successful - redirect to new clientrecord.
         res.redirect('/catalog');//send to show client_detail
     }
-  });
+  })
+}//callback fn ends
 ]
 
   // Display Client create form on GET.
