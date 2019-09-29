@@ -210,7 +210,7 @@ exports.client_status_post = [
      let sourceA2 = 'SEND MSG';
 
      let sourceB = '/catalog/system_FAQ';
-     let sourceB2 = '/catalog/FAQ';
+     let sourceB2 = 'FAQ';
 
      res.render('client_prolog', {title: "FAQ & Msg Request Page", msg1:msg1,msg2:msg2,msg3:msg3});
   };
