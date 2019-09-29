@@ -8,7 +8,7 @@ block content
   <div style="text-align: left">
   a(href= '/catalog/clientmessages_in')
       button(type="button") Send Message
-  |$nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   a(href= '/catalog/system_FAQ')
       button(type="button") FAQ
   </div>
@@ -17,3 +17,5 @@ block content
 
   p!= msg3
   br
+  //- putting anything other than |&nbsp;'s between href's or
+  //- making sources a variable caused buttons to get vanishingly small!
