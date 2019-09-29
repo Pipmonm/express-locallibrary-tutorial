@@ -245,14 +245,17 @@ exports.client_status_post = [
         let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn","__"];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
+        var suspectWord = "";
         for(var i=0;i<bannedWords.length;i++){
-          if(suspectString.indexOf(bannedWords[i] != -1))checkMsg = "fail";
+          if(suspectString.indexOf(bannedWords[i] != -1)){
+            checkMsg = "fail";
+            suspectWord = bannedWords[i])
+          }
         }
-
 
         if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
             console.log('@@@ $ Errors in validationResult for "msgIn_create_post" in order: checkString & checkMsg',checkString," & ",checkMsg);
-            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",req.body.msgString);
+            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",suspectString, "  & ":suspectWord);
             let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause " +
                            "message to be rejected. "
             // There are errors. Render form again with sanitized values/errors messages.
