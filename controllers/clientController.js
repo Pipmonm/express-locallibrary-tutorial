@@ -195,10 +195,6 @@ exports.client_status_post = [
 
   //get client request for FAQ or messaging
   exports.client_prolog = function(req,res,next) {
-    if(err) {
-      console.log("@@@ $ prolog error",err);
-      return next(err);
-    }
     //otherwise
     let msg1 = "Please select field of interest by clicking on either of" +"<br />" +
                 "the following options.";
