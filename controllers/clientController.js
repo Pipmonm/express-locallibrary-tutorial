@@ -195,7 +195,14 @@ exports.client_status_post = [
 
   //get client request for FAQ or messaging
   exports.client_prolog = function(req,res,next) {
-     let msg1 = "Please select field of interest by clicking on either of" +"<br />" +
+    console.log("@@@ $ silly implementation of callback function for prolog");
+    , function(err,results){
+    if(err) {
+      console.log("@@@ $ prolog error",err);
+      return next(err);
+    }
+    //otherwise
+    let msg1 = "Please select field of interest by clicking on either of" +"<br />" +
                 "the following options.";
 
      let msg2 = "Note that any messages returned to you can be seen by accessing the" + "<br />" +
@@ -212,7 +219,7 @@ exports.client_status_post = [
      let sourceB2 = '/catalog/FAQ';
 
      res.render('client_prolog', {title: "FAQ & Msg Request Page", msg1:msg1,msg2:msg2,msg3:msg3});
-
+   }
   };
 
   exports.messages_in_get = function(req,res,next){
