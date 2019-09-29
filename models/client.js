@@ -3,7 +3,7 @@ var moment = require('moment'); //added  :MOD: 2018-03-08 10:01 AM
 
 var Schema = mongoose.Schema;
 
-var ClientSchema = Schema( //2019-01-30 many modifications
+var ClientSchema = new Schema( //2019-09-26 added forgotten 'new'  ??? //2019-01-30 many modifications
   {
     license_string: {type: String, max: 120, unique: true, required: true}, //2019-01-30 added
     device_id: {type: String, max : 20},
@@ -23,8 +23,9 @@ var ClientSchema = Schema( //2019-01-30 many modifications
     city_address: {type: String, default:'# street,city', max : 100},
     postal_code: {type: String, required:true},
     email_address: {type: String, default: 'xyz@abc.mno', max: 100},
-    registration_date: {type: Date},
+    registration_date: {type: Date, default: Date.now},
     license_key: {type: String, max: 30, default:""},
+    return_msgs: {type:[String]},
     test_code: {type:String,max:100,default:"0"}
 
   }

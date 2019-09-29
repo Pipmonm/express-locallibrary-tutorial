@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+
+  h3! = msg1
+  br
+  a(href= source)
+    button(type="button") #{source1}
+  "  or  "
+  a(href= sourceB)
+    button(type="button") #{sourceB2}
+  br
+  h3! = msg2
+  br
+  h3! = msg3

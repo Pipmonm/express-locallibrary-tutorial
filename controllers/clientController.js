@@ -193,6 +193,75 @@ exports.client_status_post = [
 
     };
 
+  //get client request for FAQ or messaging
+  exports.client_prolog = function(req,res,next) {
+     let msg1 = "Please select field of interest by clicking on either of" +"<br />" +
+                "the following options.";
+
+     let msg2 = "Note that any messages returned to you can be seen by accessing the" + "<br />" +
+                "'View Account' tab." + "<br />" +
+                " (you will need the 'Registration Data' that is automatically loaded in the" + "<br />" +
+                "Window's clipboard whenever you click on a module's 'Registration Data' tab)";
+
+     let msg3 = "You will also need this 'Registration Data' to send us a message";
+
+     let sourceA = '/catalog/clientmessages_in'
+     let sourceA2 = 'SEND MSG';
+
+     let sourceB = '/catalog/system_FAQ';
+     let sourceB2 = '/catalog/FAQ';
+
+     res.render('client_prolog', {title: "FAQ & Msg Request Page", msg1:msg1,msg2:msg2,msg3:msg3});
+
+  };
+
+  exports.messages_in_get = function(req,res,next){
+      let title = "Messenger Service";
+      let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+                   "numbers, any other characters will cause message to be ignored."
+
+      req.render('client_msg_form', {title: title, message1:message1, message2:""});
+
+  };
+
+  exports.messages_in_post = [
+    // Validate fields.
+    body('sysIdString').isLength({min: 10 }).trim().withMessage('Paste text from clipboard here')
+        .isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),\
+    body('msgString').isLength({min:5, max:300}).trim().withMessage("Place comment here")
+        .isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers')
+    // Sanitize fields.
+    sanitizeBody('sysIdString').trim().escape(),
+    sanitizeBody('msgString').trim().escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log('@@@ $ Console: errors spotted in validationResult for "msgIn_create_post"');
+            debug('DEBUG: errors spotted in validationResult for "msgIn_create_post"');
+            let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+                         "numbers, any other characters will cause message to be ignored."
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render('client_msg_form', { title: 'Message Errors', message1:message1, errors: errors.array() });
+            return;
+
+        }else{
+            // Data from form is valid.
+            //multiple could happen so distinguish by date asynchronously
+            //or possibly simply advise  (to be done later)
+            var rgrqcd = req.body.sysIdString;
+            console.log('@@@ $ msg from id is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+            console.log('@@@ $ message follows');
+            console.log(req.body.msgString);
+            }
+             // Successful - redirect to new clientrecord.
+             res.redirect('/catalog/clients');//send to show client_detail
+            };
+]
+
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
     var canadaRegions = ['AB',
