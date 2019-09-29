@@ -220,7 +220,7 @@ exports.client_status_post = [
       let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
                    "numbers, any other characters will cause message to be ignored."
 
-      req.render('client_msg_form', {title: title, message1:message1, message2:""});
+      res.render('client_msg_form', {title: title, message1:message1, message2:""});
 
   };
 
