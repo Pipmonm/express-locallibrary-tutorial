@@ -5,13 +5,13 @@ block content
 
   p!= msg1
   br
+  br
+  a(href= sourceA)  Send Message
+      button(type="button") #{sourceA2}
+  p "  or  "
+  a(href= sourceB)
+      button(type="button") #{sourceB2}
+
   p!= msg2
   br
   p!= msg3
-  br
-  br
-  a(href= sourceA)  Send Message
-    //button(type="button") #{sourceA2}
-
-  a(href= sourceB)  FAQ
-      //button(type="button") #{sourceB2}
