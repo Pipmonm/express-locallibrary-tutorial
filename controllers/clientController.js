@@ -18,7 +18,7 @@ function checkValidIdString(inString){
   for (var i=0;i<2;i++){
     if(isNaN(stringPieces[i]))return "fail";
   }
-  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU")return "fail";
+  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU" && stringPieces[2] != "NumLn" && stringPieces[2] != "Eqt")return "fail";
   return "pass";
 };
 
@@ -241,8 +241,8 @@ exports.client_status_post = [
         const errors = validationResult(req);
 
         //2019-09-29  extra checks on sysIdString and msgString
-        let checkString = checkValidIdString(req.body.sysIdString);
-        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole"];
+        let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
+        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn","__"];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
         for(var i=0;i<bannedWords.length;i++){
@@ -251,9 +251,9 @@ exports.client_status_post = [
 
 
         if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
-            console.log('@@@ $ Console: errors spotted in validationResult for "msgIn_create_post"');
+            console.log('@@@ $ Errors in validationResult for "msgIn_create_post" in order: checkString & checkMsg');
             debug('DEBUG: errors spotted in validationResult for "msgIn_create_post"');
-            let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause /n" +
+            let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause " +
                            "message to be rejected. "
             // There are errors. Render form again with sanitized values/errors messages.
             res.render('client_msg_form', { title: 'Message Errors', message1:message1, errors: errors.array() });
