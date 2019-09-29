@@ -241,11 +241,12 @@ exports.client_status_post = [
         const errors = validationResult(req);
 
         //2019-09-29  extra checks on sysIdString and msgString
-        let checkString = checkValidIdString(sysIdString);
+        let checkString = checkValidIdString(req.body.sysIdString);
         let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole"];
         let checkMsg ="pass";
+        let suspectString = req.body.msgString;
         for(var i=0;i<bannedWords.length;i++){
-          if(msgString.indexOf(bannedWords[i] != -1))checkMsg = "fail";
+          if(suspectString.indexOf(bannedWords[i] != -1))checkMsg = "fail";
         }
 
 
@@ -299,9 +300,9 @@ exports.client_status_post = [
             //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
             var docId = doc[0]._id;
             var msgArray = doc[0].return_msgs;
-            let datedMsg = Date.now + " from client>>" + msgString;
-            msgArray.push(datedMsg)
-            Client.findByIdAndUpdate(docId, {return_msgs: datedMsg },{upsert: true, 'new': true}, function(err,newdoc){
+            let datedMsg = Date.now + " from client>>" + req.body.msgString;
+            msgArray.push(datedMsg);
+            Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                  //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
               if(err){
