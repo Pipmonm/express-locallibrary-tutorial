@@ -255,7 +255,7 @@ exports.client_status_post = [
 
         if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
             console.log('@@@ $ Errors in validationResult for "msgIn_create_post" in order: checkString & checkMsg',checkString," & ",checkMsg);
-            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",suspectString, "  & ":suspectWord);
+            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",suspectString, "  & ", suspectWord);
             let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause " +
                            "message to be rejected. "
             // There are errors. Render form again with sanitized values/errors messages.
