@@ -16,12 +16,10 @@ block content
 
   h3(href="#" style={'font-size':'3vw'})= h3Header
 
-  p!= pieSlicerDesc1
+  p= pieSlicerDesc1
   br
-  p!= pieSlicerDesc2
-
-  br
-
-  a(href= sourceA)
-      button(type="button") #{sourceA2}
-//- was "/catalog/downloadPS_view"
+  p= pieSlicerDesc2
+  |&nbsp;&nbsp;&nbsp;&nbsp;
+  a(href= source)
+      button(type="button") #{source2}
+//- was source instead of "/catalog/downloadPS_view"

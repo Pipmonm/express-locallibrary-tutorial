@@ -216,7 +216,7 @@ exports.client_status_post = [
   };
 
   exports.messages_in_get = function(req,res,next){
-      let title = "Messenger Service";
+      let title = "Message Service";
       let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
                    "numbers, any other characters will cause message to be ignored."
 
@@ -227,9 +227,9 @@ exports.client_status_post = [
   exports.messages_in_post = [
     // Validate fields.
     body('sysIdString').isLength({min: 10 }).trim().withMessage('Paste text from clipboard here'),
-    body('sysIdString').isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
+    //body('sysIdString').isAlphanumeric().withMessage('clipboard text must be as given in module Registration Data'),
     body('msgString').isLength({min:5, max:300}).trim().withMessage("Place comment here"),
-    body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
+    //body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
     // Sanitize fields.
     sanitizeBody('sysIdString').trim().escape(),
     sanitizeBody('msgString').trim().escape(),
@@ -239,11 +239,21 @@ exports.client_status_post = [
 
         // Extract the validation errors from a request.
         const errors = validationResult(req);
-        if (!errors.isEmpty()) {
+
+        //2019-09-29  extra checks on sysIdString and msgString
+        let checkString = checkValidIdString(sysIdString);
+        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole"];
+        let checkMsg ="pass";
+        for(var i=0;i<bannedWords.length;i++){
+          if(msgString.indexOf(bannedWords[i] != -1))checkMsg = "fail";
+        }
+
+
+        if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
             console.log('@@@ $ Console: errors spotted in validationResult for "msgIn_create_post"');
             debug('DEBUG: errors spotted in validationResult for "msgIn_create_post"');
-            let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
-                         "numbers, any other characters will cause message to be ignored."
+            let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause /n" +
+                           "message to be rejected. "
             // There are errors. Render form again with sanitized values/errors messages.
             res.render('client_msg_form', { title: 'Message Errors', message1:message1, errors: errors.array() });
             return;
@@ -257,8 +267,55 @@ exports.client_status_post = [
             console.log('@@@ $ message follows');
             console.log(req.body.msgString);
             }
+        //2019-09-30   insert message into client account & in messagesIn folder using app(name?)controller
+        //first get client
+        var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
+        Client.find({'license_string':rgrqcd},function(err, doc){ //2019-09-30 TO BE MODIFIED to license_string
+               //2019-01-30 was: 'device_id' : deviceId
+          if(err){
+            console.log("@@@ $ err in Client.find license_string for msg delivery" + err);
+            return  next(err);
+          }
+          console.log("@@@ $ found client for msg delivery" );
+          if(!doc.length || doc[0] == undefined || doc[0].deviceId == undefined){
+            if(!doc.length || doc == null || doc == undefined){
+              console.log("@@@ $ err Client record is invalid" + doc);
+              // There are errors. Render the form again with sanitized values/error messages.
+              res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
+                           message1: "Use clipboard contents of application's Registration Data to Register first then try again",
+                           message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
+                           sysIdString: rgrqcd, errors: errors.array()});
+              return;
+            }else{//2019-03-11 seems should be in an array
+              option2 = true;//2019-03-11 seems like record is not an array
+              console.log("@@@ $ option2 is true & doc is: /n" + doc);
+            }
+          }
+
+          if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
+            console.log("@@@ $ multiples of same license_string " + rgrqcd);//2019-01-30 modded from deviceId
+            res.redirect('/catalog');//go home or better, give message
+          }else{
+            //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
+            var docId = doc[0]._id;
+            var msgArray = doc[0].return_msgs;
+            let datedMsg = Date.now + " from client>>" + msgString;
+            msgArray.push(datedMsg)
+            Client.findByIdAndUpdate(docId, {return_msgs: datedMsg },{upsert: true, 'new': true}, function(err,newdoc){
+                 //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+                 //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+              if(err){
+                console.log("@@@ $ update error: " + err);
+              }
+              console.log("@@@ $ post client message update  client: >v");
+              res.redirect(newdoc.url);
+           });
+
+
+
+
              // Successful - redirect to new clientrecord.
-        res.redirect('/catalog/clients');//send to show client_detail
+        res.redirect('/catalog');//send to show client_detail
     }
 ]
 
