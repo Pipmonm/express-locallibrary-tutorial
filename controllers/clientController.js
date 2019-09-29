@@ -258,8 +258,8 @@ exports.client_status_post = [
             console.log(req.body.msgString);
             }
              // Successful - redirect to new clientrecord.
-             res.redirect('/catalog/clients');//send to show client_detail
-            };
+        res.redirect('/catalog/clients');//send to show client_detail
+    }
 ]
 
   // Display Client create form on GET.
