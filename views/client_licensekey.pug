@@ -28,9 +28,10 @@ block content
     p Stripe transaction not complete  license key not available
 
   br
+
   p  Messages:
-  each message in client.return_msgs
-    li
-       p = message
+  - const msgs=["mesge1","msge2","and so on"]
+  each msg in msgs
+    p = msg
   else
-   There are no messages
+    There are no messages
