@@ -249,7 +249,7 @@ exports.client_status_post = [
         for(var i=0;i<bannedWords.length;i++){
           if(suspectString.indexOf(bannedWords[i] != -1)){
             checkMsg = "fail";
-            suspectWord = bannedWords[i])
+            suspectWord = bannedWords[i];
           }
         }
 
