@@ -280,8 +280,8 @@ exports.client_status_post = [
             console.log("@@@ $ err in Client.find license_string for msg delivery" + err);
             return  next(err);
           }
-          console.log("@@@ $ found client for msg delivery" );
-          if(!doc.length || doc[0] == undefined || doc[0].deviceId == undefined){
+          console.log("@@@ $ found client for msg delivery & doc is of type: ",typeof doc );
+          if(!doc.length || doc[0] == undefined || doc[0].device_id == undefined){
             if(!doc.length || doc == null || doc == undefined){
               console.log("@@@ $ err Client record is invalid" + doc);
               // There are errors. Render the form again with sanitized values/error messages.
@@ -302,7 +302,14 @@ exports.client_status_post = [
           }else{
             //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
             var docId = doc[0]._id;
-            var msgArray = doc[0].return_msgs;
+            var dummy = doc[0];
+            console.log("@@@ $ doc[0]._id: ",docId);
+            console.log("@@@ $ from doc[0]?: ",doc[0]);
+            if(docId == undefined){
+              docId = doc._id;
+              dummy = doc;
+            }
+            var msgArray = dummy.return_msgs;
             let datedMsg = Date.now + " from client>>" + req.body.msgString;
             msgArray.push(datedMsg);
             Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
