@@ -41,6 +41,8 @@ block content
       input#license_string.form-control(type='text', placeholder='Registration Data (required)', name='license_string', required=true, value=(undefined===client ? '' : client.license_string) )
 
     div.form-group
+      label(for='return_msgs') Messages:
+      input#return_msgs.form-control(type= 'array', name='return_msgs', required=false, value=client.return_msgs)
       label(for='test_code') Test Code:
       input#test_code.form-control(type = 'text', placeholder= ' "0"= no tests, "1,yyyy/mm/dd"= date cycling tests', required=false, value=(undefined===client ? '' : client.test_code) )
 

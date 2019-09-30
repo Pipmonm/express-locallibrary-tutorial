@@ -639,6 +639,7 @@ exports.client_status_post = [
              sanitizeBody('postal_code').trim().escape(),
              sanitizeBody('registration_date').trim().escape(),
              sanitizeBody('license_string').trim().escape(),
+             sanitizeBody('return_msgs').trim().escape(),//2019-09-30 added
 
              //Process request after validation and sanitization.
              (req, res, next) => {

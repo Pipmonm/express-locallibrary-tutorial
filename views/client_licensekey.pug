@@ -29,9 +29,8 @@ block content
 
   br
 
-  p  Messages:
-  - const msgs=["mesge1","msge2","and so on"]
-  each msg in msgs
+  p  Messages:  (note: replies, when applicable, will be posted here also, ASAP)
+  each msg in client.return_msgs
     p= msg
   else
     There are no messages
