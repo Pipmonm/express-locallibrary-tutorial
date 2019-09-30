@@ -313,20 +313,18 @@ exports.client_status_post = [
             let datedMsg = Date.now + " from client>>" + req.body.msgString;
             msgArray.push(datedMsg);
             console.log("@@@ $ updated msgArray for Client: ",msgArray);
-            var saveNewDoc;
             Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                  //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
               if(err){
                 console.log("@@@ $ update error: " + err);
               }
-              saveNewDoc= newdoc;
-              console.log("@@@ $ saving newdoc as: ",saveNewDoc);//2019-09-30  desperate measures
+              console.log("@@@ $ updated doc: ",newdoc);//2019-09-30  desperate measures
 
            });
 
              // Successful - redirect to new clientrecord.
-        res.redirect(saveNewDoc.url);//send to show client_detail
+        res.redirect('/catalog');//send to show client_detail
     }
   })
 }//callback fn ends
