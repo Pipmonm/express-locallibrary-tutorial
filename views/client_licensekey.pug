@@ -26,3 +26,11 @@ block content
 
   else
     p Stripe transaction not complete  license key not available
+
+  br
+  p  Messages:
+  each message in client.return_msgs
+    li
+       p = message
+  else
+   There are no messages
