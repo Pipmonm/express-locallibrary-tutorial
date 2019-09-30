@@ -310,7 +310,8 @@ exports.client_status_post = [
               dummy = doc;
             }
             var msgArray = dummy.return_msgs;
-            let datedMsg = Date.now + " from client>>" + req.body.msgString;
+            const now = Date();
+            let datedMsg = now + " from client>>" + req.body.msgString;
             msgArray.push(datedMsg);
             console.log("@@@ $ updated msgArray for Client: ",msgArray);
             Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
