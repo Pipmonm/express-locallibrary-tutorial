@@ -236,7 +236,7 @@ exports.client_status_post = [
 
     // Process request after validation and sanitization.
     (req, res, next) => {
-
+        var fromUser = req.params.user;//2019-09-30
         // Extract the validation errors from a request.
         const errors = validationResult(req);
 
@@ -311,7 +311,8 @@ exports.client_status_post = [
             }
             var msgArray = dummy.return_msgs;
             const now = Date();
-            let datedMsg = now + " from client>>" + req.body.msgString;
+            let datedMsg = now + fromUser + ">>" + req.body.msgString;
+            //2019-09-30  above was string 'client>>' now trying for pass in via URL param
             msgArray.push(datedMsg);
             console.log("@@@ $ updated msgArray for Client: ",msgArray);
             Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){

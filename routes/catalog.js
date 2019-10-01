@@ -65,8 +65,8 @@ router.get('/clientprolog', client_controller.client_prolog);
 //listing FAQs
 router.get('/system_FAQ', appname_controller.appname_list);//replace with FAQ_list
 //messaging ClientS
-router.get('/clientmessages_in', client_controller.messages_in_get);
-router.post('/clientmessages_in', client_controller.messages_in_post);
+router.get('/clientmessages_in/:user', client_controller.messages_in_get);
+router.post('/clientmessages_in/:user', client_controller.messages_in_post);
 
 //STEP 2 service request to create new client_transactions
 router.get('/clientcreate', client_controller.client_create_get);
