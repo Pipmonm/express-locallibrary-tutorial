@@ -1,6 +1,8 @@
 //clientrequest instance controller js
 var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+var MessagesIn = require('../models/messagesIn');//2019-10-01 for tracking msgs
+
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -302,6 +304,7 @@ exports.client_status_post = [
           }else{
             //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
             var docId = doc[0]._id;
+            var clientName = doc[0].name;//2019-10-01 added
             var dummy = doc[0];
             console.log("@@@ $ doc[0]._id: ",docId);
             console.log("@@@ $ from doc[0]?: ",doc[0]);
@@ -310,18 +313,47 @@ exports.client_status_post = [
               dummy = doc;
             }
             var msgArray = dummy.return_msgs;
-            const now = Date();
+            let now = Date().toString();
+            now = now.split("GMT")[0];//only date part
             let datedMsg = now + fromUser + ">>" + req.body.msgString;
             //2019-09-30  above was string 'client>>' now trying for pass in via URL param
-            msgArray.push(datedMsg);
+            if(fromUser== "client_msg"){
+               msgArray.inshift(datedMsg);//at the top for client
+             }else{
+               msgArray.push(datedMsg);//below for reply
+             }
             console.log("@@@ $ updated msgArray for Client: ",msgArray);
-            Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
+
+            //embarking on async
+            async.parallel({
+              client:function(callback) {
+                Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true})
+                  .exec(callback)
+              },//end client op
+              messages:function(callback){
+                //must create a new message here
+                var message_in = new MessagesIn(
+                  {
+                    license_string: rgrqcd, //sysIdString
+                    name: clientName,
+                    message: datedMsg,
+                    viewed: false,
+                    responded: false,
+                    follow_up: false,
+                    action: "inactive"
+                  });
+               message_in.save()
+                 .exec(callback)
+              }//end messages op
+            }, function(err,results) {//2019-10-01 added (note ')' follows callback)   async parallel ends
+            //Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                  //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+
               if(err){
-                console.log("@@@ $ update error: " + err);
+                console.log("@@@ $ error in async parallel for msg creation or client update : " + err);
               }
-              console.log("@@@ $ updated doc: ",newdoc);//2019-09-30  desperate measures
+              console.log("@@@ $ new msg: ",results.messages);//2019-09-30  desperate measures
 
            });
 
