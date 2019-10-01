@@ -318,7 +318,7 @@ exports.client_status_post = [
             let datedMsg = now + fromUser + ">>" + req.body.msgString;
             //2019-09-30  above was string 'client>>' now trying for pass in via URL param
             if(fromUser== "client_msg"){
-               msgArray.inshift(datedMsg);//at the top for client
+               msgArray.unshift(datedMsg);//at the top for client
              }else{
                msgArray.push(datedMsg);//below for reply
              }
