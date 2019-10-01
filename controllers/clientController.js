@@ -244,7 +244,7 @@ exports.client_status_post = [
 
         //2019-09-29  extra checks on sysIdString and msgString
         let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
-        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"];
+        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /",'"<'];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
         var suspectWord = [];
@@ -324,15 +324,7 @@ exports.client_status_post = [
              }
             console.log("@@@ $ updated msgArray for Client: ",msgArray);
 
-            //embarking on async
-            async.parallel({
-              client:function(callback) {
-                Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true})
-                  .exec(callback)
-              },//end client op
-              messages:function(callback){
-                //must create a new message here
-                var message_in = new MessagesIn(
+            var message_in = new MessagesIn(
                   {
                     license_string: rgrqcd, //sysIdString
                     name: clientName,
@@ -342,25 +334,25 @@ exports.client_status_post = [
                     follow_up: false,
                     action: "inactive"
                   });
-               message_in.save()datedMsg=>console.log("msg saved: ",datedMsg)
-                 .exec(callback)
-              },//end messages op
-            }, function(err,results) {//2019-10-01 added (note ')' follows callback)   async parallel ends
-            //Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
+            message_in.save(function (err){
+                   if(err){return next(err)}
+               });//WORKING HERE
+            //2019-10-01 added (note ')' follows callback)   async parallel ends
+            Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
                  //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
 
               if(err){
                 console.log("@@@ $ error in async parallel for msg creation or client update : " + err);
               }
-              console.log("@@@ $ new msg: ",results.messages);//2019-09-30  desperate measures
+              console.log("@@@ $ client stored msg as: ",newdoc.messages);//2019-09-30  desperate measures
 
            });
 
              // Successful - redirect to new clientrecord.
         res.redirect('/catalog');//send to show client_detail
-    }
-  })
+    }//end else clause
+  })//end client find
 }//callback fn ends
 ]
 
