@@ -15,7 +15,7 @@ var MessagesInSchema = new Schema(
 );
 
 // Virtual for status's URL
-StatusSchema
+MessagesInSchema
 .virtual('url')
 .get(function () {
   return '/catalog/status/' + this._id;
