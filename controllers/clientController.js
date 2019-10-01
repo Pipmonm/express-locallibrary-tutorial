@@ -342,7 +342,7 @@ exports.client_status_post = [
                     follow_up: false,
                     action: "inactive"
                   });
-               message_in.save(){datedMsg=>console.log("msg saved: ",datedMsg)};
+               message_in.save()datedMsg=>console.log("msg saved: ",datedMsg)
                  .exec(callback)
               },//end messages op
             }, function(err,results) {//2019-10-01 added (note ')' follows callback)   async parallel ends
