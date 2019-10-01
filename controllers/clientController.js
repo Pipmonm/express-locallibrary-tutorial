@@ -342,9 +342,9 @@ exports.client_status_post = [
                     follow_up: false,
                     action: "inactive"
                   });
-               message_in.save()
+               message_in.save(){datedMsg=>console.log("msg saved: ",datedMsg)};
                  .exec(callback)
-              }//end messages op
+              },//end messages op
             }, function(err,results) {//2019-10-01 added (note ')' follows callback)   async parallel ends
             //Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
                  //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
