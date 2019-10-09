@@ -15,17 +15,13 @@ var fracSpeller_controller = require('../controllers/fracSpellerController');
 var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
 var downloadPS_controller = require('../controllers/downloadPSController');//ibid
 var verification_controller = require('../controllers/verificationController');//2019-01-15
-
 var s3_fs_controller = require('../controllers/fsS3Controller');
 var s3_ps_controller = require('../controllers/psS3Controller');
-
 var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
-
 var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
-
 var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
-
 var regionalauthority_controller = require('../controllers/regionalAuthorityController');//2019-06-17
+var messagesIn_controller = require('../controllers/messagesInController');//2019-10-09  added
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
@@ -142,9 +138,9 @@ router.post('/regionalauthority/:id/update', regionalauthority_controller.region
 
 //MessagesIn routing
 //'yet to be responded to' messages
-router.get('/active_messages_list', messagesInController.messagesIn_list_follow);
+router.get('/active_messages_list', messagesIn_controller.messagesIn_list_follow);
 //messages by license_string
-router.get('/messagesIn/:id/detail'), messagesInController.messagesIn_detail);
+router.get('/messagesIn/:id/detail', messagesIn_controller.messagesIn_detail);
 //
 
 //generate appname document
