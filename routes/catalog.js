@@ -140,6 +140,13 @@ router.get('/regionalauthority/:id/update', regionalauthority_controller.regiona
 // POST reply to update regionalauthority.
 router.post('/regionalauthority/:id/update', regionalauthority_controller.regionalauthority_update_post);
 
+//MessagesIn routing
+//'yet to be responded to' messages
+router.get('/active_messages_list', messagesInController.messagesIn_list_follow);
+//messages by license_string
+router.get('/messagesIn/:id/detail'), messagesInController.messagesIn_detail);
+//
+
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);

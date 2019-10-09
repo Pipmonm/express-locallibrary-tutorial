@@ -270,6 +270,7 @@ exports.client_status_post = [
             //or possibly simply advise  (to be done later)
             var rgrqcd = req.body.sysIdString;
             console.log('@@@ $ msg from id is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+            req.body.msgString.replace("'","\'");//allow single quote
             console.log('@@@ $ message follows');
             console.log(req.body.msgString);
             }
@@ -312,23 +313,24 @@ exports.client_status_post = [
               docId = doc._id;
               dummy = doc;
             }
-            var msgArray = dummy.return_msgs;
+            //var msgArray = dummy.return_msgs;
             let now = Date().toString();
             now = now.split("GMT")[0];//only date part
             let datedMsg = now + fromUser + ">>" + req.body.msgString;
             //2019-09-30  above was string 'client>>' now trying for pass in via URL param
-            if(fromUser== "client_msg"){
-               msgArray.unshift(datedMsg);//at the top for client
-             }else{
-               msgArray.push(datedMsg);//below for reply
-             }
-            console.log("@@@ $ updated msgArray for Client: ",msgArray);
+            //if(fromUser== "client_msg"){
+               //msgArray.unshift(datedMsg);//at the top for client
+             //}else{
+               //msgArray.push(datedMsg);//below for reply
+             //}
+            //console.log("@@@ $ updated msgArray for Client: ",msgArray);
 
             var message_in = new MessagesIn(
                   {
                     license_string: rgrqcd, //sysIdString
                     name: clientName,
                     message: datedMsg,
+                    reply: "",
                     viewed: false,
                     responded: false,
                     follow_up: false,

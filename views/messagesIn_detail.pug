@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1 #{title}: #{messagesIn.name}
+
+  p #[strong License String:] #{messagesIn.license_string}
+  hr
+  p #[strong Message:]
+  p #{messagesIn.message}
+
+  p #[strong Reply:]
+  p #{messagesIn.reply}
+
+  p #[Viewed:] #{messagesIn.viewed}
+  p #[Responded:] #{messagesIn.responded}
+  p #[Follow Up Reqrd:] #{messagesIn.follow_up}
+  p #[Action:] #{messagesIn.action}
+
+  hr
+  p
+    a(href=messagesIn.url+'/delete') Delete Message
+  p
+    a(href=messagesIn.url+'/reply') Reply Message

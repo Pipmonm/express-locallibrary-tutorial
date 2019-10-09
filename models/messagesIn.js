@@ -6,19 +6,27 @@ var MessagesInSchema = new Schema(
   {
     license_string: {type: String, required: true, min: 10, max: 100},
     name: {type: String, required: false},
-    message: {type: String, required: false, max: 300},
+    message: {type: String, required: true, max: 300},
+    reply: {type: String, required: false },
     viewed: {type: Boolean, default:false},
-    responded: {type: Boolean, required:true, default: false},
+    responded: {type: Boolean, default: false},
     follow_up: {type: Boolean, default:false},
     action:  {type: String, default:"inactive"}
   }
 );
 
-// Virtual for status's URL
+MessagesInSchema
+//virtual for 'status'
+.virtual('status')
+.get(function(){
+  return this.license_string + ":" + this.viewed + ":" + this.responded + ":" + this.follow_up;
+})
+
+// Virtual for msg's URL
 MessagesInSchema
 .virtual('url')
 .get(function () {
-  return '/catalog/status/' + this._id;
+  return '/catalog/messagesIn/' + this._id +'/detail';
 });
 
 //Export model
