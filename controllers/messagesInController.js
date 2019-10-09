@@ -100,8 +100,8 @@ exports.msgs_reply_create_post = [
     body('replyString').isLength({max:500}).trim().withMessage(""),
     body('viewed', 'True/False').isBoolean().withMessage("if you're reading this it's been viewed!"),
     body('responded', 'True/False').isBoolean().withMessage("true only if responded"),
-    body('follow_up' 'True/False whether more req.').isBoolean().withMessage("True if further action req."),
-    body('action' 'dscrptn of follow-on action').isLength({max:200}).withMessage("to be done"),
+    body('follow_up', 'True/False whether more req.').isBoolean().withMessage("True if further action req."),
+    body('action', 'dscrptn of follow-on action').isLength({max:200}).withMessage("to be done"),
 
     sanitizeBody('sysIdString').trim().escape(),
     sanitizeBody('msgString').trim().escape(),
