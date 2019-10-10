@@ -29,7 +29,7 @@ exports.messagesIn_list = function(req, res, next) {
 //MyModel.find({ name: /john/i }, 'name friends', function (err, docs) { })
 exports.messagesIn_list_follow = function(req, res, next) {
   console.log('@@@ $ at messagesIn_list');
-  MessagesIn.find({responded: /false/i}, 'message url', function (err, messages) {
+  MessagesIn.find({responded: /'false'/i}, 'message url', function (err, messages) {
       console.log("@@@ $ executing callback for messages 'follow' list; if err> : " + err );
       if (err) { return next(err); }
       console.log('@@@ $ found "follow" messages as per: ');
