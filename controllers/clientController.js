@@ -318,12 +318,12 @@ exports.client_status_post = [
             now = now.split("GMT")[0];//only date part
             let datedMsg = now + fromUser + ">>" + req.body.msgString;
             //2019-09-30  above was string 'client>>' now trying for pass in via URL param
-            //if(fromUser== "client_msg"){
-               //msgArray.unshift(datedMsg);//at the top for client
-             //}else{
-               //msgArray.push(datedMsg);//below for reply
-             //}
-            //console.log("@@@ $ updated msgArray for Client: ",msgArray);
+            if(fromUser== "client_msg"){
+               msgArray.unshift(datedMsg);//at the top for client
+             }else{
+               msgArray.push(datedMsg);//below for reply
+             }
+            console.log("@@@ $ updated msgArray for Client: ",msgArray);
 
             var message_in = new MessagesIn(
                   {
