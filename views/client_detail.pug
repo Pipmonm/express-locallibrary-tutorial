@@ -30,10 +30,13 @@ block content
   p  Email: #{client.email_address}
 
   p Messages:
-  ul each msg in #{client.return_msgs}
-    li msg
+  ul
+  each msg in #{client.return_msgs}
+    li  msg
   else
-    li  No Messages
+    li no messages
+
+
   hr
   p
     a(href=client.url+'/delete') Delete client

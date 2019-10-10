@@ -173,7 +173,7 @@ exports.clientrequest_delete_post = function(req, res, next) {
   };
 
 // Display ClientRequest update form on GET.
-exports.clientrequest_reply_get = function(req, res, next) {
+exports.clientrequest_update_get = function(req, res, next) {
   //console.log('@@@ $ clientrequest_update_get starts; req below');
   //console.log(req);
   // Get clientrequest, clients and genres for form.
@@ -210,7 +210,7 @@ exports.clientrequest_reply_get = function(req, res, next) {
 };
 
 // Handle clientrequest update on POST.
-  exports.clientrequest_reply_post = [
+  exports.clientrequest_update_post = [
       // Validate fields.
       body('client','required').isLength({min:1}).trim(),
       body('formatCode','required').isLength({min:4, max:10}).trim(),

@@ -140,7 +140,7 @@ router.post('/regionalauthority/:id/update', regionalauthority_controller.region
 //'yet to be responded to' messages
 router.get('/active_messages_list', messagesIn_controller.messagesIn_list_follow);
 //messages by license_string
-//router.get('/messagesIn/:id/detail', messagesIn_controller.messagesIn_detail);
+router.get('/messagesIn/:id/detail', messagesIn_controller.messagesIn_detail);
 //
 
 //generate appname document
