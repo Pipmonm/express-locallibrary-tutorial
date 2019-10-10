@@ -313,7 +313,7 @@ exports.client_status_post = [
               docId = doc._id;
               dummy = doc;
             }
-            //var msgArray = dummy.return_msgs;
+            var msgArray = dummy.return_msgs;
             let now = Date().toString();
             now = now.split("GMT")[0];//only date part
             let datedMsg = now + fromUser + ">>" + req.body.msgString;
