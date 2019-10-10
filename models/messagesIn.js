@@ -26,7 +26,7 @@ MessagesInSchema
 MessagesInSchema
 .virtual('url')
 .get(function () {
-  return '/catalog/messagesIn/' + this._id;
+  return '/catalog/messagesIn/' + this._id ;
 });
 
 //Export model
