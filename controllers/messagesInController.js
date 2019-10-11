@@ -28,7 +28,7 @@ exports.messagesIn_list = function(req, res, next) {
 // executes, name LIKE john and only selecting the "name" and "friends" fields
 //MyModel.find({ name: /john/i }, 'name friends', function (err, docs) { })
 exports.messagesIn_list_follow = function(req, res, next) {
-  console.log('@@@ $ at messagesIn_list');
+  console.log('@@@ $ at messagesIn_list_follow');
   MessagesIn.find({responded: false}, 'message url', function (err, messages) {
       console.log("@@@ $ executing callback for messages 'follow' list; if err> : " + err );
       if (err) { return next(err); }
