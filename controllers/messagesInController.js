@@ -12,10 +12,11 @@ var debug = require('debug');
 function restore(item){
    //str = "Please visit Microsoft and Microsoft!";
    //var n = str.replace(/Microsoft/g, "W3Schools");
-   console.log("@@@ ## item[0]: ",item[0]," & split: ", item[0].split(",")[1]);
-   var item2 = item[0].toString();
-   console.log('@@@ $ item: ',item[0], '  & type: ', typeof item[0], ' & item2: ',item2);
-   item2.replace(/&#x27;/g, "'");
+   for(x in item){
+     if(typeof item[x]== 'string') item[x] = item[x].replace(/&#x27;/g, "'");
+     console.log('@@@ $ item[x]: ',item[x]);
+     //item2.replace(/&#x27;/g, "'");
+   }
   return item;
 }
 
