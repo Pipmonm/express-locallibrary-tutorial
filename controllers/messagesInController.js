@@ -9,6 +9,13 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
+function restore(item){
+   //str = "Please visit Microsoft and Microsoft!";
+   //var n = str.replace(/Microsoft/g, "W3Schools");
+   item.replace(/&#x27;/g, "'");
+  return item;
+}
+
 // Display list of all messagesIns.
 exports.messagesIn_list = function(req, res, next) {
   console.log('@@@ $ at messagesIn_list');
@@ -36,7 +43,8 @@ exports.messagesIn_list_follow = function(req, res, next) {
       console.log(messages);
       let msgArray = [];
       for (each of messages) {
-         msgArray.push(each.unescape());
+         each = restore(each);
+         msgArray.push(each);
       }
       //res.render('messages_list', { title: 'Active Messages List', messagesIn_list: messages });
       res.render('messages_list', { title: 'Active Messages List', messagesIn_list: msgArray });
