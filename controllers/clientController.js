@@ -234,7 +234,7 @@ exports.client_status_post = [
     //body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
     // Sanitize fields.
     sanitizeBody('sysIdString').trim().escape(),
-    sanitizeBody('msgString').trim().escape(),
+    sanitizeBody('msgString').trim(),//.escape(),//TEST to see if missing apostrophe's due to this
 
     // Process request after validation and sanitization.
     (req, res, next) => {
