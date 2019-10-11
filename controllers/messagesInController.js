@@ -43,15 +43,15 @@ exports.messagesIn_list_follow = function(req, res, next) {
   MessagesIn.find({responded: false}, 'message url', function (err, messages) {
       console.log("@@@ $ executing callback for messages 'follow' list; if err> : " + err );
       if (err) { return next(err); }
-      console.log('@@@ $ found "follow" messages as per: ');
-      console.log(messages);
+      //console.log('@@@ $ found "follow" messages as per: ');
+      //console.log(messages);
       let msgArray = [];
       for (each of messages) {
          each = restore(each);
          msgArray.push(each);
       }
       //res.render('messages_list', { title: 'Active Messages List', messagesIn_list: messages });
-      res.render('messages_list', { title: 'Active Messages List', messagesIn_list: msgArray });
+      res.render('messages_list', { title: 'Active Messages List', messagesIn_list: messages });
     });
 
 };
