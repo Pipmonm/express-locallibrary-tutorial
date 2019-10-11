@@ -42,8 +42,9 @@ exports.messagesIn_list_follow = function(req, res, next) {
 // Display detail page for a specific messagesIn.
 exports.messagesIn_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
+      sanitizeBody(req.params.id).trim().escape();
       var id = req.params.id;
-      console.log('@@@ $ looking for messagesIn with id: ' + id);
+      console.log('@@@ $ request to detail messagesIn with id: ' + id);
 
       MessagesIn.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         //.populate('client')

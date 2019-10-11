@@ -6,7 +6,7 @@ block content
   ul
   each msg in messagesIn_list
     li
-      a(href=msg.url) #{msg.message}
+      a(href=#{msg.url} +'/detail') #{msg.message}
       | (#{msg.license_string})
 
   else
