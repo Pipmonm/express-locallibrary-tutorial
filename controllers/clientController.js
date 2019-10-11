@@ -234,7 +234,7 @@ exports.client_status_post = [
     //body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
     // Sanitize fields.
     sanitizeBody('sysIdString').trim().escape(),
-    sanitizeBody('msgString').trim(),//.escape(),//TEST to see if missing apostrophe's due to this
+    sanitizeBody('msgString').trim().escape(),
 
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -244,7 +244,7 @@ exports.client_status_post = [
 
         //2019-09-29  extra checks on sysIdString and msgString
         let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
-        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /",'"<'];
+        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /","\","'","<"];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
         var suspectWord = [];

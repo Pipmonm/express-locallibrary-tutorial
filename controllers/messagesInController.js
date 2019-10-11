@@ -34,7 +34,12 @@ exports.messagesIn_list_follow = function(req, res, next) {
       if (err) { return next(err); }
       console.log('@@@ $ found "follow" messages as per: ');
       console.log(messages);
-      res.render('messages_list', { title: 'Active Messages List', messagesIn_list: messages });
+      let msgArray = [];
+      for (each of messages) {
+         msgArray.push(each.unescape());
+      }
+      //res.render('messages_list', { title: 'Active Messages List', messagesIn_list: messages });
+      res.render('messages_list', { title: 'Active Messages List', messagesIn_list: msgArray });
     });
 
 };
@@ -68,7 +73,7 @@ exports.messagesIn_detail = function(req, res, next) {
               //if(err)return console.error('@@@ $$ cannot populate client: err ' + err);
         //})
         // Successful, so render.
-        console.log('@@@ $ rendering messagesIn_detail with messagesIn: ' + messagesIn);
+        console.log('@@@ $ rendering messagesIn_detail for message: ' + messagesIn.message);
         res.render('messagesIn_detail', { title: 'Messages: ', messagesIn:  messagesIn});
       })
 
