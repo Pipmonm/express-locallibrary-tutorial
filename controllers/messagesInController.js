@@ -12,7 +12,9 @@ var debug = require('debug');
 function restore(item){
    //str = "Please visit Microsoft and Microsoft!";
    //var n = str.replace(/Microsoft/g, "W3Schools");
-   item.replace(/&#x27;/g, "'");
+   var item2 = item.toString();
+   console.log('@@@ $ item: ',item, '  & type: ', typeof item, ' & item2: ',item2);
+   item2.replace(/&#x27;/g, "'");
   return item;
 }
 
