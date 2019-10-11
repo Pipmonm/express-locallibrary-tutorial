@@ -6,18 +6,21 @@ block content
   p #[strong License String:] #{messagesIn.license_string}
   hr
   p #[strong Message:]
-  p #{messagesIn.message}
+  p !{messagesIn.message}
+  //- ! instead of # allows interpretation of HTML
 
   p #[strong Reply:]
   p #{messagesIn.reply}
 
-  p #[Viewed:] #{messagesIn.viewed}
-  p #[Responded:] #{messagesIn.responded}
-  p #[Follow Up Reqrd:] #{messagesIn.follow_up}
-  p #[Action:] #{messagesIn.action}
+  p Viewed: #{messagesIn.viewed}
+  p #[strong Responded:] #{messagesIn.responded}
+  p Follow Up Reqrd: #{messagesIn.follow_up}
+  p #[strong Action:] #{messagesIn.action}
 
   hr
   p
     a(href=messagesIn.url+'/delete') Delete Message
   p
     a(href=messagesIn.url+'/reply') Reply Message
+  P
+    a(href='/catalog/active_messages_list') List Active Messages
