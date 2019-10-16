@@ -249,7 +249,7 @@ exports.messagesIn_delete = function(req, res, next) {
         return next(err);
       }
       // Success - go to messagesIns list
-      //res.redirect('/catalog/messagesIns')
+      res.redirect('/catalog/active_messages_list')
       return;
   })
   };
@@ -263,7 +263,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
       messagesIn: function(callback) {
           console.log('@@@ $ messagesIn async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
-          MessagesIn.findById(req.params.id).populate('client').exec(callback);//.populate('client') removed
+          MessagesIn.findById(req.params.id).exec(callback);//.populate('client') removed
       },
       //clients: function(callback) {
           //console.log('@@@ $ messagesIn async updt clnt.find: get');
@@ -338,7 +338,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
                     return next(err);
                   }
                      //else Successful - redirect to new record.
-                     res.redirect(messagesIn.url);
+                     res.redirect(messagesIn.url + '/detail');
                   });
           }
       }
