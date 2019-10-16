@@ -146,7 +146,7 @@ router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete);
 //router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete_post);
 //relpy (ie update)
 router.get('/messagesIn/:id/reply', messagesIn_controller.messagesIn_reply_get);
-router.get('/messagesIn/:id/reply', messagesIn_controller.messagesIn_reply_post);
+router.post('/messagesIn/:id/reply', messagesIn_controller.messagesIn_reply_post);
 //generate appname document
 // GET request for creating an Appname. NOTE This must come before route that displays Appname (uses id).
 router.get('/appname/create', appname_controller.appname_create_get);

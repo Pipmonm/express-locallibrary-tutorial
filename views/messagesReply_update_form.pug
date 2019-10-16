@@ -19,11 +19,11 @@ block content
     label(for='reply') Reply:
     input#reply.form-control(type='text',"width:150px", placeholder='reply, max 300 characters', name='reply', maxlength=300, value=messagesIn.reply)
     label(for='viewed') Viewed?
-    input#viewed.form-control(type='boolean',placeholder='viewed?',name='viewed',value=messagesIn.viewed)
+    input#viewed.form-control(type='boolean',placeholder='viewed? (true/false)',name='viewed',value=messagesIn.viewed)
     label(for='responded') Responded?
-    input#responded.form-control(type='boolean',placeholder='responded?',name='responded',value=messagesIn.responded)
+    input#responded.form-control(type='boolean',placeholder='responded? (true/false)',name='responded',value=messagesIn.responded)
     label(for='follow_up') Follow_up?
-    input#follow_up.form-control(type='boolean',placeholder='follow_up?',name='follow_up',value=messagesIn.follow_up)
+    input#follow_up.form-control(type='boolean',placeholder='follow_up? (true/false)',name='follow_up',value=messagesIn.follow_up)
     label(for='action') Action Required (taken):
     input#action.form-control(type='text',"width:150px", placeholder='action, max 300 characters', name='action', maxlength=300, value=messagesIn.action)
 

@@ -261,7 +261,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
   // Get messagesIn, clients and genres for form.
   async.parallel({
       messagesIn: function(callback) {
-          console.log('@@@ $ messagesIn async updt clrq.find + populate: get');
+          console.log('@@@ $ messagesIn async updt ');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
           MessagesIn.findById(req.params.id).exec(callback);//.populate('client') removed
       },
@@ -285,7 +285,8 @@ exports.messagesIn_reply_get = function(req, res, next) {
           console.log('@@@ WOW messagesIn get update results: ');
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
-          res.render('messagesReply_update_form', { title: 'Reply Message', messagesIn: results.messagesIn });
+          res.render('messagesReply_update_form', { title: 'Reply Message',
+                                                    messagesIn: results.messagesIn});
       });
 
 };
