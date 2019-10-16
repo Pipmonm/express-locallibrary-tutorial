@@ -91,7 +91,7 @@ exports.messagesIn_detail = function(req, res, next) {
 
   };
 
-// Display messagesIn create form on GET.
+// NOT USED CURRENTLY & THEREFORE HAS NO PUG FILES
 exports.msgs_reply_create_get = function(req, res, next) {
 
       MessagesIn.find() //was {},'client'
@@ -222,6 +222,7 @@ exports.msgs_reply_create_post = [
 // Display messagesIn delete form on GET.
 exports.messagesIn_delete_get = function(req, res, next) {
       console.log('@@@ $ entering messagesIn_delete_get params follows');
+      sanitizeBody(req.params.id).trim().escape();//2019-08-16
       console.log(req.params);
 
       messagesIn.findByIdAndRemove(req.params.id, function deleteMessagesIn(err){
@@ -239,6 +240,7 @@ exports.messagesIn_delete_get = function(req, res, next) {
 // Handle messagesIn delete on POST.
 exports.messagesIn_delete_post = function(req, res, next) {
   console.log('@@@ $ entering messagesIn_delete_post req.params below');
+  sanitizeBody(req.params.id).trim().escape();//2019-08-16
   console.log(req.params);
   // client instances being deleted have no dependencies; just do it.
   MessagesIn.findByIdAndRemove(req.params.id, function deleteMessagesIn(err) {  //was Autthor....req.body.clientid, fn deletclient
@@ -255,19 +257,18 @@ exports.messagesIn_delete_post = function(req, res, next) {
 // Display messagesIn update form on GET.
 exports.messagesIn_reply_get = function(req, res, next) {
   //console.log('@@@ $ messagesIn_update_get starts; req below');
-  //console.log(req);
+  sanitizeBody(req.params.id).trim().escape();//2019-08-16
   // Get messagesIn, clients and genres for form.
-  Client = require('../models/client'); //for fun
   async.parallel({
       messagesIn: function(callback) {
           console.log('@@@ $ messagesIn async updt clrq.find + populate: get');
           console.log('@@@ $ with req.params.id= ' + req.params.id);
           MessagesIn.findById(req.params.id).populate('client').exec(callback);//.populate('client') removed
       },
-      clients: function(callback) {
-          console.log('@@@ $ messagesIn async updt clnt.find: get');
-          Client.find(callback);
-        },
+      //clients: function(callback) {
+          //console.log('@@@ $ messagesIn async updt clnt.find: get');
+          //Client.find(callback);
+        //},
 
       }, function(err, results) {
           if (err) {
@@ -284,7 +285,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
           console.log('@@@ WOW messagesIn get update results: ');
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
-          res.render('messagesInUpdate_form', { title: 'Update MessagesIn', clients:results.clients, messagesIn: results.messagesIn });
+          res.render('messageInReply_form', { title: 'Reply Message', messagesIn: results.messagesIn });
       });
 
 };
@@ -292,48 +293,47 @@ exports.messagesIn_reply_get = function(req, res, next) {
 // Handle messagesIn update on POST.
   exports.messagesIn_reply_post = [
       // Validate fields.
-      body('client','required').isLength({min:1}).trim(),
-      body('formatCode','required').isLength({min:4, max:10}).trim(),
-      body('status', 'optional').isLength({ min: 1 }).trim(),
-      body('date_entered', 'Request date').optional({ checkFalsy: true }).isISO8601(),
-
+      body('license_string').isLength({min: 10, max:80 }).trim().withMessage('Paste text from clipboard here'),
+      body('name').isLength({max: 60}).trim().withMessage('surname,family name'),
+      body('message').isLength({min:5, max:300}).trim().withMessage("Place message here"),
+      //body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
       // Sanitize fields.
-      sanitizeBody('appname').trim().escape(),
-      sanitizeBody('client').trim().escape(),
-      sanitizeBody('formatCode').trim().escape(),
-      sanitizeBody('status').trim().escape(),
-      sanitizeBody('date_entered').toDate(),
+      body('reply').isLength({max:300}).trim().withMessage("post reply here"),
+      body('viewed', 'True/False').isBoolean().withMessage("if you're reading this it's been viewed!"),
+      body('responded', 'True/False').isBoolean().withMessage("true only if responded"),
+      body('follow_up', 'True/False whether more req.').isBoolean().withMessage("True if further action req."),
+      body('action', 'dscrptn of follow-on action').isLength({max:200}).withMessage("to be done"),
+
+      sanitizeBody('license_string').trim().escape(),
+      sanitizeBody('name').trim().escape(),
+      sanitizeBody('msgString').trim().escape(),
+      sanitizeBody('replyString').trim().escape(),
+      sanitizeBody('viewed').trim().escape(),
+      sanitizeBody('responded').trim().escape(),
+      sanitizeBody('follow_up').trim().escape(),
+      sanitizeBody('action').trim().escape(),
 
       // Process request after validation and sanitization.
       (req, res, next) => {
 
           // Extract the validation errors from a request.
           const errors = validationResult(req);
-
-          // Create a messagesIn object with escaped and trimmed data and old id
-          var messagesIn = new MessagesIn( //.body. here is body of request which has many key fields
-            {
-              license_string: req.body.appname,
-              name: req.body.client,
-              message: req.body.formatCode,
-              status: req.body.status,
-              date_entered: req.body.date_entered,
-              _id:req.params.id //This is required, or a new ID will be assigned!
-             });
+          //2019-09-29  extra checks on license_string
+          let checkString = checkValidIdString(req.body.license_string);//returns pass/fail
 
           if (!errors.isEmpty()) {
               // There are errors. Render form again with sanitized values and error messages.
 
-              Client.find()
+              MessagesIn.find()//WORKING HERE AND NOT SURE IF SHOULD BE FINDBYID OR WHATEVER?????
                   .exec(function (err, clients) {
                       if (err) {
-                        console.log('@@@ $ clrq_update_post err> ' + err);
+                        console.log('@@@ $ msg_reply_post err> ' + err);
                         return next(err);
                       }
                       // Successful, so render.
-                      console.log('@@@ $ rendering messagesIn_form for redisplay in clrq_update_post (validation err)');
+                      console.log('@@@ $ rendering messagesIn_form for redisplay in msg_reply_post (validation err)');
 
-                      res.render('messagesInUpdate_form', { title: 'Create MessagesIn', client_list : clients, selected_client : messagesIn.client._id , errors: errors.array(), messagesIn:messagesIn });
+                      res.render('messagesInReply_form', { title: 'Reply Msg Errors', errors: errors.array(), messagesIn:messagesIn });
               });
               return;
           }

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1=title
+
+  p=message1
+  p=message2
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='license_string') Clipboard Data:
+      input#license_string.form-control(type='text',style="width:100px", placeholder='paste clipboard here', name='license_string', value= messagesIn.license_string,  required = 'true')
+    div.form-group
+      label(for='name') Client Name:
+      input#name.form-control(type='text',"width:150px", placeholder='client name', name='name', value = messagesIn.name)
+    div.form-form_group
+    label(for='message') Message:
+    input#message.form-control(type='text',"width:150px", placeholder='message, max 300 characters', name='message', maxlength=300, value=messagesIn.message)
+    label(for='reply') Reply:
+    input#reply.form-control(type='text',"width:150px", placeholder='reply, max 300 characters', name='reply', maxlength=300, value=messagesIn.reply)
+    label(for='viewed') Viewed?
+    input#viewed.form-control(type='boolean',placeholder='viewed?',name='viewed',value=messagesIn.viewed)
+    label(for='responded') Responded?
+    input#responded.form-control(type='boolean',placeholder='responded?',name='responded',value=messagesIn.responded)
+    label(for='follow_up') Follow_up?
+    input#follow_up.form-control(type='boolean',placeholder='follow_up?',name='follow_up',value=messagesIn.follow_up)
+    label(for='action') Action Required (taken):
+    input#action.form-control(type='text',"width:150px", placeholder='action, max 300 characters', name='action', maxlength=300, value=messagesIn.action)
+
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
