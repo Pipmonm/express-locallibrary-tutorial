@@ -296,10 +296,13 @@ exports.messagesIn_reply_get = function(req, res, next) {
 
           console.log('@@@ $ messagesIn get reply_get findby Id value for URL: ');
           console.log('@@@ # URL: ',results.messagesIn.url)
+          let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+                       "numbers, any other characters will cause message to be ignored."
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
           res.render('messagesReply_update_form', { title: 'Reply Message',
-                                                    messagesIn: results.messagesIn});
+                                                    messagesIn: results.messagesIn,
+                                                    message1:message1});
       });
 
 };
@@ -337,10 +340,16 @@ exports.messagesIn_reply_get = function(req, res, next) {
 
           if (!errors.isEmpty() || checkString == 'fail') {
               // There are errors. Render form again with sanitized values and error messages.
+            let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+                           "numbers, any other characters will cause message to be ignored.";
 
             if(checkString == 'fail')message1 = 'REGISTRATION DATA INVALID, PLEASE CHECK AND RE-ENTER';
             console.log('@@@ $ rendering messagesIn_form for redisplay in msg_reply_post (validation err)');
-            res.render('messagesReply_update_form', { title: 'Reply Msg Errors',message1:message1, errors: errors.array(), messagesIn:req.body });
+
+            res.render('messagesReply_update_form', { title: 'Reply Msg Errors',
+                                                      message1:message1,
+                                                      errors: errors.array(),
+                                                      messagesIn:req.body });
             return;
           }
           else {
@@ -352,7 +361,8 @@ exports.messagesIn_reply_get = function(req, res, next) {
                     return next(err);
                   }
                      //else Successful - redirect to new record.
-                     res.redirect('/catalog/messagesIn/' + ':' + req.body._id + '/detail');
+                     //res.redirect('/catalog/messagesIn/' + ':' + req.body.url???? + '/detail');
+                     res.redirect('/catalog/active_messages_list');//temporary
                   });
           }
       }
