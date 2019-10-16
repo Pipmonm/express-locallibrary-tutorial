@@ -33,6 +33,7 @@ block content
     //- each msg in client.return_msgs
   each msg in msgs
     p!= msg.message
-    <(style={color: 'green'})>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reply: #{msg.reply}
+    p(style={color: 'green'}) = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reply: #{msg.reply}
+    br
   else
     p There are no messages
