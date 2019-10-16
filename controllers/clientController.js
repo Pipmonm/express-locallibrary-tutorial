@@ -88,7 +88,7 @@ exports.client_status_post = [
                   Client.find({'license_string':sysIdString},callback);
                 },
               messages: function(callback){
-                  MessagesIn.find('license_string':sysIdString},callback);//2019-10-16 new //2019-01-30 TO BE MODIFIED to license_string
+                  MessagesIn.find({'license_string':sysIdString},callback);//2019-10-16 new //2019-01-30 TO BE MODIFIED to license_string
                 },
             }, function(err, results) {
              if(err){
