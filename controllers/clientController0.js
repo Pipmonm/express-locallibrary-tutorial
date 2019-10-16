@@ -1,6 +1,8 @@
 //clientrequest instance controller js
 var Client = require('../models/client');
 var ClientRequest = require('../models/clientrequest');//2019-01-31 removed chasing E11000
+var MessagesIn = require('../models/messagesIn');//2019-10-01 for tracking msgs
+
 ////var clientrequestInstance = require('../models/clientrequestinstance');
 const { body,validationResult } = require('express-validator/check');
 const { sanitizeBody } = require('express-validator/filter');
@@ -18,7 +20,7 @@ function checkValidIdString(inString){
   for (var i=0;i<2;i++){
     if(isNaN(stringPieces[i]))return "fail";
   }
-  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU")return "fail";
+  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU" && stringPieces[2] != "NumLn" && stringPieces[2] != "Eqt")return "fail";
   return "pass";
 };
 
@@ -193,6 +195,169 @@ exports.client_status_post = [
 
     };
 
+  //get client request for FAQ or messaging
+  exports.client_prolog = function(req,res,next) {
+    //otherwise
+    let msg1 = "Please select field of interest by clicking on either of" +"<br />" +
+                "the following options.";
+
+     let msg2 = "Note that any messages returned to you can be seen by accessing the" + "<br />" +
+                "'View Account' tab." + "<br />" +
+                " (you will need the 'Registration Data' that is automatically loaded in the" + "<br />" +
+                "Window's clipboard whenever you click on a module's 'Registration Data' tab)";
+
+     let msg3 = "You will also need this 'Registration Data' to send us a message";
+
+     let sourceA = '/catalog/clientmessages_in'
+     let sourceA2 = 'SEND MSG';
+
+     let sourceB = '/catalog/system_FAQ';
+     let sourceB2 = 'FAQ';
+
+     res.render('client_prolog', {title: "FAQ & Msg Request Page", msg1:msg1,msg2:msg2,msg3:msg3});
+  };
+
+  exports.messages_in_get = function(req,res,next){
+      let title = "Message Service";
+      let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+                   "numbers, any other characters will cause message to be ignored."
+
+      res.render('client_msg_form', {title: title, message1:message1, message2:""});
+
+  };
+
+  exports.messages_in_post = [
+    // Validate fields.
+    body('sysIdString').isLength({min: 10 }).trim().withMessage('Paste text from clipboard here'),
+    //body('sysIdString').isAlphanumeric().withMessage('clipboard text must be as given in module Registration Data'),
+    body('msgString').isLength({min:5, max:300}).trim().withMessage("Place comment here"),
+    //body('msgString').isAlphanumeric().withMessage('message can only have letters, punctuation, and numbers'),
+    // Sanitize fields.
+    sanitizeBody('sysIdString').trim().escape(),
+    sanitizeBody('msgString').trim().escape(),
+
+    // Process request after validation and sanitization.
+    (req, res, next) => {
+        var fromUser = req.params.user;//2019-09-30
+        // Extract the validation errors from a request.
+        const errors = validationResult(req);
+
+        //2019-09-29  extra checks on sysIdString and msgString
+        let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
+        let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /",'"<'];
+        let checkMsg ="pass";
+        let suspectString = req.body.msgString;
+        var suspectWord = [];
+        for(var i=0;i<bannedWords.length;i++){
+          if(suspectString.indexOf(bannedWords[i]) != -1){
+            checkMsg = "fail";
+            suspectWord.push(bannedWords[i]);
+          }
+        }
+
+        if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
+            console.log('@@@ $ Errors in validationResult for "msgIn_create_post" in order: checkString & checkMsg',checkString," & ",checkMsg);
+            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",suspectString, "  & ", suspectWord);
+            let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause " +
+                           "message to be rejected. "
+            // There are errors. Render form again with sanitized values/errors messages.
+            res.render('client_msg_form', { title: 'Message Errors', message1:message1, errors: errors.array() });
+            return;
+
+        }else{
+            // Data from form is valid.
+            //multiple could happen so distinguish by date asynchronously
+            //or possibly simply advise  (to be done later)
+            var rgrqcd = req.body.sysIdString;
+            console.log('@@@ $ msg from id is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+            req.body.msgString.replace("'","\'");//allow single quote
+            console.log('@@@ $ message follows');
+            console.log(req.body.msgString);
+            }
+        //2019-09-30   insert message into client account & in messagesIn folder using app(name?)controller
+        //first get client
+        var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
+        Client.find({'license_string':rgrqcd},function(err, doc){ //2019-09-30 TO BE MODIFIED to license_string
+               //2019-01-30 was: 'device_id' : deviceId
+          if(err){
+            console.log("@@@ $ err in Client.find license_string for msg delivery" + err);
+            return  next(err);
+          }
+          console.log("@@@ $ found client for msg delivery & doc is of type: ",typeof doc );
+          if(!doc.length || doc[0] == undefined || doc[0].device_id == undefined){
+            if(!doc.length || doc == null || doc == undefined){
+              console.log("@@@ $ err Client record is invalid" + doc);
+              // There are errors. Render the form again with sanitized values/error messages.
+              res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
+                           message1: "Use clipboard contents of application's Registration Data to Register first then try again",
+                           message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
+                           sysIdString: rgrqcd, errors: errors.array()});
+              return;
+            }else{//2019-03-11 seems should be in an array
+              option2 = true;//2019-03-11 seems like record is not an array
+              console.log("@@@ $ option2 is true & doc is: /n" + doc);
+            }
+          }
+
+          if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
+            console.log("@@@ $ multiples of same license_string " + rgrqcd);//2019-01-30 modded from deviceId
+            res.redirect('/catalog');//go home or better, give message
+          }else{
+            //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
+            var docId = doc[0]._id;
+            var clientName = doc[0].name;//2019-10-01 added
+            var dummy = doc[0];
+            console.log("@@@ $ doc[0]._id: ",docId);
+            console.log("@@@ $ from doc[0]?: ",doc[0]);
+            if(docId == undefined){
+              docId = doc._id;
+              dummy = doc;
+            }
+            var msgArray = dummy.return_msgs;
+            let now = Date().toString();
+            now = now.split("GMT")[0];//only date part
+            let datedMsg = now + fromUser + ">>" + req.body.msgString;
+            //2019-09-30  above was string 'client>>' now trying for pass in via URL param
+            if(fromUser== "client_msg"){
+               msgArray.unshift(datedMsg);//at the top for client
+             }else{
+               msgArray.push(datedMsg);//below for reply
+             }
+            console.log("@@@ $ updated msgArray for Client: ",msgArray);
+
+            var message_in = new MessagesIn(
+                  {
+                    license_string: rgrqcd, //sysIdString
+                    name: clientName,
+                    message: datedMsg,
+                    reply: "",
+                    viewed: false,
+                    responded: false,
+                    follow_up: true,
+                    action: "inactive"
+                  });
+            message_in.save(function (err){
+                   if(err){return next(err)}
+               });//WORKING HERE
+            //2019-10-01 added (note ')' follows callback)   async parallel ends
+            Client.findByIdAndUpdate(docId, {return_msgs: msgArray },{upsert: true, 'new': true}, function(err,newdoc){
+                 //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
+                 //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
+
+              if(err){
+                console.log("@@@ $ error in async parallel for msg creation or client update : " + err);
+              }
+              console.log("@@@ $ client stored msg as: ",newdoc.messages);//2019-09-30  desperate measures
+
+           });
+
+             // Successful - redirect to new clientrecord.
+        res.redirect('/catalog');//send to show client_detail
+    }//end else clause
+  })//end client find
+}//callback fn ends
+]
+
   // Display Client create form on GET.
   exports.client_create_get = function(req, res, next) {
     var canadaRegions = ['AB',
@@ -208,7 +373,11 @@ exports.client_status_post = [
                          'QC',
                          'SK',
                          'YT'];
-    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions});
+    var countryOptions = ['Canada',
+                          'United States',
+                          'Other'];
+
+    res.render('client_formTAX', { title: 'Register Form', canadaRegions:canadaRegions, countryOptions:countryOptions});
   };
 
   // Handle Client create on POST.
@@ -219,6 +388,7 @@ exports.client_status_post = [
         body('country').isLength({min: 1}).trim().withMessage('Please fill in Country of Residence.'),//2019-08-16
         body('tax_region').isLength({min: 1}).trim().withMessage('Enter Pov. or Territory or State'),
         body('city_address').isLength({min: 1}).trim().withMessage('Fill in "#, street, city"'),
+        body('postal_code').isLength({min:1}).trim().withMessage('Postal Code (ZipCode) required'),
         body('email_address').isEmail().trim().withMessage('your email address'),
         body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
             //.isAlphanumeric().withMessage('clipboard text must only be made up of letters and numbers'),
@@ -228,6 +398,7 @@ exports.client_status_post = [
         sanitizeBody('country').trim().escape(),//2019-08-16
         sanitizeBody('tax_region').trim().escape(),
         sanitizeBody('city_address').trim().escape(),
+        sanitizeBody('postal_code').trim().escape(),
         sanitizeBody('email_address').trim().escape(),
         sanitizeBody('license_string').trim().escape(),
 
@@ -307,6 +478,7 @@ exports.client_status_post = [
                         country: req.body.country,//2019-08-16
                         tax_region: req.body.tax_region,
                         city_address: req.body.city_address,
+                        postal_code: req.body.postal_code,
                         email_address: req.body.email_address,
                         registration_date: now,
                     });
@@ -481,6 +653,7 @@ exports.client_status_post = [
              body('country', 'specify country name').trim(),
              body('tax_region','specify Prov./Territory/State').trim(),
              body('city_address','enter: #, street, city').trim(),
+             body('postal_code','Postal Code (ZipCode) required').trim(),
              body('email_address').isEmail().trim().withMessage('your email address'),
              body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
              // Sanitize fields.
@@ -490,8 +663,10 @@ exports.client_status_post = [
              sanitizeBody('country').trim().escape(),//2019-08-16
              sanitizeBody('tax_region').trim().escape(),
              sanitizeBody('city_address').trim().escape(),
+             sanitizeBody('postal_code').trim().escape(),
              sanitizeBody('registration_date').trim().escape(),
              sanitizeBody('license_string').trim().escape(),
+             sanitizeBody('return_msgs').trim().escape(),//2019-09-30 added
 
              //Process request after validation and sanitization.
              (req, res, next) => {

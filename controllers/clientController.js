@@ -80,16 +80,27 @@ exports.client_status_post = [
            console.log("@@@ $ finding client with license_string (aka sysIdString): " + sysIdString);
            var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
            var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
-           Client.find({'license_string':sysIdString},function(err, doc){ //2019-01-30 TO BE MODIFIED to license_string
-                  //2019-01-30 was: 'device_id' : deviceId
+
+
+
+           async.parallel({
+              client: function(callback) {
+                  Client.find({'license_string':sysIdString},callback);
+                },
+              messages: function(callback){
+                  MessagesIn.find('license_string':sysIdString},callback);//2019-10-16 new //2019-01-30 TO BE MODIFIED to license_string
+                },
+            }, function(err, results) {
              if(err){
                console.log("@@@ $ err in Client.find license_string" + err);
                return  next(err);
              }
+             console.log("@@@ $ quick glance at client messages: ",results.messages);
+
              console.log("@@@ $ found client(s) for doc req. status >v" );
-             if(!doc.length || doc[0] == undefined || doc[0].deviceId == undefined){
-               if(!doc.length || doc == null || doc == undefined){
-                 console.log("@@@ $ err Client record is invalid" + doc);
+             if(!results.client.length || results.client[0] == undefined || results.client[0].deviceId == undefined){
+               if(!results.client.length || results.client == null ||results.client == undefined){
+                 console.log("@@@ $ err Client record is invalid",results.client);
                  // There are errors. Render the form again with sanitized values/error messages.
                  res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
                               message1: "Use clipboard contents of application's Registration Data to Register first then try again",
@@ -98,17 +109,18 @@ exports.client_status_post = [
                  return;
                }else{//2019-03-11 seems should be in an array
                  option2 = true;//2019-03-11 seems like record is not an array
-                 console.log("@@@ $ option2 is true & doc is: /n" + doc);
+                 console.log("@@@ $ option2 is true & doc is: /n",results.client);
                }
              }
 
-             if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
+             if(!option2 && results.client.length > 1 ){//2019-03-11 was only 'doc'
                console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
              }
            //});  //needs to include following
            //we want to find yssId record, generate license key and display it as
            //part of client detail   !!!! may have to rename aeveryting client to sysId???
            //failing finding one we redirect to home page
+           let doc = results.client;//2019-10-16 simpler than rewriting all 'doc' items
            let R1=0x5c3f10bd9a;
            let R2=0xb9a3ce805c;
            //critical values above
@@ -154,11 +166,10 @@ exports.client_status_post = [
                console.log(newdoc)
                res.render('client_licensekey', {title: 'License Key Details', client: newdoc});
             });
-         });//end callback
-      };//end if clause
+         });//end "err, results" callback + async '('
+      };//end else clause
 
-   }//end callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
-
+   }//end "req,res, next" callback function WITHOUT SEMI-COLON OR COMMA  ie nothing follows in array
 ] //end client_status_post
 
 
