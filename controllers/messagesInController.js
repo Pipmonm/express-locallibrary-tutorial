@@ -225,20 +225,20 @@ exports.messagesIn_delete_get = function(req, res, next) {
       sanitizeBody(req.params.id).trim().escape();//2019-08-16
       console.log(req.params);
 
-      messagesIn.findByIdAndRemove(req.params.id, function deleteMessagesIn(err){
+      MessagesIn.findByIdAndRemove(req.params.id, function deleteMessagesIn(err){
                  if(err){
                    console.log('@@@ $ error in deleting (fast) messagesIn: ' + err);
                    return next(err);
                  }
-                console.log('@@@ $ redirecting to messagesIns for res: ' + res);
-                res.redirect('/catalog/messagesIns')
+                console.log('@@@ $ redirecting to messagesIn for res: ' + res);
+                res.redirect('/catalog/active_messages_list')
       });//ends findby etc..
   }; //ends export.messagesIn_delete_get
       //here was async.parallel({key1:func,key2:func},function(err,results))
 
 
 // Handle messagesIn delete on POST.
-exports.messagesIn_delete_post = function(req, res, next) {
+exports.messagesIn_delete = function(req, res, next) {
   console.log('@@@ $ entering messagesIn_delete_post req.params below');
   sanitizeBody(req.params.id).trim().escape();//2019-08-16
   console.log(req.params);
@@ -285,7 +285,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
           console.log('@@@ WOW messagesIn get update results: ');
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
-          res.render('messageInReply_form', { title: 'Reply Message', messagesIn: results.messagesIn });
+          res.render('messagesReply_update_form', { title: 'Reply Message', messagesIn: results.messagesIn });
       });
 
 };
@@ -321,26 +321,18 @@ exports.messagesIn_reply_get = function(req, res, next) {
           //2019-09-29  extra checks on license_string
           let checkString = checkValidIdString(req.body.license_string);//returns pass/fail
 
-          if (!errors.isEmpty()) {
+          if (!errors.isEmpty() || checkstring == 'fail') {
               // There are errors. Render form again with sanitized values and error messages.
 
-              MessagesIn.find()//WORKING HERE AND NOT SURE IF SHOULD BE FINDBYID OR WHATEVER?????
-                  .exec(function (err, clients) {
-                      if (err) {
-                        console.log('@@@ $ msg_reply_post err> ' + err);
-                        return next(err);
-                      }
-                      // Successful, so render.
-                      console.log('@@@ $ rendering messagesIn_form for redisplay in msg_reply_post (validation err)');
-
-                      res.render('messagesInReply_form', { title: 'Reply Msg Errors', errors: errors.array(), messagesIn:messagesIn });
-              });
-              return;
+            if(checkstring == 'fail')message1 = 'REGISTRATION DATA INVALID, PLEASE CHECK AND RE-ENTER';
+            console.log('@@@ $ rendering messagesIn_form for redisplay in msg_reply_post (validation err)');
+            res.render('messagesReply_update_form', { title: 'Reply Msg Errors',message1:message1, errors: errors.array(), messagesIn:req.body });
+            return;
           }
           else {
               console.log('@@@ $ updating messagesIn document');
               // Data from form is valid.
-              MessagesIn.findByIdAndUpdate(req.params.id,messagesIn,{}, function (err,themessagesIn) {
+              MessagesIn.findByIdAndUpdate(req.params.id,req.body,{}, function (err,themessagesIn) {
                   if (err) {
                     console.log('@@@ $ updating messagesIn document throws err: ' + err);
                     return next(err);

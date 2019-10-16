@@ -142,8 +142,8 @@ router.get('/active_messages_list', messagesIn_controller.messagesIn_list_follow
 //messages by license_string
 router.get('/messagesIn/:id/detail', messagesIn_controller.messagesIn_detail);
 //delete
-router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete_get);
-router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete_post);
+router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete);
+//router.get('/messagesIn/:id/delete', messagesIn_controller.messagesIn_delete_post);
 //relpy (ie update)
 router.get('/messagesIn/:id/reply', messagesIn_controller.messagesIn_reply_get);
 router.get('/messagesIn/:id/reply', messagesIn_controller.messagesIn_reply_post);
