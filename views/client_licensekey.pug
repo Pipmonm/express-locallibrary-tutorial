@@ -32,7 +32,7 @@ block content
   p  Messages:  (note: replies, when applicable, will be posted here also, ASAP)
     //- each msg in client.return_msgs
   each msg in msgs
-    p!= msgs[msg].message
-    |  msgs[msg].reply
+    p!= msg
+    |   msg
   else
     p There are no messages
