@@ -351,7 +351,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
                     return next(err);
                   }
                      //else Successful - redirect to new record.
-                     res.redirect(messagesIn.url + '/detail');
+                     res.redirect('/catalog/messagesIn/' + req.body._id + '/detail');
                   });
           }
       }
