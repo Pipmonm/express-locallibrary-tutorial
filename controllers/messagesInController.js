@@ -334,10 +334,10 @@ exports.messagesIn_reply_get = function(req, res, next) {
           //2019-09-29  extra checks on license_string
           let checkString = checkValidIdString(req.body.license_string);//returns pass/fail
 
-          if (!errors.isEmpty() || checkstring == 'fail') {
+          if (!errors.isEmpty() || checkString == 'fail') {
               // There are errors. Render form again with sanitized values and error messages.
 
-            if(checkstring == 'fail')message1 = 'REGISTRATION DATA INVALID, PLEASE CHECK AND RE-ENTER';
+            if(checkString == 'fail')message1 = 'REGISTRATION DATA INVALID, PLEASE CHECK AND RE-ENTER';
             console.log('@@@ $ rendering messagesIn_form for redisplay in msg_reply_post (validation err)');
             res.render('messagesReply_update_form', { title: 'Reply Msg Errors',message1:message1, errors: errors.array(), messagesIn:req.body });
             return;
