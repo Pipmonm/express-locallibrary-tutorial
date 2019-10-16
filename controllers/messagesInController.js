@@ -9,6 +9,18 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
+//validation check on sysId and Format Code string  //2018-12-14 new function
+function checkValidIdString(inString){
+  let stringPieces = inString.split(":");
+  if(stringPieces.length !=4)return "fail";//2019-01-31 now of size 4 with module name-version
+  for (var i=0;i<2;i++){
+    if(isNaN(stringPieces[i]))return "fail";
+  }
+  if(stringPieces[2] != "USB" && stringPieces[2] != "CPU" && stringPieces[2] != "NumLn" && stringPieces[2] != "Eqt")return "fail";
+  return "pass";
+};
+
+
 function restore(item){
    //str = "Please visit Microsoft and Microsoft!";
    //var n = str.replace(/Microsoft/g, "W3Schools");
