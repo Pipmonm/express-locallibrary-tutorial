@@ -10,7 +10,7 @@ var MessagesInSchema = new Schema(
     reply: {type: String, required: false },
     viewed: {type: Boolean, default:false},
     responded: {type: Boolean, default: false},
-    follow_up: {type: Boolean, default:false},
+    follow_up: {type: Boolean, default:true},
     action:  {type: String, default:"inactive"}
   }
 );

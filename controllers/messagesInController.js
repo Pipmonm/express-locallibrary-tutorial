@@ -52,7 +52,7 @@ exports.messagesIn_list = function(req, res, next) {
 //MyModel.find({ name: /john/i }, 'name friends', function (err, docs) { })
 exports.messagesIn_list_follow = function(req, res, next) {
   console.log('@@@ $ at messagesIn_list_follow');
-  MessagesIn.find({responded: false}, 'message url', function (err, messages) {
+  MessagesIn.find({follow_up: true}, 'message url', function (err, messages) {
       console.log("@@@ $ executing callback for messages 'follow' list; if err> : " + err );
       if (err) { return next(err); }
       //console.log('@@@ $ found "follow" messages as per: ');
@@ -294,7 +294,8 @@ exports.messagesIn_reply_get = function(req, res, next) {
               return next(err);
           }
 
-          console.log('@@@ WOW messagesIn get update results: ');
+          console.log('@@@ $ messagesIn get reply_get findby Id value for URL: ');
+          console.log('@@@ # URL: ',results.messagesIn.url)
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
           res.render('messagesReply_update_form', { title: 'Reply Message',
@@ -351,7 +352,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
                     return next(err);
                   }
                      //else Successful - redirect to new record.
-                     res.redirect('/catalog/messagesIn/' + req.body._id + '/detail');
+                     res.redirect('/catalog/messagesIn/' + ':' + req.body._id + '/detail');
                   });
           }
       }

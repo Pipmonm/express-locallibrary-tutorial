@@ -333,7 +333,7 @@ exports.client_status_post = [
                     reply: "",
                     viewed: false,
                     responded: false,
-                    follow_up: false,
+                    follow_up: true,
                     action: "inactive"
                   });
             message_in.save(function (err){
