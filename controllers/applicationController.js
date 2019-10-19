@@ -72,7 +72,9 @@ exports.index = function(req, res) {
  "\n"
 
  let err = false;
- var showFileArray = ["PieSlicerHX.jpg", "PieSlicerGAEX.jpg","PieSlicer.jpg"]
+ var showFileArray = ["https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerHX.jpg",
+                      "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
+                      "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
 
  res.render('index', { title: 'Math Topics', error: err, blurb: blurb3, file:showFileArray[0] });
 };
