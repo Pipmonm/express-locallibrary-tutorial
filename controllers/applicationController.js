@@ -76,5 +76,9 @@ exports.index = function(req, res) {
                       "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
                       "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
 
- res.render('index', { title: 'Math Topics', error: err, blurb: blurb3, file:showFileArray[0] });
+ for (item in showFileArray){
+     res.render('index', { title: 'Math Topics', error: err, blurb: blurb3, file:showFileArray[item] });
+     setTimeout(noop,1000);
+     function noop(){console.log("@@@ $ nothing done")};
+  }
 };
