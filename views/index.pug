@@ -6,4 +6,13 @@ block content
 
   h3(href="#" style={'font-size':'3vw'})= Overview
 
-  p!= blurb
+  //- p!= blurb
+  br
+  .image
+  label(for="pieslicerimg") PieSlicer Screenshot
+  br
+  .pieslicerimg
+    <img id="pieslicerimg"  src="https://s3.ca-central-1.amazonaws.com/pipsbucket/"+file alt="ScreenShot" style="width:90%";>
+
+  if error
+    p Error getting dynamic content.

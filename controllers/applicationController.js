@@ -72,6 +72,7 @@ exports.index = function(req, res) {
  "\n"
 
  let err = false;
+ var showFileArray = ["PieSlicerHX.jpg", "PieSlicerGAEX.jpg","PieSlicer.jpg"]
 
- res.render('index', { title: 'Math For All', error: err, blurb: blurb3 });
+ res.render('index', { title: 'Math Topics', error: err, blurb: blurb3, file:showFileArray[0] });
 };
