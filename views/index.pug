@@ -6,6 +6,7 @@ block content
 
   script.
     function show(item){
+      document.getElementById("msg0").innerHTML= "item & type: " + item + typeof item;
       let arr = ["https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerHX.jpg",
                  "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
                  "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
@@ -15,6 +16,8 @@ block content
       }
     function increment(){
       let i = Number(document.getElementById("count").innerHTML);
+      let str1 =  i.toString() + typeof i;
+      document.getElementById(msg1).innerHTML = str1;
       show(i);
       i += 1;
       if(i >=3)i = 0;
@@ -24,12 +27,14 @@ block content
 
   h3(href="#" style={'font-size':'3vw'})= Overview
 
-  <p id="count"> "0" </p>
+  <p id="count">0</p>
   br
   <p id="here"> Here </p>
   br
-  .image
-  label(for="pieslicerimg") PieSlicer Screenshot
+  <p id="msg0">msg0</p>
+  <p id="msg1">msg1</p>
+  //-.image
+  //-label(for="pieslicerimg") PieSlicer Screenshot
   br
   //- .pieslicerimg
     //- <img id="pieslicerimg"  src=arr[0] alt="ScreenShot" style="width:50%";>
