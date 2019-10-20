@@ -11,8 +11,16 @@ block content
   .image
   label(for="pieslicerimg") PieSlicer Screenshot
   br
-  .pieslicerimg
-    <img id="pieslicerimg"  src=#{file} alt="ScreenShot" style="width:90%";>
 
-  if error
-    p Error getting dynamic content.
+  script.
+    function show(){
+      let arr = #{fileArray}
+      for (item in arr){
+        .pieslicerimg
+          <img id="pieslicerimg"  src=arr[item] alt="ScreenShot" style="width:90%";>
+
+       if (error){
+       p Error getting dynamic content.
+       }else{setTimeout(show,1000)}
+      }
+    show()
