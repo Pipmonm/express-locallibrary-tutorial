@@ -4,25 +4,35 @@ block content
   h1(href="#" style={'font-size':'3vw'})= title
   p #[em Mastering Math], dedicated to making math a journey of discovery for the budding math enthusiast.
 
+  script.
+    function show(item){
+      let arr = ["https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerHX.jpg",
+                 "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
+                 "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
+
+      document.getElementById("here").innerHTML = arr[item];
+      setTimeOut(increment,2000);
+      }
+    function increment(){
+      let i = Number(document.getElementById("count").innerHTML);
+      show(i);
+      i += 1;
+      if(i >=3)i = 0;
+      document.getElementById("count").innerHTML=i.toString();
+    }
+    increment()
+
   h3(href="#" style={'font-size':'3vw'})= Overview
 
-  //- p!= blurb
+  <p id="count"> "0" </p>
+  br
+  <p id="here"> Here </p>
   br
   .image
   label(for="pieslicerimg") PieSlicer Screenshot
   br
+  .pieslicerimg
+    <img id="pieslicerimg"  src=arr[item] alt="ScreenShot" style="width:90%";>
 
-  script.
-    function show(){
-      let arr = ["https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerHX.jpg",
-                           "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
-                           "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
-      for (item in arr){
-        .pieslicerimg
-          <img id="pieslicerimg"  src=arr[item] alt="ScreenShot" style="width:90%";>
-
-       if (error){
-       p Error getting dynamic content.
-       }else{setTimeout(show,1000)}
-      }
-    show()
+    if (error){
+      console.log("error getting dynamic content: ",error)
