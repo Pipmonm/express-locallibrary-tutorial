@@ -14,7 +14,9 @@ block content
 
   script.
     function show(){
-      let arr = fileArray
+      let arr = ["https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerHX.jpg",
+                           "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicerGAEX.jpg",
+                           "https://s3.ca-central-1.amazonaws.com/pipsbucket/PieSlicer.jpg"]
       for (item in arr){
         .pieslicerimg
           <img id="pieslicerimg"  src=arr[item] alt="ScreenShot" style="width:90%";>
