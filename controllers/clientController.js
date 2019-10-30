@@ -708,7 +708,7 @@ exports.client_status_post = [
           } else {
             // Data from form is valid. Update the record.
             let moddedSysIdString = findModdedIdString(req.body.license_string);//mod:0001>>2019-09-30 MODIFIED license_string
-            req.body.license_string = moddedSysIdString;findModdedIdString()//mod:0001>>2019-09-30 line added
+            req.body.license_string = moddedSysIdString;//mod:0001>>2019-09-30 line added
             Client.findByIdAndUpdate(req.params.id, req.body, {}, function(err,theclient) {  //req.body was simply "client" (but caused error)
               console.log("@@@ $ error trying to update client, err> " + err);
               if (err) {
