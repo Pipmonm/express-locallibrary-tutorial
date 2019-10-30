@@ -24,6 +24,13 @@ function checkValidIdString(inString){
   return "pass";
 };
 
+function findModdedIdString(inString){
+  let modArray = inString.split(":");//2019-10-29 added
+  let moddedSysIdString = modArray[0] + modArray[1]+ modArray[2] + modArray[3].slice(0,2);//2019-10-29 added
+  console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
+  return moddedSysIdString;
+}
+
 // Display list of all clients.
 exports.client_list = function(req, res, next) {
 
@@ -77,7 +84,8 @@ exports.client_status_post = [
      }
      else {
            //find client
-           console.log("@@@ $ finding client with license_string (aka sysIdString): " + sysIdString);
+           //var modArray = sysIdString.split(":");//2019-10-29 added
+           let moddedSysIdString = findModdedIdString(sysIdString); //modArray[0] + modArray[1]+ modArray[2] + modArray[3].slice(0,2);//2019-10-29 added
            var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
            var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
 
@@ -85,10 +93,10 @@ exports.client_status_post = [
 
            async.parallel({
               client: function(callback) {
-                  Client.find({'license_string':sysIdString},callback);
+                  Client.find({'license_string':moddedSysIdString},callback);//2019-10-29 modified
                 },
               messages: function(callback){
-                  MessagesIn.find({'license_string':sysIdString},callback);//2019-10-16 new //2019-01-30 TO BE MODIFIED to license_string
+                  MessagesIn.find({'license_string':moddedSysIdString},callback);//2019-10-29 modded//2019-10-16 new //2019-01-30 TO BE MODIFIED to license_string
                 },
             }, function(err, results) {
              if(err){
@@ -114,7 +122,7 @@ exports.client_status_post = [
              }
 
              if(!option2 && results.client.length > 1 ){//2019-03-11 was only 'doc'
-               console.log("@@@ $ multiples of same license_string " + sysIdString);//2019-01-30 modded from deviceId
+               console.log("@@@ $ multiples of same license_string " + moddedSysIdString);//2019-01-30 modded from deviceId
              }
            //});  //needs to include following
            //we want to find yssId record, generate license key and display it as
@@ -280,7 +288,8 @@ exports.client_status_post = [
             //multiple could happen so distinguish by date asynchronously
             //or possibly simply advise  (to be done later)
             var rgrqcd = req.body.sysIdString;
-            console.log('@@@ $ msg from id is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+            let moddedSysIdString = findModdedIdString(rgrqcd);//mod:0001>>2019-10-30
+            console.log('@@@ $ msg from moddedSysIdString is: ' + moddedSysIdString + '  type: ' + typeof moddedSysIdString );//mod:0001>>2019-10=29
             req.body.msgString.replace("'","\'");//allow single quote
             console.log('@@@ $ message follows');
             console.log(req.body.msgString);
@@ -288,8 +297,7 @@ exports.client_status_post = [
         //2019-09-30   insert message into client account & in messagesIn folder using app(name?)controller
         //first get client
         var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
-        Client.find({'license_string':rgrqcd},function(err, doc){ //2019-09-30 TO BE MODIFIED to license_string
-               //2019-01-30 was: 'device_id' : deviceId
+        Client.find({'license_string':moddedSysIdString},function(err, doc){ //mod:0001>>2019-09-30 MODIFIED license_string
           if(err){
             console.log("@@@ $ err in Client.find license_string for msg delivery" + err);
             return  next(err);
@@ -338,7 +346,7 @@ exports.client_status_post = [
 
             var message_in = new MessagesIn(
                   {
-                    license_string: rgrqcd, //sysIdString
+                    license_string: moddedSysIdString, //mod:0001>>2019-09-30 MODIFIED license_string
                     name: clientName,
                     message: datedMsg,
                     reply: "",
@@ -430,7 +438,7 @@ exports.client_status_post = [
                 //multiple could happen so distinguish by date asynchronously
                 //or possibly simply advise  (to be done later)
                 var rgrqcd = req.body.license_string;
-                console.log('@@@ $ reg_reqst_code is: ' + rgrqcd + '  type: ' + typeof rgrqcd );
+                let moddedSysIdString=findModdedIdString(rgrqcd)//mod:0001>>2019-09-30 MODIFIED license_string
                 var arrayFCode = [];
                 arrayFCode = rgrqcd.split(":");
                 console.log('@@@ $ arrayFCode follows');
@@ -478,7 +486,7 @@ exports.client_status_post = [
                 // Create a Client object with escaped and trimmed data.
                 var client = new Client(
                     {
-                        license_string: rgrqcd, //2019-01-30 added
+                        license_string: moddedSysIdString,//mod:0001>>2019-09-30 MODIFIED license_string
                         device_id: device_id,
                         device_type: device_type,
                         format_code: format_code,
@@ -661,12 +669,15 @@ exports.client_status_post = [
              body('family_name').isLength({ min: 1 }).trim().withMessage('Family name must be specified.'),
              body('registration_date','Invalid date').optional({ checkFalsy: true }).isISO8601(),
                  //.isAlphanumeric().withMessage('clipboard text must be exactly as given in REGISTER tab'),
+
+
              body('country', 'specify country name').trim(),
              body('tax_region','specify Prov./Territory/State').trim(),
              body('city_address','enter: #, street, city').trim(),
              body('postal_code','Postal Code (ZipCode) required').trim(),
              body('email_address').isEmail().trim().withMessage('your email address'),
              body('license_string').isLength({min: 1 }).trim().withMessage('Paste text from clipboard here'),
+
              // Sanitize fields.
              sanitizeBody('first_name').trim().escape(),
              sanitizeBody('family_name').trim().escape(),
@@ -695,6 +706,8 @@ exports.client_status_post = [
 
           } else {
             // Data from form is valid. Update the record.
+            let moddedSysIdString = findModdedIdString(req.body.license_string);//mod:0001>>2019-09-30 MODIFIED license_string
+            req.body.license_string = moddedSysIdString;findModdedIdString()//mod:0001>>2019-09-30 line added
             Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
               console.log("@@@ $ error trying to update client, err> " + err);
               if (err) {

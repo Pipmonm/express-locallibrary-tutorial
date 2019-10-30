@@ -20,6 +20,13 @@ function checkValidIdString(inString){
   return "pass";
 };
 
+function findModdedIdString(inString){
+  let modArray = inString.split(":");//2019-10-29 added
+  let moddedSysIdString = modArray[0] + modArray[1]+ modArray[2] + modArray[3].slice(0,2);//2019-10-29 added
+  console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
+  return moddedSysIdString;
+}
+
 
 function restore(item){
    //str = "Please visit Microsoft and Microsoft!";
@@ -73,7 +80,7 @@ exports.messagesIn_detail = function(req, res, next) {
       //console.log('@@@ $ entering client_request_detail');
       sanitizeBody(req.params.id).trim().escape();
       var id = req.params.id;
-      console.log('@@@ $ request to detail messagesIn with id: ' + id);
+      console.log('@@@ $ TODAY request to detail messagesIn with id: ' + id);
 
       MessagesIn.findById(id) //was req.params.id  //modified as per above change :MOD: 2018-03-08 9:20
         //.populate('client')
@@ -157,6 +164,7 @@ exports.msgs_reply_create_post = [
 
         //2019-09-29  extra checks on sysIdString and msgString
         let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
+        let moddedSysIdString = findModdedIdString(req.body.sysIdString);//mod:0001>>2019-10-30 added line
         let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /",'"<'];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
@@ -170,7 +178,7 @@ exports.msgs_reply_create_post = [
 
         if (!errors.isEmpty() || checkString != "pass" || checkMsg != "pass") {
             console.log('@@@ $ Errors in validationResult for "msgIn_create_post" in order: checkString & checkMsg',checkString," & ",checkMsg);
-            console.log('@@@ $ strings are: sysIdString: ',req.body.sysIdString, "  & msgString: ",suspectString, "  & ", suspectWord);
+            console.log('@@@ $ strings are: moddedSysIdString: ',moddedSysIdString, "  & msgString: ",suspectString, "  & ", suspectWord);
             let message1 = "NOTE: Messages are verified and filtered for improper characters which may cause " +
                            "message to be rejected. "
             // There are errors. Render form again with sanitized values/errors messages.
@@ -189,7 +197,7 @@ exports.msgs_reply_create_post = [
         // Create a messagesIn object with escaped and trimmed data.
         var messagesIn = new MessagesIn( //.body. here is body of request which has many key fields
           {
-            license_string: rgrqcd, //sysIdString
+            license_string: moddedSysIdString, //mod:0001>>2019-10-30 replaced rgrqcd, //sysIdString
             name: clientName,
             message: datedMsg,
             reply: datedReply,
@@ -353,6 +361,9 @@ exports.messagesIn_reply_get = function(req, res, next) {
             return;
           }
           else {
+              let moddedSysIdString = findModdedIdString(req.body.license_string);//mod:0001>>2019-10-30 added line
+              req.body.license_string = moddedSysIdString;//mod:0001>>2019-10-30 added line
+
               console.log('@@@ $ updating messagesIn document');
               // Data from form is valid.
               MessagesIn.findByIdAndUpdate(req.params.id,req.body,{}, function (err,themessagesIn) {
