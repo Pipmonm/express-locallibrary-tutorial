@@ -10,7 +10,7 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='sysIdString') Clipboard Data:
-      input#sysIdString.form-control(type='text',style="width:100px", placeholder='paste clipboard here', name='sysIdString', value=(undefined=== sysIdString ? '' : sysIdString),  required = 'true')
+      input#sysIdString.form-control(type='text',style="width:150px", placeholder='paste clipboard here', name='sysIdString',maxlength=150, value=(undefined=== sysIdString ? '' : sysIdString),  required = 'true')
     div.form-group
       label(for='msgString') Message:
       input#msgString.form-control(type='text',"width:150px", placeholder='message, max 300 characters', name='msgString', maxlength=300)

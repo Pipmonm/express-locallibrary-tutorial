@@ -264,6 +264,7 @@ exports.client_status_post = [
 
         //2019-09-29  extra checks on sysIdString and msgString
         let checkString = checkValidIdString(req.body.sysIdString);//returns pass/fail
+        var moddedSysIdString = findModdedIdString(req.body.sysIdString);//mod:0001>>2019-10-30
         let bannedWords = ["fuck","f__k","fck"," shit ","piss"," screw ", " cock ","suck","asshole","damn", "__"," /",'"<'];
         let checkMsg ="pass";
         let suspectString = req.body.msgString;
@@ -311,7 +312,7 @@ exports.client_status_post = [
               res.render('clientstatus_form', { title: 'Request Status: This client data not Registered',
                            message1: "Use clipboard contents of application's Registration Data to Register first then try again",
                            message2: "(NOTE: These are placed in your ClipBoard upon entering Registration Data page)",
-                           sysIdString: rgrqcd, errors: errors.array()});
+                           sysIdString: moddedSysIdString, errors: errors.array()});//mod:0001>>2019-10-30 was rgrqcd
               return;
             }else{//2019-03-11 seems should be in an array
               option2 = true;//2019-03-11 seems like record is not an array
@@ -320,7 +321,7 @@ exports.client_status_post = [
           }
 
           if(!option2 && doc.length > 1 ){//2019-03-11 was only 'doc'
-            console.log("@@@ $ multiples of same license_string " + rgrqcd);//2019-01-30 modded from deviceId
+            console.log("@@@ $ multiples of same license_string " + moddedSysIdString);//2019-01-30 modded from deviceId
             res.redirect('/catalog');//go home or better, give message
           }else{
             //2019-09-39  a general find (ie not FindOne) returns an array even if only 1 element in it.
