@@ -19,7 +19,7 @@ function checkValidIdString(inString){
   if(stringPieces[2] != "USB" && stringPieces[2] != "CPU" && stringPieces[2] != "NumLn" && stringPieces[2] != "Eqt")return "fail";
   return "pass";
 };
-
+//forcing recompile
 function findModdedIdString(inString){
   let modArray = inString.split(":");//2019-10-29 added
   let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
