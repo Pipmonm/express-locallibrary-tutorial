@@ -289,7 +289,7 @@ exports.client_status_post = [
             //multiple could happen so distinguish by date asynchronously
             //or possibly simply advise  (to be done later)
             var rgrqcd = req.body.sysIdString;
-            let moddedSysIdString = findModdedIdString(rgrqcd);//mod:0001>>2019-10-30
+            var moddedSysIdString = findModdedIdString(rgrqcd);//mod:0001>>2019-10-30
             console.log('@@@ $ msg from moddedSysIdString is: ' + moddedSysIdString + '  type: ' + typeof moddedSysIdString );//mod:0001>>2019-10=29
             req.body.msgString.replace("'","\'");//allow single quote
             console.log('@@@ $ message follows');
