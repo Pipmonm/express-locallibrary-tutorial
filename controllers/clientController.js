@@ -700,7 +700,7 @@ exports.client_status_post = [
           const errors = validationResult(req);
 
           if (!errors.isEmpty()) {
-              console.log("@@@ ++ POST client update err: " + err);
+              console.log("@@@ ++ POST client update err: " + errors);
               // There are errors. Render form again with sanitized values/errors messages.
               res.render('client_form_Update', { title: 'Create Client', client: req.body, errors: errors.array() });
               return;
@@ -709,7 +709,7 @@ exports.client_status_post = [
             // Data from form is valid. Update the record.
             let moddedSysIdString = findModdedIdString(req.body.license_string);//mod:0001>>2019-09-30 MODIFIED license_string
             req.body.license_string = moddedSysIdString;findModdedIdString()//mod:0001>>2019-09-30 line added
-            Client.findByIdAndUpdate(req.params.id, req.body, {}, function (err,theclient) {  //req.body was simply "client" (but caused error)
+            Client.findByIdAndUpdate(req.params.id, req.body, {}, function(err,theclient) {  //req.body was simply "client" (but caused error)
               console.log("@@@ $ error trying to update client, err> " + err);
               if (err) {
                 console.log('@@@ $ updating client document throws err: ' + err);
