@@ -22,7 +22,7 @@ function checkValidIdString(inString){
 
 function findModdedIdString(inString){
   let modArray = inString.split(":");//2019-10-29 added
-  let moddedSysIdString = modArray[0] + ":" + modArray[1]+ ":" modArray[2] + ":" modArray[3].slice(0,2);//2019-10-29 added
+  let moddedSysIdString = modArray[0] + ":" + modArray[1]+ ":" modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
   console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
   return moddedSysIdString;
 }
