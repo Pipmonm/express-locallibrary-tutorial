@@ -48,6 +48,13 @@ function checkValidIdString(inString){
   return "pass";
 };
 
+function findModdedIdString(inString){ //any changes here must be relfected in clientcontroller
+  let modArray = inString.split(":");//2019-10-29 added
+  let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
+  console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
+  return moddedSysIdString;
+}
+
 function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is normal year quarters
   let quarter = 4;//illegal number
   let month = nowDate.getMonth();//recall January = 0
@@ -184,8 +191,8 @@ exports.stripePrePay_post = [
            console.log("@@@ $ finding client with license_string (aka sysIdString): " + sysIdString);
            var deviceId = sysIdString.split(":")[0];//2019-01-30 not used currently  //extract device id
            var option2 = false;//2019-03-11 finding a way around record returned as an array vs. a single object
-
-           Client.find({'license_string':sysIdString},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+           var moddedSysIdString = findModdedIdString(sysIdString);//2019-12-08  mod that cuts off application version number as part of 'identity'
+           Client.find({'license_string':moddedSysIdString},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
                   //2019-01-30 was: 'device_id' : deviceId
              if(err){ //open 4
                console.log("@@@ $ err in Client.find license_string" + err);
