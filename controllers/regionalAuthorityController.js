@@ -10,6 +10,14 @@ var moment = require('moment'); //added  :MOD: 2018-03-15 4:56 PM
 
 var debug = require('debug');
 
+//2019-12-10 added function to allow presentation of transaction date in detail & update pugs
+function findModdedIdString(inString){ //any changes here must be relfected in stripecontroller
+  let modArray = inString.split(":");//2019-10-29 added
+  let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
+  console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
+  return moddedSysIdString;
+}
+
 // Display list of all regionalauthorities.
 exports.regionalauthorities_list = function(req, res, next) {
   console.log('@@@ $ at regionalAuthorities_list');

@@ -12,6 +12,14 @@ var router = express.Router();
 
 var debug = require('debug');
 
+//2019-12-10  addede function 
+function findModdedIdString(inString){ //any changes here must be relfected in stripecontroller
+  let modArray = inString.split(":");//2019-10-29 added
+  let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
+  console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
+  return moddedSysIdString;
+}
+
 // Display list of all countrytaxauthorities.
 exports.countrytaxauthorities_list = function(req, res, next) {
   console.log('@@@ $ at countryTaxAuthorities_list');
