@@ -450,6 +450,7 @@ exports.stripePost = (req, res) => {//open 1
          }
        }//end main if
 
+       const now = Date();
 
        var docId = doc[0]._id;//2019-05-21  needed to update status, maybe doc[0]._id if more than 1 doc (possible???)
        CountryTaxAuthority.findByIdAndUpdate(docId, {allowed:allowed,
@@ -461,7 +462,7 @@ exports.stripePost = (req, res) => {//open 1
                                                      current_four_quarters_amount:target_current_four_quarters_amount,
                                                      previous_quarters_amounts:target_previous_quarters_amounts,
                                                      for_period_index:target_period_index,
-                                                     transaction_date:Date.now},  //defaults to now
+                                                     transaction_date:now},  //2019-12-10 was 'Date.now' but gives error; attempting fix to no update
                                                      {upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
@@ -539,7 +540,7 @@ exports.stripePost = (req, res) => {//open 1
                                                    current_four_quarters_amount:target_current_four_quarters_amount,
                                                    previous_quarters_amounts:target_previous_quarters_amounts,
                                                    for_period_index:target_period_index,
-                                                   transaction_date:Date.now},  //defaults to now
+                                                   transaction_date:now},  //2019-12-10 was 'Date.now' but gives error
                                                    {upsert: true, 'new': true}, function(err,newdoc){
               //prolog was license_key !!! //2019-01-30  very critical update right here,  what makes ._id be whatever it is?
               //2019-03-11 worse yet updated from 'doc[0]._id' to 'docId'
