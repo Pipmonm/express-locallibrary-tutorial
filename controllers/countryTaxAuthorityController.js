@@ -199,7 +199,8 @@ exports.countrytaxauthority_create_post = [
             current_four_quarters_amount:req.body.current_four_quarters_amount,
             previous_quarters_amounts:req.body.previous_quarters_amounts,
             transaction_period_type: req.body.transaction_period_type,
-            for_period_index: req.body.for_period_index
+            for_period_index: req.body.for_period_index,
+            attempted: req.body.attempted //2019-12-10  added this property (was missing)
            });
 
 

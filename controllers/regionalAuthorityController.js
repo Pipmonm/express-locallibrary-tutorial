@@ -210,7 +210,7 @@ exports.regionalauthority_create_post = [
             current_four_quarters_amount:req.body.current_four_quarters_amount,
             previous_quarters_amounts:req.body.previous_quarters_amounts,
             transaction_period_type: req.body.transaction_period_type,
-            for_transaction_period: req.body.for_transaction_period,
+            for_period_index: req.body.for__period_index,//2019-12-10 was 'for_transaction_period'???
             attempted: req.body.attempted
            });
 
