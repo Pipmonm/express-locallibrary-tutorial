@@ -364,12 +364,13 @@ exports.stripePost = (req, res) => {//open 1
     var source =   '/';//ibid
     var source2 = "HOME";//also
     var systemId = charge.metadata.systemId;//2019-05-15 payment mode mods //was let
-    console.log("@@@ $ trying for stripe_post.pug with charge: " + charge.amount);//2019-02-12 notion of using charge in render is mine
+    console.log("@@@ $ trying for stripe_post.pug with charge: ",charge.amount,"  & systemId: ",systemId );//2019-02-12 notion of using charge in render is mine
     console.log("@@@ ### from address: ", charge.billing_details.address.state,"  & city: ",charge.billing_details.address.city);
     //2019-05-21  Updating Status to "Paid"
-    Client.find({'license_string':systemId},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
+    var moddedSystemId = findModdedIdString(systemId);//2019-12-10  for stripped id (eg 'FS-1001' >> 'FS')
+    Client.find({'license_string':moddedSystemId},function(err, doc){ //open3  //2019-01-30 TO BE MODIFIED to license_string
            //2019-01-30 was: 'device_id' : deviceId
-
+           
       if(err){ //open 4
         console.log("@@@ $ err in Client.find license_string" + err);
         return  next(err);//HERE MUST FIND OUT HOW TO CANCEL CHARGE & NOTIFY CUSTOMER
