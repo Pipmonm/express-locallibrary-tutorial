@@ -13,16 +13,16 @@ exports.downloadPS_view = function(req, res) {
   let downloadPSDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; align:center'>" +
   "<p>" +
   "Dowloading PieSlicerDual Demo:<br />"+
-  "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
-  "on your desktop will make it easier to follow the next steps.<br />"+
+  "Download the demo by clicking on the \"Download Demo\" button shown below.<br />"+
+  "Placing it on your desktop will make it easier to follow the next steps.<br />"+
   "<br />"+
   "Running the demo:<br />"+
-  " Run the program from your desktop by double-cliking on it.  While in demo mode"+
+  " Run the program from your desktop by double-cliking on it.  While in demo mode<br />"+
   " it is recommended that you follow the 'quick tour' instructions as described at startup.<br />"+
   "<br />"+
   " FILE VERIFICATION<br />\n"+
-  "Verifying the file before running it is recommended to ensure its authenticity and\n"+
-  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
+  "Verifying the file before running it is recommended to ensure its authenticity and<br />"+
+  "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code<br />"+
   "(shown below) against the one generated for the downloaded file.<br />"+
   " Click on \"VERIFY DOWNLOAD\" button below for complete instructions. <br />"+
   "<br />"+

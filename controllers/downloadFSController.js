@@ -12,22 +12,21 @@ exports.downloadFS_view = function(req, res) {
   let downloadFSDesc1 = "<div style='position:relative; color:yellow;  background:green; padding:10px; width:80%; align:center'>" +
   "<p>"+
   " Dowloading FracSpellerDual Demo: <br />"+
-  " Download the demo by clicking on the \"Download Demo\" button shown below.  \n"+
-  " It is recommended to place it on your desktop, or have a 'shortcut' to it on the desktop.<br />"+
-  " Before running it you may want to 'verify' the download as described below. \n"+
-  " Start it by double-cliking on it or its shortcut icon.  While in demo mode"+
+  " Download the demo by clicking on the \"Download Demo\" button shown below.<br />"+
+  " It is recommended that you place it on your desktop to simplify following these steps.<br />"+
+  " (Before running it you may want to 'verify' the download as described below)<br /><br />"+
+  " To start the demo simply double-click on it (as any windows .exe file).  While in demo mode<br />"+
   " it is recommended that you follow the 'quick tour' instructions as described at startup.<br />"+
-  "<br /><br />"+
-  " FILE VERIFICATION<br />\n"+
-  " Verifying the file before running it is recommended to ensure its authenticity and"+
-  " integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code"+
+  "<br />"+
+  " FILE VERIFICATION<br />"+
+  " Verifying the file before running it is recommended to ensure its authenticity and<br />"+
+  " integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code<br />"+
   " (shown below) against the one generated for the downloaded file.<br />"+
   " Click on \"VERIFY DOWNLOAD\" button below for complete instructions. <br />"+
-  "<br /><br />"+
-  " FracSpellerDual.exe (vrs. 1.0.0.1) SHA-256 Hash file Verification code:<br />" +
   "<br />"+
-  " 2DB17CC7FF8CA696769BE62BCD58254F342E5E4A3A41B7ADD975B5A27DC12770 <br />" +
-  " (copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.)</p></div>";
+  " FracSpellerDual.exe (vrs. 1.0.0.1) SHA-256 Hash file Verification code:<br />" +
+  "       2DB17CC7FF8CA696769BE62BCD58254F342E5E4A3A41B7ADD975B5A27DC12770 <br />" +
+  "(copy & use this code as described in the Verify Download procedure.)</p></div>";
 
 
   let downloadFSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
