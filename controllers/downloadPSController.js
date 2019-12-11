@@ -14,20 +14,22 @@ exports.downloadPS_view = function(req, res) {
   "<p>" +
   "Dowloading PieSlicerDual Demo:<br />"+
   "Download the demo by clicking on the \"Download Demo\" button shown below.  Placing it\n"+
-  "on your desktop will make it easy to \"verify the download\" as described next.<br />"+
+  "on your desktop will make it easier to follow the next steps.<br />"+
   "<br />"+
+  "Running the demo:<br />"+
+  " Run the program from your desktop by double-cliking on it.  While in demo mode"+
+  " it is recommended that you follow the 'quick tour' instructions as described at startup.<br />"+
+  "<br />"+
+  " FILE VERIFICATION<br />\n"+
   "Verifying the file before running it is recommended to ensure its authenticity and\n"+
   "integrity.  Use Window's PowerShell utility to compare the file's SHA-256 hash code\n"+
   "(shown below) against the one generated for the downloaded file.<br />"+
   " Click on \"VERIFY DOWNLOAD\" button below for complete instructions. <br />"+
   "<br />"+
-  "Running the demo:<br />"+
-  " Once verified run the program from your desktop by double-cliking on it.  While in demo mode"+
-  " it is recommended that you follow the 'quick tour' instructions as described at startup.<br />"+
-  "<br />"+
-  "PieSlicerDual.exe (vrs. 1.0.0.4)  file SHA-256 Verification code:<br />" +
-  "233EC5E69D85038D3919980DFD02C31A50D48DD66E021DD0D719F723F2F18403<br />" +
-  "(copy & use this code in the \"VERIFICATION\" steps after downloading the demo file.),</p></div>"
+
+  "PieSlicerDual.exe (vrs. 1.0.0.8)  file SHA-256 Verification code:<br />" +
+  "FDC793DFA835830EE54A22F129A8CDD1905A729E95241035AACB8F08A2435699<br />" +
+  "(copy & use this code as described in the Verify Download procedure.),</p></div>"
 
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
