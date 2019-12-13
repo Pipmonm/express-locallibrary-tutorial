@@ -28,8 +28,8 @@ exports.downloadPS_view = function(req, res) {
   "<br />"+
 
   "PieSlicerDual.exe (vrs. 1.0.0.8)  file SHA-256 Verification code:<br />" +
-  "FDC793DFA835830EE54A22F129A8CDD1905A729E95241035AACB8F08A2435699<br />" +
-  "(copy & use this code as described in the Verify Download procedure.),</p></div>"
+  "F384EBF7E9FECD83F6986E93E190CD5393FAD4E481E4D5EA5385B05D8F1E3364<br />" +
+  "(copy & use this code as described in the Verify Download procedure.)</p></div>"
 
 
   let downloadPSDesc2 =  ' ';// `<a href='/pieSlicerDwnld'><span style='color:white; background:black'>DOWNLOAD DEMO</span>`;
