@@ -17,7 +17,7 @@ exports.appname_list = function(req, res, next) {
     .exec(function (err, list_appnames) {
       if (err) { return next(err); } //used 'console.log(err)' to bypass 'next' err 2018-03-19 7:54 PM
       //Successful, so render
-      res.render('appname_list', { title: 'Appnames', appname_list: list_appnames });
+      res.render('appname_list', { title: 'FAQ', appname_list: list_appnames });
     });
 
 };

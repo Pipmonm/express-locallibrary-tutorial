@@ -348,7 +348,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
 
           if (!errors.isEmpty() || checkString == 'fail') {
               // There are errors. Render form again with sanitized values and error messages.
-            let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+            let message1 = "NOTE: Messages can only contain letters, punctuation, and "  +
                            "numbers, any other characters will cause message to be ignored.";
 
             if(checkString == 'fail')message1 = 'REGISTRATION DATA INVALID, PLEASE CHECK AND RE-ENTER';
