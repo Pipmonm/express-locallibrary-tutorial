@@ -117,7 +117,7 @@ exports.msgs_reply_create_get = function(req, res, next) {
       .exec(function (err, clients) {
         if (err) { return next(err); }
         // Successful, so render.
-        let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+        let message1 = "NOTE: Messages may only contain letters, punctuation, and " + "<br />"+
                      "numbers, any other characters will cause message to be ignored."
         console.log('@@@ $ client_list: ' + clients);
         res.render('messagesIn_form', {title: 'Create Message', client_list:clients, message1:message1});
@@ -304,7 +304,7 @@ exports.messagesIn_reply_get = function(req, res, next) {
 
           console.log('@@@ $ messagesIn get reply_get findby Id value for URL: ');
           console.log('@@@ # URL: ',results.messagesIn.url)
-          let message1 = "NOTE: Messages can only contain letters, punctuation, and " + "<br />"+
+          let message1 = "NOTE: Messages should contain only letters, punctuation, and " + "<br />"+
                        "numbers, any other characters will cause message to be ignored."
           //console.log('clients: ' + results.clients);
           //console.log('messagesIn: ' + results.messagesIn);
