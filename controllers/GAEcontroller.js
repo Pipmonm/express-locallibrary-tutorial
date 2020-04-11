@@ -18,7 +18,7 @@ var subscribing = "<pre style='color:yellow; background:green; width:660px'>\n"+
 
 var source = "https://mathapp-hrd.appspot.com/"
 
-res.render('GAE_view', { title: "Online Modules",
+res.render('viewGAE', { title: "Online Modules",
                                  themeDesc1: blurb,
                                  themeDesc2: subscribing,
                                  source: source});
