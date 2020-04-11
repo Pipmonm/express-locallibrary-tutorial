@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1(href="#" style={'font-size':'4vw'})= title
+  br
+  h3(href="#" style={'font-size':'3vw'})= "NOTE CAREFULLY"
+
+  p!= themeDesc1
+
+  p!= themeDesc2
+
+  br
+  <div style="text-align: left">
+  a(href=source)
+          button(type="button") online versions
+
+  </div>
+
+  //- note that dashed comments (ie this one) are only for PUG (not the transcribed HTML )
+  //- the PUG href (as used above) requires two lines, gives errors otherwise
+  //  this requests to 'view' download page as given in route catalog (redirection)
+  //  think of it as  catalog[pieSlicer_view] = downloadPSController.pieSlicer_detail
+  //  pieSlicer_detail are specifics of addressing AWS S3 bucket containing PieSlicer

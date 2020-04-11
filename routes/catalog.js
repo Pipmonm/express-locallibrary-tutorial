@@ -22,6 +22,7 @@ var stripe_controller = require('../controllers/stripeController');//2019-02-13 
 var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
 var regionalauthority_controller = require('../controllers/regionalAuthorityController');//2019-06-17
 var messagesIn_controller = require('../controllers/messagesInController');//2019-10-09  added
+var gae_controller = require('../controllers/GAEcontroller');//2020-04-11 for online access
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
@@ -39,6 +40,9 @@ router.get('/verification',verification_controller.verify_start);//2019-01-17 fo
 router.get('/nextVerify',verification_controller.verify_view);//2019-01-17 complications require 'start' & 'next' & 'prev'
 router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
+
+//2020-04-11 explanation and online access to GAE app
+router.get('/GAE',gae_controller.go_onlne_GAE);
 
 router.get('/stripePrePay',stripe_controller.stripePrePay_get);//2019-05-15 payment mode mods
 router.post('/stripePrePay',stripe_controller.stripePrePay_post);//2019-05-15 payment mode mods
