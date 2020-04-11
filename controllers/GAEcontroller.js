@@ -13,7 +13,7 @@ let blurb = "<pre style='color:yellow; background:green; width:650px'>\n"+
 "Note that depending on internet speed, an intial page that introduces these modules may\n"+
 "cause a slight 'holdup' of the download process of the modules to the browser."
 
-var subscribing = "<pre style='color:yellow; background:green; width:650px'>\n"+
+var subscribing = "<pre style='color:yellow; background:green; width:620px'>\n"+
 " While these online versions are in the form of a Google 'Cloud' application\n"+
 " getting a subscription for these is done on this site. (cf. 'suscribe')"
 
