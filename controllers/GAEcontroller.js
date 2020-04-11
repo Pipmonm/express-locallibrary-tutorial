@@ -20,6 +20,6 @@ var source = "https://mathapp-hrd.appspot.com/"
 
 res.render('GAE_view', { title: "Online Modules",
                                  themeDesc1: blurb,
-                                 themeDesc2: downloadPSDesc2,
+                                 themeDesc2: subscribing,
                                  source: source});
 };
