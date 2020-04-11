@@ -42,7 +42,7 @@ router.get('/backVerify',verification_controller.verify_back);//2019-01-22
 router.get('/about',aboutUs_controller.aboutUs_view);//2019-01-15
 
 //2020-04-11 explanation and online access to GAE app
-router.get('/GAE',gae_controller.go_onlne_GAE);
+router.get('/GAE',gae_controller.go_online_GAE);
 
 router.get('/stripePrePay',stripe_controller.stripePrePay_get);//2019-05-15 payment mode mods
 router.post('/stripePrePay',stripe_controller.stripePrePay_post);//2019-05-15 payment mode mods
