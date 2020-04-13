@@ -36,6 +36,15 @@ exports.pieSlicer_view = function(req, res) {
                     "itself or concerning the topic under study.</li>"+
                     "</ul>" +
                     "<br />" +
+                    "<style>"+
+                    "#vid1 {"+
+                      "background-color: #eee;"+
+                      "animation: mymove 2s 5;"+
+                    "}"+
+                    "@keyframes mymove {"+
+                      "30% {background-color: #1c87c9;}"+
+                    "}"+
+                    "</style>"+
                     "Watch our video an PieSlicer's more advanced features: <a id='vid1' href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl'>..HERE..</a><br />"+
                     "Download the Demo version and experiment with it ( no obligations ).<br />"+
                     "The demo will be functional for a limited time only.<br />" +
