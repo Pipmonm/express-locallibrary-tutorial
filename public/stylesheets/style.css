@@ -18,3 +18,11 @@ p {
     height:auto;
     display:inline-block;
 }
+
+#vid1 {
+  background-color: #eee;
+  animation: mymove 2s 5;
+}
+@keyframes mymove {
+  30% {background-color: #1c87c9;}
+}
