@@ -36,6 +36,7 @@ exports.pieSlicer_view = function(req, res) {
                     "itself or concerning the topic under study.</li>"+
                     "</ul>" +
                     "<br />" +
+                    "<style> #link { color: #FF0000; } </style>" +
                     "Watch our video an PieSlicer's more advanced features:"+
                     "    Go <a id='link' href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl' target="_blank">..HERE..</a><br />"+
                     "Download the Demo version and experiment with it ( no obligations ).<br />"+
