@@ -37,7 +37,7 @@ exports.pieSlicer_view = function(req, res) {
                     "</ul>" +
                     "<br />" +
                     "Watch our video an PieSlicer's more advanced features: "+
-                    "<a href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl' target="_blank">..HERE..</a><br />"+
+                    "<a <style>{ color: #FF0000; } </style>  href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl' target='_blank'>..HERE..</a><br />"+
                     "Download the Demo version and experiment with it ( no obligations ).<br />"+
                     "The demo will be functional for a limited time only.<br />" +
                     "Buying the license to convert the demo to the unlimited version is detailed"+
