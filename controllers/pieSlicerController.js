@@ -37,7 +37,7 @@ exports.pieSlicer_view = function(req, res) {
                     "</ul>" +
                     "<br />" +
                     "<style>"+
-                    "#vid1 {"+
+                    "a.PSLcr_vid {"+
                       "background-color: #eee;"+
                       "animation: mymove 2s 5;"+
                     "}"+
@@ -45,7 +45,7 @@ exports.pieSlicer_view = function(req, res) {
                       "30% {background-color: #1c87c9;}"+
                     "}"+
                     "</style>"+
-                    "Watch PieSlicer's basics video <a id='vid_basic' href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl'  target='_blank'>..HERE..</a> and video on more advanced features: <a id='vid_advanced' href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl'  target='_blank'>..HERE..</a><br />"+
+                    "Watch PieSlicer's basics video <a class='PSLcr_vid' href='https://drive.google.com/open?id=1h_hhH3NQVhtYES_TppadRsD93x70ywRX'  target='_blank'>..HERE..</a> and video on more advanced features: <a class='PSLcr_vid' href='https://drive.google.com/open?id=1c-2o6268KGJALIXX28_TnIs4j8Ff78Cl'  target='_blank'>..HERE..</a><br />"+
                     "Download the Demo version and experiment with it ( no obligations ).<br />"+
                     "The demo will be functional for a limited time only.<br />" +
                     "Buying the license to convert the demo to the unlimited version is detailed"+
