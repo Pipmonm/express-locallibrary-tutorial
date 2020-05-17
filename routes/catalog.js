@@ -23,6 +23,20 @@ var countrytaxauthority_controller = require('../controllers/countryTaxAuthority
 var regionalauthority_controller = require('../controllers/regionalAuthorityController');//2019-06-17
 var messagesIn_controller = require('../controllers/messagesInController');//2019-10-09  added
 var gae_controller = require('../controllers/GAEcontroller');//2020-04-11 for online access
+
+//for img file store in db
+const homeController = require("../controllers/home");
+const uploadController = require("../controllers/upload");
+
+const filesdisplay_controller = require("../controllers/fileDisplayController")
+//done in PUG as imagefile/load_get     router.get("/", homeController.getHome);
+router.post("/upload", uploadController.uploadFile);
+
+
+// GET catalog home page.
+router.get('/', book_controller.index);
+
+
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
@@ -169,6 +183,12 @@ router.get('/appnames', appname_controller.appname_list);
 // GET request for one Appname.
 router.get('/appname/:id', appname_controller.appname_detail);
 
+
+router.get('/imagefile/load', problem_controller.imagefile_get);
+router.post('/imagefile/load', uploadController.uploadFile);
+
+router.get('/images/list', filesdisplay_controller.images_list);
+router.get('/image/:filename', filesdisplay_controller.image_detail);
 //send get for creating new client transaction
 //router.get('/clienttransaction/create', client_transaction_controller.clienttransaction_create_get);
 //POST verify response
