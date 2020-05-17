@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1  Image Display: #{contentType}
+
+  <img src="data:image/png;base64,{{ image }}" alt="{{ image2 }}">
+  //<img src="data:image/jpeg;base64,' + #{image} + '">'
