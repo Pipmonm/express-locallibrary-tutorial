@@ -179,7 +179,7 @@ router.get('/appnames', appname_controller.appname_list);
 router.get('/appname/:id', appname_controller.appname_detail);
 
 
-router.get('/imagefile/load', problem_controller.imagefile_get);
+router.get('/imagefile/load', filesdisplay_controller.imagefile_get);
 router.post('/imagefile/load', uploadController.uploadFile);
 
 router.get('/images/list', filesdisplay_controller.images_list);

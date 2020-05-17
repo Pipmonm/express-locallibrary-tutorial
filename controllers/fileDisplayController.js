@@ -77,3 +77,43 @@ exports.image_detail = function (req, res) {
         }
     });
 };
+
+exports.imagefile_get = function(req, res, next) {
+  const path = require("path");
+    //const home = (req, res) => {
+  //  return res.sendFile(path.join(`${__dirname}/../views/index.html`));
+//};
+  res.render('image_preView',{});
+//module.exports = {
+  //getHome: home
+//};
+}//imagefile_get ends
+
+exports.imagefile_post = function(req,res,next) {
+  // function(req, res, next){
+  const upload = require("../middleware/upload");
+  console.log("@@@  !!! into imagefile_post");
+  debugger;
+  //const upload = require("../middleware/upload"),
+  //mod form since we are not routing through uploadFile.
+  //const uploadFile = async (req, res) => {
+  async function storeImage(req,res) {
+
+    try {
+      console.log("@@@ $$$ in async about to try await upload");
+      await upload(req, res);
+
+      console.log(req.file);
+      if (req.file == undefined) {
+        return res.send(`You must select a file.`);
+      }
+
+      return res.send(`File has been uploaded.`);
+    } catch (error) {
+      console.log(error);
+      return res.send(`Error when trying upload image: ${error}`);
+    }
+  console.log("@@@ $ will exit successfuly if no error follows");
+  if (err) { return next(err); }
+  }
+}//end of imagefile_post
