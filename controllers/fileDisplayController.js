@@ -9,6 +9,7 @@ const express                   = require('express'),
 
       Post                      = require('../models/post');
 
+//mucho problemos con multer-gridfs-storage
 const conn = mongoose.connection;
 const mongoURI = "mongodb://localhost:27017/my_database";
 
