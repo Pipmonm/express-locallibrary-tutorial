@@ -32,11 +32,6 @@ const filesdisplay_controller = require("../controllers/fileDisplayController")
 //done in PUG as imagefile/load_get     router.get("/", homeController.getHome);
 router.post("/upload", uploadController.uploadFile);
 
-
-// GET catalog home page.
-router.get('/', book_controller.index);
-
-
 // GET catalog home page.
 //why aboutUsController not found????
 router.get('/', application_controller.index);
