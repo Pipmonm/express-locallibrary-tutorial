@@ -1,6 +1,6 @@
 const util = require("util");
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
+const GridFsStorage = require("multer-gridfs-storage")({db:db});
 
 console.log("@@@ $ in the middleware!");
 var storage = new GridFsStorage({

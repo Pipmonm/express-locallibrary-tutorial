@@ -93,7 +93,6 @@ exports.imagefile_post = function(req,res,next) {
   // function(req, res, next){
   const upload = require("../middleware/upload");
   console.log("@@@  !!! into imagefile_post");
-  debugger;
   //const upload = require("../middleware/upload"),
   //mod form since we are not routing through uploadFile.
   //const uploadFile = async (req, res) => {
