@@ -4,7 +4,7 @@ const GridFsStorage = require("multer-gridfs-storage");
 
 console.log("@@@ $ in the middleware!");
 var storage = new GridFsStorage({
-  url: "mongodb://localhost:27017/my_database", //for cloud need to set to mlab database
+  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   //options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     const match = ["image/png", "image/jpeg"];
