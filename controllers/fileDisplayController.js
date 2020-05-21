@@ -96,11 +96,11 @@ exports.imagefile_post = function(req,res,next) {
   //const upload = require("../middleware/upload"),
   //mod form since we are not routing through uploadFile.
   //const uploadFile = async (req, res) => {
-  async function storeImage(req,res) {
-
+  async function storeImage(req,res,conn) {
+    const db = conn;//2020-05-21 added db (2 places) & conn
     try {
       console.log("@@@ $$$ in async about to try await upload");
-      await upload(req, res);
+      await upload(req, res, db);
 
       console.log(req.file);
       if (req.file == undefined) {

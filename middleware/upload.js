@@ -1,6 +1,6 @@
 const util = require("util");
 const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage")({db:db});
+const GridFsStorage = require("multer-gridfs-storage")({db:db});//2020-05-21 added extra bracket ({db:db})
 
 console.log("@@@ $ in the middleware!");
 var storage = new GridFsStorage({
