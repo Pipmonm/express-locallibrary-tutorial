@@ -12,7 +12,7 @@ const express                   = require('express'),
 //mucho problemos con multer-gridfs-storage
 //tambien con gridfs-stream
 const conn = mongoose.connection;
-const mongoURI = "mongodb://localhost:27017/my_database";
+const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
 
 // Init gfs
 let gfs;
