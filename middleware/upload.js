@@ -26,7 +26,8 @@ var storage = require("multer-gridfs-storage")({
     };
   }
 });
-console.log("@@@ %% entering multer store section & storage is: ",storage,"  & file?: ",file);
+console.log("@@@ %% entering multer store section & storage items are:");
+for(var item in storage)console.log("###list storage.",item);
 var uploadFile = multer({ storage: storage }).single("file");
 var uploadFilesMiddleware = util.promisify(uploadFile);
 module.exports = uploadFilesMiddleware;
