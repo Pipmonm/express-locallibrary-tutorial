@@ -16,12 +16,14 @@ const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongod
 
 // Init gfs
 let gfs;
-
+console.log("@@@ $#@ fileDispContrllr conn is: ",conn);
 conn.once('open', () => {
+    console.log("@@@ $#@ in conn.once");
     // Init stream
     gfs = Grid(conn.db, mongoose.mongo);
     //gfs.bucket('photos');//???
     gfs.collection('photos'); //was photos.files but doesn't work so.... (collection name)
+    console.log("@@@ $#@ leaving conn.once");
 });
 
 //list all files
@@ -29,7 +31,7 @@ exports.images_list = function (req, res) {
     gfs.files.find().toArray((err, files) => {
       // Check if files
       if (!files || files.length === 0) {
-        res.render('index', { files: false });
+        res.render('indexImages', { files: false });
       } else {
         files.map(file => {
           if (
@@ -102,7 +104,7 @@ exports.imagefile_post = function(req,res,next) {
       console.log("@@@ $$$ in async about to try await upload");
       await upload(req, res);
 
-      console.log(req.file);
+      console.log("@@@ #$@ logging file: ",req.file);
       if (req.file == undefined) {
         return res.send(`You must select a file.`);
       }
