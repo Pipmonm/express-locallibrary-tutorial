@@ -16,13 +16,13 @@ const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongod
 
 // Init gfs
 let gfs;
-console.log("@@@ $#@ fileDispContrllr conn is: ",conn);
+console.log("@@@ $#@ fileDispContrllr conn.db is: ",conn.db);
 conn.once('open', () => {
     console.log("@@@ $#@ in conn.once");
     // Init stream
     gfs = Grid(conn.db, mongoose.mongo);
-    gfs.bucket('photos');//??? this is commented out in locallibrary and works, but not with MLab
-    gfs.collection('photos.files'); //was photos.files but doesn't work in locallibray so.... (collection name)
+    //gfs.bucket('photos');//??? this is commented out in locallibrary and works, and also in MLab
+    gfs.collection('photos'); //was photos.files but doesn't work in locallibray so.... (collection name)
     console.log("@@@ $#@ leaving conn.once");
 });
 
