@@ -21,8 +21,8 @@ conn.once('open', () => {
     console.log("@@@ $#@ in conn.once");
     // Init stream
     gfs = Grid(conn.db, mongoose.mongo);
-    //gfs.bucket('photos');//???
-    gfs.collection('photos'); //was photos.files but doesn't work so.... (collection name)
+    gfs.bucket('photos');//??? this is commented out in locallibrary and works, but not with MLab
+    gfs.collection('photos.files'); //was photos.files but doesn't work in locallibray so.... (collection name)
     console.log("@@@ $#@ leaving conn.once");
 });
 
@@ -31,7 +31,8 @@ exports.images_list = function (req, res) {
     gfs.files.find().toArray((err, files) => {
       // Check if files
       if (!files || files.length === 0) {
-        res.render('indexImages', { files: false });
+        //res.render('indexImages', { files: false });
+        res.render('images_list',{files:false});
       } else {
         files.map(file => {
           if (
