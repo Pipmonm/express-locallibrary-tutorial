@@ -14,8 +14,8 @@ console.log("@@@ $ in the middleware! & req.params is: ",req.params);
 //const storage = new GridFsStorage({
 //################ from somewhere #####################
 
-const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
-const db = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
+//const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+//const db = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 //##########################end entry #############################
 
 var storage = require("multer-gridfs-storage")({
