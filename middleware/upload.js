@@ -35,9 +35,9 @@ for(item in req)console.log("### req.",item);
 //for(var item in file)console.log("~~~ list file.",item);
 console.log("@@@ storage.db: ",storage.db, "  & storage._file: ", storage._file);
 var uploadFile = multer({ storage: storage }).single("file");
-var testRun = util.promisify(uploadFile).
- catch(error => { console.log('caught', err.message); });
-testRun();//do it
+var testRun = util.promisify(uploadFile)
+testRun().
+ catch(error => { console.log('caught', err.message); });//do it
 };
 //var uploadFilesMiddleware = util.promisify(uploadFile);
 //var uploadFilesMiddleware = ()=>console.log("@@@ $%# so long sucker!, typeof storage is: ",typeof storage);
