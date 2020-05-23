@@ -11,9 +11,10 @@ const express                   = require('express'),
 
 //mucho problemos con multer-gridfs-storage
 //tambien con gridfs-stream
-const conn = mongoose.connection;
-const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+//const conn = mongoose.connection;
 
+const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 // Init gfs
 let gfs;
 console.log("@@@ $#@ fileDispContrllr conn.db is: ",conn.db);
