@@ -7,8 +7,8 @@ const multer = require("multer");
 //^^^^^^^^^^^^^^^^^^^ end special test ^^^^^^^^^^^^^^^^^^^
 //const GridFsStorage = require("multer-gridfs-storage");//({db:db});//2020-05-21 added extra bracket ({db:db})
 var uploadFilesMiddleware = util.promisify((req, res)=>{
-console.log("@@@ $ in the middleware! & req is: ");
-for(var item in req)console.log("** req.",item);
+console.log("@@@ $ in the middleware! & req.params is: ",req.params);
+//for(var item in req)console.log("** req.",item);
 //const storage = new GridFsStorage({
 var storage = require("multer-gridfs-storage")({
   url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
@@ -29,8 +29,10 @@ var storage = require("multer-gridfs-storage")({
     };
   }
 });//end storeImage
-console.log("@@@ %% entering multer store section & storage items are:");
-for(var item in storage)console.log("###list storage.",item);
+console.log("@@@ %% entering multer store with req items:");
+for(var item in req)console.log("### req.",item);
+for(var item in file)console.log("~~~ list file.",item);
+for(var item in storage)console.log("!!! storage.",item);
 var uploadFile = multer({ storage: storage }).single("file");
 
 });

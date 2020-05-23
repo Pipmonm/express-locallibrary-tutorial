@@ -92,7 +92,7 @@ exports.imagefile_get = function(req, res, next) {
 //};
 }//imagefile_get ends
 
-exports.imagefile_post = function(req,res,next) {
+exports.imagefile_post = function(req,res,next) { //NOT USED, goes to upload controller instead
   // function(req, res, next){
   const upload = require("../middleware/upload");
   console.log("@@@  !!! into imagefile_post");
