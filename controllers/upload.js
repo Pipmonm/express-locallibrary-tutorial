@@ -2,7 +2,7 @@ const upload = require("../middleware/upload");
 
 const uploadFile = async (req, res) => {
   console.log("@@@ ### entering try for upload of file: ");
-  for(var item in req)console.log("## req.",item);
+  for(var item in req.params)console.log("## req.params.",item);
   try {
     await upload(req, res);
 
