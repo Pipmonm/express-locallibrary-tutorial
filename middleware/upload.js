@@ -22,7 +22,7 @@ var storage = require("multer-gridfs-storage")({
       return filename;
     }
 
-    console.log("@@@ !! about to return filename + date " )
+    console.log("@@@ !! about to return filename: ",file.originalname);
     return {
       bucketName: "photos",
       filename: `${Date.now()}-ALaCarte-${file.originalname}`
@@ -30,10 +30,11 @@ var storage = require("multer-gridfs-storage")({
   }
 });//end storeImage
 console.log("@@@ %% entering multer store with req items:");
-for(var item in req)console.log("### req.",item);
+var item;
+for(item in req)console.log("### req.",item);
 //for(var item in file)console.log("~~~ list file.",item);
-for(var item in storage)console.log("!!! storage.",item);
-console.log("@@@ typeof multer: ", typeof multer);
+for(item of storage)console.log("!!! storage.",item);
+console.log("@@@ storage._file: ", storage._file);
 multer({ storage: storage }).single("file");
 
 });
