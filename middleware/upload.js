@@ -12,7 +12,7 @@ for(var item in req)console.log("** req.",item);
 //const storage = new GridFsStorage({
 var storage = require("multer-gridfs-storage")({
   url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
-  //options: { useNewUrlParser: true, useUnifiedTopology: true },
+  options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     const match = ["image/png", "image/jpeg"];
     console.log("@@@ !!! in check file mime type for file: ",file);

@@ -6,11 +6,10 @@ const uploadFile = async (req, res) => {
   try {
     await upload(req, res);
 
-    console.log("@@@ ### file name requested: ",req.file);
     if (req.file == undefined) {
       return res.send(`You must select a file.`);
     }
-    console.log("@@@ ### file loaded successfully");
+    console.log("@@@ ### file loaded successfully req.file: ",req.file);
     return res.send(`File has been uploaded.`);
   } catch (error) {
     console.log(error);

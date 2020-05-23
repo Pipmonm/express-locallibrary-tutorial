@@ -102,7 +102,7 @@ exports.imagefile_post = function(req,res,next) {
   async function storeImage(req,res) {
     //const db = conn;//2020-05-21 added db (2 places) & conn
     try {
-      console.log("@@@ $$$ in async about to try await upload");
+      console.log("@@@ $$$ in async about to try await upload for req.file", req.file );
       await upload(req, res);
 
       console.log("@@@ #$@ logging file: ",req.file);
@@ -113,7 +113,7 @@ exports.imagefile_post = function(req,res,next) {
       return res.send(`File has been uploaded.`);
     } catch (error) {
       console.log(error);
-      return res.send(`Error when trying upload image: ${error}`);
+      return res.send(`Error when trying to upload image: ${error}`);
     }
   console.log("@@@ $ will exit successfuly if no error follows");
   if (err) { return next(err); }
