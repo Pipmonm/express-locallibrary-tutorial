@@ -1,10 +1,12 @@
+
+
 const util = require("util");
 const multer = require("multer");
 
 //Bind connection to error event (to get notification of connection errors)
 //^^^^^^^^^^^^^^^^^^^ end special test ^^^^^^^^^^^^^^^^^^^
 const GridFsStorage = require("multer-gridfs-storage");//({db:db});//2020-05-21 added extra bracket ({db:db})
-
+var uploadFilesMiddleware = util.promisify(()=>{
 console.log("@@@ $ in the middleware!");
 const storage = new GridFsStorage({
 //var storage = require("multer-gridfs-storage")({
@@ -29,6 +31,8 @@ const storage = new GridFsStorage({
 console.log("@@@ %% entering multer store section & storage items are:");
 for(var item in storage)console.log("###list storage.",item);
 var uploadFile = multer({ storage: storage }).single("file");
+
+});
 //var uploadFilesMiddleware = util.promisify(uploadFile);
-var uploadFilesMiddleware = ()=>console.log("@@@ $%# so long sucker!, typeof storage is: ",typeof storage);
+//var uploadFilesMiddleware = ()=>console.log("@@@ $%# so long sucker!, typeof storage is: ",typeof storage);
 module.exports = uploadFilesMiddleware;
