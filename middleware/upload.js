@@ -5,11 +5,11 @@ const multer = require("multer");
 
 //Bind connection to error event (to get notification of connection errors)
 //^^^^^^^^^^^^^^^^^^^ end special test ^^^^^^^^^^^^^^^^^^^
-const GridFsStorage = require("multer-gridfs-storage");//({db:db});//2020-05-21 added extra bracket ({db:db})
+//const GridFsStorage = require("multer-gridfs-storage");//({db:db});//2020-05-21 added extra bracket ({db:db})
 var uploadFilesMiddleware = util.promisify(()=>{
 console.log("@@@ $ in the middleware!");
-const storage = new GridFsStorage({
-//var storage = require("multer-gridfs-storage")({
+//const storage = new GridFsStorage({
+var storage = require("multer-gridfs-storage")({
   url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   //options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
