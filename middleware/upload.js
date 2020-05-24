@@ -1,6 +1,23 @@
 const util = require("util");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
+const mongoose                  = require('mongoose'),
+      path                      = require('path'),
+      multer                    = require('multer'),
+      crypto                    = require('crypto'),
+      Grid                      = require('gridfs-stream'),
+      GridFsStorage             = require('multer-gridfs-storage'),
+      Post                      = require('../models/post');
+
+      //const mongoURI = 'mongodb+srv://caman3874:qwertyuiopaman1234@@amanco-pexfz.mongodb.net/test?retryWrites=true&w=majority';
+      const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+      const promise = mongoose.connect(mongoURI, { useNewUrlParser: true });
+
+      const conn = mongoose.connection;
+      let gfs;
+
+      conn.once('open',() => {
+        gfs = Grid(conn, mongoose.mongo);
+        gfs.collection('photos');
+      });
 
 console.log("@@@ $ in the middleware!");
 var storage = new GridFsStorage({

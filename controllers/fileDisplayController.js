@@ -21,7 +21,7 @@ let gfs;
 conn.once('open', () => {
     console.log("@@@ $#@ web: fileDispContrllr conn.db is: ",conn.db);
     // Init stream
-    gfs = Grid(conn, mongoose.mongo); //was conn.db???
+    gfs = Grid(conn, mongoose.mongo); //2020-05-24  was conn.db???
     //gfs.bucket('photos');//??? this is commented out in locallibrary and works, and also in MLab
     gfs.collection('photos'); //was photos.files but doesn't work in locallibray so.... (collection name)
     console.log("@@@ $#@ leaving conn.once");
