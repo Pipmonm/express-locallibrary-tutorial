@@ -41,11 +41,14 @@ console.log("@@@ %% entering multer store with req items:");
 var item;
 for(item in req)console.log("### req.",item);
 for(var item in storage)console.log("~~~ list storage.",item);
-if(req.file != undefined){console.log("@@@ ## req.file: ",req.file);}else{
-  console.log("@@@  req.file undefined");
+if(storage._file != undefined){console.log("@@@ ## storage._file: ",storage._file);}else{
+  console.log("@@@  storage._file undefined");
 }
-if(storage.file != undefined){console.log("### @@@ storage.file: ",storage.file);}else{
-  console.log("@@@ storage.file undefined!");
+if(storage.db != undefined){console.log("### @@@ storage.db: ",storage.db);}else{
+  console.log("@@@ storage.db undefined!");
+}
+if(storage.connected != undefined){console.log("### @@@ storage.connected: ",storage.connected);}else{
+  console.log("@@@ storage.connected undefined!");
 }
 
 var uploadFile = multer({ storage: storage }).single("file");
