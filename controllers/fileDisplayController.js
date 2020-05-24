@@ -94,19 +94,22 @@ exports.imagefile_get = function(req, res, next) {
 }//imagefile_get ends
 
 exports.imagefile_post = function(req,res,next) { //NOT USED, goes to upload controller instead
-  // function(req, res, next){
+
+ for(var item of req)console.log("@@@ ### web: from SUBMIT req values: ",req.item);
+
   const upload = require("../middleware/upload");
-  console.log("@@@  !!! into imagefile_post");
+  console.log("@@@  !!! web: into imagefile_post");
   //const upload = require("../middleware/upload"),
   //mod form since we are not routing through uploadFile.
   //const uploadFile = async (req, res) => {
   async function storeImage(req,res) {
     //const db = conn;//2020-05-21 added db (2 places) & conn
     try {
-      console.log("@@@ $$$ in async about to try await upload for req.file", req.file );
+      console.log("@@@ $$$ web: in async about to try await upload for req.file", req.file );
       await upload(req, res);
 
-      console.log("@@@ #$@ logging file: ",req.file);
+      for(var item of req)console.log("@@@ ### web: post middleware req values: ",req.item);
+
       if (req.file == undefined) {
         return res.send(`You must select a file.`);
       }
