@@ -9,7 +9,7 @@ const uploadFile = async (req, res) => {
       console.log("@@@ in web: upload controller req.file undefined!");
     }
     console.log("@@@ web: into await middleware upload, with req: ");
-    for(var item in req)console.log("@@@ @@ web req values",req.item);
+    //for(var item in req)console.log("@@@ @@ web: middleware req values",req.item);
     //req here is completely blank and is passed to middleware to fill out filename
     await upload(req, res); //here goes to middleware
     //now req.file is set and procedure procedes
