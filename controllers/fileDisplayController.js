@@ -17,9 +17,9 @@ const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongod
 const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 // Init gfs
 let gfs;
-console.log("@@@ $#@ fileDispContrllr conn.db is: ",conn.db);
+
 conn.once('open', () => {
-    console.log("@@@ $#@ in conn.once");
+    console.log("@@@ $#@ web: fileDispContrllr conn.db is: ",conn.db);
     // Init stream
     gfs = Grid(conn.db, mongoose.mongo);
     //gfs.bucket('photos');//??? this is commented out in locallibrary and works, and also in MLab

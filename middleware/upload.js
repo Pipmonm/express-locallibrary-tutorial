@@ -8,7 +8,7 @@ var mongoDB = process.env.MONGODB_URI || "mongodb://Pipmon:MLBsfae!001@ds231090.
 //Bind connection to error event (to get notification of connection errors)
 //^^^^^^^^^^^^^^^^^^^ end special test ^^^^^^^^^^^^^^^^^^^
 //const GridFsStorage = require("multer-gridfs-storage");//({db:db});//2020-05-21 added extra bracket ({db:db})
-var uploadFilesMiddleware =util.promisify((req, res)=>{
+var uploadFilesMiddleware = util.promisify((req, res)=>{
 console.log("@@@ $ in the middleware! & req.params is: ",req.params);
 //for(var item in req)console.log("** req.",item);
 //const storage = new GridFsStorage({
@@ -22,6 +22,7 @@ var storage = require("multer-gridfs-storage")({
   url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
+    for(item in req)console.log("### web: fetching filename req.",item);
     const match = ["image/png", "image/jpeg"];
     console.log("@@@ !!! in check file mime type for file: ",file);
     if (match.indexOf(file.mimetype) === -1) {
@@ -37,18 +38,18 @@ var storage = require("multer-gridfs-storage")({
     };
   }
 });//end storeImage
-console.log("@@@ %% entering multer store with req items:");
+console.log("@@@ %% web: entering multer store with req items:");
 var item;
-for(item in req)console.log("### req.",item);
-for(var item in storage)console.log("~~~ list storage.",item);
-if(storage._file != undefined){console.log("@@@ ## storage._file: ",storage._file);}else{
-  console.log("@@@  storage._file undefined");
+//for(item in req)console.log("### web: req.",item);
+for(var item in storage)console.log("~~~ web: storage.",item);
+if(storage._file != undefined){console.log("@@@ ## web: storage._file: ",storage._file);}else{
+  console.log("@@@  web: storage._file undefined");
 }
-if(storage.db != undefined){console.log("### @@@ storage.db: ",storage.db);}else{
-  console.log("@@@ storage.db undefined!");
+if(storage.db != undefined){console.log("### @@@ web storage.db: ",storage.db);}else{
+  console.log("@@@ web: storage.db undefined!");
 }
-if(storage.connected != undefined){console.log("### @@@ storage.connected: ",storage.connected);}else{
-  console.log("@@@ storage.connected undefined!");
+if(storage.connected != undefined){console.log("### @@@ web: storage.connected: ",storage.connected);}else{
+  console.log("@@@ web: storage.connected undefined!");
 }
 
 var uploadFile = multer({ storage: storage }).single("file");
