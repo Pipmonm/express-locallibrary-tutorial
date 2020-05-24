@@ -52,7 +52,7 @@ exports.images_list = function (req, res) {
 
 //router.get('/image/:filename',
 exports.image_detail = function (req, res) {
-    console.log("###  @  in fileDisCntrllr req.params.filename is: ",req.params.filename);
+    console.log("###  @  in web: fileDisCntrllr req.params.filename is: ",req.params.filename);
     var fileRecName = req.params.filename;
     fileRecName = fileRecName.slice(1,fileRecName.length-1);
     gfs.files.findOne({filename: req.params.filename}, (err, file) => {
@@ -64,10 +64,10 @@ exports.image_detail = function (req, res) {
         if(!file || file.length === 0){
             return res.status(404).json({err: 'No File Exists'});
         } else {
-            console.log("### @@ file is: ",file);
+            console.log("### @@ web: fileDisplay Cntrl file is: ",file);
             // Check if is image
             if(file.contentType === "image/jpeg" || file.contentType === "image/png"){
-                console.log("### @@@ streaming file to browser");
+                console.log("### @@@ web: fileDispCntrllr streaming file to browser");
                 const readstream = gfs.createReadStream(file.filename);
                 readstream.pipe(res);
                 //readstream.on('data', (chunk) => {
@@ -95,7 +95,7 @@ exports.imagefile_get = function(req, res, next) {
 
 exports.imagefile_post = function(req,res,next) { //NOT USED, goes to upload controller instead
 
- for(var item of req)console.log("@@@ ### web: from SUBMIT req values: ",req.item);
+ for(var item of req)console.log("@@@ ### web: imagefile_post from SUBMIT req values: ",req.item);
 
   const upload = require("../middleware/upload");
   console.log("@@@  !!! web: into imagefile_post");

@@ -22,9 +22,10 @@ const mongoose                  = require('mongoose'),
 
 console.log("@@@ $ web: about to go in the middleware!");
 var storage = new GridFsStorage({
-  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb?retryWrites=true", //for cloud need to set to mlab database
-  //options: { useNewUrlParser: true, useUnifiedTopology: true },
+  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
+  options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
+    console.log("@@@ in web: middleware at: file: (req, file)");
     for(item in req)console.log("### web: fetching filename req.",item);
     const match = ["image/png", "image/jpeg"];
     console.log("@@@ !!! in check file mime type")
