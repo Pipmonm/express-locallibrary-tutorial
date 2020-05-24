@@ -4,11 +4,11 @@ const mongoose                  = require('mongoose'),
       multer                    = require('multer'),
       crypto                    = require('crypto'),
       Grid                      = require('gridfs-stream'),
-      GridFsStorage             = require('multer-gridfs-storage'),
-      Post                      = require('../models/post');
+      GridFsStorage             = require('multer-gridfs-storage');
 
+/*
       //const mongoURI = 'mongodb+srv://caman3874:qwertyuiopaman1234@@amanco-pexfz.mongodb.net/test?retryWrites=true&w=majority';
-      const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+      const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb?retryWrites=true&w=majority";
       const promise = mongoose.connect(mongoURI, { useNewUrlParser: true });
 
       const conn = mongoose.connection;
@@ -18,10 +18,11 @@ const mongoose                  = require('mongoose'),
         gfs = Grid(conn, mongoose.mongo);
         gfs.collection('photos');
       });
+*/
 
-console.log("@@@ $ in the middleware!");
+console.log("@@@ $ web: about to go in the middleware!");
 var storage = new GridFsStorage({
-  url: "mongodb://localhost:27017/my_database", //for cloud need to set to mlab database
+  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb?retryWrites=true", //for cloud need to set to mlab database
   //options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     for(item in req)console.log("### web: fetching filename req.",item);
