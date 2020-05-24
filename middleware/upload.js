@@ -40,8 +40,14 @@ var storage = require("multer-gridfs-storage")({
 console.log("@@@ %% entering multer store with req items:");
 var item;
 for(item in req)console.log("### req.",item);
-//for(var item in file)console.log("~~~ list file.",item);
-console.log("@@@ storage type: ",typeof storage);
+for(var item in storage)console.log("~~~ list storage.",item);
+if(req.file != undefined){console.log("@@@ ## req.file: ",req.file);}else{
+  console.log("@@@  req.file undefined");
+}
+if(storage.file != undefined){console.log("### @@@ storage.file: ",storage.file);}else{
+  console.log("@@@ storage.file undefined!");
+}
+
 var uploadFile = multer({ storage: storage }).single("file");
 //var testRun = util.promisify(uploadFile)
 uploadFile(); //last mod  attempt to execute upload
