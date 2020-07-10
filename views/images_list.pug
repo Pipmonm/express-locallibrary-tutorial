@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Images List
+  - var thing = "hello"
+  ul
+  each image in files
+    - thing = image.filename
+    li
+      a(href="/catalog/image/" + thing) #{image.filename}
+
+  else
+    li There are no images.

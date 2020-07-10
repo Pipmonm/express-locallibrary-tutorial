@@ -9,6 +9,8 @@ html(lang='en')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
+    block append head
+
   body
     div(class='container-fluid')
       div(class='row')
@@ -62,6 +64,20 @@ html(lang='en')
               //- following is //2020-04-11 for online access via GAE
               li
                 a(href='/catalog/GAE') Online Versions
+
+              li
+                br
+
+              li
+                p IMAGE testing
+
+                li
+                  a(href='/catalog/imagefile/load') Upload Image
+                li
+                  a(href='/catalog/images/list') List Images
+                li
+                  hr
+
 
 
 

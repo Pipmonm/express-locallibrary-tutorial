@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1=title
+
+  h4  Select Grade from dropdown menu
+      | fill in page with only a number (no ')' or '-')
+      | always use page number where the problem first appears (even if parts (eg. c, d etc.) are on next page)
+      | fill subsection with only one letter at a time ( a or b or c etc.  (nothing but a letter))
+      | for problem from different source, select 'other' in dropdown menu and specify alternate source in 'Other Src' field.
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='grade') Select Grade:
+      select#grade.form-control(type='select', placeholder='Your grade level(required)', name= 'grade', required=true)
+        option(value= gradeOptions[0]) #{gradeOptions[0]}
+        option(value= gradeOptions[1]) #{gradeOptions[1]}
+        option(value= gradeOptions[2]) #{gradeOptions[2]}
+        option(value= gradeOptions[3]) #{gradeOptions[3]}
+        option(value= gradeOptions[4]) #{gradeOptions[4]}
+        option(value= gradeOptions[5]) #{gradeOptions[5]}
+
+    div.form-group
+      label(for='other') Other Source:
+      input#other.form-control(type='text', placeholder = 'Doc Title (when grade="other")', name= 'other', requred = false)
+    div.form-group
+      label(for='pageNumber') Page Number at Problem Start:
+      input#pageNumber.form-control(type='text', placeholder='page # ', name= 'pageNumber', required=true)
+      label(for='problemNumber') Problem Number:
+      input#problemNumber.form-control(type='text', placeholder='problem # ', name= 'problemNumber', required=true)
+    div.form-group
+      label(for='subSection') Problem Section (letter):
+      input#subSection.form-control(type='text', placeholder='section letter (if needed) ', name= 'subSection', required=false)
+
+    div.form-group
+      label(for='problemAnswer') Problem Answer:
+      input#problemAnswer.form-control(type='text', placeholder= 'answer', name='problemAnswer', required=true)
+      label(for=problemHint') Hint:
+      input#problemHint.form-control(type='text',placeholder='hint text',name='problemHint',required=false)
+      label(for=problemExample) Example Problem:
+      input#problemExample.form-control(type='text', placeholder='Example text or URL',name='problemExample',required=false)
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
+  if error
+    ul
+      li
+        error
