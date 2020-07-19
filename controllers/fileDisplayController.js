@@ -29,14 +29,22 @@ conn.once('open', () => {
 
 //list all files
 exports.images_list = function (req, res) {
+<<<<<<< HEAD
     console.log("@@@ 21/06/12 req:", req)
     gfs.files.find().toArray((err, files) => {
       console.log("@@@ 21/06/12 post-find files, err:",err,"  & files: ",files);
+=======
+    gfs.files.find().toArray((err, files) => {
+      // Check if files
+>>>>>>> 70929e8869aeb3b42e0c2dc74bb64bf95f6e71b8
       if (!files || files.length === 0) {
         //res.render('indexImages', { files: false });
         res.render('images_list',{files:false});
       } else {
+<<<<<<< HEAD
         console.log("@@@ 21/06/12 pre-mapping");
+=======
+>>>>>>> 70929e8869aeb3b42e0c2dc74bb64bf95f6e71b8
         files.map(file => {
           if (
             file.contentType === 'image/jpeg' ||
@@ -47,7 +55,10 @@ exports.images_list = function (req, res) {
             file.isImage = false;
           }
         });
+<<<<<<< HEAD
         console.log("@@@ 2021/06/12 rendering files: ",files);
+=======
+>>>>>>> 70929e8869aeb3b42e0c2dc74bb64bf95f6e71b8
         res.render('images_list', { files: files });
       }
     });
