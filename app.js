@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+var index = require('./routes/index.js');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
 //TESTING Downloads
