@@ -1,1 +1,7 @@
-"* test=auto"
+#"* test=auto"
+#removed above 2020 jul 19
+* text=auto
+*.txt text
+*.c text
+*.h text
+*.jpg binary
