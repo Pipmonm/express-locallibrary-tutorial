@@ -7,11 +7,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./public/routes/index.js');
-var users = require('./routes/users');
-var catalog = require('./routes/catalog');  //Import routes for "catalog" area of site
+var users = require('./public/routes/users');
+var catalog = require('./public/routes/catalog');  //Import routes for "catalog" area of site
 //TESTING Downloads
-var pieSlicerDwnld = require('./routes/pieSlicerDwnld');
-var fracSpellerDwnld = require('./routes/fracSpellerDwnld');
+var pieSlicerDwnld = require('./public/routes/pieSlicerDwnld');
+var fracSpellerDwnld = require('./public/routes/fracSpellerDwnld');
 
 var stripe_controller = require('./controllers/stripeController');//2019-02-13 try to get at controller directly from app.js
 
