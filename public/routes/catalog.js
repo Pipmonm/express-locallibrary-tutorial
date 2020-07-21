@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 // Require controller modules.
-var application_controller = require('../controllers/applicationController');
+var application_controller = require('../../controllers/applicationController');
 var client_controller = require('../controllers/clientController');
 var client_request_controller = require('../controllers/clientrequestController');
 var appname_controller = require('../controllers/appnameController');
