@@ -4,31 +4,31 @@ var router = express.Router();
 
 // Require controller modules.
 var application_controller = require('../../controllers/applicationController');
-var client_controller = require('../controllers/clientController');
-var client_request_controller = require('../controllers/clientrequestController');
-var appname_controller = require('../controllers/appnameController');
-//var client_transaction_controller = require('../controllers/clienttransactionController');
+var client_controller = require('../../controllers/clientController');
+var client_request_controller = require('../../controllers/clientrequestController');
+var appname_controller = require('../../controllers/appnameController');
+//var client_transaction_controller = require('../../controllers/clienttransactionController');
 
 //TESTING Download
-var pieSlicer_controller = require('../controllers/pieSlicerController');
-var fracSpeller_controller = require('../controllers/fracSpellerController');
-var downloadFS_controller = require('../controllers/downloadFSController');//2018-09-24
-var downloadPS_controller = require('../controllers/downloadPSController');//ibid
-var verification_controller = require('../controllers/verificationController');//2019-01-15
-var s3_fs_controller = require('../controllers/fsS3Controller');
-var s3_ps_controller = require('../controllers/psS3Controller');
-var aboutUs_controller = require('../controllers/aboutUsController');//2019-01-15
-var stripe_controller = require('../controllers/stripeController');//2019-02-13 ????
-var countrytaxauthority_controller = require('../controllers/countryTaxAuthorityController');//2019-06-06
-var regionalauthority_controller = require('../controllers/regionalAuthorityController');//2019-06-17
-var messagesIn_controller = require('../controllers/messagesInController');//2019-10-09  added
-var gae_controller = require('../controllers/GAEcontroller');//2020-04-11 for online access
+var pieSlicer_controller = require('../../controllers/pieSlicerController');
+var fracSpeller_controller = require('../../controllers/fracSpellerController');
+var downloadFS_controller = require('../../controllers/downloadFSController');//2018-09-24
+var downloadPS_controller = require('../../controllers/downloadPSController');//ibid
+var verification_controller = require('../../controllers/verificationController');//2019-01-15
+var s3_fs_controller = require('../../controllers/fsS3Controller');
+var s3_ps_controller = require('../../controllers/psS3Controller');
+var aboutUs_controller = require('../../controllers/aboutUsController');//2019-01-15
+var stripe_controller = require('../../controllers/stripeController');//2019-02-13 ????
+var countrytaxauthority_controller = require('../../controllers/countryTaxAuthorityController');//2019-06-06
+var regionalauthority_controller = require('../../controllers/regionalAuthorityController');//2019-06-17
+var messagesIn_controller = require('../../controllers/messagesInController');//2019-10-09  added
+var gae_controller = require('../../controllers/GAEcontroller');//2020-04-11 for online access
 
 //for img file store in db
-const homeController = require("../controllers/home");
-const uploadController = require("../controllers/upload");
+const homeController = require("../../controllers/home");
+const uploadController = require("../../controllers/upload");
 
-const filesdisplay_controller = require("../controllers/fileDisplayController")
+const filesdisplay_controller = require("../../controllers/fileDisplayController")
 //done in PUG as imagefile/load_get     router.get("/", homeController.getHome);
 router.post("/upload", uploadController.uploadFile);
 
