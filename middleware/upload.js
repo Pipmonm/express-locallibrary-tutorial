@@ -42,13 +42,14 @@ var storage = new GridFsStorage({
     };
   }
 });
-console.log("@@@ %% entering multer store section");
+console.log("@@@ %% entering multer store section, storage.file is: ",file.filename);
 
 var item;
 
 
  for(var item in storage)console.log("~~~ web: storage.",item);
- if(undefined != storage._file){console.log("@@@ ## web: storage._file: ",storage._file);}else{
+ //2020 testing //if(undefined != storage._file){console.log("@@@ ## web: storage._file: ",storage._file);}else{ //}
+ if(undefined != storage._file){console.log("@@@ ## web: storage._file: valid ");}else{
   console.log("@@@ web: storage._file undefined");
  }
  if(undefined != storage.db){console.log("### @@@ web: storage.db: ",storage.db);}else{
