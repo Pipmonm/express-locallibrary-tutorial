@@ -23,8 +23,8 @@ conn.once('open', () => {
     console.log("@@@ $#@ web: fileDispContrllr conn.db is: ",conn.db);
     // Init stream
     gfs = Grid(conn, mongoose.mongo); //2020-05-24  was conn.db???
-    //gfs.bucket('photos');//??? this is commented out in locallibrary and works, and also in MLab
-    gfs.collection('photos'); //was photos.files but doesn't work in locallibray so.... (collection name)
+    gfs.bucket('photos');//2020-07-20 uncommented to test for resolve db open problem //??? this is commented out in locallibrary and works, and also in MLab
+    gfs.collection('photos.files');//2020-07-20 restored .files as per above testing //was photos.files but doesn't work in locallibray so.... (collection name)
     console.log("@@@ $#@ leaving conn.once");
 });
 
