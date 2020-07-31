@@ -35,7 +35,7 @@ var storage = new GridFsStorage({
       return filename;
     }
 
-    console.log("@@@ !! about to return filename + date & filename: ",${file.originalname} )//2020-07-20 added $etc..
+    console.log("@@@ !! about to return filename + date & filename: ", `${file.originalname}` )//2020-07-20 added $etc..
     return {
       bucketName: "photos",
       filename: `${Date.now()}-ALaCarte-${file.originalname}`
