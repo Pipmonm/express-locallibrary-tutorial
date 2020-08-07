@@ -25,7 +25,7 @@ var messagesIn_controller = require('../../controllers/messagesInController');//
 var gae_controller = require('../../controllers/GAEcontroller');//2020-04-11 for online access
 
 //2020-08-07  for problem verification utility (from local version)
-var problem_controller = require('../controllers/problemController');
+var problem_controller = require('../../controllers/problemController');
 
 
 //for img file store in db
