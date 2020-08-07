@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1 Problem Details
+
+  p #[strong Source:] #{specificproblem.keyCode}
+  p #[strong Page:] #{specificproblem.pageNumber}
+  p #[strong Problem:] #{specificproblem.problemNumber}
+  p #[strong Part:] #{specificproblem.subSection}
+  p #[strong Answer] #{specificproblem.answer}
+  p #[strong Hint:] #{specificproblem.hint}
+  p #[strong Example:] #{specificproblem.example}
+
+  hr
+  //- testing JS option by loading URL in a JS variable
+  - var jsURL = specificproblem.hint
+
+  p.
+  | should see value of JS variable
+  p !{jsURL}
+
+  //- <div style="text-align: left">
+  //- a(href=source)
+  //-        button(type="button") online example
+  //- </div>
+  <div>
+  a(href != specificproblem.hint)
+          button(type="button") online example
+  </div>
+  hr
+  p
+    a(href=specificproblem.url+'/delete') Delete Problem
+  p
+    a(href=specificproblem.url+'/update') Update Problem

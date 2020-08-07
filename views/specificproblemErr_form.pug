@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1=title
+
+  h4  Update mutable fields below<br />
+      |- the following items cannot be modified as they form the problem unique key
+
+  h4 Grade: #{specificproblem.grade}
+  h4 Other: #{specificproblem.other}
+  h4 Page: #{specificproblem.pageNumber}
+  h4 Problem #: #{specificproblem.problemNumber}
+  h4 Section: #{specificproblem.subSection}
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='problemAnswer') Problem Answer:
+      input#problemAnswer.form-control(type='text', name='problemAnswer', required=true, value=specificproblem.answer)
+      label(for='problemHint') Hint:
+      input#problemHint.form-control(type!='text',placeholder='give hint here', name='problemHint', required=false, value=specificproblem.hint)
+      label(for='problemExample') Example Problem:
+      input#problemExample.form-control(type='text', placeholder='Example text or URL',name='problemExample',required=false, value=specificproblem.example)
+
+    button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
+
+
+  if error
+    ul
+      li
+        error

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+  each problem in problems_list
+    li
+      a(href=problem.url) #{problem.keyCode}
+      |  (#{problem.answer})
+
+  else
+    li There are no Problems.

@@ -24,6 +24,10 @@ var regionalauthority_controller = require('../../controllers/regionalAuthorityC
 var messagesIn_controller = require('../../controllers/messagesInController');//2019-10-09  added
 var gae_controller = require('../../controllers/GAEcontroller');//2020-04-11 for online access
 
+//2020-08-07  for problem verification utility (from local version)
+var problem_controller = require('../controllers/problemController');
+
+
 //for img file store in db
 const homeController = require("../../controllers/home");
 const uploadController = require("../../controllers/upload");
@@ -190,5 +194,23 @@ router.get('/image/:filename', filesdisplay_controller.image_detail);
 //router.post('/clienttransaction/create', client_transaction_controller.clienttransaction_create_post);
 //Get transaction for one clientransaction.
 //router.get('/clienttransaction/:id', client_transaction_controller.clienttransaction_detail);
+
+
+              //2020-08-07 following is for problem verification utility (from local version)
+              router.get('/specificproblem/create', problem_controller.specificproblem_create_get);
+
+              router.post('/specificproblem/create', problem_controller.specificproblem_create_post);
+
+              router.get('/specificproblem/:id', problem_controller.specificproblem_detail);
+
+              router.get('/specificproblem/:id/update', problem_controller.specificproblem_update_get);
+
+              router.post('/specificproblem/:id/update', problem_controller.specificproblem_update_post);
+
+              router.get('/problems/list', problem_controller.problems_list);
+
+              router.get('/specificproblem/:id/delete', problem_controller.specificproblem_delete_get);
+              router.post('/specificproblem/:id/delete', problem_controller.specificproblem_delete_post);
+
 
 module.exports = router;

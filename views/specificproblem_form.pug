@@ -22,7 +22,7 @@ block content
 
     div.form-group
       label(for='other') Other Source:
-      input#other.form-control(type='text', placeholder = 'Doc Title (when grade="other")', name= 'other', requred = false)
+      input#other.form-control(type='text', placeholder = 'Doc Title (when grade="other")', name= 'other', required = false)
     div.form-group
       label(for='pageNumber') Page Number at Problem Start:
       input#pageNumber.form-control(type='text', placeholder='page # ', name= 'pageNumber', required=true)
@@ -35,18 +35,14 @@ block content
     div.form-group
       label(for='problemAnswer') Problem Answer:
       input#problemAnswer.form-control(type='text', placeholder= 'answer', name='problemAnswer', required=true)
-      label(for=problemHint') Hint:
+      label(for='problemHint') Hint:
       input#problemHint.form-control(type='text',placeholder='hint text',name='problemHint',required=false)
-      label(for=problemExample) Example Problem:
+      label(for='problemExample') Example Problem:
       input#problemExample.form-control(type='text', placeholder='Example text or URL',name='problemExample',required=false)
+
     button.btn.btn-primary(type='submit') #{query===undefined ? "Submit" : query}
 
   if errors
     ul
       for error in errors
         li!= error.msg
-
-  if error
-    ul
-      li
-        error

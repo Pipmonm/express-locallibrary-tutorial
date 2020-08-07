@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 #{title}:  #{problem.problem_name}
+
+  p Do you really want to delete this problem?
+
+    form(method='POST' action='')
+      div.form-group
+        input#problemid.form-control(type='hidden',name='problemid', required='true', value=problem._id )
+
+      button.btn.btn-primary(type='submit') Delete
