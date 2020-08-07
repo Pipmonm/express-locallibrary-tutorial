@@ -11,18 +11,21 @@ const express                   = require('express'),
 
 //mucho problemos con multer-gridfs-storage
 //tambien con gridfs-stream
-const conn = mongoose.connection;//2020-07-20 restored, was commented out
+//const conn = mongoose.connection;//2020-07-20 restored, was commented out
 
 const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
 //2020-07-20  testing mongoose "keep open" in app.js //const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 // Init gfs
 let gfs;
+//2020-08-97 one more try as per  https://github.com/mongolab/mongodb-driver-examples/blob/master/nodejs/mongooseSimpleExample.js
+mongoose.connect(uri);//2020-08-07
 
+let conn = mongoose.connection;//2020-08-07
 
 conn.once('open', () => {
     console.log("@@@ $#@ web: fileDispContrllr conn.db is: ",conn.db);
     // Init stream
-    gfs = Grid(conn, mongoose.mongo); //2020-05-24  was conn.db???
+    gfs = Grid(conn.db, mongoose.mongo);//2020-08-07 restored .db //2020-05-24  was conn.db???
     //gfs.bucket('photos');//bad 2020-07-20 uncommented to test for resolve db open problem //??? this is commented out in locallibrary and works, and also in MLab
     gfs.collection('photos.files');//2020-07-20 restored .files as per above testing //was photos.files but doesn't work in locallibray so.... (collection name)
     console.log("@@@ $#@ leaving conn.once");
