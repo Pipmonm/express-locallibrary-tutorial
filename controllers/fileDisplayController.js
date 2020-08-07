@@ -18,9 +18,9 @@ const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongod
 // Init gfs
 let gfs;
 //2020-08-97 one more try as per  https://github.com/mongolab/mongodb-driver-examples/blob/master/nodejs/mongooseSimpleExample.js
-mongoose.connect(uri);//2020-08-07
+mongoose.connect(mongoURI);//2020-08-07 added
 
-let conn = mongoose.connection;//2020-08-07
+let conn = mongoose.connection;//2020-08-07  added
 
 conn.once('open', () => {
     console.log("@@@ $#@ web: fileDispContrllr conn.db is: ",conn.db);
