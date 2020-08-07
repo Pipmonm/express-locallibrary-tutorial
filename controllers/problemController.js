@@ -208,6 +208,9 @@ exports.specificproblem_create_post = [
                 return -1;
               }}
         // Create a specificproblem object with escaped and trimmed data.
+        //first attempt to recover escaped characters
+        var restore = {answer:req.body.problemAnswer,hint:req.body.problemHint,example:req.body.problemExample};
+
         var specificproblem = new Problem( //.body. here is body of request which has many key fields
           {
             keyCode: keyCode,
@@ -216,9 +219,13 @@ exports.specificproblem_create_post = [
             pageNumber: req.body.pageNumber,
             problemNumber: req.body.problemNumber,
             subSection: req.body.subSection,
-            answer: req.body.problemAnswer,
-            hint: req.body.problemHint,
-            example: req.body.problemExample
+            //2020-08-07 replaced all below for escape chars problem
+            //answer: req.body.problemAnswer,
+            answer:restore.answer,
+            //hint: req.body.problemHint,
+            hint:restore.hint,
+            //example: req.body.problemExample
+            example:restore.example
 
            });
 
