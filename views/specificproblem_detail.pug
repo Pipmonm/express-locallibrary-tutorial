@@ -7,17 +7,27 @@ block content
   p #[strong Page:] #{specificproblem.pageNumber}
   p #[strong Problem:] #{specificproblem.problemNumber}
   p #[strong Part:] #{specificproblem.subSection}
-  p! #[strong Answer] #{specificproblem.answer}
-  p! #[strong Hint:] #{specificproblem.hint}
-  p! #[strong Example:] #{specificproblem.example}
+  //- p #[strong Answer] #{specificproblem.answer}
+  //- p #[strong Hint:] #{specificproblem.hint}
+  //- p #[strong Example:] #{specificproblem.example}
 
   hr
   //- testing JS option by loading URL in a JS variable
   - var jsURL = specificproblem.hint
+  - var jsAnswer = specificproblem.answer
+  - var jsExample = specificproblem.example
 
   p.
-  | should see value of JS variable
+  | Problem answer
+  p !{jsAnswer}
+
+  p.
+  | Problem Hint
   p !{jsURL}
+
+  p.
+  | Problem example
+  p !{jsExample}
 
   //- <div style="text-align: left">
   //- a(href=source)
