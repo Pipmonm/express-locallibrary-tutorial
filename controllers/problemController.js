@@ -153,7 +153,7 @@ exports.specificproblem_create_post = [
     body('problemNumber', 'problem number: no ")" or "-" ').isLength({max:3}).trim(),//isNumeric({no_symbols: true}),
     body('subSection', 'give sub-problem: "a or b or c etc." or roman numeral').isLength({max:3}).trim(),
     body('problemAnswer', 'text value for answer').isLength({max:200}).trim(),
-    body('problemHint','optinal hint').isLength({max:200}).trim(),
+    body('problemHint','optional hint').isLength({max:200}).trim(),
     body('problemExample','example optional').isLength({max:200}).trim(),
 
     // Sanitize fields.
