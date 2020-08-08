@@ -20,7 +20,7 @@ const mongoose                  = require('mongoose'),
       });
 */
 
-console.log("@@@ $ web: about to go in the middleware!");
+console.log("@@@ $  entering the middleware!");
 var storage = new GridFsStorage({
   url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   options: { useNewUrlParser: true, useUnifiedTopology: true },
@@ -59,7 +59,10 @@ var item;
   console.log("@@@ web: storage.connected undefined!");
  }
 
-
+//2020-08-07 added following storage.on function around existing 'multer((storage....))'
+storage.on('connection', (db) => {
 var uploadFile = multer({ storage: storage }).single("file");
+});
+
 var uploadFilesMiddleware = util.promisify(uploadFile);
 module.exports = uploadFilesMiddleware;

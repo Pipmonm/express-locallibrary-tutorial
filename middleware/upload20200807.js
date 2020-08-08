@@ -22,8 +22,7 @@ const mongoose                  = require('mongoose'),
 
 console.log("@@@ $ web: about to go in the middleware!");
 var storage = new GridFsStorage({
-  //2020-08-07 below was 'url' modded to 'uri' for test
-  uri: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
+  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     console.log("@@@ executing middleware function at> file: (req, file)");
