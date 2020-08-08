@@ -61,6 +61,9 @@ var item;
 
 //2020-08-07 added following storage.on function around existing 'multer((storage....))'
 storage.on('connection', (db) => {
+    if(undefined != storage.connected){console.log("### @@@ web: storage.connected: ",storage.connected);}else{
+    console.log("@@@ web: storage.connected undefined!");
+    }
     uploadFile = multer({ storage: storage }).single("file");
     //2020-08-07 removed var for uploadFile thus making it a global variable!!!
 });
