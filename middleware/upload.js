@@ -60,6 +60,7 @@ var item;
  }
 
 //2020-08-07 added following storage.on function around existing 'multer((storage....))'
+var uploadFile;
 storage.on('connection', (db) => {
     if(undefined != storage.connected){console.log("### @@@ web: storage.connected: ",storage.connected);}else{
     console.log("@@@ web: storage.connected undefined!");
