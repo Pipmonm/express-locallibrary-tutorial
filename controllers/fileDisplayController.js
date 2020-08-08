@@ -18,7 +18,7 @@ const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongod
 // Init gfs
 let gfs;
 //2020-08-97 one more try as per  https://github.com/mongolab/mongodb-driver-examples/blob/master/nodejs/mongooseSimpleExample.js
-mongoose.connect(mongoURI);//2020-08-07 added
+mongoose.connect(mongoURI, {family: 4});//2020-08-07 added  + later family etc.
 
 let conn = mongoose.connection;//2020-08-07  added
 
