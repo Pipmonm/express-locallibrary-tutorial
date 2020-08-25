@@ -69,5 +69,5 @@ storage.on('connection', (db) => {
     //2020-08-07 removed var for uploadFile thus making it a global variable!!!
 });
 
-var uploadFilesMiddleware = util.promisify(uploadFile);
+var uploadFilesMiddleware = -1 //2020-08-24 problem>> util.promisify(uploadFile);
 module.exports = uploadFilesMiddleware;
