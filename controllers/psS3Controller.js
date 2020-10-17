@@ -6,6 +6,7 @@ console.log("@@@ $ in getS3_FS_File.js");
 let filename = 'PieSlicerDual.exe';
 //let absPath = path.join('c:/Users/User/Illustrated/Math-Dev/public/javascripts/downloading', filename);
 let absPath = path.join('https://s3.ca-central-1.amazonaws.com/pieslicer/', filename);
+//as of 2020-10-17  https://pieslicer.s3.ca-central-1.amazonaws.com/PieSlicerDual.exe
 //https://s3.ca-central-1.amazonaws.com/pipsbucket/FracSpellerDecimal.exe
 let relPath = path.join('./public/javascripts/downloading', filename); // path relative to server root
 console.log(absPath);

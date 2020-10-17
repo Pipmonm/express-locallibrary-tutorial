@@ -27,8 +27,8 @@ exports.downloadPS_view = function(req, res) {
   " Click on \"VERIFY DOWNLOAD\" button below for complete instructions. <br />"+
   "<br />"+
 
-  "PieSlicerDual.exe (vrs. 1.0.0.9)  file SHA-256 Verification code:<br />" +
-  "9C5AEB0F7FF6291B57CB7A4234DE2011A2B0C7403DDE46526A25A7C613297B6B<br />" +
+  "PieSlicerDual.exe (vrs. PS-1010)  file SHA-256 Verification code:<br />" +
+  "42F1E1E4F4D898037F4E9F0819543EFB6F53F30775E9617023D928C80CD6546A<br />" +
   "(copy & use this code as described in the Verify Download procedure.)</p></div>"
 
 
