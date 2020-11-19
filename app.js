@@ -51,6 +51,9 @@ var mongoDB = process.env.MONGODB_URI || "mongodb+srv://UserPipmon:MmDBpiafb&ivt
 const options = {server: {socketOptions: {keepAlive: 1}}};
 mongoose.connect(mongoDB, options);//20-07-2020 modded to add options parameter
 // Get Mongoose to use the global promise library
+mongoose.connection.on('connected', { () =>
+  console.log("@@@ ## mongoose connected");
+});
 mongoose.Promise = global.Promise;
 //Get the default connection
 var db = mongoose.connection;
