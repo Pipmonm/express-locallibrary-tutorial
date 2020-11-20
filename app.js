@@ -48,9 +48,10 @@ var mongoDB = process.env.MONGODB_URI || "mongodb+srv://UserPipmon:MmDBpiafb&ivt
 //var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1/my_database';//2018=05-19 default to local if online not available
 
 //2020-11-19 added next two lines //20-07-2020  added options
-const options = {server: {socketOptions: {keepAlive: 1}},
-                                  useNewUrlParser: true,
-                                  useUnifiedTopology: true
+//const options = {server: {socketOptions: {keepAlive: 1}},
+const options = {
+                useNewUrlParser: true,
+                useUnifiedTopology: true
 };
 mongoose.connect(mongoDB, options);//20-07-2020 modded to add options parameter
 // Get Mongoose to use the global promise library
