@@ -41,7 +41,9 @@ var debug = require('debug')('http')
 //Import the mongoose module
 var mongoose = require('mongoose');
 //var mongoDB = process.env.MONGODB_URI || "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb"
-var mongoDB = process.env.MONGODB_URI || "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
+//var mongoDB = process.env.MONGODB_URI || "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
+var mongoDB = "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
+//2020-11-20 above mod is test as to why cannot connect to Atlas
 //mongoDB definition above to check out why environment variable set below (with heroku set config) doesn't work!
 //Set up default mongoose connection
 //var mongoDB = 'mongodb://127.0.0.1/my_database';//ORIGINAL DB connection

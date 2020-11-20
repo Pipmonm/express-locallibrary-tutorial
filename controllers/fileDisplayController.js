@@ -13,7 +13,10 @@ const express                   = require('express'),
 //tambien con gridfs-stream
 //const conn = mongoose.connection;//2020-07-20 restored, was commented out
 
-const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+//const mongoURI = "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb";
+//2020-11-20  modded above for Atlas mongodb
+const mongoURI = "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
+
 //2020-07-20  testing mongoose "keep open" in app.js //const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 // Init gfs
 let gfs;

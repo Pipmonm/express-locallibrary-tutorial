@@ -22,7 +22,10 @@ const mongoose                  = require('mongoose'),
 
 console.log("@@@ $  entering the middleware!");
 var storage = new GridFsStorage({
-  url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
+  //url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
+  //2020-11-20 testing connection to mongoDB Atlas
+  url: "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
+
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     //console.log("@@@ executing middleware function at> file: (req, file)");
