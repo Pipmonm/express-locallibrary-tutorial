@@ -25,7 +25,7 @@ var storage = new GridFsStorage({
   //url: "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb", //for cloud need to set to mlab database
   //2020-11-20 testing connection to mongoDB Atlas (both of these below)
   //url: "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority",
-  url: "mongodb+srv://herokuK9:v5QRcLYh4ExpspJj@pipmongodb.j4xhw.mongodb.net/K9Math?retryWrites=true&w=majority",
+  url: "mongodb+srv://herokuK9:v5QRcLYh4ExpspJj@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority",
 
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
