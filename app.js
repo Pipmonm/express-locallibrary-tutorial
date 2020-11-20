@@ -42,8 +42,9 @@ var debug = require('debug')('http')
 var mongoose = require('mongoose');
 //var mongoDB = process.env.MONGODB_URI || "mongodb://Pipmon:MLBsfae!001@ds231090.mlab.com:31090/pipmongodb"
 //var mongoDB = process.env.MONGODB_URI || "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
-var mongoDB = "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/pipmongodb?retryWrites=true&w=majority"
-//2020-11-20 above mod is test as to why cannot connect to Atlas
+//var mongoDB = "mongodb+srv://UserPipmon:MmDBpiafb&ivt2022!@pipmongodb.j4xhw.mongodb.net/K9MathDB?retryWrites=true&w=majority"
+var mongoDB = "mongodb+srv://herokuK9:v5QRcLYh4ExpspJj@pipmongodb.j4xhw.mongodb.net/K9Math?retryWrites=true&w=majority"
+//2020-11-20 above mod is test as to why cannot connect to Atlas  v5QRcLYh4ExpspJj
 //mongoDB definition above to check out why environment variable set below (with heroku set config) doesn't work!
 //Set up default mongoose connection
 //var mongoDB = 'mongodb://127.0.0.1/my_database';//ORIGINAL DB connection
@@ -57,7 +58,20 @@ const options = {
 };
 mongoose.connect(mongoDB, options);//20-07-2020 modded to add options parameter
 // Get Mongoose to use the global promise library
+/*
+//2020-11-20
+Atlas example connection
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://herokuK9:<password>@pipmongodb.j4xhw.mongodb.net/K9Math?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
+
+*/
 //2020-11-19 added connection check
 mongoose.connection.on('connected', () => {
   console.log("@@@ ## mongoose connected");
