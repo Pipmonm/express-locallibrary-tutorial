@@ -40,6 +40,7 @@ var storage = new GridFsStorage({
     }
 
     console.log("@@@ !! about to return filename + date & filename: ", `${file.originalname}` )//2020-07-20 added $etc..
+    req.file = filename;//2020-11-30 brute force attempt to get correct filename in req.file
     return {
       bucketName: "photos",
       filename: `${Date.now()}-ALaCarte-${file.originalname}`
