@@ -7,7 +7,8 @@ const uploadFile = async (req, res) => {
     //for(item in req)console.log("### in web: upload controller req.",item);
     if(req.file != undefined){console.log("### @@@ web: in upload controller req.file: ",req.file);}else{
       console.log("@@@ in web: upload controller req.file=undefined!  posted as: ",req.file);
-      return res.send(`file improperly loaded`, req.file);//2020-11-30 debugging picture snafu
+      //return res.send(`file improperly loaded`, req.file);//2020-11-30 debugging picture snafu
+      return res.status(status).send(body);//2020-11-30 requested that this be sent instead
     }
     console.log("@@@ web: into await middleware upload, with req: ");
     //for(var item in req)console.log("@@@ @@ web: middleware req values",req.item);
