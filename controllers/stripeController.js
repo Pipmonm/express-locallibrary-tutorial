@@ -169,7 +169,8 @@ exports.stripePrePay_post = [
 
      var sysIdString = req.body.sysIdString;
      var country_name;
-     if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
+     let aString = process.env.VIEW_ACCESS_CODE;//2020-11-30  protect app
+     if(sysIdString === aString){//2020-11-30 protected code//2019-06-03 WORKING HERE
         res.redirect('/catalog/countrytaxauthorities');
         //added line to force recompilation
         return;
