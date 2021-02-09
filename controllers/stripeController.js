@@ -39,6 +39,8 @@ var fourth={year:2019,month:11,date:31};
 
 //validation check on sysId and Format Code string  //2018-12-14 new function
 function checkValidIdString(inString){
+  let check = prompt("in checkValidString ");//2021-02-09 debug
+  if(check===null)return;
   let stringPieces = inString.split(":");
   if(stringPieces.length !=4)return "fail";//2019-01-31 now of size 4 with module name-version
   for (var i=0;i<2;i++){
@@ -49,6 +51,8 @@ function checkValidIdString(inString){
 };
 
 function findModdedIdString(inString){ //any changes here must be relfected in clientcontroller
+  let check = prompt("in findModdedString given: ", inString);//2021-02-09 debug
+  if(check===null)return;
   let modArray = inString.split(":");//2019-10-29 added
   let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
   console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
@@ -56,6 +60,10 @@ function findModdedIdString(inString){ //any changes here must be relfected in c
 }
 
 function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is normal year quarters
+  let check = prompt("in getCurrentQuarterYear given nowdate: ", nowDate);//2021-02-09 debug
+  if(check===null)return;
+  let check = prompt("in getCurrentQuarterYear ");//2021-02-09 debug
+  if(check===null)return;
   let quarter = 4;//illegal number
   let month = nowDate.getMonth();//recall January = 0
   if(month<=2){
@@ -71,6 +79,8 @@ function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is 
 
 
 function updateYear(doc){
+  let check = prompt("in updateYear given: ", doc[0].transaction_date);//2021-02-09 debug
+  if(check===null)return;
   console.log("@@@ $ updating year now.");
   let innerDoc = doc;
   first.year += 1;//new fiscal dates for upcoming year
@@ -99,6 +109,8 @@ function updateYear(doc){
 }
 
 function updateQuarter(doc){
+  let check = prompt("in findModdedString given quarter: ", doc[0].for_period_index);//2021-02-09 debug
+  if(check===null)return;
   console.log("@@@ $ updating quarter now");
   let doc2 = doc;
   let temp = [];
@@ -121,6 +133,8 @@ function updateQuarter(doc){
   //as outlined above
 
 function sumTotal(doc) {//for summing arrays
+  let check = prompt("in sumTotal given: ", doc[0].previous_quarters_amounts);//2021-02-09 debug
+  if(check===null)return;
   let innerDoc = doc;
   let total = 0;
   let size = innerDoc[0].last_three_quarters_array.length; //don't need current quarter (= 0 for sure)
@@ -130,6 +144,8 @@ function sumTotal(doc) {//for summing arrays
 }
 
 function cycleQuarters(doc){
+  let check = prompt("in sumTotal given: ", doc[0].transaction_date.getFullYear());//2021-02-09 debug
+  if(check===null)return;
   console.log("@@@ $ cyclingQuarterPeriod for target_object",target_object);
   let target_year = doc[0].transaction_date.getFullYear();//2021-02-09 getYear>getFullYear
   let target_index = doc[0].for_period_index;
