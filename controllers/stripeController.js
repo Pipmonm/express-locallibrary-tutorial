@@ -78,6 +78,9 @@ function updateYear(doc){
   third.year += 1;
   fourth.year += 1;
 
+  let target_year = doc[0].transaction_date.getFullYear();//2021-02-09 for debug only
+  console.log("@@@ $ updating year at year: ",target_year);
+
   let temp = [];
   let temp2 = [];
   temp2 = innerDoc[0].previous_years_amounts;
@@ -106,7 +109,9 @@ function updateQuarter(doc){
   temp[0] = doc2[0].last_three_quarters_array.pop();//load temp with dropped out fourth value
   doc2[0].current_quarter_amount = 0;//reset for new quarter
   temp2 = doc2[0].previous_quarters_amounts;
-  doc2[0].previous_quarters_amounts = temp.concat(temp2);//place at top
+  temp = temp.concat(temp2);//2021-02-07  now array of 3
+  temp = temp.pop();//2021-02-07  now back to size 2
+  doc2[0].previous_quarters_amounts = temp;//2021-02-07  removed concat that was here //place at top
 
   doc2[0].current_four_quarters_amount = sumTotal(doc2);
 
@@ -126,17 +131,26 @@ function sumTotal(doc) {//for summing arrays
 
 function cycleQuarters(doc){
   console.log("@@@ $ cyclingQuarterPeriod for target_object",target_object);
-  let target_year = doc[0].transaction_date.getYear();
+  let target_year = doc[0].transaction_date.getFullYear();//2021-02-09 getYear>getFullYear
   let target_index = doc[0].for_period_index;
 
-  while(target_index != this_transaction_period_index || target_year != this_year ){
+  while(target_index != this_transaction_period_index || target_year < this_year ){  //2021-02-09 !=this_year >> <this_year
         //complicated
         //update quarter by quarter and year by year as target_period hits zero till they're equal (both)
         target_index = (target_index + 1)%4; //modulo 4 to stay in (0~3) range
         doc[0].for_period_index = target_index;//update in document
         doc = updateQuarter(doc);//2019-09-16 capturing returned value
-        if(target_index == 0)doc = updateYear(doc);
+        target_index = doc[0].for_period_index;//2021-02-09 added line target_index must be updated always after a change
+        if(target_index == 0 && target_year < this_year){//2021-02-09 modified to if clause
+          doc = updateYear(doc);
+          let year = doc[0].transaction_date.getFullYear();//2021-02-09 added
+          console.log("@@@ $ updated year to: ",doc[0].transaction_date.getFullYear());//added
+          target_year = doc[0].transaction_date.getFullYear()//added
+        }
     }
+    doc[0].transaction_date = new Date();//2021-02-09 added line
+    console.log("doc[0] date now: ",doc[0].transation_date);
+    //2021-02-09  END OF MODS
   }
 
 
@@ -330,6 +344,8 @@ exports.stripePost = (req, res) => {//open 1
 
   let combo = {price:7.50,currency:"CDN",sku:"unknown"}
   let now = new Date();//must ensure which fiscal quarter we are now in
+  //7 numbers specify year, month, day, hour, minute, second, and millisecond (in that order):
+  //ex: var d = new Date(2018, 11, 24, 10, 33, 30, 0);
   this_year = now.getYear();//format number  ie. 2019
   this_transaction_period_index = getCurrentQuarterYear(now);
 
@@ -415,7 +431,9 @@ exports.stripePost = (req, res) => {//open 1
        target_period_index = doc[0].for_period_index;
        target_object = target_country;//ensure cycling country document values
        console.log("@@@ $ period indices: now: ",this_transaction_period_index,"  then: ",target_period_index);
-       if(this_transaction_period_index != target_period_index)cycleQuarters(doc);
+       while(this_transaction_period_index != target_period_index){
+            cycleQuarters(doc);//2021-02-08 change from if to while
+          }
          //take care of year change in here too
          //will result in many doc[0] items being modified
          //make sure to recalculate (& mod target for it) four_quarters_amount
