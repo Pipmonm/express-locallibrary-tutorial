@@ -36,11 +36,23 @@ var second={year:2019,month:5,date:30};
 var third={year:2019,month:8,date:30};
 var fourth={year:2019,month:11,date:31};
 
+var counter1 = 0;
+var counter2 = 0;
+var counter3 = 0;
+var counter4 = 0;
+var counter5 = 0;
+var counter6 = 0;
+var counter7 = 0;
+var counter8 = 0;
+
 
 //validation check on sysId and Format Code string  //2018-12-14 new function
 function checkValidIdString(inString){
-  let check = prompt("in checkValidString ");//2021-02-09 debug
-  if(check===null)return;
+  counter1 += 1; //remove
+  if(counter1 > 20){
+  console.log("%%% % overan in checkValidString ");//2021-02-09 debug
+  return;
+}
   let stringPieces = inString.split(":");
   if(stringPieces.length !=4)return "fail";//2019-01-31 now of size 4 with module name-version
   for (var i=0;i<2;i++){
@@ -51,8 +63,11 @@ function checkValidIdString(inString){
 };
 
 function findModdedIdString(inString){ //any changes here must be relfected in clientcontroller
-  let check = prompt("in findModdedString given: ", inString);//2021-02-09 debug
-  if(check===null)return;
+  counter2 += 1; //remove
+  if(counter2 > 20){
+  console.log("%%% % overan in findModdedString ");//2021-02-09 debug
+  return;
+}
   let modArray = inString.split(":");//2019-10-29 added
   let moddedSysIdString = modArray[0] + ":" + modArray[1] + ":" + modArray[2] + ":" + modArray[3].slice(0,2);//2019-10-29 added
   console.log("@@@ $ modded string from sysIdString): " + moddedSysIdString);//2019-10-29 modified
@@ -60,10 +75,11 @@ function findModdedIdString(inString){ //any changes here must be relfected in c
 }
 
 function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is normal year quarters
-  let check = prompt("in getCurrentQuarterYear given nowdate: ", nowDate);//2021-02-09 debug
-  if(check===null)return;
-  let check = prompt("in getCurrentQuarterYear ");//2021-02-09 debug
-  if(check===null)return;
+  counter3 += 1; //remove
+  if(counter3 > 20){
+  console.log("%%% % overan in checkValidString with nowdate: ", nowDate);//2021-02-09 debug
+  return;
+}
   let quarter = 4;//illegal number
   let month = nowDate.getMonth();//recall January = 0
   if(month<=2){
@@ -79,9 +95,12 @@ function getCurrentQuarterYear(nowDate){ //fiscal year for 'small suppliers' is 
 
 
 function updateYear(doc){
-  let check = prompt("in updateYear given: ", doc[0].transaction_date);//2021-02-09 debug
-  if(check===null)return;
-  console.log("@@@ $ updating year now.");
+  counter4 += 1; //remove
+  if(counter4 > 20){
+  console.log("%%% % overan in updateYear with transaction_date: ", doc[0].transaction_date);//2021-02-09 debug
+  return;
+}
+
   let innerDoc = doc;
   first.year += 1;//new fiscal dates for upcoming year
   second.year += 1;
@@ -109,9 +128,12 @@ function updateYear(doc){
 }
 
 function updateQuarter(doc){
-  let check = prompt("in findModdedString given quarter: ", doc[0].for_period_index);//2021-02-09 debug
-  if(check===null)return;
-  console.log("@@@ $ updating quarter now");
+  counter5 += 1; //remove
+  if(counter5 > 20){
+  console.log("%%% % in updateQuarter with index: ", doc[0].for_period_index);//2021-02-09 debug
+  return;
+}
+
   let doc2 = doc;
   let temp = [];
   let temp2 = [];
@@ -133,8 +155,13 @@ function updateQuarter(doc){
   //as outlined above
 
 function sumTotal(doc) {//for summing arrays
-  let check = prompt("in sumTotal given: ", doc[0].previous_quarters_amounts);//2021-02-09 debug
-  if(check===null)return;
+  counter6 += 1; //remove
+  if(counter6 > 20){
+  console.log("%%% % in sumTotal given: ", doc[0].previous_quarters_amounts);//2021-02-09 debug
+  return;
+}
+
+
   let innerDoc = doc;
   let total = 0;
   let size = innerDoc[0].last_three_quarters_array.length; //don't need current quarter (= 0 for sure)
@@ -144,13 +171,23 @@ function sumTotal(doc) {//for summing arrays
 }
 
 function cycleQuarters(doc){
-  let check = prompt("in sumTotal given: ", doc[0].transaction_date.getFullYear());//2021-02-09 debug
-  if(check===null)return;
+  counter7 += 1; //remove
+  if(counter7 > 20){
+  console.log("%%% % in sumTotal given: ", doc[0].transaction_date.getFullYear());//2021-02-09 debug
+  return;
+}
+
+
   console.log("@@@ $ cyclingQuarterPeriod for target_object",target_object);
   let target_year = doc[0].transaction_date.getFullYear();//2021-02-09 getYear>getFullYear
   let target_index = doc[0].for_period_index;
 
   while(target_index != this_transaction_period_index || target_year < this_year ){  //2021-02-09 !=this_year >> <this_year
+        counter8 += 1;
+        if(counter8 >30){
+          console.log("%%% % overun in while of cycleQuarter with index: ", target_index, + "  and year: " + target_year);
+          return;
+        }
         //complicated
         //update quarter by quarter and year by year as target_period hits zero till they're equal (both)
         target_index = (target_index + 1)%4; //modulo 4 to stay in (0~3) range
