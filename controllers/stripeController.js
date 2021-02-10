@@ -203,7 +203,7 @@ function cycleQuarters(doc){
         }
     }
     doc[0].transaction_date = new Date();//2021-02-09 added line
-    console.log("doc[0] date now: ",doc[0].transation_date);
+    console.log("doc[0] date now: ",doc[0].transaction_date);
     //2021-02-09  END OF MODS
   }
 
@@ -400,7 +400,7 @@ exports.stripePost = (req, res) => {//open 1
   let now = new Date();//must ensure which fiscal quarter we are now in
   //7 numbers specify year, month, day, hour, minute, second, and millisecond (in that order):
   //ex: var d = new Date(2018, 11, 24, 10, 33, 30, 0);
-  this_year = now.getYear();//format number  ie. 2019
+  this_year = now.getFullYear();//2021-02-10 modded to "Full"year  //format number  ie. 2019
   this_transaction_period_index = getCurrentQuarterYear(now);
 
   console.log("@@@ $ am at stripePost & stripeCharge is: " + STRIPE.stripeCharge + "  or (fancier): " + fancyAmount);
@@ -486,6 +486,7 @@ exports.stripePost = (req, res) => {//open 1
        target_object = target_country;//ensure cycling country document values
        console.log("@@@ $ period indices: now: ",this_transaction_period_index,"  then: ",target_period_index);
        while(this_transaction_period_index != target_period_index){
+            console.log("%%% $ cycling Quarters");
             cycleQuarters(doc);//2021-02-08 change from if to while
           }
          //take care of year change in here too
