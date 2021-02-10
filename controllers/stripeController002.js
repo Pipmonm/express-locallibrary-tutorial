@@ -162,7 +162,7 @@ exports.stripePrePay_post = [
 
      var sysIdString = req.body.sysIdString;
      console.log("@@@ $ received prePay request for: " + sysIdString );
-     if(sysIdString === "simpleTest"){//2019-06-03 WORKING HERE
+     if(sysIdString == "simpleTest"){//2019-06-03 WORKING HERE
         res.redirect('/catalog/countrytaxauthorities');
         //added line to force recompilation
         return;

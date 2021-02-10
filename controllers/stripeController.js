@@ -44,6 +44,7 @@ var counter5 = 0;
 var counter6 = 0;
 var counter7 = 0;
 var counter8 = 0;
+var counter9 = 0;  //UNUSED dummy to force update
 
 
 //validation check on sysId and Format Code string  //2018-12-14 new function
